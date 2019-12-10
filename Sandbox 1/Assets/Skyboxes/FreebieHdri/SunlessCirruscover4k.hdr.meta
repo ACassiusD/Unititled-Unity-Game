@@ -1,11 +1,10 @@
 fileFormatVersion: 2
-guid: 18a0be10f0f64ac4c9f679d68e2cf857
-timeCreated: 1509071095
+guid: 99af420a4ccafa74abdc47436d8b0685
+timeCreated: 1509147117
 licenseType: Store
 TextureImporter:
   fileIDToRecycleName:
     8900000: generatedCubemap
-  externalObjects: {}
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -59,7 +58,6 @@ TextureImporter:
   platformSettings:
   - buildTarget: DefaultTexturePlatform
     maxTextureSize: 4096
-    resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
@@ -68,7 +66,6 @@ TextureImporter:
     overridden: 0
   - buildTarget: Standalone
     maxTextureSize: 4096
-    resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
@@ -77,7 +74,6 @@ TextureImporter:
     overridden: 0
   - buildTarget: Android
     maxTextureSize: 4096
-    resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
@@ -86,7 +82,6 @@ TextureImporter:
     overridden: 0
   - buildTarget: WebGL
     maxTextureSize: 4096
-    resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
