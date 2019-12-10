@@ -2,9 +2,12 @@
 
 public class Plots : MonoBehaviour, InteractableInterface
 {
+    public GameObject seedsObj;
     public Material tilledMaterial;
     Renderer MR;
     public bool isTilled = false;
+    public bool isSeeded = false;
+    GameObject mySeeds;
 
     void Awake()
     {
@@ -18,10 +21,28 @@ public class Plots : MonoBehaviour, InteractableInterface
 
     public void interact()
     {
-        if(PlayerManager.Instance.getPlayerHeldItem() == "Shovel")
+        switch (PlayerManager.Instance.getPlayerHeldItem())
         {
-            Till();
+            case "Shovel":
+                Till();
+                break;
+            case "Seeds":
+               
+                if (isTilled == true && isSeeded == false)
+                {
+                    SeedPlot();
+                }
+                break;
+            default:
+                break;
         }
+    }
+
+    public void SeedPlot()
+    {
+        mySeeds = Instantiate(seedsObj, this.transform.position, Quaternion.identity) as GameObject;
+        Debug.Log("Seed plot");
+        isSeeded = true;
     }
 
     //"Tills" the plot, changing its texture

@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 9dfade96e23abab458d682d129e887d6, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: f15c336556dd74f40aaca655f7767970, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.73054963, g: 0.80413014, b: 0.78303915, a: 1}
+  m_IndirectSpecularColor: {r: 0.9964315, g: 0.8711385, b: 0.7254699, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -2351,6 +2351,33 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 55598786}
   m_Mesh: {fileID: 4300008, guid: e3f20bf455ddd9345bffd774de303bfe, type: 3}
+--- !u!84 &59870984
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_Width: 901
+  m_Height: 564
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 0
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &61891539
 GameObject:
   m_ObjectHideFlags: 0
@@ -8994,33 +9021,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 282227040}
   m_Mesh: {fileID: 4300016, guid: e3f20bf455ddd9345bffd774de303bfe, type: 3}
---- !u!84 &283111383
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_Width: 969
-  m_Height: 527
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &283742055
 GameObject:
   m_ObjectHideFlags: 0
@@ -21817,7 +21817,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: b95c00d019d0b434db2e3d4302df5e24, type: 2}
+  - {fileID: 2100000, guid: bb6a60abd556d1b468b53f710c2cfb5d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -26568,7 +26568,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 858046225}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 258.61444, y: 252.13228, z: -342.37457}
+  m_LocalPosition: {x: 224.61444, y: 270.63226, z: -342.37457}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1462113355}
@@ -31929,6 +31929,48 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1059565457}
   m_Mesh: {fileID: 4300010, guid: e3f20bf455ddd9345bffd774de303bfe, type: 3}
+--- !u!1001 &1060266178
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4293215685481806, guid: 18e6789f44a0e61428ae0f85e90a5bcc, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 76.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 4293215685481806, guid: 18e6789f44a0e61428ae0f85e90a5bcc, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 29.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4293215685481806, guid: 18e6789f44a0e61428ae0f85e90a5bcc, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -190.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4293215685481806, guid: 18e6789f44a0e61428ae0f85e90a5bcc, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4293215685481806, guid: 18e6789f44a0e61428ae0f85e90a5bcc, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4293215685481806, guid: 18e6789f44a0e61428ae0f85e90a5bcc, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4293215685481806, guid: 18e6789f44a0e61428ae0f85e90a5bcc, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4293215685481806, guid: 18e6789f44a0e61428ae0f85e90a5bcc, type: 2}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 18e6789f44a0e61428ae0f85e90a5bcc, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1062238082
 GameObject:
   m_ObjectHideFlags: 0
@@ -32263,7 +32305,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 0
   m_RenderingPath: 1
-  m_TargetTexture: {fileID: 1979625697}
+  m_TargetTexture: {fileID: 59870984}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 0
@@ -42257,6 +42299,33 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1460645106}
   m_Mesh: {fileID: 4300018, guid: e3f20bf455ddd9345bffd774de303bfe, type: 3}
+--- !u!84 &1461132086
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_Width: 901
+  m_Height: 564
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &1462016300
 GameObject:
   m_ObjectHideFlags: 0
@@ -47816,8 +47885,8 @@ MonoBehaviour:
   sourceCamera: {fileID: 1683900123}
   outlineCamera: {fileID: 1072237683}
   outlineShaderMaterial: {fileID: 0}
-  renderTexture: {fileID: 1979625697}
-  extraRenderTexture: {fileID: 283111383}
+  renderTexture: {fileID: 59870984}
+  extraRenderTexture: {fileID: 1461132086}
 --- !u!114 &1683900127
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56755,33 +56824,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1978705818}
   m_Mesh: {fileID: 4300010, guid: e3f20bf455ddd9345bffd774de303bfe, type: 3}
---- !u!84 &1979625697
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_Width: 969
-  m_Height: 527
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 0
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &1984566060
 GameObject:
   m_ObjectHideFlags: 0

@@ -123,5 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 157a8f29879c7094c9048523896a8ff4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  seedsObj: {fileID: 1746646811969844, guid: 18e6789f44a0e61428ae0f85e90a5bcc, type: 2}
   tilledMaterial: {fileID: 2100000, guid: 2913ffe2821dddf4f94013f87aa2c6f8, type: 2}
   isTilled: 0
+  isSeeded: 0
