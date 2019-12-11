@@ -76,7 +76,7 @@ public class InteractContoller : MonoBehaviour
     {
         //Get Hit object
         hitObject = hitinfo.transform;
-
+       // Debug.Log(hitObject);
         //If object has no active script, try to find it in the class hierarchy
         if (hitObject.GetComponent<Outline>())
         {
@@ -91,6 +91,8 @@ public class InteractContoller : MonoBehaviour
 
         if (activeScript != null)
         {
+
+
             activeScript.eraseRenderer = false;
 
             //Try to call interact
