@@ -50,7 +50,7 @@ public class PlayerCharacter : PlayableCharacters {
     public void moveToMountedPosition()
     {
         //Calculate where the rider needs to be positioned, then transform him to that position and rotation
-        Vector3 ridingPositon = activeMount.transform.localPosition;
+        Vector3 ridingPositon = activeMount.transform.position;
         ridingPositon.y = ridingPositon.y + ridingHeight;
         transform.position = ridingPositon;
 

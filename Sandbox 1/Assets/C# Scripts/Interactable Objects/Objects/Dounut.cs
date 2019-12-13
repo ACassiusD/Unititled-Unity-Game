@@ -12,14 +12,17 @@ public class Dounut : MonoBehaviour, InteractableInterface
     public string direction;
     Quaternion startR;
     Quaternion endR;
+    int verticalMovement = 78; //The height for the "elevator" type interaction
+
 
     // Use this for initialization
     void Start()
     {
-        direction = "none";
+        direction = "none"; //Current movement direction of the dounut
         frameOfAnimation = 60 * 5;
-        startPosition = new Vector3(-154.7f, 8.4f, -70.7f);
-        endPositon = new Vector3(-154.7f, 93.5f, -70.7f);
+        startPosition = this.transform.localPosition;
+        endPositon = startPosition;
+        endPositon.y = endPositon.y + verticalMovement;
         startR = this.transform.rotation;
         endR = transform.rotation * Quaternion.AngleAxis(-170f, Vector3.forward);
     }
@@ -53,12 +56,12 @@ public class Dounut : MonoBehaviour, InteractableInterface
             }
 
             float percentage = ((float)framePosition / (float)frameOfAnimation);
-            Debug.Log(this.transform.localPosition); // Calculating Di
-            Debug.Log(this.transform.localRotation); // Calculating Di
-            Debug.Log(this); // Calculating Di
+           // Debug.Log(this.transform.localPosition); // Calculating Di
+           // Debug.Log(this.transform.localRotation); // Calculating Di
+           // Debug.Log(this); // Calculating Di
 
             
-            transform.position = Vector3.Lerp(startPosition, endPositon, percentage);
+            transform.localPosition = Vector3.Lerp(startPosition, endPositon, percentage);
             transform.rotation = Quaternion.Lerp(startR, endR, percentage);
         }
     }
