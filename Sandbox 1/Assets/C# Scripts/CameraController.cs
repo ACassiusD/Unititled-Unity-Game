@@ -4,21 +4,22 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour {
 
-	
-    float currentHeight = 0;
-    Vector3 newCameraLocation; //Holds the new position of the camera for this frame
-    public Transform target; //Assign the taget that camera will look at 
+    public Transform target; //What the camera looks at
+    [SerializeField]
+    private float currentDistance = -40;
+    [SerializeField]
+    private float desiredCameraDistance = -40;
+    [SerializeField]
+    private float currentHeight = 0;
     public int cameraZoomSpeed = 5;
-    public float cameraDistance = -40; //Initial distance from player
-    public float desiredCameraDistance = -40; //Desired Distance from player
     public float maxZDistanceFromTarget;
     public float minZDistanceFromTarget;
-    public float maxCameraHeight = 30; //How high above the target the camera should be
-    public float minCameraHeight = 5;
-
+    public float maxCameraHeight = 50;
+    public float minCameraHeight = 0; 
 
     // Use this for initialization
     void Start () {
+        //Set negative to be behind the player
         maxZDistanceFromTarget = 100;
         minZDistanceFromTarget = 5;
 
@@ -31,76 +32,36 @@ public class CameraController : MonoBehaviour {
 
     void MoveCamera()
     {
-        //Get scroll input
-        float scrollInput = Input.GetAxis("Mouse ScrollWheel");
+        Vector3 newCameraLocation = new Vector3();
+        float scrollBarInput = Input.GetAxis("Mouse ScrollWheel");
 
+        //This was easier to write with all the numbers being positive
+        float posDesiredDistance = desiredCameraDistance * -1; 
 
-        if((desiredCameraDistance * -1) >= minZDistanceFromTarget && (desiredCameraDistance * -1) <= maxZDistanceFromTarget) {
-            //Get Zoom input and adjust desired camera distance
-            if (scrollInput > 0f && (desiredCameraDistance * -1) > minZDistanceFromTarget)
-            {
-                desiredCameraDistance += cameraZoomSpeed;
-            }
-            //Zoom out
-            else if (scrollInput < 0f && (desiredCameraDistance * -1) < maxZDistanceFromTarget) // backwards
-            {
-                desiredCameraDistance -= cameraZoomSpeed;
-            }
+        //Zoom In
+        if (scrollBarInput > 0f && posDesiredDistance > minZDistanceFromTarget)
+        {
+            desiredCameraDistance += cameraZoomSpeed;
+        }
+        //Zoom out
+        else if (scrollBarInput < 0f && posDesiredDistance < maxZDistanceFromTarget) // backwards
+        {
+            desiredCameraDistance -= cameraZoomSpeed;
         }
 
-
-
-
-        //if (desiredCameraDistance < (maxZDistanceFromTarget * -1))
-        //{
-        //    desiredCameraDistance = maxZDistanceFromTarget;
-        //}
-        //else if (desiredCameraDistance > (minZDistanceFromTarget * -1))
-        //{
-        //    desiredCameraDistance = minCameraDistance;
-        //}
-
-
-
-        ////Calculate the new camera position by lerping the current distance from play to the desired distance from player
-
-        //dist = Vector3.Distance(this.transform.localPosition, target.transform.localPosition);
-
-        //if (dist > maxCameraDistance)
-        //{
-        //    dist = maxCameraDistance;
-        //}
-        //else if (dist < minCameraDistance)
-        //{
-        //    dist = minCameraDistance;
-        //}
-
-        //float positionLimit = maxCameraDistance - minCameraDistance;
-        //float distanceposition = dist - minCameraDistance;
-        //float distancePercentage = distanceposition / positionLimit;
-
-
-        ////currentHeight = Mathf.Lerp(minCameraHeight, maxCameraHeight, distancePercentage);
-
-
-        ////Set new camera location to target position
-        //newCameraLocation = target.localPosition;
-
-
-        cameraDistance = Mathf.Lerp(cameraDistance, desiredCameraDistance, Time.deltaTime * cameraZoomSpeed);
-
-        ////Setting cameras position to players position (+/-) players direction (the cameras offset)
-
-
-        //float futureDist = Vector3.Distance(newCameraLocation, target.transform.localPosition);
-        ////Debug.Log(newCameraLocation);
-        ////Debug.Log(futureDist);
+        //Get camera height
+        currentDistance = Mathf.Lerp(currentDistance, desiredCameraDistance, Time.deltaTime * cameraZoomSpeed);
+        float posCurrentDistance = currentDistance * -1;
+        float difference = maxZDistanceFromTarget - minZDistanceFromTarget;
+        float percentageThroughDifference = (posCurrentDistance-5) / difference;
+        float cameraHeight = Mathf.Lerp(minCameraHeight, maxCameraHeight, percentageThroughDifference);
+        currentHeight = cameraHeight;
 
         //Start by setting initial new camera position to the player position
         newCameraLocation = target.localPosition;
 
         //Add height y axis offset, and distance in the z axis offset
-        newCameraLocation = newCameraLocation + target.transform.TransformDirection(new Vector3(0, currentHeight, cameraDistance));
+        newCameraLocation = newCameraLocation + target.transform.TransformDirection(new Vector3(0, currentHeight, currentDistance));
 
         //Finally, move the camera
         transform.position = newCameraLocation;
