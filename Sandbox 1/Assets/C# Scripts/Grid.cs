@@ -13,6 +13,7 @@ public class Grid : MonoBehaviour
     Vector3 plotSize;
     private Dictionary<string, GameObject> plotDictionary;
     public bool DrawGizmos = false;
+    public bool plotDebugger = false;
 
 
 
@@ -24,12 +25,14 @@ public class Grid : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown("3"))
+        if (plotDebugger)
         {
-            destroyPlots();
-            DrawPlots();
+            if (Input.GetKeyDown("3"))
+            {
+                destroyPlots();
+                DrawPlots();
+            }
         }
- 
     }
 
     //Draw plots in the grid

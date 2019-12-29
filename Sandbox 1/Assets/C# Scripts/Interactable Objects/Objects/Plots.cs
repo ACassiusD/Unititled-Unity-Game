@@ -2,12 +2,15 @@
 
 public class Plots : MonoBehaviour, InteractableInterface
 {
-    public GameObject seedsObj;
+    //public GameObject seedsObj;
+    public Crops CropPrefab;
     public Material tilledMaterial;
-    Renderer MR;
+    public Material wetTilledMaterial;
     public bool isTilled = false;
     public bool isSeeded = false;
-    GameObject mySeeds;
+    public bool isWatered = false;
+    Renderer MR;
+    Crops myCrop;
 
     void Awake()
     {
@@ -21,16 +24,41 @@ public class Plots : MonoBehaviour, InteractableInterface
 
     public void interact()
     {
+        if (myCrop)
+        {
+            if (myCrop.isHarvestable)
+            {
+                HarvestPlot();
+            }
+            else
+            {
+                ItemInteractions();
+            }
+        }
+        else
+        {
+            ItemInteractions();
+        }
+        
+    }
+
+    public void ItemInteractions()
+    {
         switch (PlayerManager.Instance.getPlayerHeldItem())
         {
             case "Shovel":
                 Till();
                 break;
             case "Seeds":
-               
                 if (isTilled == true && isSeeded == false)
                 {
                     SeedPlot();
+                }
+                break;
+            case "Watering Pail":
+                if (isSeeded && isTilled)
+                {
+                    WaterPlot();
                 }
                 break;
             default:
@@ -40,7 +68,7 @@ public class Plots : MonoBehaviour, InteractableInterface
 
     public void SeedPlot()
     {
-        mySeeds = Instantiate(seedsObj, this.transform.position, Quaternion.identity) as GameObject;
+        myCrop = Instantiate(CropPrefab, this.transform.position, Quaternion.identity) as Crops;
         Debug.Log("Seed plot");
         isSeeded = true;
     }
@@ -54,5 +82,22 @@ public class Plots : MonoBehaviour, InteractableInterface
             isTilled = true;
         }
 
+    }
+
+    public void WaterPlot()
+    {
+        MR.material = wetTilledMaterial;
+        isWatered = true;
+        if (myCrop)
+        {
+            myCrop.growing = true;
+        }
+    }
+
+    void HarvestPlot()
+    {
+        myCrop.harvest();
+        Destroy(myCrop);
+        isSeeded = false;
     }
 }

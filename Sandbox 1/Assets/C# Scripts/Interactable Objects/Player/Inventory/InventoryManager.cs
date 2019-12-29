@@ -10,7 +10,6 @@ public class InventoryManager : MonoBehaviour {
     Image[] hotbarColor;
     int hotbarCount = 5;
     int inventorySize = 10;
-    CollectableItem pickedUpItem;
     int selectedIndex = 0;
     public string heldObject = null;
 
@@ -80,9 +79,11 @@ public class InventoryManager : MonoBehaviour {
     //This can be refactored
     void CheckHotbarInput()
     {
+        //Get new index
+        
         int beforeUpdate = selectedIndex;
+        float scrollBarInput = Input.GetAxis("Mouse ScrollWheel");
 
-        //Try to call interact
         if (Input.GetKeyDown("1"))
         {
             selectedIndex = 0;
@@ -108,7 +109,28 @@ public class InventoryManager : MonoBehaviour {
             selectedIndex = 4;
         }
 
-        if(selectedIndex != beforeUpdate)
+        //Zoom In
+        if (scrollBarInput > 0f)
+        {
+            selectedIndex--;
+        }
+        //Zoom out
+        else if (scrollBarInput < 0f) // backwards
+        {
+            selectedIndex++;
+        }
+
+        if (selectedIndex > hotbarCount -1) 
+        {
+            selectedIndex = 0;
+        }
+        if (selectedIndex < 0)
+        {
+            selectedIndex = hotbarCount - 1;
+        }
+
+        //Highlight index
+        if (selectedIndex != beforeUpdate)
         {
             highlightSelectedIndex();
         }

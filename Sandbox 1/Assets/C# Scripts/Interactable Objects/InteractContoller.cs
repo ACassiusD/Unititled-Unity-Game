@@ -96,7 +96,7 @@ public class InteractContoller : MonoBehaviour
             activeScript.eraseRenderer = false;
 
             //Try to call interact
-            if (Input.GetKeyDown("e"))
+            if (Input.GetKeyDown("e") || (Input.GetMouseButtonDown(0)))
             {
                 try
                 {

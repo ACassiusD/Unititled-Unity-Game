@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33097896715070316}
   - component: {fileID: 65388911883340302}
   - component: {fileID: 23156001864396826}
-  - component: {fileID: 114674606132463110}
+  - component: {fileID: 114723837966302364}
   - component: {fileID: 114332640627166826}
   m_Layer: 8
   m_Name: Plot
@@ -112,7 +112,7 @@ MonoBehaviour:
   eraseRenderer: 0
   originalLayer: 0
   originalMaterials: []
---- !u!114 &114674606132463110
+--- !u!114 &114723837966302364
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -123,7 +123,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 157a8f29879c7094c9048523896a8ff4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seedsObj: {fileID: 1746646811969844, guid: 18e6789f44a0e61428ae0f85e90a5bcc, type: 2}
+  CropPrefab: {fileID: 114802223586432680, guid: a6bd768ed41e48540804b1144d4e53f4,
+    type: 2}
   tilledMaterial: {fileID: 2100000, guid: 2913ffe2821dddf4f94013f87aa2c6f8, type: 2}
+  wetTilledMaterial: {fileID: 2100000, guid: 0bfadadc8e432984485979260382b8f3, type: 2}
   isTilled: 0
   isSeeded: 0
+  isWatered: 0

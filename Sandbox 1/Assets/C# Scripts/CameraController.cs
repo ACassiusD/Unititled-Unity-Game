@@ -15,18 +15,27 @@ public class CameraController : MonoBehaviour {
     public float maxZDistanceFromTarget;
     public float minZDistanceFromTarget;
     public float maxCameraHeight = 50;
-    public float minCameraHeight = 0; 
+    public float minCameraHeight = 0;
+    [SerializeField]
+    bool isBeingControlled;
 
     // Use this for initialization
     void Start () {
         //Set negative to be behind the player
         maxZDistanceFromTarget = 100;
         minZDistanceFromTarget = 5;
-
+        isBeingControlled = false;
     }
 	
 	// Update is called once per frame
 	void Update () {
+        isBeingControlled = false;
+        if (Input.GetKey("c"))
+        {
+            Debug.Log("hit");
+            isBeingControlled = true;
+        }
+
         MoveCamera();
     }
 
@@ -36,17 +45,20 @@ public class CameraController : MonoBehaviour {
         float scrollBarInput = Input.GetAxis("Mouse ScrollWheel");
 
         //This was easier to write with all the numbers being positive
-        float posDesiredDistance = desiredCameraDistance * -1; 
+        float posDesiredDistance = desiredCameraDistance * -1;
 
-        //Zoom In
-        if (scrollBarInput > 0f && posDesiredDistance > minZDistanceFromTarget)
+        if (isBeingControlled)
         {
-            desiredCameraDistance += cameraZoomSpeed;
-        }
-        //Zoom out
-        else if (scrollBarInput < 0f && posDesiredDistance < maxZDistanceFromTarget) // backwards
-        {
-            desiredCameraDistance -= cameraZoomSpeed;
+            //Zoom In
+            if (scrollBarInput > 0f && posDesiredDistance > minZDistanceFromTarget)
+            {
+                desiredCameraDistance += cameraZoomSpeed;
+            }
+            //Zoom out
+            else if (scrollBarInput < 0f && posDesiredDistance < maxZDistanceFromTarget) // backwards
+            {
+                desiredCameraDistance -= cameraZoomSpeed;
+            }
         }
 
         //Get camera height
