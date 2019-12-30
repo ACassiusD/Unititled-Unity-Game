@@ -115,7 +115,7 @@ public class PlayableCharacters : MonoBehaviour {
 
     void getMountAiInput()
     {
-        moveDirection = new Vector3(0, 0, 0);
+        moveDirection = new Vector3(0, moveDirection.y, 0);
 
         //Generate random value to see if the mount should turn or walk forward
         if (!isTurning)
