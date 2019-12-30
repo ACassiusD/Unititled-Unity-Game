@@ -69,6 +69,7 @@ public class Plots : MonoBehaviour, InteractableInterface
     public void SeedPlot()
     {
         myCrop = Instantiate(CropPrefab, this.transform.position, Quaternion.identity) as Crops;
+        myCrop.setPlot(this);
         Debug.Log("Seed plot");
         isSeeded = true;
     }
@@ -86,11 +87,12 @@ public class Plots : MonoBehaviour, InteractableInterface
 
     public void WaterPlot()
     {
-        MR.material = wetTilledMaterial;
         isWatered = true;
+        MR.material = wetTilledMaterial;
+
         if (myCrop)
         {
-            myCrop.growing = true;
+            myCrop.water();
         }
     }
 

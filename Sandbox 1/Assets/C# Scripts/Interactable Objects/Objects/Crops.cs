@@ -2,17 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//A crop exists until the grow time reaches 0 and is harvested
 public class Crops : MonoBehaviour {
 
     public GameObject seedsObj;
     public GameObject grownObj;
     GameObject cropAppearence;
-    GameObject myplot;
+    Plots myplot;
     public float growTime = 120.0f;
     public bool growing = false;
     public bool isHarvestable = false;
+    public bool isWatered = false;
 
-    void Crop(GameObject plot)
+    public void setPlot(Plots plot)
     {
         myplot = plot;
     }
@@ -31,8 +33,13 @@ public class Crops : MonoBehaviour {
 
             if (growTime <= 0.0f)
             {
+                growTime = 0.0f;
                 grow();
             }
+        }
+        else if(myplot.isWatered && !isHarvestable)
+        {
+            growing = true;
         }
     }
 
@@ -60,5 +67,10 @@ public class Crops : MonoBehaviour {
         {
             Destroy(cropAppearence);
         }
+    }
+
+    public void water()
+    {
+        isWatered = true;
     }
 }
