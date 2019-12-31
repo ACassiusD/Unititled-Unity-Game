@@ -13,6 +13,7 @@ public class Crops : MonoBehaviour {
     public bool growing = false;
     public bool isHarvestable = false;
     public bool isWatered = false;
+    float critThreshold = 80;
 
     public void setPlot(Plots plot)
     {
@@ -55,6 +56,12 @@ public class Crops : MonoBehaviour {
         Vector3 cropPosition = this.transform.position;
         cropPosition.y = cropPosition.y + 1;
         cropAppearence = Instantiate(grownObj, cropPosition, Quaternion.identity) as GameObject;
+
+        if (rollForCritical())
+        {
+            cropAppearence.transform.localScale += new Vector3(8, 8, 8);
+        }
+
         growing = false;
         Debug.Log("The crop has grown");
     }
@@ -72,5 +79,17 @@ public class Crops : MonoBehaviour {
     public void water()
     {
         isWatered = true;
+    }
+
+    bool rollForCritical()
+    {
+        float randnum = Random.Range(0f, 100f);
+
+        if(randnum > critThreshold)
+        {
+            return true;
+        }
+
+        return false;
     }
 }
