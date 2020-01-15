@@ -33,7 +33,7 @@ public class PlayerCharacter : PlayableCharacters {
     {
         if (!isRiding)
         {
-            base.moveCharacterController();
+            base.MoveCharacterController();
         }
         else
         {

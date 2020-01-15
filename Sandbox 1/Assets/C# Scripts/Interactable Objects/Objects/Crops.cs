@@ -59,7 +59,7 @@ public class Crops : MonoBehaviour {
 
         if (rollForCritical())
         {
-            cropAppearence.transform.localScale += new Vector3(8, 8, 8);
+            cropAppearence.transform.localScale += new Vector3(6, 6, 6);
         }
 
         growing = false;

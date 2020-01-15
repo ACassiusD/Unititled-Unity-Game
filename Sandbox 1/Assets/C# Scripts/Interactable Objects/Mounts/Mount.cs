@@ -9,7 +9,7 @@ public class Mount : PlayableCharacters, InteractableInterface
     public override void onCreate()
     {
         playerScript = PlayerManager.Instance.getPlayerScript();
-        speed = 80;
+        speed = 150;
         gravityScale = .25f;
         jumpForce = 70f;
     }
