@@ -10,13 +10,13 @@ public class PlayerCharacter : PlayableCharacters {
     private Mount activeMount = null;
     Mount activeMountScript;
 
-
     private void Awake() { 
         Application.targetFrameRate = 60;
     }
 
     public override void onCreate()
     {
+        speed = 50;
         isBeingControlled = true;
         activeMount = null;
         tamedMounts = GameObject.FindGameObjectsWithTag("TamedMount"); //Populate tamed mounts

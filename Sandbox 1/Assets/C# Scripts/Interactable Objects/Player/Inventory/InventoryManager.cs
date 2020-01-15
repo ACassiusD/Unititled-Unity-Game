@@ -1,12 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
+using UnityEngine.UIElements;
 
 public class InventoryManager : MonoBehaviour {
 
     CollectableItem[] itemCollection;
-    Text[] hotbarText;
+    //Text[] hotbarText;
     Image[] hotbarColor;
     int hotbarCount = 5;
     int inventorySize = 10;
@@ -16,15 +14,15 @@ public class InventoryManager : MonoBehaviour {
     void Start () {
         Debug.Log("Initialized Inventory Manager");
         itemCollection = new CollectableItem[inventorySize];
-        initalizeHotbar();
+        //initalizeHotbar();
         createFakeInventory();
-        updateHotbar();
-        highlightSelectedIndex();
+        //updateHotbar();
+       // highlightSelectedIndex();
     }
 
     private void Update()
     {
-        CheckHotbarInput();
+        //CheckHotbarInput();
     }
 
     private void createFakeInventory()
@@ -32,7 +30,7 @@ public class InventoryManager : MonoBehaviour {
         //Initalize temp list of items
         itemCollection[0] = new CollectableItem("Shovel", 1);
         itemCollection[1] = new CollectableItem("Sword", 1);
-        itemCollection[2] = new CollectableItem("Dounut", 1);
+        itemCollection[1] = new CollectableItem("NewSeeds", 1);
         itemCollection[3] = new CollectableItem("Seeds", 1);
         itemCollection[4] = new CollectableItem("Watering Pail", 1);
     }
@@ -40,13 +38,13 @@ public class InventoryManager : MonoBehaviour {
     //Create a connection to the hotbar UI elements
     private void initalizeHotbar()
     {
-        hotbarText = new Text[hotbarCount];
+        var hotbarText = new TextField[hotbarCount];
         hotbarColor = new Image[hotbarCount];
 
         for (int i = 0; i < hotbarCount; i++)
         {
             GameObject hotbarElement = GameObject.FindWithTag("hotbar_" + (i + 1));
-            hotbarText[i] = hotbarElement.GetComponentInChildren<Text>();
+            hotbarText[i] = hotbarElement.GetComponentInChildren<TextField>();
             hotbarColor[i] = hotbarElement.GetComponentInChildren<Image>();
         }
     }
@@ -61,7 +59,7 @@ public class InventoryManager : MonoBehaviour {
             currentObject = itemCollection[i];
             if (currentObject is CollectableItem)
             {
-                hotbarText[i].text = currentObject.itemName;
+               // hotbarText[i].text = currentObject.itemName;
                 Debug.Log(currentObject.itemName);
             }
         }
@@ -71,9 +69,9 @@ public class InventoryManager : MonoBehaviour {
     {
         for (int i = 0; i < hotbarColor.Length; i++)
         {
-            hotbarColor[i].color = Color.white;
+            hotbarColor[i].tintColor = Color.white;
         }
-        hotbarColor[selectedIndex].color = Color.red;
+        hotbarColor[selectedIndex].tintColor = Color.red;
     }
 
     //This can be refactored
