@@ -2,15 +2,14 @@
 
 public class Plots : MonoBehaviour, InteractableInterface
 {
-    //public GameObject seedsObj;
-    public Crops CropPrefab;
+    public Crop CropPrefab;
     public Material tilledMaterial;
     public Material wetTilledMaterial;
     public bool isTilled = false;
     public bool isSeeded = false;
     public bool isWatered = false;
     Renderer MR;
-    Crops myCrop;
+    Crop myCrop;
 
     void Awake()
     {
@@ -20,6 +19,10 @@ public class Plots : MonoBehaviour, InteractableInterface
 	// Update is called once per frame
 	void Update () {
 
+    }
+    public Crop getCrop()
+    {
+        return myCrop;
     }
 
     public void interact()
@@ -68,7 +71,7 @@ public class Plots : MonoBehaviour, InteractableInterface
 
     public void SeedPlot()
     {
-        myCrop = Instantiate(CropPrefab, this.transform.position, Quaternion.identity) as Crops;
+        myCrop = Instantiate(CropPrefab, this.transform.position, Quaternion.identity) as Crop;
         myCrop.setPlot(this);
         Debug.Log("Seed plot");
         isSeeded = true;
@@ -102,4 +105,6 @@ public class Plots : MonoBehaviour, InteractableInterface
         Destroy(myCrop);
         isSeeded = false;
     }
+
+    
 }
