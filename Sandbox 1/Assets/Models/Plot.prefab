@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 65388911883340302}
   - component: {fileID: 23156001864396826}
   - component: {fileID: 114723837966302364}
-  - component: {fileID: 114332640627166826}
+  - component: {fileID: 114698549417637732}
   m_Layer: 8
   m_Name: Plot
   m_TagString: farm_land
@@ -53,12 +53,12 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 0
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 8b290229874a87e488651242e3a6a323, type: 2}
+  - {fileID: 2100000, guid: 9fded237eee07914881cf452b137c0d1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -97,7 +97,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114332640627166826
+--- !u!114 &114698549417637732
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: 0
-  eraseRenderer: 0
+  eraseRenderer: 1
   originalLayer: 0
   originalMaterials: []
 --- !u!114 &114723837966302364
@@ -125,8 +125,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CropPrefab: {fileID: 114802223586432680, guid: a6bd768ed41e48540804b1144d4e53f4,
     type: 2}
-  tilledMaterial: {fileID: 2100000, guid: 2913ffe2821dddf4f94013f87aa2c6f8, type: 2}
+  tilledMaterial: {fileID: 2100000, guid: d2cae9e3140666c4c8f20483e5f74202, type: 2}
   wetTilledMaterial: {fileID: 2100000, guid: 0bfadadc8e432984485979260382b8f3, type: 2}
   isTilled: 0
   isSeeded: 0
   isWatered: 0
+  renderMesh: 1

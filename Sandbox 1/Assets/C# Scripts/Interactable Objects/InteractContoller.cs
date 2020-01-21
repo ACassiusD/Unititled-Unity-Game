@@ -80,7 +80,7 @@ public class InteractContoller : MonoBehaviour
             activeScript = hitObject.parent.GetComponentInChildren<Outline>();
             hitObject = hitObject.parent;
         }
-
+        
 
         if (activeScript != null)
         {

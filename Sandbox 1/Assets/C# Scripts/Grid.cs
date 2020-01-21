@@ -8,8 +8,8 @@ public class Grid : MonoBehaviour
     public int landSize = 300;
     [Range(1, 50)]
     public float size = 25f;
-    public float startX = -270;
-    public float startZ = -350;
+    public float startX = 700;
+    public float startZ = 500;
     public float plotBezel = 0.2f;
     Vector3 plotSize;
     private Dictionary<string, Plots> plotDictionary;

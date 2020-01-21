@@ -8,12 +8,17 @@ public class Plots : MonoBehaviour, InteractableInterface
     public bool isTilled = false;
     public bool isSeeded = false;
     public bool isWatered = false;
+    public bool renderMesh = false;
     Renderer MR;
     Crop myCrop;
 
     void Awake()
     {
         MR = GetComponent<Renderer>();
+        if (!renderMesh)
+        {
+            MR.enabled = false;
+        }
     }
 
 	// Update is called once per frame
