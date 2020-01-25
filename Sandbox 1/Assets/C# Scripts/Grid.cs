@@ -1,26 +1,29 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Grid : MonoBehaviour
 {
-    public GameObject plot;
-    public int landSize = 200;
+    public Plots plot;
+    public int landSize = 300;
     [Range(1, 50)]
-    public float size = 15f;
-    public float startX = -270;
-    public float startZ = -350;
+    public float size = 25f;
+    public float startX = 700;
+    public float startZ = 500;
     public float plotBezel = 0.2f;
     Vector3 plotSize;
-    private Dictionary<string, GameObject> plotDictionary;
+    private Dictionary<string, Plots> plotDictionary;
     public bool DrawGizmos = false;
     public bool plotDebugger = false;
+    float yposition = -0.3f;
+    Text[] sdfds; 
 
 
 
     public void Awake()
     {
         DrawPlots();
-        //dictonaryDebugger();
+       // dictonaryDebugger();
     }
 
     private void Update()
@@ -42,7 +45,7 @@ public class Grid : MonoBehaviour
         int plotNameColumn = 0;
         int plotNameRow = 0;
         string plotEntry;
-        plotDictionary = new Dictionary<string, GameObject>();
+        plotDictionary = new Dictionary<string, Plots>();
         plotSize = new Vector3(size - plotBezel, 0.7f, size - plotBezel);
 
 
@@ -55,10 +58,13 @@ public class Grid : MonoBehaviour
                 point = GetNearestPointOnGrid(new Vector3(x, 0f, z));
             
                 //Instantiate a new plot
-                GameObject newPlot = Instantiate(plot, point, Quaternion.identity) as GameObject;
+                Plots newPlot = Instantiate(plot, point, Quaternion.identity) as Plots;
 
                 //Apply the size
                 newPlot.transform.localScale = (plotSize);
+
+                //Apply Y position
+                newPlot.transform.position += new Vector3(0, yposition, 0);
 
                 //Name plot in the Hierarchy
                 newPlot.name = "Plot_" + plotNameColumn + "-" + plotNameRow;
@@ -123,7 +129,7 @@ public class Grid : MonoBehaviour
 
     private void dictonaryDebugger()
     {
-        foreach (KeyValuePair<string, GameObject> plots in plotDictionary)
+        foreach (KeyValuePair<string, Plots> plots in plotDictionary)
         {
             if (plots.Key == "Plot_4_10")
             {
@@ -155,11 +161,13 @@ public class Grid : MonoBehaviour
 
     private void destroyPlots()
     {
-        var gameObjects = GameObject.FindGameObjectsWithTag("farm_land");
 
-        for (var i = 0; i < gameObjects.Length; i++)
+        foreach (KeyValuePair<string, Plots> entry in plotDictionary)
         {
-            Destroy(gameObjects[i]);
+            Plots plotToDestory = entry.Value;
+            Destroy(plotToDestory.getCrop());
+            Destroy(plotToDestory.gameObject);
         }
+
     }
 }

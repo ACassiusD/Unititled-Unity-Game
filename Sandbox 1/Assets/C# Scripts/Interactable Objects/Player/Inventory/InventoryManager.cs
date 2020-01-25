@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour {
@@ -32,7 +30,7 @@ public class InventoryManager : MonoBehaviour {
         //Initalize temp list of items
         itemCollection[0] = new CollectableItem("Shovel", 1);
         itemCollection[1] = new CollectableItem("Sword", 1);
-        itemCollection[2] = new CollectableItem("Dounut", 1);
+        itemCollection[2] = new CollectableItem("NewSeeds", 1);
         itemCollection[3] = new CollectableItem("Seeds", 1);
         itemCollection[4] = new CollectableItem("Watering Pail", 1);
     }
@@ -40,8 +38,8 @@ public class InventoryManager : MonoBehaviour {
     //Create a connection to the hotbar UI elements
     private void initalizeHotbar()
     {
-        hotbarText = new Text[hotbarCount];
         hotbarColor = new Image[hotbarCount];
+        hotbarText = new Text[hotbarCount];
 
         for (int i = 0; i < hotbarCount; i++)
         {

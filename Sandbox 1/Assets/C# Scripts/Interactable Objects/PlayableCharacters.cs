@@ -48,11 +48,11 @@ public class PlayableCharacters : MonoBehaviour {
     //Update is called once per frame
     void Update()
     {
-         moveCharacterController();
+         MoveCharacterController();
     }
 
 	//Control player with character controller
-	protected void moveCharacterController(){
+	protected void MoveCharacterController(){
 
         
         if (isBeingControlled)

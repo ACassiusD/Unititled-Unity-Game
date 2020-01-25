@@ -51,7 +51,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44110db0831d1e545a5626440c6cf5ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seedsObj: {fileID: 1746646811969844, guid: 18e6789f44a0e61428ae0f85e90a5bcc, type: 2}
-  grownObj: {fileID: 1392208132606498, guid: a0f5759112ef5004aae20761d54e4e4d, type: 2}
-  growTime: 10
   growing: 0
+  isHarvestable: 0
+  isWatered: 0
+  seedPrefab: {fileID: 1746646811969844, guid: 18e6789f44a0e61428ae0f85e90a5bcc, type: 2}
+  fullyGrownPrefab: {fileID: 100000, guid: 2272530f0ccc6fe40a309e35b89dee07, type: 3}

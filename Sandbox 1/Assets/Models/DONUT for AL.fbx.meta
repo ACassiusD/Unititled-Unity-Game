@@ -1,9 +1,7 @@
 fileFormatVersion: 2
 guid: e3f20bf455ddd9345bffd774de303bfe
-timeCreated: 1575935871
-licenseType: Free
 ModelImporter:
-  serializedVersion: 22
+  serializedVersion: 23
   fileIDToRecycleName:
     100000: ball candy
     100002: bndy long
@@ -2321,6 +2319,7 @@ ModelImporter:
     2301532: med sprink
     2301534: med sprink.001
     2301536: short sprinkle
+    2301538: Icing
     3300000: ball candy
     3300002: bndy long
     3300004: c bend
@@ -3090,6 +3089,7 @@ ModelImporter:
     3301532: med sprink
     3301534: med sprink.001
     3301536: short sprinkle
+    3301538: Icing
     4300000: donut
     4300002: Icing_MeshPart0
     4300004: Icing_MeshPart1
@@ -3101,28 +3101,29 @@ ModelImporter:
     4300016: Icing|med sprink.001|Dupli|80
     4300018: Icing|c bend|Dupli|105
     4300020: Icing|ball candy|Dupli|118
+    4300022: Icing
     10800000: Light
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material.002
-    second: {fileID: 2100000, guid: e98b814a24ac53f4088314c29353ca7e, type: 2}
+    second: {fileID: 2100000, guid: 9473266ce54c249498466efac2996571, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material.003
-    second: {fileID: 2100000, guid: 4a0526fb9fad37b4b874a052db3f2d8a, type: 2}
+    second: {fileID: 2100000, guid: 45c4b204121caa44781573b1bcc53ced, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material.004
-    second: {fileID: 2100000, guid: 0516a5d8f36ea2547b73f951de06e5b2, type: 2}
+    second: {fileID: 2100000, guid: 415deb5a3514c2c4aa55d408c2d05d8b, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material.005
-    second: {fileID: 2100000, guid: 41d08ca45321e1b42b7b1e70c1c9ef85, type: 2}
+    second: {fileID: 2100000, guid: b6210579ea6bb014ead1cbca1e1980f4, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -3141,6 +3142,7 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
@@ -3155,6 +3157,7 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -3165,16 +3168,23 @@ ModelImporter:
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
@@ -3189,7 +3199,6 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
