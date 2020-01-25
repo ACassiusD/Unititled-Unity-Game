@@ -6,15 +6,15 @@ public class CameraController : MonoBehaviour {
 
     public Transform target; //What the camera looks at
     [SerializeField]
-    private float currentDistance = -90;
+    private float currentDistance = -40;
     [SerializeField]
-    private float desiredCameraDistance = -90;
+    private float desiredCameraDistance = -40;
     [SerializeField]
     private float currentHeight = 0;
     public int cameraZoomSpeed = 5;
     public float maxZDistanceFromTarget;
     public float minZDistanceFromTarget;
-    public float maxCameraHeight = 75;
+    public float maxCameraHeight = 50;
     public float minCameraHeight = 0;
     [SerializeField]
     bool isBeingControlled;
@@ -22,7 +22,7 @@ public class CameraController : MonoBehaviour {
     // Use this for initialization
     void Start () {
         //Set negative to be behind the player
-        maxZDistanceFromTarget = 200;
+        maxZDistanceFromTarget = 100;
         minZDistanceFromTarget = 5;
         isBeingControlled = false;
     }

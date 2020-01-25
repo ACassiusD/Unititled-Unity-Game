@@ -10,11 +10,18 @@ public class InteractContoller : MonoBehaviour
     public float distance = 10;
     public float yOffset = -.40f; 
     public bool isDebugging = true;
+    bool debugRayCast = false;
     Outline activeScript = null;
     Transform hitObject;
     [SerializeField] Material highlightMaterial;
     bool isObjectHit = false;
     //int LayerMask; //Layer to ignore
+
+    private void Awake()
+    {
+        debugRayCast = true;
+
+    }
 
     private void Update()
     {
@@ -56,7 +63,7 @@ public class InteractContoller : MonoBehaviour
         }
         
         //Debugging
-        if (isDebugging)
+        if (debugRayCast)
         {
             debugRay();
         }
@@ -104,7 +111,12 @@ public class InteractContoller : MonoBehaviour
     }
 
     private void debugRay(){
-         Debug.DrawRay(origin, direction * distance, Color.red);
+        
+        //Show debug ray
+        if (isDebugging)
+        {
+            Debug.DrawRay(origin, direction * distance, Color.red);
+        }
     }
 }
 

@@ -1,28 +1,26 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Grid : MonoBehaviour
 {
-    public Plots plot;
-    public int landSize = 300;
+    public GameObject plot;
+    public int landSize = 200;
     [Range(1, 50)]
-    public float size = 25f;
+    public float size = 15f;
     public float startX = -270;
     public float startZ = -350;
     public float plotBezel = 0.2f;
     Vector3 plotSize;
-    private Dictionary<string, Plots> plotDictionary;
+    private Dictionary<string, GameObject> plotDictionary;
     public bool DrawGizmos = false;
     public bool plotDebugger = false;
-    Text[] sdfds; 
 
 
 
     public void Awake()
     {
         DrawPlots();
-       // dictonaryDebugger();
+        //dictonaryDebugger();
     }
 
     private void Update()
@@ -44,7 +42,7 @@ public class Grid : MonoBehaviour
         int plotNameColumn = 0;
         int plotNameRow = 0;
         string plotEntry;
-        plotDictionary = new Dictionary<string, Plots>();
+        plotDictionary = new Dictionary<string, GameObject>();
         plotSize = new Vector3(size - plotBezel, 0.7f, size - plotBezel);
 
 
@@ -57,7 +55,7 @@ public class Grid : MonoBehaviour
                 point = GetNearestPointOnGrid(new Vector3(x, 0f, z));
             
                 //Instantiate a new plot
-                Plots newPlot = Instantiate(plot, point, Quaternion.identity) as Plots;
+                GameObject newPlot = Instantiate(plot, point, Quaternion.identity) as GameObject;
 
                 //Apply the size
                 newPlot.transform.localScale = (plotSize);
@@ -125,7 +123,7 @@ public class Grid : MonoBehaviour
 
     private void dictonaryDebugger()
     {
-        foreach (KeyValuePair<string, Plots> plots in plotDictionary)
+        foreach (KeyValuePair<string, GameObject> plots in plotDictionary)
         {
             if (plots.Key == "Plot_4_10")
             {
@@ -157,13 +155,11 @@ public class Grid : MonoBehaviour
 
     private void destroyPlots()
     {
+        var gameObjects = GameObject.FindGameObjectsWithTag("farm_land");
 
-        foreach (KeyValuePair<string, Plots> entry in plotDictionary)
+        for (var i = 0; i < gameObjects.Length; i++)
         {
-            Plots plotToDestory = entry.Value;
-            Destroy(plotToDestory.getCrop());
-            Destroy(plotToDestory.gameObject);
+            Destroy(gameObjects[i]);
         }
-
     }
 }
