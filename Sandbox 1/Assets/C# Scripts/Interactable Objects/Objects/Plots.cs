@@ -8,7 +8,7 @@ public class Plots : MonoBehaviour, InteractableInterface
     public bool isTilled = false;
     public bool isSeeded = false;
     public bool isWatered = false;
-    public bool renderMesh = false;
+    public bool renderMesh = true;
     Renderer MR;
     Crop myCrop;
 
@@ -88,6 +88,7 @@ public class Plots : MonoBehaviour, InteractableInterface
         if (!isTilled)
         {
             MR.material = tilledMaterial;
+            MR.enabled = true;
             isTilled = true;
         }
 

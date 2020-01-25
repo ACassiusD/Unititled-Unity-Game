@@ -15,6 +15,7 @@ public class Grid : MonoBehaviour
     private Dictionary<string, Plots> plotDictionary;
     public bool DrawGizmos = false;
     public bool plotDebugger = false;
+    float yposition = -0.3f;
     Text[] sdfds; 
 
 
@@ -61,6 +62,9 @@ public class Grid : MonoBehaviour
 
                 //Apply the size
                 newPlot.transform.localScale = (plotSize);
+
+                //Apply Y position
+                newPlot.transform.position += new Vector3(0, yposition, 0);
 
                 //Name plot in the Hierarchy
                 newPlot.name = "Plot_" + plotNameColumn + "-" + plotNameRow;

@@ -1,8 +1,44 @@
 fileFormatVersion: 2
 guid: 365cbe6e930ab1541a407a6007eafe54
 ModelImporter:
-  serializedVersion: 26
-  internalIDToNameTable: []
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Group
+    100002: lettuce
+    100004: meat
+    100006: //RootNode
+    100008: tomaties
+    100010: tomaties 1
+    400000: Group
+    400002: lettuce
+    400004: meat
+    400006: //RootNode
+    400008: tomaties
+    400010: tomaties 1
+    2100000: brownLight
+    2100002: brown
+    2100004: red
+    2100006: redLight
+    2100008: green
+    2100010: brownDark
+    2300000: Group
+    2300002: lettuce
+    2300004: meat
+    2300006: //RootNode
+    2300008: tomaties
+    2300010: tomaties 1
+    3300000: Group
+    3300002: lettuce
+    3300004: meat
+    3300006: //RootNode
+    3300008: tomaties
+    3300010: tomaties 1
+    4300000: sub
+    4300002: Group
+    4300004: lettuce
+    4300006: meat
+    4300008: tomaties
+    4300010: tomaties
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -38,7 +74,6 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
-    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -46,19 +81,18 @@ ModelImporter:
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
+    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
     preserveHierarchy: 0
-    skinWeightsMode: 0
-    maxBonesPerVertex: 4
-    minBoneWeight: 0.001
-    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -67,11 +101,10 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
-  referencedClips: []
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
-    serializedVersion: 3
+    serializedVersion: 2
     human: []
     skeleton: []
     armTwist: 0.5
@@ -81,7 +114,6 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

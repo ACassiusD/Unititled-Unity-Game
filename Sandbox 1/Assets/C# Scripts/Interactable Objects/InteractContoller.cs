@@ -1,6 +1,6 @@
-﻿using cakeslice;
-using UnityEngine;
+﻿using UnityEngine;
 using System;
+using cakeslice;
 
 public class InteractContoller : MonoBehaviour
 {
@@ -10,17 +10,19 @@ public class InteractContoller : MonoBehaviour
     public float distance = 10;
     public float yOffset = -.40f; 
     public bool isDebugging = true;
-    Outline activeScript = null;
     Transform hitObject;
     [SerializeField] Material highlightMaterial;
     bool isObjectHit = false;
-    //int LayerMask; //Layer to ignore
+    int LayerMask; //Layer to ignore
+    Outline activeScript;
+    float outlineWidth = 0.5f;
 
     private void Update()
     {
         clearActiveScript();
         isObjectHit = castRay();
-        if (isObjectHit){
+        if (isObjectHit)
+        {
             CallInteraction(hitinfo);
         }
     }
@@ -46,7 +48,7 @@ public class InteractContoller : MonoBehaviour
         hitinfo = new RaycastHit();
 
         //Check if the ray hit something, store it in hitinfo
-        if(Physics.Raycast(origin, direction, out hitinfo, distance, 1<<8))
+        if (Physics.Raycast(origin, direction, out hitinfo, distance, 1 << 8))
         {
             isObjectHit = true;
         }
@@ -54,7 +56,7 @@ public class InteractContoller : MonoBehaviour
         {
             isObjectHit = false;
         }
-        
+
         //Debugging
         if (isDebugging)
         {
@@ -69,8 +71,9 @@ public class InteractContoller : MonoBehaviour
     {
         //Get Hit object
         hitObject = hitinfo.transform;
-       // Debug.Log(hitObject);
+       Debug.Log(hitObject);
         //If object has no active script, try to find it in the class hierarchy
+
         if (hitObject.GetComponent<Outline>())
         {
             activeScript = hitObject.GetComponent<Outline>();
@@ -80,13 +83,12 @@ public class InteractContoller : MonoBehaviour
             activeScript = hitObject.parent.GetComponentInChildren<Outline>();
             hitObject = hitObject.parent;
         }
-        
+
 
         if (activeScript != null)
         {
-
-
             activeScript.eraseRenderer = false;
+            Debug.Log("start highlighting");
 
             //Try to call interact
             if (Input.GetKeyDown("e") || (Input.GetMouseButtonDown(0)))
@@ -100,11 +102,12 @@ public class InteractContoller : MonoBehaviour
                     Debug.Log("Object has no interact function");
                 }
             }
-        } 
+        }
     }
 
-    private void debugRay(){
-         Debug.DrawRay(origin, direction * distance, Color.red);
+    private void debugRay()
+    {
+        Debug.DrawRay(origin, direction * distance, Color.red);
     }
 }
 
