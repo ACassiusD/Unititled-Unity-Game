@@ -4,20 +4,22 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour {
 
-    public Transform target; //What the camera looks at
     [SerializeField]
     private float currentDistance = -90;
     [SerializeField]
     private float desiredCameraDistance = -90;
     [SerializeField]
     private float currentHeight = 0;
+    [SerializeField]
+    bool isBeingControlled;
     public int cameraZoomSpeed = 5;
     public float maxZDistanceFromTarget;
     public float minZDistanceFromTarget;
     public float maxCameraHeight = 75;
     public float minCameraHeight = 0;
-    [SerializeField]
-    bool isBeingControlled;
+
+    public Transform target; //What the camera looks at
+
 
     // Use this for initialization
     void Start () {

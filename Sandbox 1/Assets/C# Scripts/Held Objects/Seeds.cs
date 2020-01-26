@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class Seeds : CollectableItem
 {
+    int seedId = 0;
+    int cropId = 0;
+    string type = "seed";
+    string name = "Pumkin Seed";
 
-    public Seeds(string name, int qty) : base(name, qty)
+
+    public Seeds(string name, int qty, bool isStackable) : base(name, qty, isStackable)
     {
     }
 

@@ -4,30 +4,48 @@ using UnityEngine;
 
 public class CollectableItem {
 
-    private bool isStackable;
-    private int qty;
-    public string itemName;
+    protected string type = "null";
+    protected bool isStackable = false;
+    protected int qty = 0;
+    protected string name = "collectable_item";
 
     //Constructor
-    public CollectableItem(string name, int qty)
+    public CollectableItem(string name, int qty,  bool isStackable)
     {
-        this.itemName = name;
+        this.name = name;
         this.qty = qty;
-        //this.isStackable = isStackable;
+        this.isStackable = isStackable;
     }
     
-    public void ChangeName()
+    //GETTERS
+    public string getName()
     {
-        itemName = "newName";
+        return name;
     }
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public int getQty()
+    {
+        return qty;
+    }
+
+    public bool getIsStackable()
+    {
+        return isStackable;
+    }
+
+    //SETTERS
+    public void setName(string name)
+    {
+        this.name = name;
+    }
+
+    public void setQty(int qty)
+    {
+        this.qty = qty;
+    }
+
+    public void setIsStackable(bool isStackable)
+    {
+        this.isStackable = isStackable;
+    }
 }

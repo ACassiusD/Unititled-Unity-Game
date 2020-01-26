@@ -28,11 +28,11 @@ public class InventoryManager : MonoBehaviour {
     private void createFakeInventory()
     {
         //Initalize temp list of items
-        itemCollection[0] = new CollectableItem("Shovel", 1);
-        itemCollection[1] = new CollectableItem("Sword", 1);
-        itemCollection[2] = new CollectableItem("NewSeeds", 1);
-        itemCollection[3] = new CollectableItem("Seeds", 1);
-        itemCollection[4] = new CollectableItem("Watering Pail", 1);
+        itemCollection[0] = new CollectableItem("Shovel", 1, false);
+        itemCollection[1] = new CollectableItem("Sword", 1, false);
+        itemCollection[2] = new CollectableItem("NewSeeds", 1, false);
+        itemCollection[3] = new CollectableItem("Seeds", 1, true);
+        itemCollection[4] = new CollectableItem("Watering Pail", 1, false);
     }
 
     //Create a connection to the hotbar UI elements
@@ -59,8 +59,8 @@ public class InventoryManager : MonoBehaviour {
             currentObject = itemCollection[i];
             if (currentObject is CollectableItem)
             {
-                hotbarText[i].text = currentObject.itemName;
-                Debug.Log(currentObject.itemName);
+                hotbarText[i].text = currentObject.getName();
+                Debug.Log(currentObject.getName());
             }
         }
     }
@@ -133,6 +133,6 @@ public class InventoryManager : MonoBehaviour {
             highlightSelectedIndex();
         }
 
-        heldObject = itemCollection[selectedIndex].itemName;
+        heldObject = itemCollection[selectedIndex].getName();
     }
 }

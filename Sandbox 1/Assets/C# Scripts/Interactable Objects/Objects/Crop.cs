@@ -5,6 +5,7 @@ using UnityEngine;
 //A crop exists until the grow time reaches 0 and is harvested
 public class Crop : MonoBehaviour {
 
+    int cropId = 0;
     Plots myplot;
     GameObject cropAppearence;
     public bool growing = false;

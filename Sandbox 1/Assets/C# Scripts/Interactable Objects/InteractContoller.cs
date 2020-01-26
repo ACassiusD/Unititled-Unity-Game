@@ -9,7 +9,7 @@ public class InteractContoller : MonoBehaviour
     private RaycastHit hitinfo;
     public float distance = 10;
     public float yOffset = -.40f; 
-    public bool isDebugging = true;
+    public bool isDebugging = false;
     Transform hitObject;
     [SerializeField] Material highlightMaterial;
     bool isObjectHit = false;
@@ -71,7 +71,7 @@ public class InteractContoller : MonoBehaviour
     {
         //Get Hit object
         hitObject = hitinfo.transform;
-       Debug.Log(hitObject);
+      // Debug.Log(hitObject);
         //If object has no active script, try to find it in the class hierarchy
 
         if (hitObject.GetComponent<Outline>())
@@ -88,7 +88,7 @@ public class InteractContoller : MonoBehaviour
         if (activeScript != null)
         {
             activeScript.eraseRenderer = false;
-            Debug.Log("start highlighting");
+          //  Debug.Log("start highlighting");
 
             //Try to call interact
             if (Input.GetKeyDown("e") || (Input.GetMouseButtonDown(0)))
