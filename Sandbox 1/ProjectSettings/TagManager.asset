@@ -13,6 +13,7 @@ TagManager:
   - hotbar_3
   - hotbar_4
   - hotbar_5
+  - Item
   layers:
   - Default
   - TransparentFX
