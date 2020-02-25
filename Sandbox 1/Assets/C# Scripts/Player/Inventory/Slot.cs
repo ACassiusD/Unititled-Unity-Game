@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+//test
 public class Slot : MonoBehaviour, IPointerClickHandler
 {
     private Stack<Item> items; //Stack is a last in first out collection of items, use push(), pop() and peek()
@@ -123,7 +124,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler
     //Gets called when clicked
     public void OnPointerClick(PointerEventData eventData)
     {
-        if(eventData.button == PointerEventData.InputButton.Right)
+        if(eventData.button == PointerEventData.InputButton.Right && !GameObject.Find("Hover") && Inventory.CanvasGroup.alpha > 0)
         {
             UseItem();
         }

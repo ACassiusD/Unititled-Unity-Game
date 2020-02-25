@@ -22,6 +22,10 @@ public class Inventory : MonoBehaviour
     public Canvas canvas;
     private float hoverYOffset;
     public EventSystem eventsystem;
+    private static CanvasGroup canvasGroup; //Static vairable make member accessable from the class level, and ensures only one copy
+    private bool fadingIn;
+    private bool fadingOut;
+    public float fadeTime;
 
     public static int EmptySlots
     {
@@ -36,9 +40,18 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    public static CanvasGroup CanvasGroup
+    {
+        get
+        {
+            return canvasGroup;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
+        canvasGroup = transform.parent.GetComponent<CanvasGroup>();
         CreateLayout();
     }
 
@@ -54,8 +67,7 @@ public class Inventory : MonoBehaviour
                 Destroy(GameObject.Find("Hover"));
                 to = null;
                 from = null;
-                hoverObject = null;
-
+                emptySlots++;
             }
         }
         if(hoverObject != null)
@@ -65,6 +77,19 @@ public class Inventory : MonoBehaviour
             position.Set(position.x, position.y - hoverYOffset);
             hoverObject.transform.position = canvas.transform.TransformPoint(position);
 
+        }
+
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            if(CanvasGroup.alpha > 0)
+            {
+                StartCoroutine("FadeOut");
+                putItemBack();
+            }
+            else
+            {
+                StartCoroutine("FadeIn");
+            }
         }
     }
 
@@ -102,8 +127,8 @@ public class Inventory : MonoBehaviour
                 //Set position
                 slotRect.localPosition = inventoryRect.localPosition + new Vector3(slotPaddingLeft * (x + 1) + (slotSize * x), -slotPaddingTop * (y + 1) - (slotSize * y));
                 //Set size
-                slotRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, slotSize);
-                slotRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, slotSize);
+                slotRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, slotSize * canvas.scaleFactor);
+                slotRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, slotSize * canvas.scaleFactor);
                 allSlots.Add(newSlot);
             }
 
@@ -167,7 +192,7 @@ public class Inventory : MonoBehaviour
 
     public void MoveItem(GameObject clicked)
     {
-        if(from == null) //First item we have clicked
+        if(from == null && canvasGroup.alpha == 1) //First item we have clicked
         {
             if (!clicked.GetComponent<Slot>().isEmpty)
             {
@@ -211,7 +236,71 @@ public class Inventory : MonoBehaviour
             from.GetComponent<Image>().color = Color.white;
             to = null;
             from = null;
-            hoverObject = null;
+            Destroy(GameObject.Find("Hover"));
+        }
+    }
+
+    //A couroutine method for fading out the inventory
+    private IEnumerator FadeOut()
+    {
+        if (!fadingOut)
+        {
+            fadingOut = true;
+            fadingIn = false;
+            StopCoroutine("FadeIn");
+
+            float startAlpha = CanvasGroup.alpha;
+
+            float rate = 1.0f / fadeTime;
+
+            float progress = 0.0f;
+
+            while(progress < 1.0)
+            {
+                CanvasGroup.alpha = Mathf.Lerp(startAlpha, 0, progress);
+                progress += rate * Time.deltaTime;
+                yield return null;
+            }
+
+            CanvasGroup.alpha = 0;
+            fadingOut = false;
+        }
+    }
+
+    private void putItemBack()
+    {
+        if(from != null)
+        {
+            Destroy(GameObject.Find("Hover"));
+            from.GetComponent<Image>().color = Color.white;
+            from = null;
+        }
+    }
+
+    //A couroutine method for fading out the inventory
+    private IEnumerator FadeIn()
+    {
+        if (!fadingIn)
+        {
+            fadingOut = false;
+            fadingIn = true;
+            StopCoroutine("FadeOut");
+
+            float startAlpha = CanvasGroup.alpha;
+
+            float rate = 1.0f / fadeTime;
+
+            float progress = 0.0f;
+
+            while (progress < 1.0)
+            {
+                CanvasGroup.alpha = Mathf.Lerp(startAlpha, 1, progress);
+                progress += rate * Time.deltaTime;
+                yield return null;
+            }
+
+            CanvasGroup.alpha = 1;
+            fadingIn = false;
         }
     }
 }
