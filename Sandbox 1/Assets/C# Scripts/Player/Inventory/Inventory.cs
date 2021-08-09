@@ -15,7 +15,9 @@ public class Inventory : MonoBehaviour
     public float slotSize;
     private static Slot from, to;
     public GameObject slotPrefab; //Prefab for a slot
-    private List<GameObject> allSlots; //Holds all inventory slots
+    private List<GameObject> inventorySlots; //Holds all inventory slots
+    private List<GameObject> hotbarSlots; //Visual clones of x number of hotbar slots. No functionallity
+    private int hotbarLength = 5;
     public GameObject iconPrefab;
     private static GameObject hoverObject;
     private static int emptySlots;
@@ -95,7 +97,7 @@ public class Inventory : MonoBehaviour
 
     private void CreateLayout()
     {
-        allSlots = new List<GameObject>();
+        inventorySlots = new List<GameObject>();
 
         hoverYOffset = slotSize * 0.01f;
 
@@ -119,19 +121,46 @@ public class Inventory : MonoBehaviour
         {
             for (int x = 0; x < columns; x++)
             {
-                //Create the slot, and set the transform
+                //Create the slot
                 GameObject newSlot = (GameObject)Instantiate(slotPrefab);
-                RectTransform slotRect = newSlot.GetComponent<RectTransform>();
                 newSlot.name = "Slot";
                 newSlot.transform.SetParent(this.transform.parent);
+
+                //...and set the transform
+                RectTransform slotRect = newSlot.GetComponent<RectTransform>();
+                
                 //Set position
                 slotRect.localPosition = inventoryRect.localPosition + new Vector3(slotPaddingLeft * (x + 1) + (slotSize * x), -slotPaddingTop * (y + 1) - (slotSize * y));
+                
                 //Set size
                 slotRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, slotSize * canvas.scaleFactor);
                 slotRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, slotSize * canvas.scaleFactor);
-                allSlots.Add(newSlot);
+                inventorySlots.Add(newSlot);
             }
+        }
+    }
 
+    public void CreateHotbars()
+    {
+        hotbarSlots = new List<GameObject>();
+
+        for (int x = 0; x < hotbarLength; x++)
+        {
+            //Create the slot
+            GameObject newSlot = (GameObject)Instantiate(slotPrefab);
+            newSlot.name = "hotbarSlot" + (x+1).ToString();
+            newSlot.transform.SetParent(this.transform.parent);
+
+            //Get the transform
+            RectTransform slotRect = newSlot.GetComponent<RectTransform>();
+
+            //Set the position
+            //slotRect.localPosition = inventoryRect.localPosition + new Vector3(slotPaddingLeft * (x + 1) + (slotSize * x), -slotPaddingTop * (y + 1) - (slotSize * y));
+
+            //Set size
+            //slotRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, slotSize * canvas.scaleFactor);
+            //slotRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, slotSize * canvas.scaleFactor);
+            inventorySlots.Add(newSlot);
         }
     }
 
@@ -146,7 +175,7 @@ public class Inventory : MonoBehaviour
         }
         else
         {
-            foreach (GameObject slot in allSlots)
+            foreach (GameObject slot in inventorySlots)
             {
                 Slot tmpSlot = slot.GetComponent<Slot>();
 
@@ -174,7 +203,7 @@ public class Inventory : MonoBehaviour
     {
         if(EmptySlots > 0)
         {
-            foreach(GameObject slot in allSlots)
+            foreach(GameObject slot in inventorySlots)
             {
                 Slot slotScript = slot.GetComponent<Slot>();
 
