@@ -138,28 +138,56 @@ public class Inventory : MonoBehaviour
                 inventorySlots.Add(newSlot);
             }
         }
+
+        CreateHotbars();
     }
 
     public void CreateHotbars()
     {
         hotbarSlots = new List<GameObject>();
-
+        hotbarLength = slots / rows;
         for (int x = 0; x < hotbarLength; x++)
         {
             //Create the slot
             GameObject newSlot = (GameObject)Instantiate(slotPrefab);
             newSlot.name = "hotbarSlot" + (x+1).ToString();
+            
+            //Set parent to canvas
             newSlot.transform.SetParent(this.transform.parent);
 
-            //Get the transform
+            //Get the transform of the slot
             RectTransform slotRect = newSlot.GetComponent<RectTransform>();
 
-            //Set the position
-            //slotRect.localPosition = inventoryRect.localPosition + new Vector3(slotPaddingLeft * (x + 1) + (slotSize * x), -slotPaddingTop * (y + 1) - (slotSize * y));
+            //Get transform of canvas
+            RectTransform canvasRect = inventoryRect.parent.GetComponent<RectTransform>();
+
+            float centerOffset = 0;
+            if((hotbarLength % 2) != 0) //ODD
+            {
+                centerOffset = ((hotbarLength / 2) - .5f);
+            }
+            else //EVEN
+            {
+                centerOffset = (((hotbarLength / 2) - 1) + .5f);
+            }
+            //Set the position at bottom center of canvas
+            slotRect.localPosition = new Vector3(0,0,0);
+            slotRect.localPosition = slotRect.localPosition + new Vector3(
+                (-slotSize /2),   
+                ((canvasRect.rect.height / 2 ) * -1) + (slotSize),   
+                0);
+
+            //Update position for each individual hotbar slot to sit next to each other 
+            slotRect.localPosition = slotRect.localPosition + new Vector3(slotPaddingLeft * (x + 1) + (slotSize * x),0);
+
+            //Update position to center x # of hotbar slots
+            slotRect.localPosition = slotRect.localPosition + new Vector3(-(slotSize * centerOffset), 0);
+
+            slotRect.localPosition = slotRect.localPosition + new Vector3(-(slotPaddingLeft * centerOffset), 0);
 
             //Set size
-            //slotRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, slotSize * canvas.scaleFactor);
-            //slotRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, slotSize * canvas.scaleFactor);
+            slotRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, slotSize * canvas.scaleFactor);
+            slotRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, slotSize * canvas.scaleFactor);
             inventorySlots.Add(newSlot);
         }
     }
