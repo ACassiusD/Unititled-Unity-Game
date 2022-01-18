@@ -5,9 +5,9 @@ using UnityEngine;
 public class CameraController : MonoBehaviour {
 
     [SerializeField]
-    private float currentDistance = -90;
+    private float currentDistance = -50;
     [SerializeField]
-    private float desiredCameraDistance = -90;
+    private float desiredCameraDistance = -50;
     [SerializeField]
     private float currentHeight = 0;
     [SerializeField]
@@ -15,7 +15,7 @@ public class CameraController : MonoBehaviour {
     public int cameraZoomSpeed = 5;
     public float maxZDistanceFromTarget;
     public float minZDistanceFromTarget;
-    public float maxCameraHeight = 75;
+    public float maxCameraHeight = 15;
     public float minCameraHeight = 0;
 
     public Transform target; //What the camera looks at
@@ -24,7 +24,7 @@ public class CameraController : MonoBehaviour {
     // Use this for initialization
     void Start () {
         //Set negative to be behind the player
-        maxZDistanceFromTarget = 200;
+        maxZDistanceFromTarget = 50;
         minZDistanceFromTarget = 5;
         isBeingControlled = false;
     }

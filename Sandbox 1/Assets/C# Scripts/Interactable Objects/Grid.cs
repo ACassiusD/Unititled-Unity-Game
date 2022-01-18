@@ -5,11 +5,11 @@ using UnityEngine.UI;
 public class Grid : MonoBehaviour
 {
     public Plots plot;
-    public int landSize = 300;
+    public int landSize = 150;
     [Range(1, 50)]
-    public float size = 25f;
-    public float startX = 700;
-    public float startZ = 500;
+    public float size = 15f;
+    public float startX = 850;
+    public float startZ = 630;
     public float plotBezel = 0.2f;
     Vector3 plotSize;
     private Dictionary<string, Plots> plotDictionary;

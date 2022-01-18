@@ -1,0 +1,145 @@
+﻿using UnityEngine;
+using System;
+using cakeslice;
+
+
+public class InteractContoller : MonoBehaviour
+{
+    private Vector3 origin;
+    private Vector3 direction;
+    private RaycastHit hitinfo;
+    public float distance = 10;
+    public float yOffset = -.40f; 
+    public bool isDebugging = false;
+    Transform hitObject;
+    [SerializeField] Material highlightMaterial;
+    bool isObjectHit = false;
+    int LayerMask; //Layer to ignore
+    Outline activeScript;
+    float outlineWidth = 0.5f;
+
+    private void Update()
+    {
+        clearActiveScript();
+        isObjectHit = castRay();
+        if (isObjectHit)
+        {
+
+            CallInteraction(hitinfo);
+        }
+    }
+
+    //Runs at the beginning of every new frame, removes highlighting and clears the script from memory
+    private void clearActiveScript()
+    {
+        if (activeScript != null)
+        {
+            activeScript.eraseRenderer = true;
+            activeScript = null;
+        }
+    }
+
+    //Cast ray and return weather a object was hit
+    private bool castRay()
+    {
+        origin = this.transform.position;
+        direction = this.transform.TransformDirection(Vector3.forward);
+        direction.y += yOffset; //Looks down
+        bool isObjectHit = false;
+        hitinfo = new RaycastHit();
+
+
+        //Check if the ray hit something, store it in hitinfo
+        if (Physics.Raycast(origin, direction, out hitinfo, distance, 1 << 8))
+        {
+            isObjectHit = true;
+        }
+        else
+        {
+            isObjectHit = false;
+        }
+
+        //Debugging
+        if (isDebugging)
+        {
+            debugRay();
+        }
+
+        return isObjectHit;
+    }
+
+    //If an object intercected with the ray, attempt to call interaction with the hit object
+    private void CallInteraction(RaycastHit hitinfo)
+    {
+        hitObject = hitinfo.transform;
+        bool hasInteractFunction = false;
+        //Debug.Log(hitObject);
+
+        //Check for interactive object.
+        if(hitObject.GetComponent<InteractContoller>())
+        {
+            return;
+        }
+
+        //If object has no active script, try to find it in the class hierarchy
+        if (hitObject.GetComponent<Outline>())
+        {
+            activeScript = hitObject.GetComponent<Outline>();
+
+            InteractableInterface InteractableInterface = hitObject.GetComponent<InteractableInterface>();
+            if (InteractableInterface != null)
+            {
+                hasInteractFunction = true;
+            }
+        }
+        else if (hitObject.parent && hitObject.parent.GetComponentInChildren<Outline>()) //Try getting from parent
+        {
+            activeScript = hitObject.parent.GetComponentInChildren<Outline>();
+            hitObject = hitObject.parent;
+            if (!hitObject.GetComponent<InteractContoller>())
+            {
+                return;
+            }
+
+            InteractableInterface InteractableInterface = hitObject.GetComponent<InteractableInterface>();
+            if (InteractableInterface != null)
+            {
+                hasInteractFunction = true;
+            }
+        }
+        else if (hitObject.GetComponentInChildren<Outline>() != null) //Try getting from children
+        {
+            activeScript = hitObject.GetComponentInChildren<Outline>();
+
+            InteractableInterface InteractableInterface = hitObject.GetComponentInChildren<InteractableInterface>();
+            if (InteractableInterface != null)
+            {
+                hasInteractFunction = true;
+            }
+        }
+
+        //Try to call interact
+        if (activeScript != null)
+        {
+            activeScript.eraseRenderer = false;
+            if (Input.GetKeyDown("e") || (Input.GetMouseButtonDown(0)))
+            {
+
+                if (hasInteractFunction)
+                {
+                    hitObject.SendMessage("interact");
+                }
+                else
+                {
+                    Debug.Log("Object has no interact function");
+                }
+            }
+        }
+    }
+
+    private void debugRay()
+    {
+        Debug.DrawRay(origin, direction * distance, Color.red);
+    }
+}
+
