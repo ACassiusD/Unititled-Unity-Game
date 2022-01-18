@@ -96,10 +96,6 @@ public class InteractContoller : MonoBehaviour
         {
             activeScript = hitObject.parent.GetComponentInChildren<Outline>();
             hitObject = hitObject.parent;
-            if (!hitObject.GetComponent<InteractContoller>())
-            {
-                return;
-            }
 
             InteractableInterface InteractableInterface = hitObject.GetComponent<InteractableInterface>();
             if (InteractableInterface != null)
@@ -111,11 +107,16 @@ public class InteractContoller : MonoBehaviour
         {
             activeScript = hitObject.GetComponentInChildren<Outline>();
 
-            InteractableInterface InteractableInterface = hitObject.GetComponentInChildren<InteractableInterface>();
-            if (InteractableInterface != null)
+            foreach (Transform child in transform)
             {
-                hasInteractFunction = true;
+                InteractableInterface InteractableInterface = child.GetComponentInChildren<InteractableInterface>();
+
+                if (InteractableInterface != null)
+                {
+                    hasInteractFunction = true;
+                }
             }
+
         }
 
         //Try to call interact
@@ -131,7 +132,7 @@ public class InteractContoller : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Object has no interact function");
+                    Debug.LogWarning("Object has no interact function, one should be added.");
                 }
             }
         }
