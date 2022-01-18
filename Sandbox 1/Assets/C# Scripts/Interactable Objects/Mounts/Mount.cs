@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mount : PlayableCharacters, InteractableInterface
+public class Mount : Animal
 {
     PlayerCharacter playerScript;
 
