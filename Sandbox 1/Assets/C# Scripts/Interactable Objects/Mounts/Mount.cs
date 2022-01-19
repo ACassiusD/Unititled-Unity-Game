@@ -18,6 +18,8 @@ public class Mount : Animal
         jumpForce = 70f;
         naveMeshAgent = this.GetComponent<NavMeshAgent>();
         wanderscript = this.GetComponent<Animal_WanderScript>();
+
+        //Save mounts stats to a 
     }
 
 
@@ -45,6 +47,8 @@ public class Mount : Animal
 
     public void dismount()
     {
+        wanderscript.resetOrigin();
+        wanderscript.UpdateAI();
         naveMeshAgent.enabled = true;
         wanderscript.enabled = true;
         isBeingControlled = false;

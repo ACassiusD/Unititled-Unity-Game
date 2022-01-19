@@ -422,12 +422,12 @@ namespace Polyperfect.Common
             }
         }
 
-        void OnEnable()
+        public void OnEnable()
         {
             allAnimals.Add(this);
         }
 
-        void OnDisable()
+        public void OnDisable()
         {
             allAnimals.Remove(this);
             StopAllCoroutines();
@@ -588,7 +588,7 @@ namespace Polyperfect.Common
             }
         }
         
-        void UpdateAI()
+        public void UpdateAI()
         {
             if (CurrentState == WanderState.Dead)
             {
@@ -956,6 +956,12 @@ namespace Polyperfect.Common
             death.animationBool = "isDead";
             deathStates = new AIState[1];
             deathStates[0] = death;
+        }
+
+        public void resetOrigin()
+        {
+            startPosition = transform.position;
+            origin = transform.position;
         }
     }
 }

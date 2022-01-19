@@ -87,6 +87,7 @@ public class PlayerCharacter : PlayableCharacters {
     {
         flipRidingState();
         activeMount = null;
+
     }
 
     //Text function for testing item pick up
