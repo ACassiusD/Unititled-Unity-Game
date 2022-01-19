@@ -960,6 +960,7 @@ namespace Polyperfect.Common
 
         public void resetOrigin()
         {
+            CurrentState = WanderState.Idle;
             startPosition = transform.position;
             origin = transform.position;
         }
