@@ -40,7 +40,6 @@ public class Mount : Animal
     //Update is called once per frame
     void Update()
     {
-        if(i)
         MoveCharacterController();
         UpdateAnimation();
     }
