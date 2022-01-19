@@ -20,9 +20,9 @@ namespace Polyperfect.Common
         private const float contingencyDistance = 1f;
 
         [SerializeField] public IdleState[] idleStates;
-        [SerializeField] private MovementState[] movementStates;
-        [SerializeField] private AIState[] attackingStates;
-        [SerializeField] private AIState[] deathStates;
+        [SerializeField] public MovementState[] movementStates;
+        [SerializeField] public AIState[] attackingStates;
+        [SerializeField] public AIState[] deathStates;
 
         [SerializeField] public string species = "NA";
 
@@ -769,7 +769,7 @@ namespace Polyperfect.Common
         }
 
 
-        void ClearAnimatorBools()
+        public void ClearAnimatorBools()
         {
             foreach (var item in idleStates) 
                 TrySetBool(item.animationBool, false);
@@ -780,7 +780,7 @@ namespace Polyperfect.Common
             foreach (var item in deathStates) 
                 TrySetBool(item.animationBool, false);
         }
-        void TrySetBool(string parameterName,bool value)
+        public void TrySetBool(string parameterName,bool value)
         {
             if (!string.IsNullOrEmpty(parameterName))
             {
