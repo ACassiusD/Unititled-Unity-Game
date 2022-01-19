@@ -17,15 +17,33 @@ public class InteractContoller : MonoBehaviour
     int LayerMask; //Layer to ignore
     Outline activeScript;
     float outlineWidth = 0.5f;
+    PlayerCharacter playerScript;
+
+    public void Start()
+    {
+        playerScript = PlayerManager.Instance.getPlayerScript();
+    }
 
     private void Update()
     {
+        bool capturedKeyPress = Input.GetKeyDown("e") || Input.GetMouseButtonDown(0);
+        if (capturedKeyPress)
+        {
+            if (playerScript)
+            {
+                if (playerScript.activeMount != null)
+                {
+                    playerScript.activeMount.dismount();
+                    this.transform.Translate(8, 0, 0);
+                }
+            }
+        }
         clearActiveScript();
         isObjectHit = castRay();
         if (isObjectHit)
         {
 
-            CallInteraction(hitinfo);
+            CallInteraction(hitinfo, capturedKeyPress);
         }
     }
 
@@ -69,7 +87,7 @@ public class InteractContoller : MonoBehaviour
     }
 
     //If an object intercected with the ray, attempt to call interaction with the hit object
-    private void CallInteraction(RaycastHit hitinfo)
+    private void CallInteraction(RaycastHit hitinfo, bool capturedKeyPress)
     {
         hitObject = hitinfo.transform;
         bool hasInteractFunction = false;
@@ -123,7 +141,7 @@ public class InteractContoller : MonoBehaviour
         if (activeScript != null)
         {
             activeScript.eraseRenderer = false;
-            if (Input.GetKeyDown("e") || (Input.GetMouseButtonDown(0)))
+            if (capturedKeyPress)
             {
 
                 if (hasInteractFunction)

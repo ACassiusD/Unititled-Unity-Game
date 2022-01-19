@@ -7,7 +7,7 @@ public class PlayerCharacter : PlayableCharacters {
     public bool isRiding = false;
     public float ridingHeight = 3f;
     private GameObject[] tamedMounts;
-    private Mount activeMount = null;
+    public Mount activeMount = null;
     Mount activeMountScript;
     public Inventory inventory;
 
@@ -71,7 +71,6 @@ public class PlayerCharacter : PlayableCharacters {
         }
         else //Player is not yet mounted
         {
-
             activeMountScript = activeMount.GetComponent<Mount>();
 
             //Only flip state if there is a mount to be mounted

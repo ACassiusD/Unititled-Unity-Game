@@ -1,17 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Polyperfect.Animals;
+using UnityEngine.AI;
 
 public class Mount : Animal
 {
     PlayerCharacter playerScript;
-
+    //Get wanderscript and nav mesh agent, disable them in that order
+    Animal_WanderScript wanderscript;
+    NavMeshAgent naveMeshAgent;
     public override void onCreate()
     {
         playerScript = PlayerManager.Instance.getPlayerScript();
         speed = 150;
         gravityScale = .25f;
         jumpForce = 70f;
+        naveMeshAgent = this.GetComponent<NavMeshAgent>();
+        wanderscript = this.GetComponent<Animal_WanderScript>();
     }
 
 
@@ -21,13 +27,27 @@ public class Mount : Animal
 
         if (!playerScript.isRiding) //Character isn't riding. Call default movement
         {
-            isBeingControlled = true;
-            playerScript.setActiveMount(this);
+            mount();
         }
         else
         {
-            isBeingControlled = false;
-            playerScript.unMount();
+            dismount();
         }
+    }
+
+    public void mount()
+    {
+        wanderscript.enabled = false;
+        naveMeshAgent.enabled = false;
+        isBeingControlled = true;
+        playerScript.setActiveMount(this);
+    }
+
+    public void dismount()
+    {
+        naveMeshAgent.enabled = true;
+        wanderscript.enabled = true;
+        isBeingControlled = false;
+        playerScript.unMount();
     }
 }
