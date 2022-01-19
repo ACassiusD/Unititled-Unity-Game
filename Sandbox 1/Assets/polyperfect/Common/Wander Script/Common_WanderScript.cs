@@ -205,7 +205,7 @@ namespace Polyperfect.Common
                 return;
 
             // Draw target position.
-            if (useNavMesh)
+            if (useNavMesh && navMeshAgent.enabled == true)
             {
                 if (navMeshAgent.remainingDistance > 1f)
                 {
