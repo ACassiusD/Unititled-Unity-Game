@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerCharacter : PlayableCharacters {
 
     public bool isRiding = false;
-    public float ridingHeight = 3f;
     private GameObject[] tamedMounts;
     public Mount activeMount = null;
     Mount activeMountScript;
@@ -52,7 +51,7 @@ public class PlayerCharacter : PlayableCharacters {
     {
         //Calculate where the rider needs to be positioned, then transform him to that position and rotation
         Vector3 ridingPositon = activeMount.transform.position;
-        ridingPositon.y = ridingPositon.y + ridingHeight;
+        ridingPositon.y = ridingPositon.y + this.activeMount.ridingHeight;
         transform.position = ridingPositon;
 
         //Rotation

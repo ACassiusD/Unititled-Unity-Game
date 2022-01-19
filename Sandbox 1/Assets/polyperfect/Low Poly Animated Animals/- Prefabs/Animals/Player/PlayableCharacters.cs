@@ -29,6 +29,7 @@ public class PlayableCharacters : MonoBehaviour {
     public int aiMoveSpeed = 30;
 
 
+
     void Start () {
         onCreate();
         random = new Random();
@@ -48,13 +49,13 @@ public class PlayableCharacters : MonoBehaviour {
     //Update is called once per frame
     void Update()
     {
-         MoveCharacterController();
+        MoveCharacterController();
     }
 
 	//Control player with character controller
 	protected void MoveCharacterController(){
+        isWalking = isMoving();
 
-        
         if (isBeingControlled)
         {
             getPlayerInput();
@@ -79,6 +80,19 @@ public class PlayableCharacters : MonoBehaviour {
         controller.Move(moveDirection * Time.deltaTime);
     }
 
+    public bool isMoving()
+    {
+        var input = Input.GetAxis("Vertical");
+        if ( input > 0 || input < 0)
+        {
+            return true;
+        }
+        else
+        {
+             return false;
+        }
+        
+    }
     //Apply the input to the players movement
     void getPlayerInput()
     {

@@ -3213,15 +3213,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4881015361083092, guid: 343956e15ca614042b6c7eae1aceb95f, type: 3}
       propertyPath: m_LocalScale.x
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4881015361083092, guid: 343956e15ca614042b6c7eae1aceb95f, type: 3}
       propertyPath: m_LocalScale.y
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4881015361083092, guid: 343956e15ca614042b6c7eae1aceb95f, type: 3}
       propertyPath: m_LocalScale.z
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 114815653591366580, guid: 343956e15ca614042b6c7eae1aceb95f,
         type: 3}
@@ -5049,6 +5049,38 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 263999525}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!84 &264901725
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 1903
+  m_Height: 493
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 7
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!84 &276743795
 RenderTexture:
   m_ObjectHideFlags: 0
@@ -6891,8 +6923,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
-  speed: 30
-  jumpForce: 50
+  speed: 45
+  jumpForce: 39.99
   gravityScale: 0.25
   numOfJumps: 0
   maxJumps: 2
@@ -6905,7 +6937,9 @@ MonoBehaviour:
   walkLength: 0
   turnDirection: 0
   aiRotationSpeed: 1.5
-  aiMoveSpeed: 30
+  aiMoveSpeed: 10
+  ridingHeight: 7.5
+  walkAnimationSpeed: 2
 --- !u!114 &372444041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6939,7 +6973,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8b722874c43c70041a6fb95e793307fe, type: 2}
+  - {fileID: 2100000, guid: 9fded237eee07914881cf452b137c0d1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9782,38 +9816,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 621845906}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!84 &629489689
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 1906
-  m_Height: 480
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 7
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &630494512
 GameObject:
   m_ObjectHideFlags: 0
@@ -13107,38 +13109,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 862689491}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!84 &872370980
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 1906
-  m_Height: 480
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 7
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &875255592
 GameObject:
   m_ObjectHideFlags: 0
@@ -14346,7 +14316,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 0
   m_RenderingPath: 1
-  m_TargetTexture: {fileID: 872370980}
+  m_TargetTexture: {fileID: 1285924563}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 0
@@ -19720,6 +19690,38 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1280186863}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!84 &1285924563
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 1903
+  m_Height: 493
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 7
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &1294522185
 GameObject:
   m_ObjectHideFlags: 0
@@ -22577,6 +22579,8 @@ MonoBehaviour:
   turnDirection: 0
   aiRotationSpeed: 1.5
   aiMoveSpeed: 30
+  ridingHeight: 3
+  walkAnimationSpeed: 2
 --- !u!143 &1511047595
 CharacterController:
   m_ObjectHideFlags: 0
@@ -24974,8 +24978,8 @@ MonoBehaviour:
   sourceCamera: {fileID: 1683900123}
   outlineCamera: {fileID: 973664635}
   outlineShaderMaterial: {fileID: 0}
-  renderTexture: {fileID: 872370980}
-  extraRenderTexture: {fileID: 629489689}
+  renderTexture: {fileID: 1285924563}
+  extraRenderTexture: {fileID: 264901725}
 --- !u!1 &1688248421
 GameObject:
   m_ObjectHideFlags: 0
@@ -28540,6 +28544,8 @@ MonoBehaviour:
   turnDirection: 0
   aiRotationSpeed: 1.5
   aiMoveSpeed: 30
+  ridingHeight: 3
+  walkAnimationSpeed: 2
 --- !u!143 &1868809561
 CharacterController:
   m_ObjectHideFlags: 0
@@ -29396,6 +29402,8 @@ MonoBehaviour:
   turnDirection: 0
   aiRotationSpeed: 1.5
   aiMoveSpeed: 30
+  ridingHeight: 3
+  walkAnimationSpeed: 2
 --- !u!143 &1915377210
 CharacterController:
   m_ObjectHideFlags: 0
@@ -31631,6 +31639,8 @@ MonoBehaviour:
   turnDirection: 0
   aiRotationSpeed: 1.5
   aiMoveSpeed: 30
+  ridingHeight: 3
+  walkAnimationSpeed: 2
 --- !u!143 &2092842153
 CharacterController:
   m_ObjectHideFlags: 0
@@ -32175,6 +32185,8 @@ MonoBehaviour:
   turnDirection: 0
   aiRotationSpeed: 1.5
   aiMoveSpeed: 30
+  ridingHeight: 3
+  walkAnimationSpeed: 2
 --- !u!143 &2117639935
 CharacterController:
   m_ObjectHideFlags: 0

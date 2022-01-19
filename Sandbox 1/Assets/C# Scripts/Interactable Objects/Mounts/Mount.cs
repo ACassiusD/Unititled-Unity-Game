@@ -16,11 +16,13 @@ public class Mount : Animal
     MovementState[] movementStates;
     AIState[] attackingStates;
     private AIState[] deathStates;
+    public float ridingHeight = 5.4f;
+    new int speed = 20;
+    public float walkAnimationSpeed = 2;
 
     public override void onCreate()
     {
         playerScript = PlayerManager.Instance.getPlayerScript();
-        speed = 150;
         gravityScale = .25f;
         jumpForce = 70f;
         naveMeshAgent = this.GetComponent<NavMeshAgent>();
@@ -35,6 +37,13 @@ public class Mount : Animal
 }
     }
 
+    //Update is called once per frame
+    void Update()
+    {
+        if(i)
+        MoveCharacterController();
+        UpdateAnimation();
+    }
 
     public void interact()
     {
@@ -57,13 +66,6 @@ public class Mount : Animal
         naveMeshAgent.enabled = false;
         isBeingControlled = true;
         playerScript.setActiveMount(this);
-        //Set walking animaiton.
-        foreach (var idleState in idleStates)
-        {
-            ClearAnimatorBools();
-            TrySetBool(idleState.animationBool, true);
-            break;
-        }
     }
 
     public void dismount()
@@ -78,21 +80,47 @@ public class Mount : Animal
 
     public void ClearAnimatorBools()
     {
-        foreach (var item in idleStates)
-            TrySetBool(item.animationBool, false);
-        foreach (var item in movementStates)
-            TrySetBool(item.animationBool, false);
-        foreach (var item in attackingStates)
-            TrySetBool(item.animationBool, false);
-        foreach (var item in deathStates)
-            TrySetBool(item.animationBool, false);
+        foreach (var item in this.idleStates)
+            TrySetBool(item.animationBool, false, 0);
+        foreach (var item in this.movementStates)
+            TrySetBool(item.animationBool, false, 0);
+        foreach (var item in this.attackingStates)
+            TrySetBool(item.animationBool, false, 0);
+        foreach (var item in this.deathStates)
+            TrySetBool(item.animationBool, false, 0);
     }
 
-    void TrySetBool(string parameterName, bool value)
+    void TrySetBool(string parameterName, bool value, float speed)
     {
+        if(speed != 0)
+        {
+            mountAnimator.speed = walkAnimationSpeed;
+        }
+
         if (!string.IsNullOrEmpty(parameterName))
         {
                 mountAnimator.SetBool(parameterName, value);
+        }
+    }
+
+    private void UpdateAnimation()
+    {
+
+        if (!isBeingControlled)
+        {
+            return;
+        }
+
+        ClearAnimatorBools();
+
+        if (isWalking)
+        {
+            //Set walking animaiton.
+            foreach (var state in this.movementStates)
+            {
+                TrySetBool(state.animationBool, true, walkAnimationSpeed);
+                break;
+            }
         }
     }
 }
