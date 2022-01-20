@@ -13871,7 +13871,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 0
   m_RenderingPath: 1
-  m_TargetTexture: {fileID: 989652904}
+  m_TargetTexture: {fileID: 1341288320}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 0
@@ -13893,38 +13893,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 217150052}
   m_PrefabAsset: {fileID: 0}
---- !u!84 &989652904
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 1906
-  m_Height: 867
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 7
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!4 &994018809 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 523331671835633181, guid: 01653bbcfb6a45a4fb274560c93f7f96,
@@ -14085,6 +14053,38 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1133647804}
   m_PrefabAsset: {fileID: 0}
+--- !u!84 &1008564939
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 1906
+  m_Height: 861
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 7
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &1008566848
 GameObject:
   m_ObjectHideFlags: 0
@@ -16861,7 +16861,7 @@ MonoBehaviour:
   rotationSpeed: 3
   isBeingControlled: 0
   isTurning: 0
-  isWalking: 0
+  isMoving: 0
   turnLength: 0
   walkLength: 0
   turnDirection: 0
@@ -16871,6 +16871,7 @@ MonoBehaviour:
   walkAnimationSpeed: 2
   walkSpeed: 50
   runSpeed: 100
+  isRunning: 0
 --- !u!137 &1181072081
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
@@ -20586,6 +20587,38 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!84 &1341288320
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 1906
+  m_Height: 861
+  m_AntiAliasing: 1
+  m_DepthFormat: 1
+  m_ColorFormat: 7
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!4 &1354174607 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4768555798601796, guid: fc9ece646c03b5d4f8c2d3adfb6ffa0e,
@@ -21644,38 +21677,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1424322238}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!84 &1424671162
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 1906
-  m_Height: 867
-  m_AntiAliasing: 1
-  m_DepthFormat: 1
-  m_ColorFormat: 7
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &1438391442
 GameObject:
   m_ObjectHideFlags: 0
@@ -24843,7 +24844,7 @@ MonoBehaviour:
   rotationSpeed: 3
   isBeingControlled: 0
   isTurning: 0
-  isWalking: 0
+  isMoving: 0
   turnLength: 0
   walkLength: 0
   turnDirection: 0
@@ -24853,6 +24854,7 @@ MonoBehaviour:
   walkAnimationSpeed: 2
   walkSpeed: 50
   runSpeed: 100
+  isRunning: 1
 --- !u!114 &1636966588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25826,8 +25828,8 @@ MonoBehaviour:
   sourceCamera: {fileID: 1683900123}
   outlineCamera: {fileID: 973664635}
   outlineShaderMaterial: {fileID: 0}
-  renderTexture: {fileID: 989652904}
-  extraRenderTexture: {fileID: 1424671162}
+  renderTexture: {fileID: 1341288320}
+  extraRenderTexture: {fileID: 1008564939}
 --- !u!4 &1686077615 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 523331671835633253, guid: 01653bbcfb6a45a4fb274560c93f7f96,
@@ -29130,7 +29132,7 @@ MonoBehaviour:
   rotationSpeed: 3
   isBeingControlled: 0
   isTurning: 0
-  isWalking: 0
+  isMoving: 0
   turnLength: 0
   walkLength: 0
   turnDirection: 0
@@ -29140,6 +29142,7 @@ MonoBehaviour:
   walkAnimationSpeed: 2
   walkSpeed: 50
   runSpeed: 100
+  isRunning: 0
 --- !u!137 &1859383445
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
@@ -30398,7 +30401,7 @@ MonoBehaviour:
   rotationSpeed: 3
   isBeingControlled: 0
   isTurning: 0
-  isWalking: 0
+  isMoving: 0
   turnLength: 0
   walkLength: 0
   turnDirection: 0
@@ -30408,6 +30411,7 @@ MonoBehaviour:
   walkAnimationSpeed: 2
   walkSpeed: 50
   runSpeed: 100
+  isRunning: 0
 --- !u!143 &1915377210
 CharacterController:
   m_ObjectHideFlags: 0

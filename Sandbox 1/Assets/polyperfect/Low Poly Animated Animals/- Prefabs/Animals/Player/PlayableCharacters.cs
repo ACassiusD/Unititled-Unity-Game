@@ -17,13 +17,14 @@ public class PlayableCharacters : MonoBehaviour {
     public int rotationSpeed = 3;
     public bool isBeingControlled = false;
     public bool isTurning = false;
-    public bool isWalking = false;
+    public bool isMoving = false;
     public float turnLength = 0.0f;
     public float walkLength = 0.0f;
     public int turnDirection = 0;
     float halfSecondLength = 0.5f;
     public float aiRotationSpeed = 1.5f;
     public int aiMoveSpeed = 30;
+
 
     protected virtual void Start () {
         var test = this.gameObject.name;
@@ -46,7 +47,7 @@ public class PlayableCharacters : MonoBehaviour {
 
 	//Control player with character controller
 	protected void MoveCharacterController(){
-        isWalking = isMoving();
+        isMoving = checkIfMoving();
 
         if (isBeingControlled)
         {
@@ -68,7 +69,7 @@ public class PlayableCharacters : MonoBehaviour {
         controller.Move(moveDirection * Time.deltaTime);
     }
 
-    public bool isMoving()
+    public bool checkIfMoving()
     {
         var input = Input.GetAxis("Vertical");
         if ( input > 0 || input < 0)

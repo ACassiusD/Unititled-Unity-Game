@@ -21,6 +21,7 @@ public class Mount : Animal
     public float walkAnimationSpeed = 2;
     public int walkSpeed = 50;
     public int runSpeed = 100;
+    public bool isRunning = false;
 
 
     protected virtual void Start()
@@ -124,10 +125,10 @@ public class Mount : Animal
 
         ClearAnimatorBools();
 
-        if (isWalking)
+        if (isMoving)
         {
             //Running
-            if (speed >= runSpeed)
+            if (isRunning)
             {
                 speed = runSpeed;
                 if(setRunningAnimation() == false)
