@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gorilla : Mount
+public class Spider : Mount
 {
     // Start is called before the first frame update
     void Start()
     {
-        walkSpeed = 33;
-        runSpeed = 99;
+        walkSpeed = 50;
+        runSpeed = 100;
         base.Start();
     }
 

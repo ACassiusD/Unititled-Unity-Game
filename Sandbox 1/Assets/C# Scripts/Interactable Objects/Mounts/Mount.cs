@@ -18,13 +18,10 @@ public class Mount : Animal
     AIState[] attackingStates;
     private AIState[] deathStates;
     public float ridingHeight = 5.4f;
-    public int runningSpeed = 80;
     public float walkAnimationSpeed = 2;
-    public static int mountSpeed = 99; // should be moved to individual mount classes for unique values.
-    public int gorillaRunSpeed = 115;
-    public int gorillaWalkSpeed = 50;
-    public int lionRunSpeed = 50;
-    public int lionWalkSpeed = 100;
+    public int walkSpeed = 50;
+    public int runSpeed = 100;
+
 
     protected virtual void Start()
     {
@@ -34,10 +31,6 @@ public class Mount : Animal
 
     public override void onCreate()
     {
-        if (this.gameObject.name == "TESTER"){
-            Debug.Log("test");
-        }
-        speed = mountSpeed;
         playerScript = PlayerManager.Instance.getPlayerScript();
         gravityScale = .25f;
         naveMeshAgent = this.GetComponent<NavMeshAgent>();
@@ -124,7 +117,6 @@ public class Mount : Animal
 
     private void UpdateAnimation()
     {
-
         if (!isBeingControlled)
         {
             return;
@@ -134,43 +126,42 @@ public class Mount : Animal
 
         if (isWalking)
         {
-
-            if (speed >= runningSpeed)
+            //Running
+            if (speed >= runSpeed)
             {
-                if (this.gameObject.name == "Lion")
+                speed = runSpeed;
+                if(setRunningAnimation() == false)
                 {
-                    speed = lionRunSpeed;
-                }
-                if(this.gameObject.name == "Gorilla")
-                {
-                    speed = gorillaRunSpeed;
-                }
-                speed = mountSpeed;
-                //Set Running animaiton.
-                foreach (var state in this.movementStates)
-                {
-                    if(state.animationBool == "isRunning")
-                    {
-                        TrySetBool(state.animationBool, true, walkAnimationSpeed);
-                        break;
-                    }
+                    setWalkingAnimation();
                 }
             }
-
-            //Set walking animaiton.
-            foreach (var state in this.movementStates)
+            else//walking
             {
-                if (this.gameObject.name == "Lion")
-                {
-                    speed = lionWalkSpeed;
-                }
-                if (this.gameObject.name == "Gorilla")
-                {
-                    speed = gorillaWalkSpeed;
-                }
-                TrySetBool(state.animationBool, true, walkAnimationSpeed);
-                break;
+                speed = walkSpeed;
+                setWalkingAnimation();
             }
         }
+    }
+
+    public void setWalkingAnimation()
+    {
+        foreach (var state in this.movementStates)
+        {
+            TrySetBool(state.animationBool, true, walkAnimationSpeed);
+            break;
+        }
+    }
+
+    public bool setRunningAnimation()
+    {
+        foreach (var state in this.movementStates)
+        {
+            if (state.animationBool == "isRunning")
+            {
+                TrySetBool(state.animationBool, true, walkAnimationSpeed);
+                return true;
+            }
+        }
+        return false;
     }
 }
