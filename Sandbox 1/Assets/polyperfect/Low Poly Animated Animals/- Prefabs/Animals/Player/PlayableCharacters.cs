@@ -6,7 +6,8 @@ using UnityEngine;
 
 public class PlayableCharacters : MonoBehaviour {
 
-	public CharacterController controller = new CharacterController();
+    Random random;
+    public CharacterController controller = new CharacterController();
     public int speed = 30;
 	private Vector3 moveDirection;
 	public float jumpForce = 50f;
@@ -15,8 +16,6 @@ public class PlayableCharacters : MonoBehaviour {
 	public int maxJumps = 2;
     public int rotationSpeed = 3;
     public bool isBeingControlled = false;
-
-    Random random;
     public bool isTurning = false;
     public bool isWalking = false;
     public float turnLength = 0.0f;
@@ -26,9 +25,8 @@ public class PlayableCharacters : MonoBehaviour {
     public float aiRotationSpeed = 1.5f;
     public int aiMoveSpeed = 30;
 
-
-
-    void Start () {
+    protected virtual void Start () {
+        var test = this.gameObject.name;
         onCreate();
         random = new Random();
         controller = GetComponent<CharacterController>();
@@ -41,7 +39,7 @@ public class PlayableCharacters : MonoBehaviour {
     }
 
     //Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         MoveCharacterController();
     }
@@ -52,7 +50,6 @@ public class PlayableCharacters : MonoBehaviour {
 
         if (isBeingControlled)
         {
-            Debug.Log(this.gameObject.name + "s speed == " + speed);
             getPlayerInput();
         }
         else

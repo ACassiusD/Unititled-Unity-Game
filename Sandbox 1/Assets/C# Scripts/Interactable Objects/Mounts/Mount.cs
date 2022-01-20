@@ -5,6 +5,7 @@ using Polyperfect.Animals;
 using UnityEngine.AI;
 using Polyperfect.Common;
 
+//Mount class will probably just keep animaiton functions and stats + abilities will be moved to animal
 public class Mount : Animal
 {
     PlayerCharacter playerScript;
@@ -19,10 +20,23 @@ public class Mount : Animal
     public float ridingHeight = 5.4f;
     public int runningSpeed = 80;
     public float walkAnimationSpeed = 2;
-    public int mountSpeed = 99; // should be moved to individual mount classes for unique values.
+    public static int mountSpeed = 99; // should be moved to individual mount classes for unique values.
+    public int gorillaRunSpeed = 115;
+    public int gorillaWalkSpeed = 50;
+    public int lionRunSpeed = 50;
+    public int lionWalkSpeed = 100;
+
+    protected virtual void Start()
+    {
+        base.Start();
+        onCreate();
+    }
 
     public override void onCreate()
     {
+        if (this.gameObject.name == "TESTER"){
+            Debug.Log("test");
+        }
         speed = mountSpeed;
         playerScript = PlayerManager.Instance.getPlayerScript();
         gravityScale = .25f;
@@ -39,7 +53,7 @@ public class Mount : Animal
     }
 
     //Update is called once per frame
-    void Update()
+    protected override void Update()
     {
         if (!isBeingControlled)
         {
@@ -120,21 +134,40 @@ public class Mount : Animal
 
         if (isWalking)
         {
-            //Test running code
-            Debug.Log(this.gameObject.name + "s INHERITANCE speed == " + this.speed);
+
             if (speed >= runningSpeed)
             {
+                if (this.gameObject.name == "Lion")
+                {
+                    speed = lionRunSpeed;
+                }
+                if(this.gameObject.name == "Gorilla")
+                {
+                    speed = gorillaRunSpeed;
+                }
+                speed = mountSpeed;
                 //Set Running animaiton.
                 foreach (var state in this.movementStates)
                 {
-                    TrySetBool(state.animationBool, true, walkAnimationSpeed);
-                    break;
+                    if(state.animationBool == "isRunning")
+                    {
+                        TrySetBool(state.animationBool, true, walkAnimationSpeed);
+                        break;
+                    }
                 }
             }
 
             //Set walking animaiton.
             foreach (var state in this.movementStates)
             {
+                if (this.gameObject.name == "Lion")
+                {
+                    speed = lionWalkSpeed;
+                }
+                if (this.gameObject.name == "Gorilla")
+                {
+                    speed = gorillaWalkSpeed;
+                }
                 TrySetBool(state.animationBool, true, walkAnimationSpeed);
                 break;
             }
