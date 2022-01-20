@@ -20,7 +20,7 @@ public class Mount : Animal
     public float ridingHeight = 5.4f;
     public float walkAnimationSpeed = 2;
     public int walkSpeed = 50;
-    public int runSpeed = 100;
+    public int runSpeed = 200;
     public bool isRunning = false;
 
 
@@ -55,6 +55,7 @@ public class Mount : Animal
         }
         MoveCharacterController();
         UpdateAnimation();
+        toggleRun();
     }
 
     public void interact()
@@ -91,19 +92,19 @@ public class Mount : Animal
         playerScript.unMount();
     }
 
-    public void ClearAnimatorBools()
+    public void ClearAnimation()
     {
         foreach (var item in this.idleStates)
-            TrySetBool(item.animationBool, false, 0);
+            SetAnimationBool(item.animationBool, false, 0);
         foreach (var item in this.movementStates)
-            TrySetBool(item.animationBool, false, 0);
+            SetAnimationBool(item.animationBool, false, 0);
         foreach (var item in this.attackingStates)
-            TrySetBool(item.animationBool, false, 0);
+            SetAnimationBool(item.animationBool, false, 0);
         foreach (var item in this.deathStates)
-            TrySetBool(item.animationBool, false, 0);
+            SetAnimationBool(item.animationBool, false, 0);
     }
 
-    void TrySetBool(string parameterName, bool value, float speed)
+    void SetAnimationBool(string parameterName, bool value, float speed)
     {
         if(speed != 0)
         {
@@ -123,7 +124,7 @@ public class Mount : Animal
             return;
         }
 
-        ClearAnimatorBools();
+        ClearAnimation();
 
         if (isMoving)
         {
@@ -148,7 +149,7 @@ public class Mount : Animal
     {
         foreach (var state in this.movementStates)
         {
-            TrySetBool(state.animationBool, true, walkAnimationSpeed);
+            SetAnimationBool(state.animationBool, true, walkAnimationSpeed);
             break;
         }
     }
@@ -159,10 +160,19 @@ public class Mount : Animal
         {
             if (state.animationBool == "isRunning")
             {
-                TrySetBool(state.animationBool, true, walkAnimationSpeed);
+                SetAnimationBool(state.animationBool, true, walkAnimationSpeed);
                 return true;
             }
         }
         return false;
+    }
+
+    public void toggleRun()
+    {
+        if(Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            if (isRunning ? isRunning = false : isRunning = true) ;
+        }
+
     }
 }
