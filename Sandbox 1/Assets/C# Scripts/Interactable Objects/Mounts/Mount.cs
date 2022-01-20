@@ -17,14 +17,15 @@ public class Mount : Animal
     AIState[] attackingStates;
     private AIState[] deathStates;
     public float ridingHeight = 5.4f;
-    new int speed = 20;
+    public int runningSpeed = 80;
     public float walkAnimationSpeed = 2;
+    public int mountSpeed = 99; // should be moved to individual mount classes for unique values.
 
     public override void onCreate()
     {
+        speed = mountSpeed;
         playerScript = PlayerManager.Instance.getPlayerScript();
         gravityScale = .25f;
-        jumpForce = 70f;
         naveMeshAgent = this.GetComponent<NavMeshAgent>();
         wanderscript = this.GetComponent<Animal_WanderScript>();
         mountAnimator = this.GetComponent<Animator>();
@@ -40,6 +41,10 @@ public class Mount : Animal
     //Update is called once per frame
     void Update()
     {
+        if (!isBeingControlled)
+        {
+            return;
+        }
         MoveCharacterController();
         UpdateAnimation();
     }
@@ -69,6 +74,7 @@ public class Mount : Animal
 
     public void dismount()
     {
+        mountAnimator.speed = 1;
         wanderscript.resetOrigin();
         wanderscript.UpdateAI();
         naveMeshAgent.enabled = true;
@@ -114,6 +120,18 @@ public class Mount : Animal
 
         if (isWalking)
         {
+            //Test running code
+            Debug.Log(this.gameObject.name + "s INHERITANCE speed == " + this.speed);
+            if (speed >= runningSpeed)
+            {
+                //Set Running animaiton.
+                foreach (var state in this.movementStates)
+                {
+                    TrySetBool(state.animationBool, true, walkAnimationSpeed);
+                    break;
+                }
+            }
+
             //Set walking animaiton.
             foreach (var state in this.movementStates)
             {
