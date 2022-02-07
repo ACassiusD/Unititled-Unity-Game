@@ -94,7 +94,7 @@ public class PlayerCharacter : PlayableCharacters {
     {
         if(other.tag == "Item")
         {
-            inventory.AddItem(other.GetComponent<Item>());
+            //inventory.AddItem(other.GetComponent<Item>());
         }
     }
 }

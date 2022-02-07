@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Grid : MonoBehaviour
 {
@@ -15,8 +14,7 @@ public class Grid : MonoBehaviour
     private Dictionary<string, Plots> plotDictionary;
     public bool DrawGizmos = false;
     public bool plotDebugger = false;
-    float yposition = -0.3f;
-    Text[] sdfds; 
+    float yposition = -0.3f; 
 
 
 

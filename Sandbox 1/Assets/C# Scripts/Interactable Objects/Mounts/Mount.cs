@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Polyperfect.Animals;
 using UnityEngine.AI;
+using Polyperfect.Animals;
 using Polyperfect.Common;
 
 //Mount class will probably just keep animaiton functions and stats + abilities will be moved to animal
@@ -43,7 +43,7 @@ public class Mount : Animal
             movementStates = wanderscript.movementStates;
             attackingStates = wanderscript.attackingStates;
             deathStates = wanderscript.deathStates;
-}
+        }
     }
 
     //Update is called once per frame
@@ -107,14 +107,14 @@ public class Mount : Animal
 
     void SetAnimationBool(string parameterName, bool value, float speed)
     {
-        if(speed != 0)
+        if (speed != 0)
         {
             mountAnimator.speed = walkAnimationSpeed;
         }
 
         if (!string.IsNullOrEmpty(parameterName))
         {
-                mountAnimator.SetBool(parameterName, value);
+            mountAnimator.SetBool(parameterName, value);
         }
     }
 
@@ -133,7 +133,7 @@ public class Mount : Animal
             if (isRunning)
             {
                 speed = runSpeed;
-                if(setRunningAnimation() == false)
+                if (setRunningAnimation() == false)
                 {
                     setWalkingAnimation();
                 }
@@ -170,7 +170,7 @@ public class Mount : Animal
 
     public void toggleRun()
     {
-        if(Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             if (isRunning ? isRunning = false : isRunning = true) ;
         }
