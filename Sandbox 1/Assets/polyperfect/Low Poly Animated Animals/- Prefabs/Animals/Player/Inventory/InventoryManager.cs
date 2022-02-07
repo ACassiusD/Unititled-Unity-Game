@@ -10,19 +10,26 @@ public class InventoryManager : MonoBehaviour {
     int inventorySize = 10;
     int selectedIndex = 0;
     public string heldObject = null;
+    bool initialized = false;
 
     void Start () {
         Debug.Log("Initialized Inventory Manager");
         itemCollection = new CollectableItem[inventorySize];
         initalizeHotbar();
-        createFakeInventory();
-        updateHotbar();
-        highlightSelectedIndex();
+        if (initialized)
+        {
+            createFakeInventory();
+            updateHotbar();
+            highlightSelectedIndex();
+        }
     }
 
     private void Update()
     {
-        CheckHotbarInput();
+        if (initialized)
+        {
+            CheckHotbarInput();
+        }
     }
 
     private void createFakeInventory()
@@ -44,8 +51,14 @@ public class InventoryManager : MonoBehaviour {
         for (int i = 0; i < hotbarCount; i++)
         {
             GameObject hotbarElement = GameObject.FindWithTag("hotbar_" + (i + 1));
+            if (hotbarElement == null)
+            {
+                Debug.Log("ERROR - CANNOT INITIALIZE HOTBAR, MISSING HOTBAR GAME OBJECT IN SCENE");
+                return;
+            }
             hotbarText[i] = hotbarElement.GetComponentInChildren<Text>();
             hotbarColor[i] = hotbarElement.GetComponentInChildren<Image>();
+            initialized = true;
         }
     }
 

@@ -34,7 +34,6 @@ public class InteractContoller : MonoBehaviour
                 if (playerScript.activeMount != null)
                 {
                     playerScript.activeMount.dismount();
-                    this.transform.Translate(8, 0, 0);
                 }
             }
         }

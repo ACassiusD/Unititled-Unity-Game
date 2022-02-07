@@ -5,15 +5,15 @@ using UnityEngine;
 public class CameraController : MonoBehaviour {
 
     [SerializeField]
-    private float currentDistance = -50;
+    private float currentDistance = 0;
     [SerializeField]
-    private float desiredCameraDistance = -50;
+    private float desiredCameraDistance = 0;
     [SerializeField]
     private float currentHeight = 0;
     [SerializeField]
     bool isBeingControlled;
-    public int cameraZoomSpeed = 5;
-    public float maxZDistanceFromTarget;
+    public float cameraZoomSpeed = 5;
+    public float maxZDistanceFromTarget = 100;
     public float minZDistanceFromTarget;
     public float maxCameraHeight = 15;
     public float minCameraHeight = 0;
@@ -24,8 +24,6 @@ public class CameraController : MonoBehaviour {
     // Use this for initialization
     void Start () {
         //Set negative to be behind the player
-        maxZDistanceFromTarget = 50;
-        minZDistanceFromTarget = 5;
         isBeingControlled = false;
     }
 	

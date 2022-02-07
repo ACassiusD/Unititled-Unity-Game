@@ -19,9 +19,10 @@ public class Mount : Animal
     private AIState[] deathStates;
     public float ridingHeight = 5.4f;
     public float walkAnimationSpeed = 2;
-    public int walkSpeed = 50;
-    public int runSpeed = 200;
+    protected float walkSpeed = 50;
+    protected float runSpeed = 200;
     public bool isRunning = false;
+    public float dismountDistance = 8.0f;
 
 
     protected virtual void Start()
@@ -33,7 +34,6 @@ public class Mount : Animal
     public override void onCreate()
     {
         playerScript = PlayerManager.Instance.getPlayerScript();
-        gravityScale = .25f;
         naveMeshAgent = this.GetComponent<NavMeshAgent>();
         wanderscript = this.GetComponent<Animal_WanderScript>();
         mountAnimator = this.GetComponent<Animator>();
@@ -90,6 +90,7 @@ public class Mount : Animal
         wanderscript.enabled = true;
         isBeingControlled = false;
         playerScript.unMount();
+        playerScript.transform.Translate(dismountDistance, 0, 0);
     }
 
     public void ClearAnimation()

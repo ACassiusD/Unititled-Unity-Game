@@ -8,7 +8,7 @@ public class PlayableCharacters : MonoBehaviour {
 
     Random random;
     public CharacterController controller = new CharacterController();
-    public int speed = 30;
+    public float speed = 30;
 	private Vector3 moveDirection;
 	public float jumpForce = 50f;
 	public float gravityScale = .25f;
@@ -24,7 +24,7 @@ public class PlayableCharacters : MonoBehaviour {
     float halfSecondLength = 0.5f;
     public float aiRotationSpeed = 1.5f;
     public int aiMoveSpeed = 30;
-
+    public bool canAttack = true;
 
     protected virtual void Start () {
         var test = this.gameObject.name;
@@ -114,5 +114,12 @@ public class PlayableCharacters : MonoBehaviour {
 
             //Apply player rotation 
             transform.Rotate(0, Input.GetAxis("Horizontal") * rotationSpeed, 0);
+
+        //Check if attacking
+        if (canAttack) {
+            if (Input.GetMouseButtonDown(1)){
+                Debug.Log(this.name + "Attacks");
+            }
+        }
     }
 }
