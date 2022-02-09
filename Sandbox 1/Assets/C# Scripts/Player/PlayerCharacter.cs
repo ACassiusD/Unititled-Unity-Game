@@ -16,7 +16,6 @@ public class PlayerCharacter : PlayableCharacters {
 
     public override void onCreate()
     {
-        speed = 5;
         isBeingControlled = true;
         activeMount = null;
         tamedMounts = GameObject.FindGameObjectsWithTag("TamedMount"); //Populate tamed mounts

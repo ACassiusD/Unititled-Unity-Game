@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System;
-using cakeslice;
 
 
 public class InteractContoller : MonoBehaviour
@@ -18,6 +17,8 @@ public class InteractContoller : MonoBehaviour
     Outline activeScript;
     float outlineWidth = 0.5f;
     PlayerCharacter playerScript;
+    Outline outlineScript;
+    Color outLineColor;
 
     public void Start()
     {
@@ -51,7 +52,10 @@ public class InteractContoller : MonoBehaviour
     {
         if (activeScript != null)
         {
-            activeScript.eraseRenderer = true;
+            var updateOutineColor = activeScript.OutlineColor;
+            updateOutineColor.a = 0;
+            activeScript.outlineFillMaterial.SetColor("_OutlineColor", updateOutineColor);
+            //active.eraseRenderer = true;
             activeScript = null;
         }
     }
@@ -139,7 +143,9 @@ public class InteractContoller : MonoBehaviour
         //Try to call interact
         if (activeScript != null)
         {
-            activeScript.eraseRenderer = false;
+            outLineColor = activeScript.OutlineColor;
+            outLineColor.a = 255.0f;
+            activeScript.outlineFillMaterial.SetColor("_OutlineColor", outLineColor);
             if (capturedKeyPress)
             {
 
