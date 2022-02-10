@@ -18,7 +18,8 @@ public class Mount : Animal
     AIState[] attackingStates;
     private AIState[] deathStates;
     public float ridingHeight = 5.4f;
-    public float walkAnimationSpeed = 2;
+    protected float walkAnimationSpeed = 1;
+    protected float runAnimaitonSpeed = 2;
     protected float walkSpeed = 50;
     protected float runSpeed = 200;
     public bool isRunning = false;
@@ -109,7 +110,7 @@ public class Mount : Animal
     {
         if (speed != 0)
         {
-            mountAnimator.speed = walkAnimationSpeed;
+            mountAnimator.speed = speed;
         }
 
         if (!string.IsNullOrEmpty(parameterName))
@@ -133,10 +134,7 @@ public class Mount : Animal
             if (isRunning)
             {
                 speed = runSpeed;
-                if (setRunningAnimation() == false)
-                {
-                    setWalkingAnimation();
-                }
+                setRunningAnimation();
             }
             else//walking
             {
@@ -146,25 +144,30 @@ public class Mount : Animal
         }
     }
 
-    public void setWalkingAnimation()
+    public void setWalkingAnimation(float animationSpeed = 0)
     {
+        if (animationSpeed == 0)
+            animationSpeed = walkAnimationSpeed;
+        
         foreach (var state in this.movementStates)
         {
-            SetAnimationBool(state.animationBool, true, walkAnimationSpeed);
+            SetAnimationBool(state.animationBool, true, animationSpeed);
             break;
         }
     }
 
+    //Attempts to play a unique running animation, if no running animation exists, use walking animation with running animation speed.
     public bool setRunningAnimation()
     {
         foreach (var state in this.movementStates)
         {
             if (state.animationBool == "isRunning")
             {
-                SetAnimationBool(state.animationBool, true, walkAnimationSpeed);
+                SetAnimationBool(state.animationBool, true, runAnimaitonSpeed);
                 return true;
             }
         }
+        setWalkingAnimation(runAnimaitonSpeed);
         return false;
     }
 
@@ -172,7 +175,7 @@ public class Mount : Animal
     {
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            if (isRunning ? isRunning = false : isRunning = true) ;
+            if (isRunning ? isRunning = false : isRunning = true);
         }
 
     }
