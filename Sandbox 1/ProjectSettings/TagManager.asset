@@ -14,6 +14,8 @@ TagManager:
   - hotbar_4
   - hotbar_5
   - Item
+  - Attackable
+  - MainCanvas
   layers:
   - Default
   - TransparentFX
