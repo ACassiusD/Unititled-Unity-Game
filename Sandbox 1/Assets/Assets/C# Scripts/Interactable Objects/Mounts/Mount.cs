@@ -50,13 +50,13 @@ public class Mount : Animal
     //Update is called once per frame
     protected override void Update()
     {
-        if (!isBeingControlled)
-            return;
-        
-        getCommandUpdates();
-        MoveCharacterController();
-        UpdateAnimation();
-        toggleRun();
+        if (isBeingControlled)
+        {
+            getCommandUpdates();
+            UpdateAnimation();
+            toggleRun();
+        }
+        base.Update();
     }
 
     public void interact()

@@ -17,7 +17,6 @@ public class CameraController : MonoBehaviour {
     public float minZDistanceFromTarget;
     public float maxCameraHeight = 15;
     public float minCameraHeight = 0;
-
     public Transform target; //What the camera looks at
 
 
@@ -35,7 +34,10 @@ public class CameraController : MonoBehaviour {
             Debug.Log("hit");
             isBeingControlled = true;
         }
+    }
 
+    private void LateUpdate()
+    {
         MoveCamera();
     }
 

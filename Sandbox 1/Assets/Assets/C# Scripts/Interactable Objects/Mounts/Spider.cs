@@ -22,18 +22,6 @@ public class Spider : Mount
     // Update is called once per frame
     void Update()
     {
-        //TESTS
-        var canvas = GameObject.Find("Canvas");
-        RectTransform test2 = canvas.GetComponent<RectTransform>();
-        var offset = 3.5f;
-        Vector3 newPos = this.transform.position;
-        newPos.y += offset;
-
-        test2.localPosition = newPos;
-        //TESTS
-
-
-
         runAnimaitonSpeed = spiderAnimaitonRunSpeed;
         walkAnimationSpeed = spiderAnimationWalkSpeed;
         walkSpeed = spiderWalkSpeed;
@@ -48,6 +36,7 @@ public class Spider : Mount
         foreach(Collider c in cols)
         {
             Debug.Log(c.name + "hit");
+            c.SendMessageUpwards("receiveDamage", 10);
         }
         Debug.Log(this.name + " Attacks ");
     }
