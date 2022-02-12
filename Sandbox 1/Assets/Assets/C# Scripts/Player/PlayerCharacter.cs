@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCharacter : PlayableCharacters {
+public class PlayerCharacter : Entity {
 
     public bool isRiding = false;
     private GameObject[] tamedMounts;
@@ -16,6 +16,7 @@ public class PlayerCharacter : PlayableCharacters {
 
     public override void onCreate()
     {
+        isControllable = true;
         isBeingControlled = true;
         activeMount = null;
         tamedMounts = GameObject.FindGameObjectsWithTag("TamedMount"); //Populate tamed mounts

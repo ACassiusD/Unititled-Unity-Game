@@ -7,9 +7,11 @@ using UnityEngine.UI;
 
 //Playable character may not be the best description for this class
 //This class defines any "living" creature and the most basic of functions like movement, health system etc.
-public class PlayableCharacters : MonoBehaviour {
+public class Entity : MonoBehaviour, InteractableInterface
+{
     public CharacterController controller = new CharacterController();
     private static GameObject canvas;
+    PlayerCharacter playerScript;
     HealthBar healthBarScript;
     private RectTransform rectTransform;
     public float speed = 30;
@@ -19,6 +21,7 @@ public class PlayableCharacters : MonoBehaviour {
 	public int numOfJumps = 0;
 	public int maxJumps = 2;
     public int rotationSpeed = 3;
+    public bool isControllable = false;
     public bool isBeingControlled = false;
     public bool isTurning = false;
     public bool isMoving = false;
@@ -34,6 +37,7 @@ public class PlayableCharacters : MonoBehaviour {
 
 
     protected virtual void Start () {
+        playerScript = PlayerManager.Instance.getPlayerScript();
         healthBarScript = this.GetComponentInChildren<HealthBar>();
         var test = this.gameObject.name;
         onCreate();
@@ -151,5 +155,10 @@ public class PlayableCharacters : MonoBehaviour {
     {
         currentHealth -= damageAmount;
         return currentHealth;
+    }
+
+    public void interact()
+    {
+        throw new System.NotImplementedException();
     }
 }

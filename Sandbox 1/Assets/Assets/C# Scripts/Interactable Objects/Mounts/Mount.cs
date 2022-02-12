@@ -6,7 +6,7 @@ using Polyperfect.Animals;
 using Polyperfect.Common;
 
 //Mount class will probably just keep animaiton functions and stats + abilities will be moved to animal
-public class Mount : Animal
+public class Mount : Entity
 {
     PlayerCharacter playerScript;
     //Get wanderscript and nav mesh agent, disable them in that order
@@ -50,6 +50,10 @@ public class Mount : Animal
     //Update is called once per frame
     protected override void Update()
     {
+        speed = 150;
+        gravityScale = .25f;
+        jumpForce = 70f;
+
         if (isBeingControlled)
         {
             getCommandUpdates();

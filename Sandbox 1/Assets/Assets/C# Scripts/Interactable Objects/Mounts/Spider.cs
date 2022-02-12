@@ -31,13 +31,16 @@ public class Spider : Mount
 
     public override void attack()
     {
+        string debugMsg = "";
+        int hitCount = 0;
         var hitboxCollider = attackHitboxes[0];
         var cols = Physics.OverlapBox(hitboxCollider.bounds.center, hitboxCollider.bounds.extents, hitboxCollider.transform.rotation, LayerMask.GetMask("Interactive"));
         foreach(Collider c in cols)
         {
-            Debug.Log(c.name + "hit");
+            hitCount++;
             c.SendMessageUpwards("receiveDamage", 10);
+            debugMsg += ("|Hit " + c.name);
         }
-        Debug.Log(this.name + " Attacks ");
+        Debug.Log(this.name + " Attacks - Hit (" + hitCount + ") " + debugMsg);
     }
 }
