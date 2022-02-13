@@ -37,6 +37,7 @@ public class Entity : MonoBehaviour, InteractableInterface
 
 
     protected virtual void Start () {
+        gameObject.layer = 8; //Set to interactive layer automatically
         playerScript = PlayerManager.Instance.getPlayerScript();
         healthBarScript = this.GetComponentInChildren<HealthBar>();
         var test = this.gameObject.name;
@@ -66,7 +67,6 @@ public class Entity : MonoBehaviour, InteractableInterface
         {
             MoveCharacterController();
         }
-        updateHealthBar();
     }
 
 	//Control player with character controller
@@ -154,11 +154,23 @@ public class Entity : MonoBehaviour, InteractableInterface
     public int receiveDamage(int damageAmount)
     {
         currentHealth -= damageAmount;
+        updateHealthBar();
+        if(currentHealth <= 0)
+        {
+            feint();
+            return 0;
+        }
         return currentHealth;
     }
 
     public void interact()
     {
         throw new System.NotImplementedException();
+    }
+
+    //Kill/death command, despawn enemy and drop any loot.
+    public void feint()
+    {
+        Destroy(gameObject);
     }
 }

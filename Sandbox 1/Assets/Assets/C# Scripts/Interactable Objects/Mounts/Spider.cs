@@ -37,6 +37,10 @@ public class Spider : Mount
         var cols = Physics.OverlapBox(hitboxCollider.bounds.center, hitboxCollider.bounds.extents, hitboxCollider.transform.rotation, LayerMask.GetMask("Interactive"));
         foreach(Collider c in cols)
         {
+            if(c.tag == "Player"){
+                return;
+            }
+
             hitCount++;
             c.SendMessageUpwards("receiveDamage", 10);
             debugMsg += ("|Hit " + c.name);
