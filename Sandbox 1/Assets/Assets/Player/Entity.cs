@@ -15,7 +15,7 @@ public class Entity : MonoBehaviour, InteractableInterface
     HealthBar healthBarScript;
     private RectTransform rectTransform;
     public float speed = 30;
-	private Vector3 moveDirection;
+	protected Vector3 moveDirection;
 	public float jumpForce = 50f;
 	public float gravityScale = .25f;
 	public int numOfJumps = 0;
@@ -34,9 +34,16 @@ public class Entity : MonoBehaviour, InteractableInterface
     public bool canAttack = true;
     public int currentHealth = 50;
     public int maxHealth = 100;
+    public bool inHitStun = false;
+    protected static GameObject playerReference;
+    public bool isWandering = false;
 
 
     protected virtual void Start () {
+        if (!playerReference)
+        {
+            playerReference = GameObject.FindGameObjectWithTag("Player");
+        }
         gameObject.layer = 8; //Set to interactive layer automatically
         playerScript = PlayerManager.Instance.getPlayerScript();
         healthBarScript = this.GetComponentInChildren<HealthBar>();
@@ -63,28 +70,32 @@ public class Entity : MonoBehaviour, InteractableInterface
     //Update is called once per frame
     protected virtual void Update()
     {
-        if (isBeingControlled)
-        {
-            MoveCharacterController();
-        }
+        MoveCharacterController();
     }
 
 	//Control player with character controller
 	protected void MoveCharacterController(){
         isMoving = checkIfMoving();
 
-        if (isBeingControlled)
+        if (isBeingControlled && !inHitStun)
         {
             getPlayerInput();
         }
-        else
+        else //If in hitstun, keep moveDirection from Knockback function.
         {
+            if (controller.isGrounded)
+            {
+                moveDirection.y = 0;
+            }
             //Zero out all movement except verticle momentum
             moveDirection = new Vector3(0, moveDirection.y, 0);
         }
 
-        //Calculate gravity
-        moveDirection.y = moveDirection.y + (Physics.gravity.y * gravityScale);
+        //Calculate gravity if not grounded 
+        if (!controller.isGrounded)
+        {
+            moveDirection.y = moveDirection.y + (Physics.gravity.y * gravityScale);
+        }
 
         //Transform objects direction in global space
         moveDirection = transform.TransformDirection(moveDirection);
@@ -92,6 +103,7 @@ public class Entity : MonoBehaviour, InteractableInterface
         //Apply vector to object
         controller.Move(moveDirection * Time.deltaTime);
     }
+
 
     public bool checkIfMoving()
     {
@@ -160,7 +172,25 @@ public class Entity : MonoBehaviour, InteractableInterface
             feint();
             return 0;
         }
+        Knockback(300);
         return currentHealth;
+    }
+
+    public void Knockback(float force)
+    {
+        inHitStun = true;
+        
+        //Add Impact
+        Vector3 direction = this.transform.forward * -1; //Need to make this direction
+        Vector3 up = this.transform.up;
+        up.Normalize();
+        direction.Normalize();
+        direction.y = up.y;
+        var impact = Vector3.zero;
+        impact += direction.normalized * force;
+
+        //Apply vector to object
+        controller.Move(impact * Time.deltaTime);
     }
 
     public void interact()

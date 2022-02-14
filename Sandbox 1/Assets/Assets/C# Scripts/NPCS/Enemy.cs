@@ -7,7 +7,6 @@ using Polyperfect.Common;
 
 public class Enemy : Entity
 {
-    protected static GameObject playerReference;//All enemies should have a single shared reference to the player
     Animator animator;
     Animal_WanderScript wanderscript;
     IdleState[] idleStates;
@@ -18,15 +17,16 @@ public class Enemy : Entity
     protected float runAnimaitonSpeed = 2;
     public float distanceToPlayer = 0;
     public float minDistanceFromPlayer = 8;
+    public bool isWandering = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        isMoving = false;
-        if (!playerReference)
+        if (!isWandering)
         {
-            playerReference = GameObject.FindGameObjectWithTag("Player");
+            this.GetComponent<NavMeshAgent>().enabled = false;
         }
+        isMoving = false;
         isControllable = false;
         initAnimationTools();
 
@@ -49,14 +49,15 @@ public class Enemy : Entity
     // Update is called once per frame
     void Update()
     {
-        MoveTowardsPlayer();
+        //Look at player
+        this.transform.LookAt(playerReference.transform);
+       // MoveTowardsPlayer();
         base.Update();
     }
 
+    //Should be moved to entity script
     void MoveTowardsPlayer()
     {
-        //Look at player
-        this.transform.LookAt(playerReference.transform);
         distanceToPlayer = Vector3.Distance(playerReference.transform.position, this.transform.position);
 
         //Check if enemy is close enough to the player
@@ -78,7 +79,11 @@ public class Enemy : Entity
         }
 
         float step = speed * Time.deltaTime; // calculate distance to move
-        transform.position = Vector3.MoveTowards(transform.position, playerReference.transform.position, step);
+                                             //Calculate gravity
+        
+        Vector3 MoveTowardsPlayer = Vector3.MoveTowards(transform.position, playerReference.transform.position, step);
+        MoveTowardsPlayer.y = (Physics.gravity.y * gravityScale);
+        transform.position = MoveTowardsPlayer;
     }
 
     public void ClearAnimation()

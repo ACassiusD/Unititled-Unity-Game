@@ -28,6 +28,10 @@ public class Mount : Entity
 
     protected virtual void Start()
     {
+        if (!isBeingControlled)
+        {
+            isWandering = true;
+        }
         base.Start();
         onCreate();
     }
@@ -82,6 +86,7 @@ public class Mount : Entity
         naveMeshAgent.enabled = false;
         isBeingControlled = true;
         playerScript.setActiveMount(this);
+        isWandering = false;
     }
 
     public void dismount()
@@ -95,6 +100,7 @@ public class Mount : Entity
         isBeingControlled = false;
         playerScript.unMount();
         playerScript.transform.Translate(dismountDistance, 0, 0);
+        isWandering = true;
     }
 
     public void ClearAnimation()

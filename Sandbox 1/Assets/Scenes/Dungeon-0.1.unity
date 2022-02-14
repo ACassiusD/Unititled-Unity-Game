@@ -220,6 +220,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Proto-Gorilla (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 5552828718875073143, guid: 96ffacfdf49d13740817937939a05cf3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
         type: 3}
       propertyPath: m_RootOrder
@@ -671,7 +676,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1172,7 +1177,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1572,6 +1577,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Proto-Gorilla (35)
       objectReference: {fileID: 0}
+    - target: {fileID: 5552828718875073143, guid: 96ffacfdf49d13740817937939a05cf3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
         type: 3}
       propertyPath: m_RootOrder
@@ -1680,7 +1690,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1897,7 +1907,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2047,7 +2057,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2428,7 +2438,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3161,8 +3171,10 @@ MonoBehaviour:
   canAttack: 1
   currentHealth: 70
   maxHealth: 100
+  inHitStun: 0
   distanceToPlayer: 0
   minDistanceFromPlayer: 8
+  isWandering: 0
 --- !u!4 &144069573 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
@@ -3190,6 +3202,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Proto-Gorilla (19)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5552828718875073143, guid: 96ffacfdf49d13740817937939a05cf3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
         type: 3}
@@ -3754,7 +3771,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3829,7 +3846,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4011,7 +4028,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4164,6 +4181,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Proto-Gorilla (20)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5552828718875073143, guid: 96ffacfdf49d13740817937939a05cf3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
         type: 3}
@@ -4398,7 +4420,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4623,8 +4645,10 @@ MonoBehaviour:
   canAttack: 1
   currentHealth: 70
   maxHealth: 100
+  inHitStun: 0
   distanceToPlayer: 0
   minDistanceFromPlayer: 8
+  isWandering: 0
 --- !u!4 &199719207 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
@@ -4664,7 +4688,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4812,17 +4836,17 @@ PrefabInstance:
     - target: {fileID: 3305065263439919526, guid: a7e0bc0ec0f1105449dd562dc47a1c42,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -223.85
+      value: -224.18
       objectReference: {fileID: 0}
     - target: {fileID: 3305065263439919526, guid: a7e0bc0ec0f1105449dd562dc47a1c42,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.32
+      value: -0.81
       objectReference: {fileID: 0}
     - target: {fileID: 3305065263439919526, guid: a7e0bc0ec0f1105449dd562dc47a1c42,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 375.38
+      value: 372.31
       objectReference: {fileID: 0}
     - target: {fileID: 3305065263439919526, guid: a7e0bc0ec0f1105449dd562dc47a1c42,
         type: 3}
@@ -5133,8 +5157,10 @@ MonoBehaviour:
   canAttack: 1
   currentHealth: 70
   maxHealth: 100
+  inHitStun: 0
   distanceToPlayer: 0
   minDistanceFromPlayer: 8
+  isWandering: 0
 --- !u!4 &242818776 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
@@ -6211,8 +6237,10 @@ MonoBehaviour:
   canAttack: 1
   currentHealth: 70
   maxHealth: 100
+  inHitStun: 0
   distanceToPlayer: 0
   minDistanceFromPlayer: 8
+  isWandering: 0
 --- !u!4 &300920660 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
@@ -6252,7 +6280,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -6579,6 +6607,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Proto-Gorilla (39)
       objectReference: {fileID: 0}
+    - target: {fileID: 5552828718875073143, guid: 96ffacfdf49d13740817937939a05cf3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
         type: 3}
       propertyPath: m_RootOrder
@@ -6675,6 +6708,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Proto-Gorilla (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5552828718875073143, guid: 96ffacfdf49d13740817937939a05cf3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
         type: 3}
@@ -7483,7 +7521,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -7679,8 +7717,10 @@ MonoBehaviour:
   canAttack: 1
   currentHealth: 70
   maxHealth: 100
+  inHitStun: 0
   distanceToPlayer: 0
   minDistanceFromPlayer: 8
+  isWandering: 0
 --- !u!4 &358509198 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
@@ -7724,8 +7764,10 @@ MonoBehaviour:
   canAttack: 1
   currentHealth: 70
   maxHealth: 100
+  inHitStun: 0
   distanceToPlayer: 0
   minDistanceFromPlayer: 8
+  isWandering: 0
 --- !u!4 &359029317 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
@@ -7801,7 +7843,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -8689,7 +8731,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -8880,6 +8922,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Proto-Gorilla (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 5552828718875073143, guid: 96ffacfdf49d13740817937939a05cf3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
         type: 3}
       propertyPath: m_RootOrder
@@ -9024,7 +9071,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -9099,7 +9146,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -9174,7 +9221,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -9703,8 +9750,10 @@ MonoBehaviour:
   canAttack: 1
   currentHealth: 70
   maxHealth: 100
+  inHitStun: 0
   distanceToPlayer: 0
   minDistanceFromPlayer: 8
+  isWandering: 0
 --- !u!4 &454569612 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
@@ -9748,8 +9797,10 @@ MonoBehaviour:
   canAttack: 1
   currentHealth: 70
   maxHealth: 100
+  inHitStun: 0
   distanceToPlayer: 0
   minDistanceFromPlayer: 8
+  isWandering: 0
 --- !u!4 &458140811 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
@@ -9864,7 +9915,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -10793,6 +10844,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Proto-Gorilla (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 5552828718875073143, guid: 96ffacfdf49d13740817937939a05cf3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
         type: 3}
       propertyPath: m_RootOrder
@@ -10901,7 +10957,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -11260,7 +11316,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -11587,6 +11643,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Proto-Gorilla (27)
       objectReference: {fileID: 0}
+    - target: {fileID: 5552828718875073143, guid: 96ffacfdf49d13740817937939a05cf3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
         type: 3}
       propertyPath: m_RootOrder
@@ -11683,6 +11744,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Proto-Gorilla (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5552828718875073143, guid: 96ffacfdf49d13740817937939a05cf3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
         type: 3}
@@ -11871,8 +11937,10 @@ MonoBehaviour:
   canAttack: 1
   currentHealth: 70
   maxHealth: 100
+  inHitStun: 0
   distanceToPlayer: 0
   minDistanceFromPlayer: 8
+  isWandering: 0
 --- !u!4 &525933618 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
@@ -12062,6 +12130,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Proto-Gorilla (30)
       objectReference: {fileID: 0}
+    - target: {fileID: 5552828718875073143, guid: 96ffacfdf49d13740817937939a05cf3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
         type: 3}
       propertyPath: m_RootOrder
@@ -12174,8 +12247,10 @@ MonoBehaviour:
   canAttack: 1
   currentHealth: 70
   maxHealth: 100
+  inHitStun: 0
   distanceToPlayer: 0
   minDistanceFromPlayer: 8
+  isWandering: 0
 --- !u!4 &542617054 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
@@ -12215,7 +12290,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -12604,7 +12679,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -12679,7 +12754,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -13185,6 +13260,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Proto-Gorilla (32)
       objectReference: {fileID: 0}
+    - target: {fileID: 5552828718875073143, guid: 96ffacfdf49d13740817937939a05cf3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
         type: 3}
       propertyPath: m_RootOrder
@@ -13383,7 +13463,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -13446,6 +13526,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Proto-Gorilla (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5552828718875073143, guid: 96ffacfdf49d13740817937939a05cf3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
         type: 3}
@@ -14323,6 +14408,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Proto-Gorilla (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 5552828718875073143, guid: 96ffacfdf49d13740817937939a05cf3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
         type: 3}
       propertyPath: m_RootOrder
@@ -14419,6 +14509,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Proto-Gorilla (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5552828718875073143, guid: 96ffacfdf49d13740817937939a05cf3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
         type: 3}
@@ -14532,8 +14627,10 @@ MonoBehaviour:
   canAttack: 1
   currentHealth: 70
   maxHealth: 100
+  inHitStun: 0
   distanceToPlayer: 0
   minDistanceFromPlayer: 8
+  isWandering: 0
 --- !u!4 &634265000 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
@@ -14561,6 +14658,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Proto-Gorilla (26)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5552828718875073143, guid: 96ffacfdf49d13740817937939a05cf3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
         type: 3}
@@ -14847,8 +14949,10 @@ MonoBehaviour:
   canAttack: 1
   currentHealth: 70
   maxHealth: 100
+  inHitStun: 0
   distanceToPlayer: 0
   minDistanceFromPlayer: 8
+  isWandering: 0
 --- !u!4 &661771079 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
@@ -15251,6 +15355,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Proto-Gorilla (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5552828718875073143, guid: 96ffacfdf49d13740817937939a05cf3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
         type: 3}
@@ -15723,7 +15832,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -16008,6 +16117,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Proto-Gorilla (21)
       objectReference: {fileID: 0}
+    - target: {fileID: 5552828718875073143, guid: 96ffacfdf49d13740817937939a05cf3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
         type: 3}
       propertyPath: m_RootOrder
@@ -16167,6 +16281,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Proto-Gorilla (25)
       objectReference: {fileID: 0}
+    - target: {fileID: 5552828718875073143, guid: 96ffacfdf49d13740817937939a05cf3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
         type: 3}
       propertyPath: m_RootOrder
@@ -16279,8 +16398,10 @@ MonoBehaviour:
   canAttack: 1
   currentHealth: 70
   maxHealth: 100
+  inHitStun: 0
   distanceToPlayer: 0
   minDistanceFromPlayer: 8
+  isWandering: 0
 --- !u!4 &749136864 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
@@ -16395,7 +16516,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -16470,7 +16591,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -16712,7 +16833,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -16877,7 +16998,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -16952,7 +17073,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -17232,8 +17353,10 @@ MonoBehaviour:
   canAttack: 1
   currentHealth: 70
   maxHealth: 100
+  inHitStun: 0
   distanceToPlayer: 0
   minDistanceFromPlayer: 8
+  isWandering: 0
 --- !u!4 &794249789 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
@@ -17261,6 +17384,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Proto-Gorilla (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5552828718875073143, guid: 96ffacfdf49d13740817937939a05cf3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
         type: 3}
@@ -17647,7 +17775,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -18149,8 +18277,10 @@ MonoBehaviour:
   canAttack: 1
   currentHealth: 70
   maxHealth: 100
+  inHitStun: 0
   distanceToPlayer: 0
   minDistanceFromPlayer: 8
+  isWandering: 0
 --- !u!4 &833194093 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
@@ -18295,6 +18425,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Proto-Gorilla (37)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5552828718875073143, guid: 96ffacfdf49d13740817937939a05cf3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
         type: 3}
@@ -18606,6 +18741,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Proto-Gorilla (31)
       objectReference: {fileID: 0}
+    - target: {fileID: 5552828718875073143, guid: 96ffacfdf49d13740817937939a05cf3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
         type: 3}
       propertyPath: m_RootOrder
@@ -18703,6 +18843,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Proto-Gorilla (22)
       objectReference: {fileID: 0}
+    - target: {fileID: 5552828718875073143, guid: 96ffacfdf49d13740817937939a05cf3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
         type: 3}
       propertyPath: m_RootOrder
@@ -18773,6 +18918,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5746524690088674261, guid: 96ffacfdf49d13740817937939a05cf3,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5551180240343320312, guid: 96ffacfdf49d13740817937939a05cf3, type: 3}
     - {fileID: 0}
@@ -18811,7 +18961,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -19362,8 +19512,10 @@ MonoBehaviour:
   canAttack: 1
   currentHealth: 70
   maxHealth: 100
+  inHitStun: 0
   distanceToPlayer: 0
   minDistanceFromPlayer: 8
+  isWandering: 0
 --- !u!4 &898181169 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
@@ -19488,8 +19640,10 @@ MonoBehaviour:
   canAttack: 1
   currentHealth: 70
   maxHealth: 100
+  inHitStun: 0
   distanceToPlayer: 0
   minDistanceFromPlayer: 8
+  isWandering: 0
 --- !u!4 &905741261 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
@@ -19804,7 +19958,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -19883,8 +20037,10 @@ MonoBehaviour:
   canAttack: 1
   currentHealth: 70
   maxHealth: 100
+  inHitStun: 0
   distanceToPlayer: 0
   minDistanceFromPlayer: 8
+  isWandering: 0
 --- !u!4 &910833632 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
@@ -20274,7 +20430,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -20624,7 +20780,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -20699,7 +20855,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -20778,8 +20934,10 @@ MonoBehaviour:
   canAttack: 1
   currentHealth: 70
   maxHealth: 100
+  inHitStun: 0
   distanceToPlayer: 0
   minDistanceFromPlayer: 8
+  isWandering: 0
 --- !u!4 &957647402 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
@@ -20869,7 +21027,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -21030,7 +21188,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -21810,8 +21968,10 @@ MonoBehaviour:
   canAttack: 1
   currentHealth: 70
   maxHealth: 100
+  inHitStun: 0
   distanceToPlayer: 0
   minDistanceFromPlayer: 8
+  isWandering: 0
 --- !u!4 &1022882081 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
@@ -21851,7 +22011,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -21926,7 +22086,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -22327,6 +22487,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Proto-Gorilla (34)
       objectReference: {fileID: 0}
+    - target: {fileID: 5552828718875073143, guid: 96ffacfdf49d13740817937939a05cf3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
         type: 3}
       propertyPath: m_RootOrder
@@ -22611,7 +22776,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -22686,7 +22851,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -22749,6 +22914,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Proto-Gorilla (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5552828718875073143, guid: 96ffacfdf49d13740817937939a05cf3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
         type: 3}
@@ -22846,6 +23016,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Proto-Gorilla (33)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5552828718875073143, guid: 96ffacfdf49d13740817937939a05cf3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
         type: 3}
@@ -23092,8 +23267,10 @@ MonoBehaviour:
   canAttack: 1
   currentHealth: 70
   maxHealth: 100
+  inHitStun: 0
   distanceToPlayer: 0
   minDistanceFromPlayer: 8
+  isWandering: 0
 --- !u!4 &1096218738 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
@@ -23519,7 +23696,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -23594,7 +23771,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -23854,6 +24031,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Proto-Gorilla (38)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5552828718875073143, guid: 96ffacfdf49d13740817937939a05cf3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
         type: 3}
@@ -24680,7 +24862,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -24755,7 +24937,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -25034,7 +25216,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
   speed: 15
-  jumpForce: 50
+  jumpForce: 2
   gravityScale: 0.25
   numOfJumps: 0
   maxJumps: 2
@@ -25049,10 +25231,12 @@ MonoBehaviour:
   aiRotationSpeed: 1.5
   aiMoveSpeed: 30
   canAttack: 1
-  currentHealth: 70
-  maxHealth: 100
+  currentHealth: 500
+  maxHealth: 1000
+  inHitStun: 0
   distanceToPlayer: 0
   minDistanceFromPlayer: 8
+  isWandering: 0
 --- !u!4 &1183985064 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
@@ -25474,8 +25658,10 @@ MonoBehaviour:
   canAttack: 1
   currentHealth: 70
   maxHealth: 100
+  inHitStun: 0
   distanceToPlayer: 0
   minDistanceFromPlayer: 8
+  isWandering: 0
 --- !u!4 &1211219947 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
@@ -26483,8 +26669,10 @@ MonoBehaviour:
   canAttack: 1
   currentHealth: 70
   maxHealth: 100
+  inHitStun: 0
   distanceToPlayer: 0
   minDistanceFromPlayer: 8
+  isWandering: 0
 --- !u!4 &1251139218 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
@@ -26587,6 +26775,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Proto-Gorilla (29)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5552828718875073143, guid: 96ffacfdf49d13740817937939a05cf3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
         type: 3}
@@ -27925,7 +28118,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -28131,8 +28324,10 @@ MonoBehaviour:
   canAttack: 1
   currentHealth: 70
   maxHealth: 100
+  inHitStun: 0
   distanceToPlayer: 0
   minDistanceFromPlayer: 8
+  isWandering: 0
 --- !u!4 &1332962710 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
@@ -28176,8 +28371,10 @@ MonoBehaviour:
   canAttack: 1
   currentHealth: 70
   maxHealth: 100
+  inHitStun: 0
   distanceToPlayer: 0
   minDistanceFromPlayer: 8
+  isWandering: 0
 --- !u!4 &1333548534 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
@@ -28471,7 +28668,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -28810,7 +29007,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -29146,7 +29343,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -29225,8 +29422,10 @@ MonoBehaviour:
   canAttack: 1
   currentHealth: 70
   maxHealth: 100
+  inHitStun: 0
   distanceToPlayer: 0
   minDistanceFromPlayer: 8
+  isWandering: 0
 --- !u!4 &1397499212 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
@@ -29270,8 +29469,10 @@ MonoBehaviour:
   canAttack: 1
   currentHealth: 70
   maxHealth: 100
+  inHitStun: 0
   distanceToPlayer: 0
   minDistanceFromPlayer: 8
+  isWandering: 0
 --- !u!4 &1401549749 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
@@ -29317,7 +29518,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -29573,8 +29774,10 @@ MonoBehaviour:
   canAttack: 1
   currentHealth: 70
   maxHealth: 100
+  inHitStun: 0
   distanceToPlayer: 0
   minDistanceFromPlayer: 8
+  isWandering: 0
 --- !u!4 &1426205962 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
@@ -30277,7 +30480,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -30828,7 +31031,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -31161,6 +31364,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Proto-Gorilla (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5552828718875073143, guid: 96ffacfdf49d13740817937939a05cf3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
         type: 3}
@@ -32142,7 +32350,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -32325,7 +32533,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -32404,8 +32612,10 @@ MonoBehaviour:
   canAttack: 1
   currentHealth: 70
   maxHealth: 100
+  inHitStun: 0
   distanceToPlayer: 0
   minDistanceFromPlayer: 8
+  isWandering: 0
 --- !u!4 &1555028152 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
@@ -32639,7 +32849,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -32984,7 +33194,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -33414,7 +33624,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -33489,7 +33699,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -33561,7 +33771,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1595188758}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 822.54, y: 3.35, z: 0.03}
+  m_LocalPosition: {x: 822.54, y: 20, z: 0.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1017592231}
@@ -33602,7 +33812,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -33729,17 +33939,17 @@ PrefabInstance:
     - target: {fileID: 7347973501421082311, guid: c8cfbb5698e4d8c4e83cdb06c53957f4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 599.26
+      value: 599.17
       objectReference: {fileID: 0}
     - target: {fileID: 7347973501421082311, guid: c8cfbb5698e4d8c4e83cdb06c53957f4,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.79
+      value: 12.05
       objectReference: {fileID: 0}
     - target: {fileID: 7347973501421082311, guid: c8cfbb5698e4d8c4e83cdb06c53957f4,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 385.76
+      value: 384.62
       objectReference: {fileID: 0}
     - target: {fileID: 7347973501421082311, guid: c8cfbb5698e4d8c4e83cdb06c53957f4,
         type: 3}
@@ -33967,7 +34177,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -34106,6 +34316,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Proto-Gorilla (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 5552828718875073143, guid: 96ffacfdf49d13740817937939a05cf3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
         type: 3}
       propertyPath: m_RootOrder
@@ -34203,6 +34418,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Proto-Gorilla (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5552828718875073143, guid: 96ffacfdf49d13740817937939a05cf3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
         type: 3}
       propertyPath: m_RootOrder
@@ -34299,6 +34519,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Proto-Gorilla (28)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5552828718875073143, guid: 96ffacfdf49d13740817937939a05cf3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
         type: 3}
@@ -34564,7 +34789,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -35000,8 +35225,10 @@ MonoBehaviour:
   canAttack: 1
   currentHealth: 70
   maxHealth: 100
+  inHitStun: 0
   distanceToPlayer: 0
   minDistanceFromPlayer: 8
+  isWandering: 0
 --- !u!4 &1654834718 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
@@ -35095,8 +35322,10 @@ MonoBehaviour:
   canAttack: 1
   currentHealth: 70
   maxHealth: 100
+  inHitStun: 0
   distanceToPlayer: 0
   minDistanceFromPlayer: 8
+  isWandering: 0
 --- !u!4 &1658199990 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
@@ -35136,7 +35365,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -35863,7 +36092,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -36333,7 +36562,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -36412,8 +36641,10 @@ MonoBehaviour:
   canAttack: 1
   currentHealth: 70
   maxHealth: 100
+  inHitStun: 0
   distanceToPlayer: 0
   minDistanceFromPlayer: 8
+  isWandering: 0
 --- !u!4 &1723311564 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
@@ -36453,7 +36684,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -36932,7 +37163,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -38189,7 +38420,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -38300,7 +38531,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -38469,8 +38700,10 @@ MonoBehaviour:
   canAttack: 1
   currentHealth: 70
   maxHealth: 100
+  inHitStun: 0
   distanceToPlayer: 0
   minDistanceFromPlayer: 8
+  isWandering: 0
 --- !u!4 &1791378914 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
@@ -39454,8 +39687,10 @@ MonoBehaviour:
   canAttack: 1
   currentHealth: 70
   maxHealth: 100
+  inHitStun: 0
   distanceToPlayer: 0
   minDistanceFromPlayer: 8
+  isWandering: 0
 --- !u!4 &1853510589 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
@@ -39533,6 +39768,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Proto-Gorilla (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5552828718875073143, guid: 96ffacfdf49d13740817937939a05cf3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
         type: 3}
@@ -39787,6 +40027,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Proto-Gorilla (24)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5552828718875073143, guid: 96ffacfdf49d13740817937939a05cf3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
         type: 3}
@@ -40242,7 +40487,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -40387,6 +40632,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Proto-Gorilla (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 5552828718875073143, guid: 96ffacfdf49d13740817937939a05cf3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
         type: 3}
       propertyPath: m_RootOrder
@@ -40483,6 +40733,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Proto-Gorilla (36)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5552828718875073143, guid: 96ffacfdf49d13740817937939a05cf3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
         type: 3}
@@ -40592,7 +40847,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -41468,8 +41723,10 @@ MonoBehaviour:
   canAttack: 1
   currentHealth: 70
   maxHealth: 100
+  inHitStun: 0
   distanceToPlayer: 0
   minDistanceFromPlayer: 8
+  isWandering: 0
 --- !u!4 &1949661450 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
@@ -42031,7 +42288,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -42169,6 +42426,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Proto-Gorilla (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5552828718875073143, guid: 96ffacfdf49d13740817937939a05cf3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
         type: 3}
@@ -42363,6 +42625,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Proto-Gorilla
       objectReference: {fileID: 0}
+    - target: {fileID: 5552828718875073143, guid: 96ffacfdf49d13740817937939a05cf3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
         type: 3}
       propertyPath: m_RootOrder
@@ -42386,17 +42653,17 @@ PrefabInstance:
     - target: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 680.5
+      value: 631.1
       objectReference: {fileID: 0}
     - target: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 16.3
+      value: 43.7
       objectReference: {fileID: 0}
     - target: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 535.10004
+      value: 448.6
       objectReference: {fileID: 0}
     - target: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
         type: 3}
@@ -42740,6 +43007,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Proto-Gorilla (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 5552828718875073143, guid: 96ffacfdf49d13740817937939a05cf3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
         type: 3}
       propertyPath: m_RootOrder
@@ -42852,8 +43124,10 @@ MonoBehaviour:
   canAttack: 1
   currentHealth: 70
   maxHealth: 100
+  inHitStun: 0
   distanceToPlayer: 0
   minDistanceFromPlayer: 8
+  isWandering: 0
 --- !u!4 &2029503056 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
@@ -42929,7 +43203,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -43539,8 +43813,10 @@ MonoBehaviour:
   canAttack: 1
   currentHealth: 70
   maxHealth: 100
+  inHitStun: 0
   distanceToPlayer: 0
   minDistanceFromPlayer: 8
+  isWandering: 0
 --- !u!4 &2068761432 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
@@ -43580,7 +43856,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -43792,7 +44068,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -43867,7 +44143,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -44021,6 +44297,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Proto-Gorilla (23)
       objectReference: {fileID: 0}
+    - target: {fileID: 5552828718875073143, guid: 96ffacfdf49d13740817937939a05cf3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
         type: 3}
       propertyPath: m_RootOrder
@@ -44169,8 +44450,10 @@ MonoBehaviour:
   canAttack: 1
   currentHealth: 70
   maxHealth: 100
+  inHitStun: 0
   distanceToPlayer: 0
   minDistanceFromPlayer: 8
+  isWandering: 0
 --- !u!4 &2112853702 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
@@ -44295,7 +44578,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -44374,8 +44657,10 @@ MonoBehaviour:
   canAttack: 1
   currentHealth: 70
   maxHealth: 100
+  inHitStun: 0
   distanceToPlayer: 0
   minDistanceFromPlayer: 8
+  isWandering: 0
 --- !u!4 &2128636646 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
