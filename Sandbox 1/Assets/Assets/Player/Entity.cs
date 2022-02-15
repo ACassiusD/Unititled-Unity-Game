@@ -131,7 +131,7 @@ public class Entity : MonoBehaviour, InteractableInterface
             //Apply y velocity from last frame and apply the forward/backward movement
             moveDirection = new Vector3(0, moveDirection.y, Input.GetAxis("Vertical") * speed);
 
-            //If jump is pressed, add a force to the verticle axis
+            //If jump is pressed, or in the air and we have a jump, add a force to the verticle axis
             if (controller.isGrounded || (!controller.isGrounded && numOfJumps < maxJumps))
             {
                 if (Input.GetButtonDown("Jump"))
