@@ -27,7 +27,14 @@ public class MovementComponent : MonoBehaviour
         ducking = new DuckingState(movementSM, this);
         jumping = new JumpingState(movementSM, this);
 
-        movementSM.Initialize(standing);
+        if (characterController.isGrounded)
+        {
+            movementSM.Initialize(standing);
+        }
+        else
+        {
+            movementSM.Initialize(jumping);
+        }
     }
 
     private void Update()

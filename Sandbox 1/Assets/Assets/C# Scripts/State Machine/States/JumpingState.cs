@@ -29,6 +29,11 @@ public class JumpingState : State
         //Initial Jump
         velocity.y += Mathf.Sqrt(movementComponent.jumpHeight * -2f * movementComponent.gravity);
     }
+    public override void Exit()
+    {
+        movementComponent.jumpCount = 0;
+    }
+
     public override void HandleInput()
     {
         Jump();
@@ -66,7 +71,7 @@ public class JumpingState : State
         }
 
         //Check for double jump
-        if (!isGrounded && jump && !justEntered)
+        if (!isGrounded && jump && !justEntered && (movementComponent.jumpCount < movementComponent.maxJumps))
         {
             movementComponent.jumpCount++;
             velocity.y = Mathf.Sqrt(movementComponent.jumpHeight * -2f * movementComponent.gravity);
