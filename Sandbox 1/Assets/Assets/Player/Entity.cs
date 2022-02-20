@@ -11,24 +11,23 @@ public class Entity : MonoBehaviour, InteractableInterface
 {
     public CharacterController controller = new CharacterController();
     private static GameObject canvas;
-    PlayerCharacter playerScript;
+    BetaCharacter playerScript;
     HealthBar healthBarScript;
     private RectTransform rectTransform;
-    public float speed = 30;
-	protected Vector3 moveDirection;
-	public float jumpForce = 50f;
-	public float gravityScale = .25f;
-	public int numOfJumps = 0;
-	public int maxJumps = 2;
-    public int rotationSpeed = 3;
+    //public float speed = 30;
+	//protected Vector3 moveDirection;
+	//public float jumpForce = 50f;
+	//public float gravityScale = .25f;
+	//public int numOfJumps = 0;
+	//public int maxJumps = 2;
+    //public int rotationSpeed = 3;
     public bool isControllable = false;
     public bool isBeingControlled = false;
-    public bool isTurning = false;
-    public bool isMoving = false;
-    public float turnLength = 0.0f;
-    public float walkLength = 0.0f;
-    public int turnDirection = 0;
-    float halfSecondLength = 0.5f;
+    //public bool isTurning = false;
+    //public bool isMoving = false;
+    //public float turnLength = 0.0f;
+   // public float walkLength = 0.0f;
+    //public int turnDirection = 0;
     public float aiRotationSpeed = 1.5f;
     public int aiMoveSpeed = 30;
     public bool canAttack = true;
@@ -58,7 +57,7 @@ public class Entity : MonoBehaviour, InteractableInterface
     //Update the float UI healthbar above the player in world space
     protected void updateHealthBar()
     {
-        healthBarScript.setHealth(currentHealth, maxHealth);
+       // healthBarScript.setHealth(currentHealth, maxHealth);
     }
 
     //Overloadable function that is called when a mount is initialized 
@@ -70,94 +69,94 @@ public class Entity : MonoBehaviour, InteractableInterface
     //Update is called once per frame
     protected virtual void Update()
     {
-        MoveCharacterController();
+        //MoveCharacterController();
     }
 
 	//Control player with character controller
-	protected void MoveCharacterController(){
-        isMoving = checkIfMoving();
+	//protected void MoveCharacterController(){
+ //       isMoving = checkIfMoving();
 
-        if (isBeingControlled && !inHitStun)
-        {
-            getPlayerInput();
-        }
-        else //If in hitstun, keep moveDirection from Knockback function.
-        {
-            if (controller.isGrounded)
-            {
-                moveDirection.y = 0;
-            }
-            //Zero out all movement except verticle momentum
-            moveDirection = new Vector3(0, moveDirection.y, 0);
-        }
+ //       if (isBeingControlled && !inHitStun)
+ //       {
+ //           getPlayerInput();
+ //       }
+ //       else //If in hitstun, keep moveDirection from Knockback function.
+ //       {
+ //           if (controller.isGrounded)
+ //           {
+ //               moveDirection.y = 0;
+ //           }
+ //           //Zero out all movement except verticle momentum
+ //           moveDirection = new Vector3(0, moveDirection.y, 0);
+ //       }
 
-        //Calculate gravity if not grounded 
-        if (!controller.isGrounded)
-        {
-            moveDirection.y = moveDirection.y + (Physics.gravity.y * gravityScale);
-        }
+ //       //Calculate gravity if not grounded 
+ //       if (!controller.isGrounded)
+ //       {
+ //           moveDirection.y = moveDirection.y + (Physics.gravity.y * gravityScale);
+ //       }
 
-        //Transform objects direction in global space
-        moveDirection = transform.TransformDirection(moveDirection);
+ //       //Transform objects direction in global space
+ //       moveDirection = transform.TransformDirection(moveDirection);
 
-        //Apply vector to object
-        controller.Move(moveDirection * Time.deltaTime);
-    }
+ //       //Apply vector to object
+ //       controller.Move(moveDirection * Time.deltaTime);
+ //   }
 
 
-    public bool checkIfMoving()
-    {
-        var input = Input.GetAxis("Vertical");
-        if ( input > 0 || input < 0)
-        {
-            return true;
-        }
-        else
-        {
-             return false;
-        }
+    //public bool checkIfMoving()
+    //{
+    //    var input = Input.GetAxis("Vertical");
+    //    if ( input > 0 || input < 0)
+    //    {
+    //        return true;
+    //    }
+    //    else
+    //    {
+    //         return false;
+    //    }
         
-    }
+    //}
     //Apply the input to the players movement
-    void getPlayerInput()
-    {
+    //void getPlayerInput()
+    //{
 
-            //Check if the player is grounded and reset the jumps
-            if (controller.isGrounded)
-            {
-                numOfJumps = 0;
-            }
+    //        //Check if the player is grounded and reset the jumps
+    //        if (controller.isGrounded)
+    //        {
+    //            numOfJumps = 0;
+    //        }
 
-            //Apply y velocity from last frame and apply the forward/backward movement
-            moveDirection = new Vector3(0, moveDirection.y, Input.GetAxis("Vertical") * speed);
+    //        //Apply y velocity from last frame and apply the forward/backward movement
+    //        moveDirection = new Vector3(0, moveDirection.y, Input.GetAxis("Vertical") * speed);
 
-            //If jump is pressed, or in the air and we have a jump, add a force to the verticle axis
-            if (controller.isGrounded || (!controller.isGrounded && numOfJumps < maxJumps))
-            {
-                if (Input.GetButtonDown("Jump"))
-                {
-                    numOfJumps = numOfJumps + 1;
-                    moveDirection.y = jumpForce;
-                }
-                else
-                {
-                    if (controller.isGrounded)
-                    {
-                        moveDirection.y = 0;
-                    }
-                }
-            }
+    //        //If jump is pressed, or in the air and we have a jump, add a force to the verticle axis
+    //        if (controller.isGrounded || (!controller.isGrounded && numOfJumps < maxJumps))
+    //        {
+    //            if (Input.GetButtonDown("Jump"))
+    //            {
+    //                numOfJumps = numOfJumps + 1;
+    //                moveDirection.y = jumpForce;
+    //            }
+    //            else
+    //            {
+    //                if (controller.isGrounded)
+    //                {
+    //                    moveDirection.y = 0;
+    //                }
+    //            }
+    //        }
 
-            //Apply player rotation 
-            transform.Rotate(0, Input.GetAxis("Horizontal") * rotationSpeed, 0);
+    //        //Apply player rotation 
+    //        transform.Rotate(0, Input.GetAxis("Horizontal") * rotationSpeed, 0);
 
-        //Check if attacking
-        if (canAttack) {
-            if (Input.GetMouseButtonDown(1)){
-                this.attack();
-            }
-        }
-    }
+    //    //Check if attacking
+    //    if (canAttack) {
+    //        if (Input.GetMouseButtonDown(1)){
+    //            this.attack();
+    //        }
+    //    }
+    //}
     public virtual void attack()
     {
         Debug.Log(this.name + "Attacks");

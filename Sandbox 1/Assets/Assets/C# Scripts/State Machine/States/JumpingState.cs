@@ -10,6 +10,7 @@ public class JumpingState : State
     bool justEntered = false;
     [SerializeField]
     public bool isTest = true;
+    public bool isRiding = true;
 
     private bool jump;
     bool isGrounded = false;
@@ -44,11 +45,15 @@ public class JumpingState : State
 
     public override void LogicUpdate()
     {
+        if (movementComponent.isRiding)
+        {
+            stateMachine.ChangeState(movementComponent.riding);
+        }
         if (isGrounded)
         {
             stateMachine.ChangeState(movementComponent.standing);
         }
-        base.HandleInput();
+        base.LogicUpdate();
     }
 
     private void Jump()

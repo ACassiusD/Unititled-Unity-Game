@@ -31,6 +31,10 @@ public class StandingState : GroundedState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        if (movementComponent.isRiding)
+        {
+            stateMachine.ChangeState(movementComponent.riding);
+        }
         if (crouch)
         {
             stateMachine.ChangeState(movementComponent.ducking);
@@ -39,6 +43,7 @@ public class StandingState : GroundedState
         {
             stateMachine.ChangeState(movementComponent.jumping);
         }
+
     }
 
 }

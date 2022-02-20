@@ -8,7 +8,8 @@ using Polyperfect.Common;
 //Mount class will probably just keep animaiton functions and stats + abilities will be moved to animal
 public class Mount : Entity
 {
-    PlayerCharacter playerScript;
+    BetaCharacter playerScript;
+    MovementComponent moveComponent;
     //Get wanderscript and nav mesh agent, disable them in that order
     Animal_WanderScript wanderscript;
     NavMeshAgent naveMeshAgent;
@@ -54,15 +55,15 @@ public class Mount : Entity
     //Update is called once per frame
     protected override void Update()
     {
-        speed = 150;
-        gravityScale = .25f;
-        jumpForce = 70f;
+        //speed = 150;
+        //gravityScale = .25f;
+        //jumpForce = 70f;
 
         if (isBeingControlled)
         {
             getCommandUpdates();
-            UpdateAnimation();
-            toggleRun();
+            //UpdateAnimation();
+            //toggleRun();
         }
         base.Update();
     }
@@ -72,7 +73,7 @@ public class Mount : Entity
         Debug.Log("Interacted with mount");
         
         //Character isn't riding. Call default movement
-        if (!playerScript.isRiding) 
+        if (!playerScript.getIsRiding()) 
             mount();
         else
             dismount();
@@ -91,6 +92,7 @@ public class Mount : Entity
 
     public void dismount()
     {
+        playerScript.setIsRiding(false);
         gameObject.layer = 8;
         mountAnimator.speed = 1;
         wanderscript.resetOrigin();
@@ -98,8 +100,7 @@ public class Mount : Entity
         naveMeshAgent.enabled = true;
         wanderscript.enabled = true;
         isBeingControlled = false;
-        playerScript.unMount();
-        playerScript.transform.Translate(dismountDistance, 0, 0);
+        playerScript.unMount(dismountDistance);
         isWandering = true;
     }
 
@@ -128,65 +129,69 @@ public class Mount : Entity
         }
     }
 
-    private void UpdateAnimation()
-    {
-        if (!isBeingControlled)
-        {
-            return;
-        }
+    //private void UpdateAnimation()
+    //{
+    //    if (!isBeingControlled)
+    //    {
+    //        return;
+    //    }
 
-        ClearAnimation();
+    //    ClearAnimation();
 
-        if (isMoving)
-        {
-            //Running
-            if (isRunning)
-            {
-                speed = runSpeed;
-                setRunningAnimation();
-            }
-            else//walking
-            {
-                speed = walkSpeed;
-                setWalkingAnimation();
-            }
-        }
-    }
+    //    if (isMoving)
+    //    {
+    //        //Running
+    //        if (isRunning)
+    //        {
+    //            speed = runSpeed;
+    //            setRunningAnimation();
+    //        }
+    //        else//walking
+    //        {
+    //            speed = walkSpeed;
+    //            setWalkingAnimation();
+    //        }
+    //    }
+    //}
 
-    public void setWalkingAnimation(float animationSpeed = 0)
-    {
-        if (animationSpeed == 0)
-            animationSpeed = walkAnimationSpeed;
+    //public void setWalkingAnimation(float animationSpeed = 0)
+    //{
+    //    if (animationSpeed == 0)
+    //        animationSpeed = walkAnimationSpeed;
         
-        foreach (var state in this.movementStates)
-        {
-            SetAnimationBool(state.animationBool, true, animationSpeed);
-            break;
-        }
-    }
+    //    foreach (var state in this.movementStates)
+    //    {
+    //        SetAnimationBool(state.animationBool, true, animationSpeed);
+    //        break;
+    //    }
+    //}
 
-    //Attempts to play a unique running animation, if no running animation exists, use walking animation with running animation speed.
-    public bool setRunningAnimation()
+    ////Attempts to play a unique running animation, if no running animation exists, use walking animation with running animation speed.
+    //public bool setRunningAnimation()
+    //{
+    //    foreach (var state in this.movementStates)
+    //    {
+    //        if (state.animationBool == "isRunning")
+    //        {
+    //            SetAnimationBool(state.animationBool, true, runAnimaitonSpeed);
+    //            return true;
+    //        }
+    //    }
+    //    setWalkingAnimation(runAnimaitonSpeed);
+    //    return false;
+    //}
+
+    //public void toggleRun()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.LeftShift))
+    //    {
+    //        if (isRunning ? isRunning = false : isRunning = true);
+    //    }
+
+    //}
+    public override void attack()
     {
-        foreach (var state in this.movementStates)
-        {
-            if (state.animationBool == "isRunning")
-            {
-                SetAnimationBool(state.animationBool, true, runAnimaitonSpeed);
-                return true;
-            }
-        }
-        setWalkingAnimation(runAnimaitonSpeed);
-        return false;
-    }
-
-    public void toggleRun()
-    {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            if (isRunning ? isRunning = false : isRunning = true);
-        }
-
+        Debug.Log(this.name + " Attacks!");
     }
 
     //Gets commands from player and responds
@@ -199,8 +204,5 @@ public class Mount : Entity
         }
     }
 
-    public override void attack()
-    {
-        Debug.Log(this.name + " Attacks!");
-    }
+
 }

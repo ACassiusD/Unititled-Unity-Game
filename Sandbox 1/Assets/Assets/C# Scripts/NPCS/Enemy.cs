@@ -26,7 +26,7 @@ public class Enemy : Entity
         {
             this.GetComponent<NavMeshAgent>().enabled = false;
         }
-        isMoving = false;
+        //isMoving = false;
         isControllable = false;
         initAnimationTools();
 
@@ -56,35 +56,35 @@ public class Enemy : Entity
     }
 
     //Should be moved to entity script
-    void MoveTowardsPlayer()
-    {
-        distanceToPlayer = Vector3.Distance(playerReference.transform.position, this.transform.position);
+    //void MoveTowardsPlayer()
+    //{
+    //    distanceToPlayer = Vector3.Distance(playerReference.transform.position, this.transform.position);
 
-        //Check if enemy is close enough to the player
-        if(distanceToPlayer <= minDistanceFromPlayer)
-        {
-            if(isMoving != false)
-            {
-                isMoving = false;
-                setIdleAnimation();
-            }
-            return;
+    //    //Check if enemy is close enough to the player
+    //    if(distanceToPlayer <= minDistanceFromPlayer)
+    //    {
+    //        if(isMoving != false)
+    //        {
+    //            isMoving = false;
+    //            setIdleAnimation();
+    //        }
+    //        return;
 
-        }
+    //    }
 
-        if (isMoving == false)
-        {
-            isMoving = true;
-            setRunningAnimation();
-        }
+    //    if (isMoving == false)
+    //    {
+    //        isMoving = true;
+    //        setRunningAnimation();
+    //    }
 
-        float step = speed * Time.deltaTime; // calculate distance to move
-                                             //Calculate gravity
+    //    float step = speed * Time.deltaTime; // calculate distance to move
+    //                                         //Calculate gravity
         
-        Vector3 MoveTowardsPlayer = Vector3.MoveTowards(transform.position, playerReference.transform.position, step);
-        MoveTowardsPlayer.y = (Physics.gravity.y * gravityScale);
-        transform.position = MoveTowardsPlayer;
-    }
+    //    Vector3 MoveTowardsPlayer = Vector3.MoveTowards(transform.position, playerReference.transform.position, step);
+    //    MoveTowardsPlayer.y = (Physics.gravity.y * gravityScale);
+    //    transform.position = MoveTowardsPlayer;
+    //}
 
     public void ClearAnimation()
     {

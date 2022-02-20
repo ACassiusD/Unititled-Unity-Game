@@ -28,6 +28,7 @@ public class GroundedState : State
     public override void HandleInput()
     {
         base.HandleInput();
+
         movementComponent.Move();
         verticalInput = Input.GetAxis("Vertical");
         horizontalInput = Input.GetAxis("Horizontal");

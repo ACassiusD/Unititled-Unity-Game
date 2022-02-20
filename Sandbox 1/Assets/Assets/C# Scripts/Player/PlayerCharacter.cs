@@ -25,38 +25,21 @@ public class PlayerCharacter : Entity {
  
     void Update()
     {
-        getNewPosition();
+        //getNewPosition();
     }
 
     //Check if riding state changes before calling Basic movement
-    void getNewPosition()
-    {
-        if (!isRiding)
-        {
-            base.MoveCharacterController();
-        }
-        else
-        {
-            moveToMountedPosition();
-        }
-    }
-
-    public void setActiveMount(Mount mount)    
-    {
-        this.activeMount = mount;
-        flipRidingState();
-    }
-    //Moves player to mounted position
-    public void moveToMountedPosition()
-    {
-        //Calculate where the rider needs to be positioned, then transform him to that position and rotation
-        Vector3 ridingPositon = activeMount.transform.position;
-        ridingPositon.y = ridingPositon.y + this.activeMount.ridingHeight;
-        transform.position = ridingPositon;
-
-        //Rotation
-        transform.rotation = activeMount.transform.rotation;
-    }
+    //void getNewPosition()
+    //{
+    //    if (!isRiding)
+    //    {
+    //        base.MoveCharacterController();
+    //    }
+    //    else
+    //    {
+    //        moveToMountedPosition();
+    //    }
+    //}
 
 
     //Flips weather the player is in a riding state or not

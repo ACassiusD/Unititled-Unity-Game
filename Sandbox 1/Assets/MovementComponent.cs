@@ -8,6 +8,7 @@ public class MovementComponent : MonoBehaviour
     public StandingState standing;
     public DuckingState ducking;
     public JumpingState jumping;
+    public RidingState riding;
     public int jumpCount = 0;
     public float moveSpeed = 50f;
     public float rotationSpeed;
@@ -17,6 +18,11 @@ public class MovementComponent : MonoBehaviour
     public int maxJumps = 2;
     public float jumpHeight = 20;
     public float gravity = -8f;
+    public bool isBeingControlled = true;
+    public bool isControllable = true;
+    public bool isRiding = false;
+    public Mount activeMount;
+
 
     // Start is called before the first frame update
     private void Start()
@@ -26,6 +32,7 @@ public class MovementComponent : MonoBehaviour
         standing = new StandingState(movementSM, this);
         ducking = new DuckingState(movementSM, this);
         jumping = new JumpingState(movementSM, this);
+        riding = new RidingState(movementSM, this);
 
         if (characterController.isGrounded)
         {
@@ -68,6 +75,71 @@ public class MovementComponent : MonoBehaviour
             characterController.Move(moveDir.normalized * moveSpeed * Time.deltaTime);
         }
     }
+    
+    
+    //Moves player to mounted position
+    public void moveToMountedPosition()
+    {
+        //Calculate where the rider needs to be positioned, then transform him to that position and rotation
+        Vector3 ridingPositon = activeMount.transform.position;
+        ridingPositon.y = ridingPositon.y + this.activeMount.ridingHeight;
+        transform.position = ridingPositon;
+
+        //Rotation
+        transform.rotation = activeMount.transform.rotation;
+    }
+
+    public void setActiveMount(Mount mount)
+    {
+        this.activeMount = mount;
+        isRiding = true;
+    }
+
+
+    //Flips weather the player is in a riding state or not
+    //void flipRidingState()
+    //{
+    //    if (isRiding == true) //Player is already mounted
+    //    {
+    //        isBeingControlled = true; //Bring back control to player
+    //        isRiding = false;
+    //        Physics.IgnoreCollision(controller, activeMount.GetComponent<CharacterController>(), false); //Turn on collisions
+    //    }
+    //    else //Player is not yet mounted
+    //    {
+    //        activeMountScript = activeMount.GetComponent<Mount>();
+
+    //        //Only flip state if there is a mount to be mounted
+    //        if (activeMount)
+    //        {
+    //            isBeingControlled = false;
+    //            isRiding = true;
+    //            Physics.IgnoreCollision(controller, activeMount.GetComponent<CharacterController>(), true);
+    //        }
+    //    }
+    //}
+
+
+    //public void unMount()
+    //{
+    //    flipRidingState();
+    //    activeMount = null;
+
+    //}
+
+
+    //Check if riding state changes before calling Basic movement
+    //void getNewPosition()
+    //{
+    //    if (!isRiding)
+    //    {
+    //        base.MoveCharacterController();
+    //    }
+    //    else
+    //    {
+    //        moveToMountedPosition();
+    //    }
+    //}
 
     public void ResetMoveParams()
     {
