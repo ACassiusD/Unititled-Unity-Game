@@ -5,9 +5,7 @@ public class StandingState : GroundedState
     private bool jump;
     private bool crouch;
 
-
-
-    public StandingState(StateMachine stateMachine, MovementComponent moveComp) : base(stateMachine, moveComp)
+    public StandingState(StateMachine stateMachine, PlayerMovementComponent moveComp) : base(stateMachine, moveComp)
     {
     }
 
@@ -15,7 +13,6 @@ public class StandingState : GroundedState
     public override void Enter()
     {
         base.Enter();
-        crouch = false;
         jump = false;
     }
 
@@ -23,7 +20,6 @@ public class StandingState : GroundedState
     public override void HandleInput()
     {
         base.HandleInput();
-        crouch = Input.GetButtonDown("Fire3");
         jump = Input.GetButtonDown("Jump");
     }
 
@@ -34,10 +30,6 @@ public class StandingState : GroundedState
         if (movementComponent.isRiding)
         {
             stateMachine.ChangeState(movementComponent.riding);
-        }
-        if (crouch)
-        {
-            stateMachine.ChangeState(movementComponent.ducking);
         }
         else if (jump && movementComponent.jumpCount < movementComponent.maxJumps)
         {

@@ -9,12 +9,12 @@ public class BetaCharacter : MonoBehaviour
     private GameObject[] tamedMounts;
     public Mount activeMount = null;
     Mount activeMountScript;
-    public Inventory inventory;
-    MovementComponent movementComponent;
+    //public Inventory inventory;
+    PlayerMovementComponent movementComponent;
 
     private void Awake()
     {
-        movementComponent = this.GetComponent<MovementComponent>();
+        movementComponent = this.GetComponent<PlayerMovementComponent>();
         Application.targetFrameRate = 60;
         Cursor.visible = false;
     }

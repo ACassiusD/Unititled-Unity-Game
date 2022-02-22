@@ -1,6 +1,6 @@
 ﻿
 using UnityEngine;
-public class GroundedState : State
+public class GroundedState : PlayerState
 {
     protected float speed;
     protected float rotationSpeed;
@@ -8,7 +8,7 @@ public class GroundedState : State
     private float horizontalInput;
     private float verticalInput;
 
-    public GroundedState(StateMachine stateMachine, MovementComponent moveComponent) : base(stateMachine, moveComponent)
+    public GroundedState(StateMachine stateMachine, PlayerMovementComponent moveComponent) : base(stateMachine, moveComponent)
     {
     }
 
@@ -28,8 +28,10 @@ public class GroundedState : State
     public override void HandleInput()
     {
         base.HandleInput();
-
-        movementComponent.Move();
+        movementComponent.ZeroYVelocityIfGrounded();
+        movementComponent.addGravity();
+        movementComponent.AddVelocityAndMove();
+        movementComponent.MoveByInput();
         verticalInput = Input.GetAxis("Vertical");
         horizontalInput = Input.GetAxis("Horizontal");
     }

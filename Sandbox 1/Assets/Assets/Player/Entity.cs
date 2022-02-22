@@ -39,19 +39,19 @@ public class Entity : MonoBehaviour, InteractableInterface
 
 
     protected virtual void Start () {
-        if (!playerReference)
-        {
-            playerReference = GameObject.FindGameObjectWithTag("Player");
-        }
-        gameObject.layer = 8; //Set to interactive layer automatically
-        playerScript = PlayerManager.Instance.getPlayerScript();
-        healthBarScript = this.GetComponentInChildren<HealthBar>();
-        var test = this.gameObject.name;
-        onCreate();
-        controller = GetComponent<CharacterController>();
-        rectTransform = GetComponent<RectTransform>();
-        canvas = GameObject.FindGameObjectWithTag("MainCanvas");
-        updateHealthBar();
+        //if (!playerReference)
+        //{
+        //    playerReference = GameObject.FindGameObjectWithTag("Player");
+        //}
+        //gameObject.layer = 8; //Set to interactive layer automatically
+        //playerScript = PlayerManager.Instance.getPlayerScript();
+        //healthBarScript = this.GetComponentInChildren<HealthBar>();
+        //var test = this.gameObject.name;
+        //onCreate();
+        //controller = GetComponent<CharacterController>();
+        //rectTransform = GetComponent<RectTransform>();
+        //canvas = GameObject.FindGameObjectWithTag("MainCanvas");
+        //updateHealthBar();
     }
 
     //Update the float UI healthbar above the player in world space

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class RidingState : State
+public class RidingState : PlayerState
 {
     private bool grounded;
     private int jumpParam = Animator.StringToHash("Jump");
@@ -14,7 +14,7 @@ public class RidingState : State
     private bool jump;
     bool isGrounded = false;
 
-    public RidingState(StateMachine stateMachine, MovementComponent movementComponent) : base(stateMachine, movementComponent)
+    public RidingState(StateMachine stateMachine, PlayerMovementComponent movementComponent) : base(stateMachine, movementComponent)
     {
     }
 
@@ -31,7 +31,7 @@ public class RidingState : State
 
     public override void HandleInput()
     {
-        movementComponent.moveToMountedPosition();
+        movementComponent.MoveToMountedPosition();
     }
 
 

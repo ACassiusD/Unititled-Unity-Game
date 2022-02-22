@@ -2,17 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovementComponent : MonoBehaviour
+//Player movement component contains a state machine, a working group states relevent to the player, varaible, and functions relevent to player movement.
+//It is the "Brain" of player movement.
+public class PlayerMovementComponent : MoveComponent
 {
-    public StateMachine movementSM;
     public StandingState standing;
     public DuckingState ducking;
     public JumpingState jumping;
     public RidingState riding;
     public int jumpCount = 0;
-    public float moveSpeed = 50f;
-    public float rotationSpeed;
-    CharacterController characterController;
+    public CharacterController characterController;
     public float turnSmoothTime = 0.1f;
     public Transform cam;
     public int maxJumps = 2;
@@ -22,13 +21,13 @@ public class MovementComponent : MonoBehaviour
     public bool isControllable = true;
     public bool isRiding = false;
     public Mount activeMount;
+    public float rotationSpeed;
+    Vector3 velocity = new Vector3(); //Velocity/gravity force will increase when character is falling, until they become grounded.
 
 
-    // Start is called before the first frame update
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
-        movementSM = new StateMachine();
         standing = new StandingState(movementSM, this);
         ducking = new DuckingState(movementSM, this);
         jumping = new JumpingState(movementSM, this);
@@ -42,15 +41,34 @@ public class MovementComponent : MonoBehaviour
         {
             movementSM.Initialize(jumping);
         }
-    }
+        base.Start();
 
+    }
     private void Update()
     {
-        movementSM.CurrentState.HandleInput();
-        movementSM.CurrentState.LogicUpdate();
+        base.Update();
+
     }
 
-    public void Move()
+    //Moves entity to mounted seating position
+    public void MoveToMountedPosition()
+    {
+        //Calculate where the rider needs to be positioned, then transform him to that position and rotation
+        Vector3 ridingPositon = activeMount.transform.position;
+        ridingPositon.y = ridingPositon.y + this.activeMount.ridingHeight;
+        transform.position = ridingPositon;
+
+        //Rotation
+        transform.rotation = activeMount.transform.rotation;
+    }
+
+    public void setActiveMount(Mount mount)
+    {
+        this.activeMount = mount;
+        isRiding = true;
+    }
+
+    public void MoveByInput()
     {
         //Returns 0, -1 or 1 for corrosponding direction
         float horizontal = Input.GetAxisRaw("Horizontal");
@@ -75,74 +93,41 @@ public class MovementComponent : MonoBehaviour
             characterController.Move(moveDir.normalized * moveSpeed * Time.deltaTime);
         }
     }
-    
-    
-    //Moves player to mounted position
-    public void moveToMountedPosition()
-    {
-        //Calculate where the rider needs to be positioned, then transform him to that position and rotation
-        Vector3 ridingPositon = activeMount.transform.position;
-        ridingPositon.y = ridingPositon.y + this.activeMount.ridingHeight;
-        transform.position = ridingPositon;
 
-        //Rotation
-        transform.rotation = activeMount.transform.rotation;
+    //Add jump Velocity to Y axis
+    public void AddJumpVelocity()
+    {
+        velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+        jumpCount++;
     }
 
-    public void setActiveMount(Mount mount)
+    //Grounded reset velocity check
+    public void ZeroYVelocityIfGrounded()
     {
-        this.activeMount = mount;
-        isRiding = true;
+        if (characterController.isGrounded && velocity.y < 0)
+        {
+            velocity.y = -2f;
+        }
+    }
+    
+    public void addGravity()
+    {
+        //Gravity Check
+        velocity.y += gravity * Time.deltaTime;
+    }
+    
+    public void MidAirJump()
+    {
+        //Check for double jump
+        if (!characterController.isGrounded && (jumpCount < maxJumps))
+        {
+            AddJumpVelocity();
+        }
     }
 
-
-    //Flips weather the player is in a riding state or not
-    //void flipRidingState()
-    //{
-    //    if (isRiding == true) //Player is already mounted
-    //    {
-    //        isBeingControlled = true; //Bring back control to player
-    //        isRiding = false;
-    //        Physics.IgnoreCollision(controller, activeMount.GetComponent<CharacterController>(), false); //Turn on collisions
-    //    }
-    //    else //Player is not yet mounted
-    //    {
-    //        activeMountScript = activeMount.GetComponent<Mount>();
-
-    //        //Only flip state if there is a mount to be mounted
-    //        if (activeMount)
-    //        {
-    //            isBeingControlled = false;
-    //            isRiding = true;
-    //            Physics.IgnoreCollision(controller, activeMount.GetComponent<CharacterController>(), true);
-    //        }
-    //    }
-    //}
-
-
-    //public void unMount()
-    //{
-    //    flipRidingState();
-    //    activeMount = null;
-
-    //}
-
-
-    //Check if riding state changes before calling Basic movement
-    //void getNewPosition()
-    //{
-    //    if (!isRiding)
-    //    {
-    //        base.MoveCharacterController();
-    //    }
-    //    else
-    //    {
-    //        moveToMountedPosition();
-    //    }
-    //}
-
-    public void ResetMoveParams()
+    public void AddVelocityAndMove()
     {
+        characterController.Move(velocity * Time.deltaTime);
     }
 
 }

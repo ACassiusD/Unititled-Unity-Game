@@ -3,14 +3,11 @@ using UnityEngine;
 public abstract class State
 {
     protected StateMachine stateMachine;
-    protected MovementComponent movementComponent;
-
 
     //Constructorc
-    protected State(StateMachine stateMachine, MovementComponent movementComponent)
+    protected State(StateMachine stateMachine)
     {
         this.stateMachine = stateMachine;
-        this.movementComponent = movementComponent;
     }
 
     //This is where you enter the state and do things you only need to do once when you first enter the state.
@@ -35,10 +32,4 @@ public abstract class State
     {
 
     }
-
-    //Used to update physics if we have a ridged body
-    //public virtual void PhysicsUpdate()
-    //{
-
-    //}
 }
