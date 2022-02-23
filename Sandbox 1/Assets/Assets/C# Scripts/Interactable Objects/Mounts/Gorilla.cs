@@ -20,6 +20,5 @@ public class Gorilla : Mount
     {
         runSpeed = gorillaRunSpeed;
         walkSpeed = gorillaWalkSpeed;
-        base.Update();
     }
 }

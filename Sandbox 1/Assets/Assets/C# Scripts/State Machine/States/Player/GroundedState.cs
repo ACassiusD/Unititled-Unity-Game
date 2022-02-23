@@ -2,12 +2,6 @@
 using UnityEngine;
 public class GroundedState : PlayerState
 {
-    protected float speed;
-    protected float rotationSpeed;
-
-    private float horizontalInput;
-    private float verticalInput;
-
     public GroundedState(StateMachine stateMachine, PlayerMovementComponent moveComponent) : base(stateMachine, moveComponent)
     {
     }
@@ -31,9 +25,7 @@ public class GroundedState : PlayerState
         movementComponent.ZeroYVelocityIfGrounded();
         movementComponent.addGravity();
         movementComponent.AddVelocityAndMove();
-        movementComponent.MoveByInput();
-        verticalInput = Input.GetAxis("Vertical");
-        horizontalInput = Input.GetAxis("Horizontal");
+        movementComponent.MovePlayerViaInput();
     }
 
 }

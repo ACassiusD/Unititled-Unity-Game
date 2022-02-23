@@ -1,23 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Polyperfect.Animals;
 using UnityEngine;
 using UnityEngine.AI;
-using Polyperfect.Animals;
-using Polyperfect.Common;
 
-//Mount class will probably just keep animaiton functions and stats + abilities will be moved to animal
-public class Mount : Entity
+public class Mount : MonoBehaviour //Mount class contains a movement component to move, and mount specific functions and params. 
 {
+    //TODO: CREATE MOUNTMoveComponent and states, use animatior to update them.
+    Animal_WanderScript wanderscript;
+    MountAnimatorComponent mountAnimator;
     BetaCharacter playerScript;
     MovementComponent moveComponent;
-    //Get wanderscript and nav mesh agent, disable them in that order
-    Animal_WanderScript wanderscript;
     NavMeshAgent naveMeshAgent;
-    Animator mountAnimator;
-    IdleState[] idleStates;
-    MovementState[] movementStates;
-    AIState[] attackingStates;
-    private AIState[] deathStates;
     public float ridingHeight = 5.4f;
     protected float walkAnimationSpeed = 1;
     protected float runAnimaitonSpeed = 2;
@@ -25,47 +17,23 @@ public class Mount : Entity
     protected float runSpeed = 200;
     public bool isRunning = false;
     public float dismountDistance = 8.0f;
-
+    public bool isBeingControlled = false;
+    public bool isWandering = false;
 
     protected virtual void Start()
     {
+        wanderscript = this.GetComponent<Animal_WanderScript>();
         if (!isBeingControlled)
         {
             isWandering = true;
         }
-        base.Start();
         onCreate();
     }
 
-    public override void onCreate()
+    public void onCreate()
     {
         playerScript = PlayerManager.Instance.getPlayerScript();
         naveMeshAgent = this.GetComponent<NavMeshAgent>();
-        wanderscript = this.GetComponent<Animal_WanderScript>();
-        mountAnimator = this.GetComponent<Animator>();
-        if (wanderscript)
-        {
-            idleStates = wanderscript.idleStates;
-            movementStates = wanderscript.movementStates;
-            attackingStates = wanderscript.attackingStates;
-            deathStates = wanderscript.deathStates;
-        }
-    }
-
-    //Update is called once per frame
-    protected override void Update()
-    {
-        //speed = 150;
-        //gravityScale = .25f;
-        //jumpForce = 70f;
-
-        if (isBeingControlled)
-        {
-            getCommandUpdates();
-            //UpdateAnimation();
-            //toggleRun();
-        }
-        base.Update();
     }
 
     public void interact()
@@ -94,92 +62,15 @@ public class Mount : Entity
     {
         playerScript.setIsRiding(false);
         gameObject.layer = 8;
-        mountAnimator.speed = 1;
         wanderscript.resetOrigin();
         wanderscript.UpdateAI();
         naveMeshAgent.enabled = true;
         wanderscript.enabled = true;
         isBeingControlled = false;
-        playerScript.unMount(dismountDistance);
+        playerScript.DisMount(dismountDistance);
         isWandering = true;
     }
 
-    public void ClearAnimation()
-    {
-        foreach (var item in this.idleStates)
-            SetAnimationBool(item.animationBool, false, 0);
-        foreach (var item in this.movementStates)
-            SetAnimationBool(item.animationBool, false, 0);
-        foreach (var item in this.attackingStates)
-            SetAnimationBool(item.animationBool, false, 0);
-        foreach (var item in this.deathStates)
-            SetAnimationBool(item.animationBool, false, 0);
-    }
-
-    void SetAnimationBool(string parameterName, bool value, float speed)
-    {
-        if (speed != 0)
-        {
-            mountAnimator.speed = speed;
-        }
-
-        if (!string.IsNullOrEmpty(parameterName))
-        {
-            mountAnimator.SetBool(parameterName, value);
-        }
-    }
-
-    //private void UpdateAnimation()
-    //{
-    //    if (!isBeingControlled)
-    //    {
-    //        return;
-    //    }
-
-    //    ClearAnimation();
-
-    //    if (isMoving)
-    //    {
-    //        //Running
-    //        if (isRunning)
-    //        {
-    //            speed = runSpeed;
-    //            setRunningAnimation();
-    //        }
-    //        else//walking
-    //        {
-    //            speed = walkSpeed;
-    //            setWalkingAnimation();
-    //        }
-    //    }
-    //}
-
-    //public void setWalkingAnimation(float animationSpeed = 0)
-    //{
-    //    if (animationSpeed == 0)
-    //        animationSpeed = walkAnimationSpeed;
-        
-    //    foreach (var state in this.movementStates)
-    //    {
-    //        SetAnimationBool(state.animationBool, true, animationSpeed);
-    //        break;
-    //    }
-    //}
-
-    ////Attempts to play a unique running animation, if no running animation exists, use walking animation with running animation speed.
-    //public bool setRunningAnimation()
-    //{
-    //    foreach (var state in this.movementStates)
-    //    {
-    //        if (state.animationBool == "isRunning")
-    //        {
-    //            SetAnimationBool(state.animationBool, true, runAnimaitonSpeed);
-    //            return true;
-    //        }
-    //    }
-    //    setWalkingAnimation(runAnimaitonSpeed);
-    //    return false;
-    //}
 
     //public void toggleRun()
     //{
@@ -189,20 +80,20 @@ public class Mount : Entity
     //    }
 
     //}
-    public override void attack()
-    {
-        Debug.Log(this.name + " Attacks!");
-    }
+    //public void attack()
+    //{
+    //    Debug.Log(this.name + " Attacks!");
+    //}
 
     //Gets commands from player and responds
-    public void getCommandUpdates()
-    {
-        bool attackKeyCaptured = Input.GetKeyDown("q");
-        if (attackKeyCaptured)
-        {
-            attack();
-        }
-    }
+    //public void getCommandUpdates()
+    //{
+    //    bool attackKeyCaptured = Input.GetKeyDown("q");
+    //    if (attackKeyCaptured)
+    //    {
+    //        attack();
+    //    }
+    //}
 
 
 }

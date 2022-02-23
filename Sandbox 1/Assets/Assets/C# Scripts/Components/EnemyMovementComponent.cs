@@ -5,7 +5,6 @@ using UnityEngine;
 public class EnemyMovementComponent : MoveComponent
 {
     public Transform playerTransform;
-    public CharacterController characterController;
     public EnemyStandingState standing;
     public EnemyChasingState chasing;
     public float distanceFromPlayer;
@@ -13,11 +12,10 @@ public class EnemyMovementComponent : MoveComponent
     // Start is called before the first frame update
     void Start()
     {
-        standing = new EnemyStandingState(movementSM, this);
-        chasing = new EnemyChasingState(movementSM, this);
-        characterController = GetComponent<CharacterController>();
+        standing = new EnemyStandingState(stateMachine, this);
+        chasing = new EnemyChasingState(stateMachine, this);
         //Initialize the state machine.
-        movementSM.Initialize(standing);
+        stateMachine.Initialize(standing);
     }
 
     //Should be moved to entity script

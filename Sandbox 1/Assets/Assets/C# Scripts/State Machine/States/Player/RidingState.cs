@@ -26,7 +26,7 @@ public class RidingState : PlayerState
     }
     public override void Exit()
     {
-        //movementComponent.jumpCount = 0;
+        movementComponent.activeMount.dismount();
     }
 
     public override void HandleInput()

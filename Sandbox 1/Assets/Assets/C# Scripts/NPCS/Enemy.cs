@@ -27,7 +27,6 @@ public class Enemy : Entity
             this.GetComponent<NavMeshAgent>().enabled = false;
         }
         //isMoving = false;
-        isControllable = false;
         initAnimationTools();
 
         base.Start();
@@ -51,40 +50,7 @@ public class Enemy : Entity
     {
         //Look at player
         this.transform.LookAt(playerReference.transform);
-       // MoveTowardsPlayer();
-        base.Update();
     }
-
-    //Should be moved to entity script
-    //void MoveTowardsPlayer()
-    //{
-    //    distanceToPlayer = Vector3.Distance(playerReference.transform.position, this.transform.position);
-
-    //    //Check if enemy is close enough to the player
-    //    if(distanceToPlayer <= minDistanceFromPlayer)
-    //    {
-    //        if(isMoving != false)
-    //        {
-    //            isMoving = false;
-    //            setIdleAnimation();
-    //        }
-    //        return;
-
-    //    }
-
-    //    if (isMoving == false)
-    //    {
-    //        isMoving = true;
-    //        setRunningAnimation();
-    //    }
-
-    //    float step = speed * Time.deltaTime; // calculate distance to move
-    //                                         //Calculate gravity
-        
-    //    Vector3 MoveTowardsPlayer = Vector3.MoveTowards(transform.position, playerReference.transform.position, step);
-    //    MoveTowardsPlayer.y = (Physics.gravity.y * gravityScale);
-    //    transform.position = MoveTowardsPlayer;
-    //}
 
     public void ClearAnimation()
     {

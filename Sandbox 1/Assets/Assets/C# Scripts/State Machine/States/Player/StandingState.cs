@@ -3,7 +3,6 @@
 public class StandingState : GroundedState
 {
     private bool jump;
-    private bool crouch;
 
     public StandingState(StateMachine stateMachine, PlayerMovementComponent moveComp) : base(stateMachine, moveComp)
     {

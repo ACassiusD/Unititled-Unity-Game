@@ -19,32 +19,32 @@ public class Spider : Mount
         base.Start();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        runAnimaitonSpeed = spiderAnimaitonRunSpeed;
-        walkAnimationSpeed = spiderAnimationWalkSpeed;
-        walkSpeed = spiderWalkSpeed;
-        runSpeed = spiderRunSpeed;
-        base.Update();
-    }
+    //// Update is called once per frame
+    //void Update()
+    //{
+    //    runAnimaitonSpeed = spiderAnimaitonRunSpeed;
+    //    walkAnimationSpeed = spiderAnimationWalkSpeed;
+    //    walkSpeed = spiderWalkSpeed;
+    //    runSpeed = spiderRunSpeed;
+    //    base.Update();
+    //}
 
-    public override void attack()
-    {
-        string debugMsg = "";
-        int hitCount = 0;
-        var hitboxCollider = attackHitboxes[0];
-        var cols = Physics.OverlapBox(hitboxCollider.bounds.center, hitboxCollider.bounds.extents, hitboxCollider.transform.rotation, LayerMask.GetMask("Interactive"));
-        foreach(Collider c in cols)
-        {
-            if(c.tag == "Player"){
-                return;
-            }
+    //public override void attack()
+    //{
+    //    string debugMsg = "";
+    //    int hitCount = 0;
+    //    var hitboxCollider = attackHitboxes[0];
+    //    var cols = Physics.OverlapBox(hitboxCollider.bounds.center, hitboxCollider.bounds.extents, hitboxCollider.transform.rotation, LayerMask.GetMask("Interactive"));
+    //    foreach(Collider c in cols)
+    //    {
+    //        if(c.tag == "Player"){
+    //            return;
+    //        }
 
-            hitCount++;
-            c.SendMessageUpwards("receiveDamage", 10);
-            debugMsg += ("|Hit " + c.name);
-        }
-        Debug.Log(this.name + " Attacks - Hit (" + hitCount + ") " + debugMsg);
-    }
+    //        hitCount++;
+    //        c.SendMessageUpwards("receiveDamage", 10);
+    //        debugMsg += ("|Hit " + c.name);
+    //    }
+    //    Debug.Log(this.name + " Attacks - Hit (" + hitCount + ") " + debugMsg);
+    //}
 }

@@ -5,11 +5,9 @@ using UnityEngine;
 public class BetaCharacter : MonoBehaviour
 {
     public CharacterController controller;
-   // public bool isRiding = false;
-    private GameObject[] tamedMounts;
+    private GameObject[] tamedMounts; //Create MountCollection() Class
     public Mount activeMount = null;
-    Mount activeMountScript;
-    //public Inventory inventory;
+    Mount currentMount;
     PlayerMovementComponent movementComponent;
 
     private void Awake()
@@ -17,15 +15,6 @@ public class BetaCharacter : MonoBehaviour
         movementComponent = this.GetComponent<PlayerMovementComponent>();
         Application.targetFrameRate = 60;
         Cursor.visible = false;
-    }
-
-    private void Start()
-    {
-    }
-
-    void Update()
-    {
-        //getNewPosition();
     }
 
     public void onCreate()
@@ -36,7 +25,7 @@ public class BetaCharacter : MonoBehaviour
     }
 
 
-    public void unMount(float dismountDistance)
+    public void DisMount(float dismountDistance = 10f)
     {
         this.activeMount = null;
         this.transform.Translate(dismountDistance, 0, 0);

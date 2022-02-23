@@ -9,7 +9,6 @@ public class JumpingState : PlayerState
     [SerializeField]
     public bool isTest = true;
     public bool isRiding = true;
-
     private bool jump;
 
 
@@ -44,7 +43,7 @@ public class JumpingState : PlayerState
             }
         }
         movementComponent.AddVelocityAndMove();
-        movementComponent.MoveByInput();
+        movementComponent.MovePlayerViaInput();
         justEntered = false;
         base.HandleInput();
     }
