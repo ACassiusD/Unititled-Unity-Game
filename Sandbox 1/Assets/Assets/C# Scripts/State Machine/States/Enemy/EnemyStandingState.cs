@@ -26,7 +26,7 @@ public class EnemyStandingState : EnemyState
     //Get next state
     public override void LogicUpdate()
     {
-        float distance = Vector3.Distance(movementComponent.playerTransform.position, movementComponent.characterController.transform.position);
+        float distance = Vector3.Distance(movementComponent.getPlayerScript().transform.position , movementComponent.characterController.transform.position);
 
         if (distance < 100)
         {

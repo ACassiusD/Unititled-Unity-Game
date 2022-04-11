@@ -10,6 +10,8 @@ public class MountAnimatorComponent : MonoBehaviour
     AIState[] deathStates;
     Animal_WanderScript wanderscript; //Get wanderscript and nav mesh agent, disable them in that order
     Animator mountAnimator;
+    public float walkAnimationSpeed = 1;
+    public float runAnimaitonSpeed = 2;
 
     void Awake()
     {
@@ -24,28 +26,53 @@ public class MountAnimatorComponent : MonoBehaviour
         }
     }
 
-    public void setWalkingAnimation(float animationSpeed = 1)
+    public void setWalkingAnimation(float speed = 0)
     {
+        ClearAnimation();
+
         foreach (var state in this.movementStates)
         {
-            SetAnimationBool(state.animationBool, true, animationSpeed);
+            if (speed != 0)
+            {
+                SetAnimationBool(state.animationBool, true, speed);
+            }
+            else
+            {
+                SetAnimationBool(state.animationBool, true, walkAnimationSpeed);
+            }
+
             break;
         }
     }
 
     //Attempts to play a unique running animation, if no running animation exists, use walking animation with running animation speed.
-    public bool setRunningAnimation(float runAnimationSpeed = 2)
+    public bool setRunningAnimation()
     {
+        ClearAnimation();
+
         foreach (var state in this.movementStates)
         {
             if (state.animationBool == "isRunning")
             {
-                SetAnimationBool(state.animationBool, true, runAnimationSpeed);
+                SetAnimationBool(state.animationBool, true, runAnimaitonSpeed);
                 return true;
             }
         }
-        setWalkingAnimation(runAnimationSpeed);
+        setWalkingAnimation(runAnimaitonSpeed);
         return false;
+    }
+
+    public void setIdleAnimation(float animationSpeed = 0)
+    {
+        ClearAnimation();
+        if (animationSpeed == 0)
+            animationSpeed = walkAnimationSpeed;
+
+        foreach (var idleState in this.idleStates)
+        {
+            SetAnimationBool(idleState.animationBool, true, animationSpeed);
+            break;
+        }
     }
 
     public void ClearAnimation()

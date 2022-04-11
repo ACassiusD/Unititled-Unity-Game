@@ -9,15 +9,14 @@ public class PlayerMovementComponent : MoveComponent
     public JumpingState jumping;
     public RidingState riding;
     public Transform cam;
-    public float turnSmoothTime = 0.1f;
-    public bool isBeingControlled = true;
-    public bool isControllable = true;
+    //Only movement variables specific to player should go here
     public bool isRiding = false;
     public Mount activeMount; //This might need to be moved out
-    public float rotationSpeed;
     
     private void Start()
     {
+        activeMount = null;
+        isBeingControlled = true;
         //Initialize the players states.
         standing = new StandingState(stateMachine, this);
         jumping = new JumpingState(stateMachine, this);

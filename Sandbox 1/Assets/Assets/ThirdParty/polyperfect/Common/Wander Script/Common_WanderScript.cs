@@ -155,6 +155,7 @@ namespace Polyperfect.Common
         Common_WanderScript primaryPrey;
         Common_WanderScript primaryPursuer;
         Common_WanderScript attackTarget;
+        [SerializeField]
         float moveSpeed = 0f;
         float attackReach = 2f;
         bool forceUpdate = false;

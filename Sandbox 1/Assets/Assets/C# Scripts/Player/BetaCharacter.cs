@@ -6,9 +6,8 @@ public class BetaCharacter : MonoBehaviour
 {
     public CharacterController controller;
     private GameObject[] tamedMounts; //Create MountCollection() Class
-    public Mount activeMount = null;
     Mount currentMount;
-    PlayerMovementComponent movementComponent;
+    public PlayerMovementComponent movementComponent;
 
     private void Awake()
     {
@@ -19,15 +18,13 @@ public class BetaCharacter : MonoBehaviour
 
     public void onCreate()
     {
-
-        activeMount = null;
         tamedMounts = GameObject.FindGameObjectsWithTag("TamedMount"); //Populate tamed mounts
     }
 
 
     public void DisMount(float dismountDistance = 10f)
     {
-        this.activeMount = null;
+        movementComponent.activeMount = null;
         this.transform.Translate(dismountDistance, 0, 0);
     }
 
@@ -56,4 +53,15 @@ public class BetaCharacter : MonoBehaviour
         movementComponent.isRiding = true;
     }
 
+    public void moveToMountedPosition()
+    {
+        var activeMount = movementComponent.activeMount;
+        //Calculate where the rider needs to be positioned, then transform him to that position and rotation
+        Vector3 ridingPositon = activeMount.transform.position;
+        ridingPositon.y = ridingPositon.y + activeMount.ridingHeight;
+        transform.position = ridingPositon;
+
+        //Rotation
+        transform.rotation = activeMount.transform.rotation;
+    }
 }

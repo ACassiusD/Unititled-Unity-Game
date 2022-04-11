@@ -33,9 +33,9 @@ public class InteractorComponent : MonoBehaviour
         {
             if (playerScript)
             {
-                if (playerScript.activeMount != null)
+                if (playerScript.movementComponent.activeMount != null)
                 {
-                    playerScript.activeMount.dismount();
+                    playerScript.movementComponent.activeMount.dismount();
                 }
             }
         }

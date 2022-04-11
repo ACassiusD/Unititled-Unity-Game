@@ -5,9 +5,11 @@ using UnityEngine.AI;
 using Polyperfect.Animals;
 using Polyperfect.Common;
 
-public class Enemy : Entity
+public class Enemy : MonoBehaviour, IDamageable
 {
-    Animator animator;
+    EnemyMovementComponent moveComponent;
+    EnemyAnimatorComponent enemyAnimator;
+    HealthBar healthBarScript;
     Animal_WanderScript wanderscript;
     IdleState[] idleStates;
     MovementState[] movementStates;
@@ -16,107 +18,87 @@ public class Enemy : Entity
     protected float walkAnimationSpeed = 1;
     protected float runAnimaitonSpeed = 2;
     public float distanceToPlayer = 0;
-    public float minDistanceFromPlayer = 8;
     public bool isWandering = false;
+    public int currentHealth { get; set; } = 50;
+    public int maxHealth { get; set; } = 100;
+    public bool inHitStun { get; set; } = false;
 
-    // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
-        if (!isWandering)
+        enemyAnimator = this.GetComponent<EnemyAnimatorComponent>();
+        healthBarScript = this.GetComponentInChildren<HealthBar>();
+        moveComponent = this.GetComponent<EnemyMovementComponent>();
+        if (!moveComponent)
+            Debug.LogError(this.name + " is missing a EnemyMoveComponent!");
+        if (!enemyAnimator)
+            Debug.LogError(this.name + " is missing a EnemyAnimatorComponent!");
+        if (!healthBarScript)
+            Debug.LogError(this.name + " is missing a HealthBarScript!");
+    }
+
+    public int receiveDamage(Dictionary<string, int> dmgVals)
+    {
+        var damageAmount = dmgVals["damage"];
+        var knockBackForce = dmgVals["knockback"];
+
+        currentHealth -= damageAmount;
+        updateHealthBar();
+        if (currentHealth <= 0)
         {
-            this.GetComponent<NavMeshAgent>().enabled = false;
+            feint();
+            return 0;
         }
-        //isMoving = false;
-        initAnimationTools();
-
-        base.Start();
+        Knockback(knockBackForce);
+        return currentHealth;
     }
 
-    private void initAnimationTools()
+    public void Knockback(float knockBackForce)
     {
-        animator = this.GetComponent<Animator>();
-        wanderscript = this.GetComponent<Animal_WanderScript>();
-        if (wanderscript)
+        inHitStun = true;
+
+        //Add Impact
+        Vector3 direction = this.transform.forward * -1; //Need to make this direction
+        Vector3 up = this.transform.up;
+        up.Normalize();
+        direction.Normalize();
+        direction.y = up.y;
+        var impact = Vector3.zero;
+        impact += direction.normalized * knockBackForce;
+
+        //Apply vector to object
+        moveComponent.characterController.Move(impact * Time.deltaTime);
+    }
+
+    //Update floating healthbar in world space.
+    public void updateHealthBar()
+    {
+         healthBarScript.setHealth(currentHealth, maxHealth);
+    }
+
+    //Kill/death command, despawn and drop loot.
+    public void feint()
+    {
+        Destroy(gameObject);
+    }
+
+    private void updateAnimations()
+    {
+        enemyAnimator.ClearAnimation();
+
+        if (moveComponent.isBeingControlled)
         {
-            idleStates = wanderscript.idleStates;
-            movementStates = wanderscript.movementStates;
-            attackingStates = wanderscript.attackingStates;
-            deathStates = wanderscript.deathStates;
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //Look at player
-        this.transform.LookAt(playerReference.transform);
-    }
-
-    public void ClearAnimation()
-    {
-        foreach (var item in this.idleStates)
-            SetAnimationBool(item.animationBool, false, 0);
-        foreach (var item in this.movementStates)
-            SetAnimationBool(item.animationBool, false, 0);
-        foreach (var item in this.attackingStates)
-            SetAnimationBool(item.animationBool, false, 0);
-        foreach (var item in this.deathStates)
-            SetAnimationBool(item.animationBool, false, 0);
-    }
-
-    void SetAnimationBool(string parameterName, bool value, float speed)
-    {
-        if (speed != 0)
-        {
-            animator.speed = speed;
-        }
-
-        if (!string.IsNullOrEmpty(parameterName))
-        {
-            animator.SetBool(parameterName, value);
-        }
-    }
-
-    //Attempts to play a unique running animation, if no running animation exists, use walking animation with running animation speed.
-    public bool setRunningAnimation()
-    {
-        ClearAnimation();
-        foreach (var state in this.movementStates)
-        {
-            if (state.animationBool == "isRunning")
+            if (moveComponent.isMoving)
             {
-                SetAnimationBool(state.animationBool, true, runAnimaitonSpeed);
-                return true;
+                //Running
+                if (moveComponent.isRunning)
+                {
+                    enemyAnimator.setRunningAnimation();
+                }
+                else//walking
+                {
+                    enemyAnimator.setWalkingAnimation();
+                }
             }
         }
-        setWalkingAnimation(runAnimaitonSpeed);
-        return false;
     }
-
-    public void setWalkingAnimation(float animationSpeed = 0)
-    {
-        ClearAnimation();
-        if (animationSpeed == 0)
-            animationSpeed = walkAnimationSpeed;
-
-        foreach (var state in this.movementStates)
-        {
-            SetAnimationBool(state.animationBool, true, animationSpeed);
-            break;
-        }
-    }
-
-    public void setIdleAnimation(float animationSpeed = 0)
-    {
-        ClearAnimation();
-        if (animationSpeed == 0)
-            animationSpeed = walkAnimationSpeed;
-
-        foreach (var idleState in this.idleStates)
-        {
-            SetAnimationBool(idleState.animationBool, true, animationSpeed);
-            break;
-        }
-    }
-
 }

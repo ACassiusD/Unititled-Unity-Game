@@ -8,6 +8,7 @@ public class EnemyChasingState : EnemyState
 
     public override void Enter()
     {
+        movementComponent.setTarget(EnemyMovementComponent.playerScript.transform);
         Debug.Log("Entered Enemy Chasing state");
         base.Enter();
     }
@@ -20,7 +21,7 @@ public class EnemyChasingState : EnemyState
     //Do state stuff
     public override void HandleInput()
     {
-        movementComponent.MoveTowardsPlayer();
+        movementComponent.MoveTowardsTarget();
         base.HandleInput();
     }
 

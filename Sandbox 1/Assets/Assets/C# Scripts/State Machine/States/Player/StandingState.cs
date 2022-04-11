@@ -34,7 +34,6 @@ public class StandingState : GroundedState
         {
             stateMachine.ChangeState(movementComponent.jumping);
         }
-
     }
 
 }
