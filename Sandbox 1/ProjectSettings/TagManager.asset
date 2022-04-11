@@ -16,6 +16,7 @@ TagManager:
   - Item
   - Attackable
   - MainCanvas
+  - Enemy
   layers:
   - Default
   - TransparentFX

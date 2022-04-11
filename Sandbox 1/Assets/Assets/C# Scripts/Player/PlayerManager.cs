@@ -11,14 +11,14 @@ public class PlayerManager : MonoBehaviour {
     //public get, so you can only get this instance
     public static PlayerManager Instance { get; private set; }
     GameObject player;
-    public PlayerCharacter playerScript;
+    public BetaCharacter playerScript;
     public InventoryManager playerInventory;
 
     // Use this for initialization
     void Awake () {
         Debug.Log("Initializing shared player script");
         GameObject player = GameObject.FindWithTag("Player");
-        playerScript = player.GetComponent<PlayerCharacter>();
+        playerScript = player.GetComponent<BetaCharacter>();
         playerInventory = player.GetComponent<InventoryManager>();
 
         if (Instance == null)
@@ -32,7 +32,7 @@ public class PlayerManager : MonoBehaviour {
         }
     }
 
-    public PlayerCharacter getPlayerScript()
+    public BetaCharacter getPlayerScript()
     {
         return playerScript;
     }
