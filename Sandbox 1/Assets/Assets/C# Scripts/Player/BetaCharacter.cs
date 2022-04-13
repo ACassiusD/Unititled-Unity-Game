@@ -2,16 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BetaCharacter : MonoBehaviour
+public class BetaCharacter : MonoBehaviour, IDamageable
 {
     public CharacterController controller;
     private GameObject[] tamedMounts; //Create MountCollection() Class
     Mount currentMount;
     public PlayerMovementComponent movementComponent;
+    HealthBar healthBarScript;
+    public int currentHealth { get; set; } = 500;
+    public int maxHealth { get; set; } = 500;
+    public bool inHitStun { get; set; } = false;
 
     private void Awake()
     {
+        healthBarScript = this.GetComponentInChildren<HealthBar>();
         movementComponent = this.GetComponent<PlayerMovementComponent>();
+        
+        if (!movementComponent)
+            Debug.LogError(this.name + " is missing a MoveComponent!");
+        if (!healthBarScript)
+            Debug.LogError(this.name + " is missing a HealthBarScript!");
+
         Application.targetFrameRate = 60;
         Cursor.visible = false;
     }
@@ -56,6 +67,7 @@ public class BetaCharacter : MonoBehaviour
     public void moveToMountedPosition()
     {
         var activeMount = movementComponent.activeMount;
+        
         //Calculate where the rider needs to be positioned, then transform him to that position and rotation
         Vector3 ridingPositon = activeMount.transform.position;
         ridingPositon.y = ridingPositon.y + activeMount.ridingHeight;
@@ -63,5 +75,51 @@ public class BetaCharacter : MonoBehaviour
 
         //Rotation
         transform.rotation = activeMount.transform.rotation;
+    }
+
+    public int receiveDamage(Dictionary<string, int> dmgVals)
+    {
+        var damageAmount = dmgVals["damage"];
+        var knockBackForce = dmgVals["knockback"];
+
+        currentHealth -= damageAmount;
+        updateHealthBar();
+        if (currentHealth <= 0)
+        {
+            feint();
+            return 0;
+        }
+        //Knockback(knockBackForce);
+        return currentHealth;
+    }
+
+    public void Knockback(float knockBackForce)
+    {
+        inHitStun = true;
+
+        //Add Impact
+        Vector3 direction = this.transform.forward * -1; //Need to make this direction
+        Vector3 up = this.transform.up;
+        up.Normalize();
+        direction.Normalize();
+        direction.y = up.y;
+        var impact = Vector3.zero;
+        impact += direction.normalized * knockBackForce;
+
+        //Apply vector to object
+        movementComponent.characterController.Move(impact * Time.deltaTime);
+    }
+
+    //Update floating healthbar in world space.
+    public void updateHealthBar()
+    {
+        healthBarScript.setHealth(currentHealth, maxHealth);
+    }
+
+    //Kill/death command, despawn and drop loot.
+    public void feint()
+    {
+        Debug.Log("oof, you died");
+        //Destroy(gameObject);
     }
 }
