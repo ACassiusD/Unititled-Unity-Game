@@ -1132,7 +1132,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.9238477, y: 1}
+    m_SensorSize: {x: 1.9354838, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1401,7 +1401,7 @@ MonoBehaviour:
   jumpCount: 0
   maxJumps: 2
   jumpHeight: 20
-  gravity: -8
+  gravity: -500
   turnSmoothTime: 0.1
   isBeingControlled: 0
   isControllable: 1
@@ -1409,8 +1409,10 @@ MonoBehaviour:
   isMoving: 0
   target: {fileID: 1206676725}
   distanceFromTarget: 0
-  minDistanceFromTarget: 20
+  minDistanceFromTarget: 40
   isRunning: 0
+  naveMeshAgent: {fileID: 0}
+  wanderscript: {fileID: 0}
 --- !u!114 &477605391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1647,6 +1649,7 @@ MonoBehaviour:
   wanderscript: {fileID: 0}
   mountWalkSpeed: 50
   mountRunSpeed: 90
+  naveMeshAgent: {fileID: 0}
 --- !u!114 &540466930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2199,7 +2202,17 @@ PrefabInstance:
     - target: {fileID: 5520895543735054589, guid: 96ffacfdf49d13740817937939a05cf3,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5520895543735054589, guid: 96ffacfdf49d13740817937939a05cf3,
+        type: 3}
+      propertyPath: matchSurfaceRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5520895543735054589, guid: 96ffacfdf49d13740817937939a05cf3,
+        type: 3}
+      propertyPath: surfaceRotationSpeed
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5542922202115304405, guid: 96ffacfdf49d13740817937939a05cf3,
         type: 3}
@@ -2244,17 +2257,17 @@ PrefabInstance:
     - target: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 101.9
+      value: 141
       objectReference: {fileID: 0}
     - target: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 16.88
+      value: 3.6
       objectReference: {fileID: 0}
     - target: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 383.2
+      value: 451.8
       objectReference: {fileID: 0}
     - target: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
         type: 3}
@@ -2290,6 +2303,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5746524690088674261, guid: 96ffacfdf49d13740817937939a05cf3,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5551180240343320312, guid: 96ffacfdf49d13740817937939a05cf3, type: 3}
@@ -2960,7 +2978,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.9238477, y: 1}
+    m_SensorSize: {x: 1.9354838, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -2976,7 +2994,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 789776462}
-  m_LocalRotation: {x: 0.17801602, y: 0.17745352, z: -0.032655984, w: 0.96734387}
+  m_LocalRotation: {x: 0.17801602, y: 0.17745356, z: -0.032655995, w: 0.96734387}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3219,7 +3237,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.9238477, y: 1}
+    m_SensorSize: {x: 1.9354838, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -3630,7 +3648,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 989726223}
-  m_LocalRotation: {x: 0.178016, y: 0.17745352, z: -0.032655984, w: 0.96734387}
+  m_LocalRotation: {x: 0.178016, y: 0.17745358, z: -0.032655988, w: 0.96734387}
   m_LocalPosition: {x: -16.496628, y: 72.2, z: -10.493259}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5346,17 +5364,17 @@ PrefabInstance:
     - target: {fileID: 7347973501421082311, guid: c8cfbb5698e4d8c4e83cdb06c53957f4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 40.3
+      value: 148.1
       objectReference: {fileID: 0}
     - target: {fileID: 7347973501421082311, guid: c8cfbb5698e4d8c4e83cdb06c53957f4,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 28
+      value: 70.3
       objectReference: {fileID: 0}
     - target: {fileID: 7347973501421082311, guid: c8cfbb5698e4d8c4e83cdb06c53957f4,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 16.5
+      value: 16.4
       objectReference: {fileID: 0}
     - target: {fileID: 7347973501421082311, guid: c8cfbb5698e4d8c4e83cdb06c53957f4,
         type: 3}
@@ -6091,7 +6109,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.9238477, y: 1}
+    m_SensorSize: {x: 1.9354838, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -6445,6 +6463,8 @@ MonoBehaviour:
   distanceFromTarget: 0
   minDistanceFromTarget: 20
   isRunning: 0
+  naveMeshAgent: {fileID: 0}
+  wanderscript: {fileID: 0}
 --- !u!143 &1935429040
 CharacterController:
   m_ObjectHideFlags: 0

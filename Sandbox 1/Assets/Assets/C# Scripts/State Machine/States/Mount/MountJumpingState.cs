@@ -17,6 +17,7 @@ public class MountJumpingState : MountState
     public override void Enter()
     {
         //Initial Jump
+        movementComponent.isMoving = false;
         movementComponent.AddJumpVelocity();
         justEntered = true;
         base.Enter();

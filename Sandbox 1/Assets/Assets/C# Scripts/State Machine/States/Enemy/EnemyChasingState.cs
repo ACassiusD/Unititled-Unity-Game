@@ -8,6 +8,13 @@ public class EnemyChasingState : EnemyState
 
     public override void Enter()
     {
+        movementComponent.enabled = true;
+        movementComponent.naveMeshAgent.enabled = false;
+        if (movementComponent.wanderscript != null)
+        {
+            movementComponent.wanderscript.enabled = false;
+        }
+        movementComponent.isMoving = true;
         movementComponent.setTarget(EnemyMovementComponent.playerScript.transform);
         Debug.Log("Entered Enemy Chasing state");
         base.Enter();
@@ -21,8 +28,10 @@ public class EnemyChasingState : EnemyState
     //Do state stuff
     public override void HandleInput()
     {
+        movementComponent.ZeroYVelocityIfGrounded();
+        movementComponent.addGravity();
+        movementComponent.AddVelocityAndMove();
         movementComponent.MoveTowardsTarget();
-        base.HandleInput();
     }
 
     //Get next state

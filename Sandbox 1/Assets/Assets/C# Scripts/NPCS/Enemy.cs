@@ -35,7 +35,13 @@ public class Enemy : MonoBehaviour, IDamageable
         if (!healthBarScript)
             Debug.LogError(this.name + " is missing a HealthBarScript!");
     }
-
+    public void Update()
+    {
+        if (moveComponent.isMoving)
+        {
+            updateAnimations();
+        }
+    }
     public int receiveDamage(Dictionary<string, int> dmgVals)
     {
         var damageAmount = dmgVals["damage"];
@@ -85,20 +91,19 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         enemyAnimator.ClearAnimation();
 
-        if (moveComponent.isBeingControlled)
+        if (moveComponent.isMoving)
         {
-            if (moveComponent.isMoving)
+            Debug.Log(this.moveComponent.stateMachine.CurrentState);
+            //Running
+            if (moveComponent.isRunning)
             {
-                //Running
-                if (moveComponent.isRunning)
-                {
-                    enemyAnimator.setRunningAnimation();
-                }
-                else//walking
-                {
-                    enemyAnimator.setWalkingAnimation();
-                }
+                enemyAnimator.setRunningAnimation();
+            }
+            else//walking
+            {
+                enemyAnimator.setWalkingAnimation();
             }
         }
     }
+    
 }

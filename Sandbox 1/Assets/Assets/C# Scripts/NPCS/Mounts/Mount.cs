@@ -8,7 +8,6 @@ public class Mount : MonoBehaviour, InteractableInterface //Mount class contains
     MountAnimatorComponent mountAnimator;   
     BetaCharacter playerScript;
     public MountMoveComponent moveComponent;
-    NavMeshAgent naveMeshAgent;
     public float ridingHeight = 5.4f;
     protected float walkAnimationSpeed = 1;
     protected float runAnimaitonSpeed = 2;
@@ -18,7 +17,6 @@ public class Mount : MonoBehaviour, InteractableInterface //Mount class contains
     public void onCreate()
     {
         playerScript = PlayerManager.Instance.getPlayerScript();
-        naveMeshAgent = this.GetComponent<NavMeshAgent>();
     }
 
     protected virtual void Start()
@@ -88,7 +86,7 @@ public class Mount : MonoBehaviour, InteractableInterface //Mount class contains
             moveComponent.wanderscript.enabled = false;
         }
         moveComponent.enabled = true;
-        naveMeshAgent.enabled = false;
+        moveComponent.naveMeshAgent.enabled = false;
         gameObject.layer = 0;
 
         moveComponent.isBeingControlled = true;
@@ -102,7 +100,7 @@ public class Mount : MonoBehaviour, InteractableInterface //Mount class contains
         playerScript.setIsRiding(false);
         gameObject.layer = 8;
 
-        naveMeshAgent.enabled = true;
+        moveComponent.naveMeshAgent.enabled = true;
         moveComponent.isBeingControlled = false;
         playerScript.DisMount(dismountDistance);
         isWandering = true;
@@ -118,7 +116,7 @@ public class Mount : MonoBehaviour, InteractableInterface //Mount class contains
             moveComponent.wanderscript.enabled = true;
         }
         moveComponent.enabled = false;
-        naveMeshAgent.enabled = true;
+        moveComponent.naveMeshAgent.enabled = true;
     }
 
     public virtual void attack()

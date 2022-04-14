@@ -13,6 +13,7 @@ public class MountStandingState : MountState
     //ENTER LOGIC
     public override void Enter()
     {
+        movementComponent.isMoving = false;
         Debug.Log("Entered MOUNT Standing state");
         base.Enter();
     }

@@ -10,6 +10,15 @@ public class EnemyStandingState : EnemyState
 
     public override void Enter()
     {
+        if (movementComponent.wanderscript != null)
+        {
+            movementComponent.wanderscript.resetOrigin();
+            movementComponent.wanderscript.UpdateAI();
+            movementComponent.wanderscript.enabled = true;
+        }
+        movementComponent.naveMeshAgent.enabled = true;
+        movementComponent.isBeingControlled = false;
+        movementComponent.isMoving = false;
         Debug.Log("Entered ENEMY Standing state");
         base.Enter();
     }
@@ -20,7 +29,9 @@ public class EnemyStandingState : EnemyState
 
     public override void HandleInput() //Do stuff
     {
-        //stand
+                movementComponent.ZeroYVelocityIfGrounded();
+        movementComponent.addGravity();
+        movementComponent.AddVelocityAndMove();
     }
 
     //Get next state
