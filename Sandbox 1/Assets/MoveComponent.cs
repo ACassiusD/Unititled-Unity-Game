@@ -90,30 +90,6 @@ public abstract class MoveComponent : MonoBehaviour
         this.target = target;
     }
 
-    //Should be moved to entity script
-    public void MoveTowardsTarget()
-    {
-        Vector3 directionTowardsPlayer = (target.transform.position - this.transform.position).normalized;
-        float targetAngle = Mathf.Atan2(directionTowardsPlayer.x, directionTowardsPlayer.z) * Mathf.Rad2Deg;
-        float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref rotationSpeed, turnSmoothTime);
-
-        transform.rotation = Quaternion.Euler(0f, angle, 0f);
-        //this.transform.LookAt(this.target.transform);
-        distanceFromTarget = Vector3.Distance(this.target.transform.position, this.transform.position);
-
-        //Check if enemy is close enough to the player
-        if (distanceFromTarget >= minDistanceFromTarget)
-        {
-            this.isMoving = true;
-            Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-            characterController.Move(moveDir.normalized * moveSpeed * Time.deltaTime);
-        }
-        else
-        {
-            this.isMoving = false;
-        }
-    }
-
     public float getDistanceFromTarget()
     {
         distanceFromTarget = Vector3.Distance(this.target.position, characterController.transform.position);

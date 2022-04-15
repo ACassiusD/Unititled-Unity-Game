@@ -8,7 +8,7 @@ public class EnemyChasingState : EnemyState
 
     public override void Enter()
     {
-        movementComponent.enabled = true;
+        // Debug.Log("Entered Enemy Chasing state");
         movementComponent.naveMeshAgent.enabled = false;
         if (movementComponent.wanderscript != null)
         {
@@ -16,7 +16,6 @@ public class EnemyChasingState : EnemyState
         }
         movementComponent.isMoving = true;
         movementComponent.setTarget(EnemyMovementComponent.playerScript.transform);
-        Debug.Log("Entered Enemy Chasing state");
         base.Enter();
     }
 
@@ -25,7 +24,6 @@ public class EnemyChasingState : EnemyState
         base.Exit();
     }
 
-    //Do state stuff
     public override void HandleInput()
     {
         movementComponent.ZeroYVelocityIfGrounded();

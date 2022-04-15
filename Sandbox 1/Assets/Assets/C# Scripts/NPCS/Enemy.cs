@@ -7,21 +7,21 @@ using Polyperfect.Common;
 
 public class Enemy : MonoBehaviour, IDamageable
 {
-    EnemyMovementComponent moveComponent;
-    EnemyAnimatorComponent enemyAnimator;
-    HealthBar healthBarScript;
-    Animal_WanderScript wanderscript;
-    IdleState[] idleStates;
-    MovementState[] movementStates;
-    AIState[] attackingStates;
-    private AIState[] deathStates;
-    protected float walkAnimationSpeed = 1;
-    protected float runAnimaitonSpeed = 2;
-    public float distanceToPlayer = 0;
-    public bool isWandering = false;
-    public int currentHealth { get; set; } = 50;
-    public int maxHealth { get; set; } = 100;
-    public bool inHitStun { get; set; } = false;
+    public EnemyMovementComponent  moveComponent;
+    public EnemyAnimatorComponent  enemyAnimator;
+    HealthBar               healthBarScript;
+    Animal_WanderScript     wanderscript;
+    IdleState[]             idleStates;
+    MovementState[]         movementStates;
+    AIState[]               attackingStates;
+    private AIState[]       deathStates;
+    protected float         walkAnimationSpeed = 1;
+    protected float         runAnimaitonSpeed = 2;
+    public float            distanceToPlayer = 0;
+    public bool             isWandering = false;
+    public int              currentHealth { get; set; } = 50;
+    public int              maxHealth { get; set; } = 100;
+    public bool             inHitStun { get; set; } = false;
 
     protected virtual void Start()
     {
@@ -35,13 +35,7 @@ public class Enemy : MonoBehaviour, IDamageable
         if (!healthBarScript)
             Debug.LogError(this.name + " is missing a HealthBarScript!");
     }
-    public void Update()
-    {
-        if (moveComponent.isMoving)
-        {
-            updateAnimations();
-        }
-    }
+
     public int receiveDamage(Dictionary<string, int> dmgVals)
     {
         var damageAmount = dmgVals["damage"];
@@ -87,23 +81,4 @@ public class Enemy : MonoBehaviour, IDamageable
         Destroy(gameObject);
     }
 
-    private void updateAnimations()
-    {
-        enemyAnimator.ClearAnimation();
-
-        if (moveComponent.isMoving)
-        {
-            Debug.Log(this.moveComponent.stateMachine.CurrentState);
-            //Running
-            if (moveComponent.isRunning)
-            {
-                enemyAnimator.setRunningAnimation();
-            }
-            else//walking
-            {
-                enemyAnimator.setWalkingAnimation();
-            }
-        }
-    }
-    
 }

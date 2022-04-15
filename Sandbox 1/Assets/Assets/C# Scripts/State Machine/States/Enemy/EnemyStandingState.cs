@@ -12,9 +12,11 @@ public class EnemyStandingState : EnemyState
     {
         if (movementComponent.wanderscript != null)
         {
+            movementComponent.wanderscript.enabled = true;
+            movementComponent.getEnemyScript().enemyAnimator.setIdleAnimation();
+            movementComponent.getEnemyScript().enemyAnimator.ClearAnimation();
             movementComponent.wanderscript.resetOrigin();
             movementComponent.wanderscript.UpdateAI();
-            movementComponent.wanderscript.enabled = true;
         }
         movementComponent.naveMeshAgent.enabled = true;
         movementComponent.isBeingControlled = false;
@@ -23,18 +25,10 @@ public class EnemyStandingState : EnemyState
         base.Enter();
     }
 
-    public override void Exit()
+    public override void HandleInput()
     {
     }
 
-    public override void HandleInput() //Do stuff
-    {
-                movementComponent.ZeroYVelocityIfGrounded();
-        movementComponent.addGravity();
-        movementComponent.AddVelocityAndMove();
-    }
-
-    //Get next state
     public override void LogicUpdate()
     {
         float distance = Vector3.Distance(movementComponent.getPlayerScript().transform.position , movementComponent.characterController.transform.position);
@@ -45,5 +39,9 @@ public class EnemyStandingState : EnemyState
         }
 
         base.LogicUpdate();
+    }
+
+    public override void Exit()
+    {
     }
 }

@@ -77,6 +77,7 @@ public class MountAnimatorComponent : MonoBehaviour
 
     public void ClearAnimation()
     {
+        mountAnimator.speed = 1; 
         foreach (var item in this.idleStates)
             SetAnimationBool(item.animationBool, false, 0);
         foreach (var item in this.movementStates)
