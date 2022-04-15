@@ -5,7 +5,7 @@ using UnityEngine.AI;
 public class Mount : MonoBehaviour, InteractableInterface //Mount class contains a movement component to move, and mount specific functions and params. 
 {
     //TODO: CREATE MOUNTMoveComponent and states, use animatior to update them.
-    MountAnimatorComponent mountAnimator;   
+    public MountAnimatorComponent mountAnimator;   
     BetaCharacter playerScript;
     public MountMoveComponent moveComponent;
     public float ridingHeight = 5.4f;

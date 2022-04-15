@@ -1132,7 +1132,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.9472617, y: 1}
+    m_SensorSize: {x: 1.9238477, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1376,6 +1376,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 233a17a2162e9674e9815095bf0a25eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveComponent: {fileID: 0}
+  enemyAnimator: {fileID: 0}
   distanceToPlayer: 0
   isWandering: 0
 --- !u!4 &477605389 stripped
@@ -1413,6 +1415,7 @@ MonoBehaviour:
   isRunning: 0
   naveMeshAgent: {fileID: 0}
   wanderscript: {fileID: 0}
+  enemyScript: {fileID: 0}
 --- !u!114 &477605391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1650,6 +1653,7 @@ MonoBehaviour:
   mountWalkSpeed: 50
   mountRunSpeed: 90
   naveMeshAgent: {fileID: 0}
+  mountScript: {fileID: 0}
 --- !u!114 &540466930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2217,6 +2221,21 @@ PrefabInstance:
     - target: {fileID: 5542922202115304405, guid: 96ffacfdf49d13740817937939a05cf3,
         type: 3}
       propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5545777400291950455, guid: 96ffacfdf49d13740817937939a05cf3,
+        type: 3}
+      propertyPath: m_Height
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5545777400291950455, guid: 96ffacfdf49d13740817937939a05cf3,
+        type: 3}
+      propertyPath: m_Radius
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5545777400291950455, guid: 96ffacfdf49d13740817937939a05cf3,
+        type: 3}
+      propertyPath: m_Center.y
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5552828718875073143, guid: 96ffacfdf49d13740817937939a05cf3,
@@ -2978,7 +2997,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.9472617, y: 1}
+    m_SensorSize: {x: 1.9238477, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -2994,7 +3013,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 789776462}
-  m_LocalRotation: {x: 0.17801602, y: 0.17745353, z: -0.03265599, w: 0.96734387}
+  m_LocalRotation: {x: 0.17801602, y: 0.17745356, z: -0.032655995, w: 0.96734387}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3237,7 +3256,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.9472617, y: 1}
+    m_SensorSize: {x: 1.9238477, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -3253,7 +3272,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 833920358}
-  m_LocalRotation: {x: 0.13055456, y: 0.17883681, z: -0.02394947, w: 0.9748843}
+  m_LocalRotation: {x: 0.13055457, y: 0.17883678, z: -0.023949467, w: 0.9748843}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3648,7 +3667,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 989726223}
-  m_LocalRotation: {x: 0.178016, y: 0.17745353, z: -0.032655988, w: 0.96734387}
+  m_LocalRotation: {x: 0.178016, y: 0.17745358, z: -0.03265598, w: 0.96734387}
   m_LocalPosition: {x: -16.496628, y: 72.2, z: -10.493259}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6109,7 +6128,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.9472617, y: 1}
+    m_SensorSize: {x: 1.9238477, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -6125,7 +6144,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1844134826}
-  m_LocalRotation: {x: 0.22598201, y: 0.17560653, z: -0.04145508, w: 0.9572753}
+  m_LocalRotation: {x: 0.225982, y: 0.17560655, z: -0.04145508, w: 0.9572753}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6465,6 +6484,7 @@ MonoBehaviour:
   isRunning: 0
   naveMeshAgent: {fileID: 0}
   wanderscript: {fileID: 0}
+  enemyScript: {fileID: 0}
 --- !u!143 &1935429040
 CharacterController:
   m_ObjectHideFlags: 0

@@ -13,6 +13,7 @@ public class MountMoveComponent : MoveComponent
     public float mountWalkSpeed = 20;
     public float mountRunSpeed = 100;
     public NavMeshAgent naveMeshAgent;
+    public Mount mountScript;
 
 
     private void Start()
@@ -70,6 +71,7 @@ public class MountMoveComponent : MoveComponent
             //reference for more information - https://www.youtube.com/watch?v=4HpC--2iowE
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
             characterController.Move(moveDir.normalized * moveSpeed * Time.deltaTime);
+            
         }
         else
         {
@@ -96,5 +98,14 @@ public class MountMoveComponent : MoveComponent
         {
             moveSpeed = mountWalkSpeed;
         }
+    }
+
+    public Mount getMountScript()
+    {
+        if (mountScript == null)
+        {
+            mountScript = this.GetComponent<Mount>();
+        }
+        return mountScript;
     }
 }
