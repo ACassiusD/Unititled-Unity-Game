@@ -33,6 +33,11 @@ public class EnemyStandingState : EnemyState
     {
         float distance = Vector3.Distance(movementComponent.getPlayerScript().transform.position , movementComponent.characterController.transform.position);
 
+        if (movementComponent.inHitStun && movementComponent.knockBackForce > 0)
+        {
+            stateMachine.ChangeState(movementComponent.knockback);
+        }
+
         if (distance < 100)
         {
             stateMachine.ChangeState(movementComponent.chasing);

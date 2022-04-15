@@ -64,15 +64,10 @@ public class InteractorComponent : MonoBehaviour
     //Cast ray and return weather a object was hit
     private bool castRay()
     {
-        origin = this.transform.position;
-        direction = this.transform.TransformDirection(Vector3.forward);
-        //direction.y += yOffset; //Looks down
         bool isObjectHit = false;
         hitinfo = new RaycastHit();
-
-
-        //Check if the ray hit something, store it in hitinfo
-        if (Physics.Raycast(origin, direction, out hitinfo, distance, 1 << 8))
+        var cam = playerScript.movementComponent.cam;
+        if (Physics.Raycast(cam.position, cam.transform.forward, out hitinfo, distance, 1 << 8))
         {
             isObjectHit = true;
         }
@@ -164,7 +159,9 @@ public class InteractorComponent : MonoBehaviour
 
     private void debugRay()
     {
-        Debug.DrawRay(origin, direction * distance, Color.red);
+        var cam = playerScript.movementComponent.cam;
+        Debug.DrawRay(cam.position, cam.transform.forward * distance, Color.red);
     }
+
 }
 

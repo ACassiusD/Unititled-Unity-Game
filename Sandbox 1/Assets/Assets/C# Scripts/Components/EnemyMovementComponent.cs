@@ -7,10 +7,10 @@ public class EnemyMovementComponent : MoveComponent
 {
     public EnemyStandingState standing;
     public EnemyChasingState chasing;
+    public EnemyKnockbackState knockback;
     public NavMeshAgent naveMeshAgent;
     public Animal_WanderScript wanderscript;
     public Enemy enemyScript;
-
     void Start()
     {
         playerScript = PlayerManager.Instance.getPlayerScript();
@@ -18,6 +18,7 @@ public class EnemyMovementComponent : MoveComponent
         getWanderScript();
         standing = new EnemyStandingState(stateMachine, this);
         chasing = new EnemyChasingState(stateMachine, this);
+        knockback = new EnemyKnockbackState(stateMachine, this);
 
         //Initialize state machine.
         stateMachine.Initialize(standing);

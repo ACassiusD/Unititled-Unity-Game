@@ -35,6 +35,11 @@ public class EnemyChasingState : EnemyState
     //Get next state
     public override void LogicUpdate()
     {
+        if (movementComponent.inHitStun && movementComponent.knockBackForce > 0)
+        {
+            stateMachine.ChangeState(movementComponent.knockback);
+        }
+
         if (movementComponent.IsInRangeOfPlayer() == false)
         {
             stateMachine.ChangeState(movementComponent.standing);

@@ -17,6 +17,11 @@ public class PlayerManager : MonoBehaviour {
     // Use this for initialization
     void Awake () {
         Debug.Log("Initializing shared player script");
+
+        QualitySettings.vSyncCount = 0;  // VSync must be disabled or disable in quality manually 
+        Application.targetFrameRate = 144;
+
+        Cursor.visible = false;
         GameObject player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<BetaCharacter>();
         playerInventory = player.GetComponent<InventoryManager>();
@@ -36,9 +41,18 @@ public class PlayerManager : MonoBehaviour {
     {
         return playerScript;
     }
+
     public string getPlayerHeldItem()
     {
         return playerInventory.heldObject;
+    }
+    void OnApplicationFocus(bool ApplicationIsBack)
+    {
+        if (ApplicationIsBack == true)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
     }
 
 }

@@ -24,6 +24,9 @@ public abstract class MoveComponent : MonoBehaviour
     public float distanceFromTarget;
     public float minDistanceFromTarget = 20;
     public bool isRunning = false;
+    public bool inHitStun = false;
+    public int knockBackForce = 0;
+    public float stunTimer = 0f;
 
     void Awake()
     {
@@ -115,5 +118,20 @@ public abstract class MoveComponent : MonoBehaviour
             playerScript = PlayerManager.Instance.getPlayerScript();
         }
         return playerScript;
+    }
+
+    public void Knockback()
+    {
+        Vector3 direction = this.transform.forward * -1; //Need to make this direction
+        Vector3 up = this.transform.up;
+        up.Normalize();
+        direction.Normalize();
+        direction.y = up.y;
+        var impact = Vector3.zero;
+        impact += direction.normalized * knockBackForce;
+
+        //Apply vector to object
+        characterController.Move(impact * Time.deltaTime);
+        this.knockBackForce = 0;
     }
 }

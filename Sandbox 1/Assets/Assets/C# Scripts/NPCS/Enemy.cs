@@ -15,19 +15,22 @@ public class Enemy : MonoBehaviour, IDamageable
     MovementState[]         movementStates;
     AIState[]               attackingStates;
     private AIState[]       deathStates;
-    protected float         walkAnimationSpeed = 1;
-    protected float         runAnimaitonSpeed = 2;
+    public float            walkAnimationSpeed = 1;
+    public float             runAnimaitonSpeed = 2;
     public float            distanceToPlayer = 0;
     public bool             isWandering = false;
-    public int              currentHealth { get; set; } = 50;
-    public int              maxHealth { get; set; } = 100;
-    public bool             inHitStun { get; set; } = false;
+    //Move to a StatPage class
+    public int              currentHealth = 90;
+    public int              maxHealth  = 100;
 
-    protected virtual void Start()
+    void Awake()
     {
         enemyAnimator = this.GetComponent<EnemyAnimatorComponent>();
         healthBarScript = this.GetComponentInChildren<HealthBar>();
         moveComponent = this.GetComponent<EnemyMovementComponent>();
+    }
+    protected virtual void Start()
+    {
         if (!moveComponent)
             Debug.LogError(this.name + " is missing a EnemyMoveComponent!");
         if (!enemyAnimator)
@@ -38,8 +41,8 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public int receiveDamage(Dictionary<string, int> dmgVals)
     {
-        var damageAmount = dmgVals["damage"];
-        var knockBackForce = dmgVals["knockback"];
+        int damageAmount = dmgVals["damage"];
+        int knockBackForce = dmgVals["knockback"];
 
         currentHealth -= damageAmount;
         updateHealthBar();
@@ -48,25 +51,10 @@ public class Enemy : MonoBehaviour, IDamageable
             feint();
             return 0;
         }
-        Knockback(knockBackForce);
+        moveComponent.inHitStun = true;
+        moveComponent.knockBackForce = knockBackForce;
+        //Knockback(knockBackForce);
         return currentHealth;
-    }
-
-    public void Knockback(float knockBackForce)
-    {
-        inHitStun = true;
-
-        //Add Impact
-        Vector3 direction = this.transform.forward * -1; //Need to make this direction
-        Vector3 up = this.transform.up;
-        up.Normalize();
-        direction.Normalize();
-        direction.y = up.y;
-        var impact = Vector3.zero;
-        impact += direction.normalized * knockBackForce;
-
-        //Apply vector to object
-        moveComponent.characterController.Move(impact * Time.deltaTime);
     }
 
     //Update floating healthbar in world space.

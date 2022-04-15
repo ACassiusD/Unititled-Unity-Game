@@ -22,9 +22,6 @@ public class BetaCharacter : MonoBehaviour, IDamageable
             Debug.LogError(this.name + " is missing a MoveComponent!");
         if (!healthBarScript)
             Debug.LogError(this.name + " is missing a HealthBarScript!");
-
-        Application.targetFrameRate = 60;
-        Cursor.visible = false;
     }
 
     public void onCreate()

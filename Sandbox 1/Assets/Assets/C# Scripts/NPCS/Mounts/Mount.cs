@@ -119,20 +119,25 @@ public class Mount : MonoBehaviour, InteractableInterface //Mount class contains
         moveComponent.naveMeshAgent.enabled = true;
     }
 
-    public virtual void attack()
+    public virtual void basicAttack()
     {
-        Debug.Log(this.name + " Attacks!");
+        Debug.Log(this.name + " Basic Attacks!");
+    }
+
+    public virtual void specialAttack()
+    {
+        Debug.Log(this.name + " Special Attacks!!!");
     }
 
     // Gets commands from player and responds
     public void getCommandUpdates()
     {
         bool attackKeyCaptured = Input.GetKeyDown("q");
-        if (attackKeyCaptured)
-        {
-            attack();
+        if (attackKeyCaptured){
+            basicAttack();
+        }
+        if (Input.GetMouseButtonDown(1)){
+            specialAttack();
         }
     }
-
-
 }

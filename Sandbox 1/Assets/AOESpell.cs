@@ -6,13 +6,22 @@ public class AOESpell : MonoBehaviour
 {
     public Collider[] attackHitboxes;
     public bool isActiveDamage = false;
+    public float timer = 0.0f;
+    public float cooldown = 0.5f;
+    public int damage = 5;
 
+    private void Start()
+    {
+        timer = cooldown;
+    }
 
     //remove logic from Update for performance reasons
     void Update()
     {
-        if (isActiveDamage)
+        timer -= Time.deltaTime;
+        if (isActiveDamage && timer <= 0)
         {
+            timer = cooldown;
             string debugMsg = "";
             int hitCount = 0;
             var hitboxCollider = attackHitboxes[0];
@@ -21,14 +30,13 @@ public class AOESpell : MonoBehaviour
             {
                 int[] dmgValues;
                 var attackValues = new Dictionary<string, int>();
-                attackValues.Add("damage", 2);
+                attackValues.Add("damage", damage);
                 attackValues.Add("knockback", 3000);
                 hitCount++;
                 c.SendMessageUpwards("receiveDamage", attackValues);
                 debugMsg += ("|Hit " + c.name);
             }
             Debug.Log(this.name + " Attacks - Hit (" + hitCount + ") " + debugMsg);
-           // isActiveDamage = false;
         }
         
     }

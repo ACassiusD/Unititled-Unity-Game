@@ -16,7 +16,7 @@ public class Spider : Mount
         base.Start();
     }
 
-    public override void attack()
+    public override void basicAttack()
     {
         string debugMsg = "";
         int hitCount = 0;
@@ -40,5 +40,35 @@ public class Spider : Mount
             }
         }
         Debug.Log(this.name + " Attacks - Hit (" + hitCount + ") " + debugMsg);
+        base.basicAttack();
+    }
+
+    public override void specialAttack()
+    {
+        Debug.Log("overrided");
+        float range = 5000;
+        var cam = moveComponent.getPlayerScript().movementComponent.cam;
+        RaycastHit specialAttackHit;
+        Debug.DrawRay(cam.position, cam.transform.forward * range, Color.red);
+        if (Physics.Raycast(cam.position, cam.transform.forward, out specialAttackHit, range, 1 << 8))
+        {
+            var col = specialAttackHit.collider;
+            Debug.Log("HIT ENEMY" + specialAttackHit.transform.name);
+            if(col != null)
+            {
+                
+                if (col.tag == "Enemy")
+                {
+                    int[] dmgValues;
+                    var attackValues = new Dictionary<string, int>();
+                    attackValues.Add("damage", 10);
+                    attackValues.Add("knockback", 3000);
+                    col.SendMessageUpwards("receiveDamage", attackValues);
+                    Debug.Log ("|Hit " + col.name);
+                }
+            }
+
+        }
+        base.specialAttack();
     }
 }
