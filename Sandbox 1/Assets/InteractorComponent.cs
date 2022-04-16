@@ -28,17 +28,7 @@ public class InteractorComponent : MonoBehaviour
 
     private void Update()
     {
-        bool capturedKeyPress = Input.GetKeyDown("e") || Input.GetMouseButtonDown(0);
-        if (capturedKeyPress)
-        {
-            if (playerScript)
-            {
-                if (playerScript.movementComponent.activeMount != null)
-                {
-                    playerScript.movementComponent.activeMount.dismount();
-                }
-            }
-        }
+        bool capturedKeyPress = Input.GetMouseButtonDown(1);
         clearActiveScript();
         isObjectHit = castRay();
         if (isObjectHit)

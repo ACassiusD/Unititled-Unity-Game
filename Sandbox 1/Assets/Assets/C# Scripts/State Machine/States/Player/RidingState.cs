@@ -37,7 +37,7 @@ public class RidingState : PlayerState
 
     public override void LogicUpdate()
     {
-        bool capturedKeyPress = Input.GetKeyDown("e") || Input.GetMouseButtonDown(0);
+        bool capturedKeyPress = Input.GetKeyDown(KeyCode.LeftControl);
         if (capturedKeyPress)
         {
             movementComponent.isRiding = false;

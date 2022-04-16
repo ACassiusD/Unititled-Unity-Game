@@ -9,6 +9,7 @@ public class AOESpell : MonoBehaviour
     public float timer = 0.0f;
     public float cooldown = 0.5f;
     public int damage = 5;
+    public bool debug = false;
 
     private void Start()
     {
@@ -36,8 +37,10 @@ public class AOESpell : MonoBehaviour
                 c.SendMessageUpwards("receiveDamage", attackValues);
                 debugMsg += ("|Hit " + c.name);
             }
-            Debug.Log(this.name + " Attacks - Hit (" + hitCount + ") " + debugMsg);
+            if (debug)
+            {
+                Debug.Log(this.name + " Attacks - Hit (" + hitCount + ") " + debugMsg);
+            }
         }
-        
     }
 }
