@@ -38,7 +38,7 @@ public class EnemyStandingState : EnemyState
             stateMachine.ChangeState(movementComponent.knockback);
         }
 
-        if (distance < 100)
+        if (distance < movementComponent.chaseTriggerDistance)
         {
             stateMachine.ChangeState(movementComponent.chasing);
         }

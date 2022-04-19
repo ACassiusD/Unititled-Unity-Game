@@ -29,8 +29,8 @@ TagManager:
   - Interactive
   - Terrain
   - Player
-  - 
-  - 
+  - player_projectile
+  - friendly
   - 
   - 
   - 

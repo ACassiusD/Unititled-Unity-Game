@@ -7,7 +7,7 @@ public class MountMoveComponent : MoveComponent
     public MountStandingState standing;
     public MountWanderingState wandering;
     public MountJumpingState jumping;
-    Vector3 velocity = new Vector3(); //Velocity/gravity force will increase when character is falling, until they become grounded.
+    Vector3 velocity = new Vector3(); //gravity force
     public Transform cam;
     public Animal_WanderScript wanderscript;
     public float mountWalkSpeed = 20;
@@ -18,15 +18,16 @@ public class MountMoveComponent : MoveComponent
 
     private void Start()
     {
-        updateMoveSpeed();
+        isEnabled = true;
+        isBeingControlled = false;
         wanderscript = this.GetComponent<Animal_WanderScript>();
         naveMeshAgent = this.GetComponent<NavMeshAgent>();
-        isBeingControlled = false;
         wandering = new MountWanderingState(stateMachine, this);
-        standing = new MountStandingState(stateMachine, this); //Mount can be controlled by inputs if being controlled. or wander if not being controlled
+        standing  = new MountStandingState(stateMachine, this); 
         jumping = new MountJumpingState(stateMachine, this);
-
-        //Mount can jump if being controlled
+        
+        updateMoveSpeed();
+        
         if (isBeingControlled)
         {
             stateMachine.Initialize(standing);
@@ -37,10 +38,18 @@ public class MountMoveComponent : MoveComponent
         }
     }
 
+    public void ResetMount()
+    {
+        this.Start();
+    }
+
     protected void Update()
     {
-        toggleRun();
-        base.Update();
+        if (isEnabled)
+        {
+            toggleRun();
+            base.Update();
+        }
     }
 
     public void MountJump() {

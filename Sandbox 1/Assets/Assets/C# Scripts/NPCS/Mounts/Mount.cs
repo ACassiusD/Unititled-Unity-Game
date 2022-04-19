@@ -81,13 +81,15 @@ public class Mount : MonoBehaviour, InteractableInterface //Mount class contains
 
     public void mount()
     {
-        if(moveComponent.wanderscript != null)
+        playerScript.setIsRiding(true);
+        if (moveComponent.wanderscript != null)
         {
             moveComponent.wanderscript.enabled = false;
         }
-        moveComponent.enabled = true;
+        moveComponent.isEnabled = true;
+
         moveComponent.naveMeshAgent.enabled = false;
-        gameObject.layer = 0;
+        gameObject.layer = 12;
 
         moveComponent.isBeingControlled = true;
         playerScript.setActiveMount(this);
@@ -115,7 +117,7 @@ public class Mount : MonoBehaviour, InteractableInterface //Mount class contains
             moveComponent.wanderscript.UpdateAI();
             moveComponent.wanderscript.enabled = true;
         }
-        moveComponent.enabled = false;
+        moveComponent.isEnabled = false;
         moveComponent.naveMeshAgent.enabled = true;
     }
 

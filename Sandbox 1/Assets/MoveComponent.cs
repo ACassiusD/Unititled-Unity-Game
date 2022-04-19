@@ -27,6 +27,8 @@ public abstract class MoveComponent : MonoBehaviour
     public bool inHitStun = false;
     public int knockBackForce = 0;
     public float stunTimer = 0f;
+    public bool isEnabled = true;
+    public int chaseTriggerDistance = 100;
 
     void Awake()
     {
