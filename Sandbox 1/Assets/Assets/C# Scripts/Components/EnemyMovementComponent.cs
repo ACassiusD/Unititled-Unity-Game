@@ -7,7 +7,7 @@ public class EnemyMovementComponent : MoveComponent
 {
     public EnemyStandingState standing;
     public EnemyChasingState chasing;
-    public EnemyKnockbackState knockback;
+    public EnemyKnockbackState   knockback;
     public NavMeshAgent naveMeshAgent;
     public Animal_WanderScript wanderscript;
     public Enemy enemyScript;

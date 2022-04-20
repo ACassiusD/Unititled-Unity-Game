@@ -43,9 +43,10 @@ public class EnemyStandingState : EnemyState
             stateMachine.ChangeState(movementComponent.chasing);
         }
 
-        if(movementComponent.getEnemyScript().attacked && distance < movementComponent.exitChaseDistance)
+        if(movementComponent.getEnemyScript().attacked && distance <= movementComponent.exitChaseDistance)
         {
             stateMachine.ChangeState(movementComponent.chasing);
+            movementComponent.getEnemyScript().resetAttackedState();
         }
 
         base.LogicUpdate();

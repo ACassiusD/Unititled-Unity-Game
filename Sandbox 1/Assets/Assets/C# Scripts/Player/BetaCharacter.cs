@@ -10,9 +10,9 @@ public class BetaCharacter : MonoBehaviour, IDamageable
     Mount currentMount;
     public PlayerMovementComponent movementComponent;
     HealthBar healthBarScript;
-    public int currentHealth { get; set; } = 500;
-    public int maxHealth { get; set; } = 500;
-    public bool inHitStun { get; set; } = false;
+    public int currentHealth = 500;
+    public int maxHealth = 500;
+    public bool inHitStun = false;
     public bool matchSurfaceRotation = true;
     public int surfaceRotationSpeed = 20;
 

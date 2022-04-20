@@ -8,39 +8,58 @@ public class AOESpell : MonoBehaviour
     public bool isActiveDamage = false;
     public float timer = 0.0f;
     public float cooldown = 0.5f;
+    public float despawnTimer = 0.5f;
     public int damage = 5;
     public bool debug = false;
+    public bool isStatic = false;
 
     private void Start()
     {
-        timer = cooldown;
+        timer = 0;
     }
 
     //remove logic from Update for performance reasons
     void Update()
     {
-        timer -= Time.deltaTime;
+        UpdateTimers();
+        DamageCheck();
+        DespawnCheck();
+    }
+
+    void DamageCheck()
+    {
         if (isActiveDamage && timer <= 0)
         {
-            timer = cooldown;
             string debugMsg = "";
             int hitCount = 0;
             var hitboxCollider = attackHitboxes[0];
             var cols = Physics.OverlapBox(hitboxCollider.bounds.center, hitboxCollider.bounds.extents, hitboxCollider.transform.rotation, LayerMask.GetMask("Player"));
             foreach (Collider c in cols)
             {
+                var script = c.GetComponent<BetaCharacter>();
                 int[] dmgValues;
-                var attackValues = new Dictionary<string, int>();
-                attackValues.Add("damage", damage);
-                attackValues.Add("knockback", 3000);
                 hitCount++;
-                c.SendMessageUpwards("receiveDamage", attackValues);
+                script.receiveDamage(damage, 3000);
                 debugMsg += ("|Hit " + c.name);
             }
             if (debug)
             {
                 Debug.Log(this.name + " Attacks - Hit (" + hitCount + ") " + debugMsg);
             }
+            timer = cooldown; 
+        }
+    }
+    void UpdateTimers()
+    {
+        timer -= Time.deltaTime;
+        despawnTimer -= Time.deltaTime;
+    }
+
+    void DespawnCheck(){
+        if (isStatic) return;
+        if (despawnTimer <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 }

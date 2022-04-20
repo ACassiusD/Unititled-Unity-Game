@@ -23,6 +23,8 @@ public class Enemy : MonoBehaviour, IDamageable
     public int currentHealth = 90;
     public int maxHealth = 100;
     public bool attacked = false;
+    protected GameObject activeAOEObject = null;
+    public GameObject aoeObject;
 
     void Awake()
     {
@@ -33,7 +35,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     void Update()
     {
-        resetAttackedState();
+        testFunction();
     }
 
     protected virtual void Start()
@@ -79,4 +81,12 @@ public class Enemy : MonoBehaviour, IDamageable
         attacked = false;
     }
 
+    public void testFunction()
+    {
+        if((aoeObject != null) && (activeAOEObject == null) && (Input.GetKeyDown(KeyCode.R)))
+        {
+            activeAOEObject = Instantiate(aoeObject);
+            activeAOEObject.transform.position = this.transform.position;
+        }
+    }
 }
