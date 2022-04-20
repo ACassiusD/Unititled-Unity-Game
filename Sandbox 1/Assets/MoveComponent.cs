@@ -26,9 +26,11 @@ public abstract class MoveComponent : MonoBehaviour
     public bool isRunning = false;
     public bool inHitStun = false;
     public int knockBackForce = 0;
+    public Vector3 knockBackDirection;
     public float stunTimer = 0f;
     public bool isEnabled = true;
-    public int chaseTriggerDistance = 100;
+    public int enterChaseDistance = 100;
+    public int exitChaseDistance = 160;
 
     void Awake()
     {
@@ -97,13 +99,13 @@ public abstract class MoveComponent : MonoBehaviour
 
     public float getDistanceFromTarget()
     {
-        distanceFromTarget = Vector3.Distance(this.target.position, characterController.transform.position);
-        return distanceFromTarget;
+        if(this.target == null) { return 0f; }
+        return Vector3.Distance(this.target.position, characterController.transform.position);
     }
 
     public bool IsInRangeOfPlayer()
     {
-        if (getDistanceFromTarget() < 100)
+        if (getDistanceFromTarget() < exitChaseDistance)
         {
             return true;
         }
@@ -124,7 +126,16 @@ public abstract class MoveComponent : MonoBehaviour
 
     public void Knockback()
     {
-        Vector3 direction = this.transform.forward * -1; //Need to make this direction
+        Vector3 direction;
+        if(knockBackDirection.magnitude > 0.1)
+        {
+            direction = knockBackDirection; //Need to make this direction
+        }
+        else
+        {
+            direction = this.transform.forward * -1; 
+        }
+
         Vector3 up = this.transform.up;
         up.Normalize();
         direction.Normalize();
@@ -134,6 +145,7 @@ public abstract class MoveComponent : MonoBehaviour
 
         //Apply vector to object
         characterController.Move(impact * Time.deltaTime);
+        this.knockBackDirection = Vector3.zero;
         this.knockBackForce = 0;
     }
 }

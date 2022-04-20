@@ -45,12 +45,14 @@ public class Arrow : MonoBehaviour
             }
             if (c.tag == "Enemy")
             {
+                var enemyScript = c.gameObject.GetComponent<Enemy>();
+
                 int[] dmgValues;
                 var attackValues = new Dictionary<string, int>();
                 attackValues.Add("damage", 10);
                 attackValues.Add("knockback", 3000);
                 hitCount++;
-                c.SendMessageUpwards("receiveDamage", attackValues);
+                enemyScript.receiveDamage(10, 3000, rb.velocity);
                 debugMsg += ("|Hit " + c.name);
                 Debug.Log(this.name + " Hit (" + hitCount + ") " + debugMsg);
                 collided = true;

@@ -1,3 +1,4 @@
+using Polyperfect.Common;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,9 +13,15 @@ public class BetaCharacter : MonoBehaviour, IDamageable
     public int currentHealth { get; set; } = 500;
     public int maxHealth { get; set; } = 500;
     public bool inHitStun { get; set; } = false;
+    public bool matchSurfaceRotation = true;
+    public int surfaceRotationSpeed = 20;
 
     private void Awake()
     {
+        if (matchSurfaceRotation && transform.childCount > 0)
+        {
+            transform.GetChild(0).gameObject.AddComponent<Common_SurfaceRotation>().SetRotationSpeed(surfaceRotationSpeed);
+        }
         healthBarScript = this.GetComponentInChildren<HealthBar>();
         movementComponent = this.GetComponent<PlayerMovementComponent>();
         
@@ -74,11 +81,8 @@ public class BetaCharacter : MonoBehaviour, IDamageable
         transform.rotation = activeMount.transform.rotation;
     }
 
-    public int receiveDamage(Dictionary<string, int> dmgVals)
+    public int receiveDamage(int damageAmount, int knockBackForce, Vector3 direction = new Vector3())
     {
-        var damageAmount = dmgVals["damage"];
-        var knockBackForce = dmgVals["knockback"];
-
         currentHealth -= damageAmount;
         updateHealthBar();
         if (currentHealth <= 0)

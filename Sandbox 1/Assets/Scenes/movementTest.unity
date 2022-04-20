@@ -1275,6 +1275,7 @@ MonoBehaviour:
   isWandering: 0
   currentHealth: 90
   maxHealth: 100
+  attacked: 0
 --- !u!114 &261417187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1302,7 +1303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterController: {fileID: 0}
-  moveSpeed: 35
+  moveSpeed: 30
   jumpCount: 0
   maxJumps: 2
   jumpHeight: 20
@@ -1318,12 +1319,27 @@ MonoBehaviour:
   isRunning: 0
   inHitStun: 0
   knockBackForce: 0
+  knockBackDirection: {x: 0, y: 0, z: 0}
   stunTimer: 0
   isEnabled: 1
-  chaseTriggerDistance: 130
+  enterChaseDistance: 30
+  exitChaseDistance: 160
   naveMeshAgent: {fileID: 0}
   wanderscript: {fileID: 0}
   enemyScript: {fileID: 0}
+--- !u!65 &261417189
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 261417178}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.35, y: 1.5, z: 1.9}
+  m_Center: {x: 0.14, y: 1.03, z: 0.25}
 --- !u!224 &265764028 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 9216749449838573131, guid: 15c774db646194848b53c2b6a5ca875c,
@@ -1842,7 +1858,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.9198396, y: 1}
+    m_SensorSize: {x: 1.9238477, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -2176,6 +2192,7 @@ MonoBehaviour:
   isWandering: 0
   currentHealth: 90
   maxHealth: 100
+  attacked: 0
 --- !u!4 &477605389 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
@@ -2211,9 +2228,11 @@ MonoBehaviour:
   isRunning: 0
   inHitStun: 0
   knockBackForce: 0
+  knockBackDirection: {x: 0, y: 0, z: 0}
   stunTimer: 0
   isEnabled: 1
-  chaseTriggerDistance: 100
+  enterChaseDistance: 100
+  exitChaseDistance: 160
   naveMeshAgent: {fileID: 0}
   wanderscript: {fileID: 0}
   enemyScript: {fileID: 0}
@@ -2767,9 +2786,11 @@ MonoBehaviour:
   isRunning: 0
   inHitStun: 0
   knockBackForce: 0
+  knockBackDirection: {x: 0, y: 0, z: 0}
   stunTimer: 0
   isEnabled: 1
-  chaseTriggerDistance: 100
+  enterChaseDistance: 100
+  exitChaseDistance: 160
   cam: {fileID: 989726226}
   wanderscript: {fileID: 0}
   mountWalkSpeed: 20
@@ -2788,8 +2809,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fcd6d7f2ee4aee4ab27fd03cb3385c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkAnimationSpeed: 2
-  runAnimaitonSpeed: 3
+  walkAnimationSpeed: 1.7
+  runAnimaitonSpeed: 2.4
 --- !u!1 &565258135
 GameObject:
   m_ObjectHideFlags: 0
@@ -3733,9 +3754,11 @@ MonoBehaviour:
   isRunning: 0
   inHitStun: 0
   knockBackForce: 0
+  knockBackDirection: {x: 0, y: 0, z: 0}
   stunTimer: 0
   isEnabled: 1
-  chaseTriggerDistance: 100
+  enterChaseDistance: 100
+  exitChaseDistance: 160
   naveMeshAgent: {fileID: 0}
   wanderscript: {fileID: 0}
   enemyScript: {fileID: 0}
@@ -3759,6 +3782,7 @@ MonoBehaviour:
   isWandering: 0
   currentHealth: 90
   maxHealth: 100
+  attacked: 0
 --- !u!4 &699482025 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
@@ -4526,7 +4550,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.9198396, y: 1}
+    m_SensorSize: {x: 1.9238477, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -4542,7 +4566,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 789776462}
-  m_LocalRotation: {x: -0.028891597, y: 0.18035552, z: 0.005299995, w: 0.9831628}
+  m_LocalRotation: {x: -0.028891575, y: 0.18035552, z: 0.0052999915, w: 0.9831628}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4785,7 +4809,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.9198396, y: 1}
+    m_SensorSize: {x: 1.9238477, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -5563,7 +5587,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 989726223}
-  m_LocalRotation: {x: -0.02889164, y: 0.18035558, z: 0.0052999994, w: 0.9831628}
+  m_LocalRotation: {x: -0.02889161, y: 0.18035555, z: 0.0052999957, w: 0.9831628}
   m_LocalPosition: {x: -8.409887, y: 3.158, z: -57.969772}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6647,15 +6671,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4635908456063474, guid: 6ee0769bd911abd4aad799c0b81cab00, type: 3}
       propertyPath: m_LocalScale.x
-      value: 20
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4635908456063474, guid: 6ee0769bd911abd4aad799c0b81cab00, type: 3}
       propertyPath: m_LocalScale.y
-      value: 20
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4635908456063474, guid: 6ee0769bd911abd4aad799c0b81cab00, type: 3}
       propertyPath: m_LocalScale.z
-      value: 20
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4635908456063474, guid: 6ee0769bd911abd4aad799c0b81cab00, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6705,7 +6729,7 @@ PrefabInstance:
     - target: {fileID: 114372623399879820, guid: 6ee0769bd911abd4aad799c0b81cab00,
         type: 3}
       propertyPath: showGizmos
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114372623399879820, guid: 6ee0769bd911abd4aad799c0b81cab00,
         type: 3}
@@ -6721,6 +6745,11 @@ PrefabInstance:
         type: 3}
       propertyPath: movementStates.Array.data[1].moveSpeed
       value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 143354740421953482, guid: 6ee0769bd911abd4aad799c0b81cab00,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ee0769bd911abd4aad799c0b81cab00, type: 3}
@@ -6778,9 +6807,11 @@ MonoBehaviour:
   isRunning: 0
   inHitStun: 0
   knockBackForce: 0
+  knockBackDirection: {x: 0, y: 0, z: 0}
   stunTimer: 0
   isEnabled: 1
-  chaseTriggerDistance: 100
+  enterChaseDistance: 100
+  exitChaseDistance: 160
   cam: {fileID: 989726226}
   wanderscript: {fileID: 0}
   mountWalkSpeed: 20
@@ -6966,6 +6997,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 1206676726}
   movementComponent: {fileID: 0}
+  matchSurfaceRotation: 1
+  surfaceRotationSpeed: 20
 --- !u!4 &1206676725 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 69f4ba3543e792a42b1cc398338d8e45,
@@ -7019,9 +7052,11 @@ MonoBehaviour:
   isRunning: 0
   inHitStun: 0
   knockBackForce: 0
+  knockBackDirection: {x: 0, y: 0, z: 0}
   stunTimer: 0
   isEnabled: 1
-  chaseTriggerDistance: 100
+  enterChaseDistance: 100
+  exitChaseDistance: 160
   cam: {fileID: 989726226}
   isRiding: 0
   activeMount: {fileID: 0}
@@ -7058,8 +7093,8 @@ MonoBehaviour:
   arrowPos: {fileID: 592357063}
   forwardVel: 6000
   upwardVel: 50
-  mass: 50
-  useGravity: 1
+  mass: 1
+  useGravity: 0
   rayRange: 2000
 --- !u!1 &1248386380
 GameObject:
@@ -8814,9 +8849,11 @@ MonoBehaviour:
   isRunning: 0
   inHitStun: 0
   knockBackForce: 0
+  knockBackDirection: {x: 0, y: 0, z: 0}
   stunTimer: 0
   isEnabled: 1
-  chaseTriggerDistance: 100
+  enterChaseDistance: 100
+  exitChaseDistance: 160
   naveMeshAgent: {fileID: 0}
   wanderscript: {fileID: 0}
   enemyScript: {fileID: 0}
@@ -8840,6 +8877,7 @@ MonoBehaviour:
   isWandering: 0
   currentHealth: 90
   maxHealth: 100
+  attacked: 0
 --- !u!4 &1448936186 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
@@ -9508,9 +9546,11 @@ MonoBehaviour:
   isRunning: 0
   inHitStun: 0
   knockBackForce: 0
+  knockBackDirection: {x: 0, y: 0, z: 0}
   stunTimer: 0
   isEnabled: 1
-  chaseTriggerDistance: 100
+  enterChaseDistance: 100
+  exitChaseDistance: 160
   naveMeshAgent: {fileID: 0}
   wanderscript: {fileID: 0}
   enemyScript: {fileID: 0}
@@ -9534,6 +9574,7 @@ MonoBehaviour:
   isWandering: 0
   currentHealth: 90
   maxHealth: 100
+  attacked: 0
 --- !u!4 &1495537739 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5555355365775203741, guid: 96ffacfdf49d13740817937939a05cf3,
@@ -11134,7 +11175,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.9198396, y: 1}
+    m_SensorSize: {x: 1.9238477, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -11150,7 +11191,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1844134826}
-  m_LocalRotation: {x: 0.06111756, y: 0.18008472, z: -0.011211664, w: 0.98168653}
+  m_LocalRotation: {x: 0.06111756, y: 0.18008468, z: -0.011211662, w: 0.98168653}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -11693,9 +11734,11 @@ MonoBehaviour:
   isRunning: 0
   inHitStun: 0
   knockBackForce: 0
+  knockBackDirection: {x: 0, y: 0, z: 0}
   stunTimer: 0
   isEnabled: 1
-  chaseTriggerDistance: 100
+  enterChaseDistance: 100
+  exitChaseDistance: 160
   naveMeshAgent: {fileID: 0}
   wanderscript: {fileID: 0}
   enemyScript: {fileID: 0}

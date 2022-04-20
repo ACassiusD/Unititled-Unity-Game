@@ -77,7 +77,5 @@ public class EnemyMovementComponent : MoveComponent
             this.isMoving = false;
             this.isRunning = false;
         }
-    }
-
-    
+    } 
 }

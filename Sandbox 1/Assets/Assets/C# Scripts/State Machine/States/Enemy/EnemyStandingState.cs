@@ -31,14 +31,19 @@ public class EnemyStandingState : EnemyState
 
     public override void LogicUpdate()
     {
-        float distance = Vector3.Distance(movementComponent.getPlayerScript().transform.position , movementComponent.characterController.transform.position);
+        float distance = movementComponent.getDistanceFromTarget();
 
         if (movementComponent.inHitStun && movementComponent.knockBackForce > 0)
         {
             stateMachine.ChangeState(movementComponent.knockback);
         }
 
-        if (distance < movementComponent.chaseTriggerDistance)
+        if (distance < movementComponent.enterChaseDistance)
+        {
+            stateMachine.ChangeState(movementComponent.chasing);
+        }
+
+        if(movementComponent.getEnemyScript().attacked && distance < movementComponent.exitChaseDistance)
         {
             stateMachine.ChangeState(movementComponent.chasing);
         }

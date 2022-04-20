@@ -59,11 +59,9 @@ public class Spider : Mount
                 
                 if (col.tag == "Enemy")
                 {
+                    var enemyScript = col.gameObject.GetComponent<Enemy>();
                     int[] dmgValues;
-                    var attackValues = new Dictionary<string, int>();
-                    attackValues.Add("damage", 10);
-                    attackValues.Add("knockback", 3000);
-                    col.SendMessageUpwards("receiveDamage", attackValues);
+                    enemyScript.receiveDamage(10, 3000);
                     Debug.Log ("|Hit " + col.name);
                 }
             }

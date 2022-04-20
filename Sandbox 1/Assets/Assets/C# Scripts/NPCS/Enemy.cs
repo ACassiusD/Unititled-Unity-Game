@@ -7,21 +7,22 @@ using Polyperfect.Common;
 
 public class Enemy : MonoBehaviour, IDamageable
 {
-    public EnemyMovementComponent  moveComponent;
-    public EnemyAnimatorComponent  enemyAnimator;
-    HealthBar               healthBarScript;
-    Animal_WanderScript     wanderscript;
-    IdleState[]             idleStates;
-    MovementState[]         movementStates;
-    AIState[]               attackingStates;
-    private AIState[]       deathStates;
-    public float            walkAnimationSpeed = 1;
-    public float             runAnimaitonSpeed = 2;
-    public float            distanceToPlayer = 0;
-    public bool             isWandering = false;
+    public EnemyMovementComponent moveComponent;
+    public EnemyAnimatorComponent enemyAnimator;
+    HealthBar healthBarScript;
+    Animal_WanderScript wanderscript;
+    IdleState[] idleStates;
+    MovementState[] movementStates;
+    AIState[] attackingStates;
+    private AIState[] deathStates;
+    public float walkAnimationSpeed = 1;
+    public float runAnimaitonSpeed = 2;
+    public float distanceToPlayer = 0;
+    public bool isWandering = false;
     //Move to a StatPage class
-    public int              currentHealth = 90;
-    public int              maxHealth  = 100;
+    public int currentHealth = 90;
+    public int maxHealth = 100;
+    public bool attacked = false;
 
     void Awake()
     {
@@ -29,21 +30,25 @@ public class Enemy : MonoBehaviour, IDamageable
         healthBarScript = this.GetComponentInChildren<HealthBar>();
         moveComponent = this.GetComponent<EnemyMovementComponent>();
     }
+
+    void Update()
+    {
+        resetAttackedState();
+    }
+
     protected virtual void Start()
     {
         if (!moveComponent)
-            Debug.LogError(this.name + " is missing a EnemyMoveComponent!");
+            Debug.LogError(this.name + " is missing a EnemyMoveComponent! ");
         if (!enemyAnimator)
             Debug.LogError(this.name + " is missing a EnemyAnimatorComponent!");
         if (!healthBarScript)
             Debug.LogError(this.name + " is missing a HealthBarScript!");
     }
 
-    public int receiveDamage(Dictionary<string, int> dmgVals)
+    public int receiveDamage(int damageAmount, int knockBackForce, Vector3 direction = new Vector3())
     {
-        int damageAmount = dmgVals["damage"];
-        int knockBackForce = dmgVals["knockback"];
-
+        attacked = true;
         currentHealth -= damageAmount;
         updateHealthBar();
         if (currentHealth <= 0)
@@ -53,7 +58,7 @@ public class Enemy : MonoBehaviour, IDamageable
         }
         moveComponent.inHitStun = true;
         moveComponent.knockBackForce = knockBackForce;
-        //Knockback(knockBackForce);
+        moveComponent.knockBackDirection = direction;
         return currentHealth;
     }
 
@@ -67,6 +72,11 @@ public class Enemy : MonoBehaviour, IDamageable
     public void feint()
     {
         Destroy(gameObject);
+    }
+
+    public void resetAttackedState()
+    {
+        attacked = false;
     }
 
 }
