@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ArrowScript : MonoBehaviour
-{ 
+{
     public GameObject arrowPrefab;
     public int power = 30;
     public Transform arrowPos;
@@ -40,18 +40,20 @@ public class ArrowScript : MonoBehaviour
 
             //Layermask to ignore player and friendly units 
             int layerMask1 = 1 << 12;
-            int layerMask2 = 1 << 10;
+            int layerMask2 = 1 << 11;
+            int layerMask3 = 1 << 10;
             var finalmask = layerMask1 | layerMask2;
+            finalmask = finalmask | layerMask3;
             finalmask = ~finalmask;
 
-            if (Physics.Raycast(cam.position, cam.transform.forward,out hitinfo, rayRange, finalmask))
+            if (Physics.Raycast(cam.position, cam.transform.forward, out hitinfo, rayRange, finalmask))
             {
                 newArrow.transform.LookAt(hitinfo.point);
                 Debug.Log(hitinfo.collider.name);
             }
             else
             {
-               newArrow.transform.rotation = Quaternion.Euler(cam.localEulerAngles.x, betaCharacter.transform.eulerAngles.y, 0);
+                newArrow.transform.rotation = Quaternion.Euler(cam.localEulerAngles.x, betaCharacter.transform.eulerAngles.y, 0);
             }
 
             //Add Force

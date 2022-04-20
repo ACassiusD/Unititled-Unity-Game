@@ -9,24 +9,24 @@ public class Arrow : MonoBehaviour
     public Collider[] attackHitboxes;
     public bool destoryOnHit = false;
     public bool collided = false;
+    public float despawnTimer = 10f;
 
-    // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>();    
+        rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (enableRotation)
         {
-           if(rb.velocity.magnitude >= 0.1f)
+            if (rb.velocity.magnitude >= 0.1f)
                 transform.rotation = Quaternion.LookRotation(rb.velocity);
         }
         if (!collided)
         {
             hitCheck();
+            updateDespawnTimer();
         }
     }
 
@@ -58,9 +58,18 @@ public class Arrow : MonoBehaviour
                 collided = true;
                 if (destoryOnHit)
                 {
-                    Destroy(this);
+                    Destroy(this.gameObject);
                 }
             }
+        }
+    }
+
+    public void updateDespawnTimer()
+    {
+        despawnTimer -= Time.deltaTime;
+        if (despawnTimer <= 0)
+        {
+            Destroy(this.gameObject);
         }
     }
 }

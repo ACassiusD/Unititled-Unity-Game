@@ -114,3 +114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enableRotation: 0
+  attackHitboxes: []
+  destoryOnHit: 1
+  collided: 0
+  despawnTimer: 10

@@ -13,6 +13,7 @@ public class PlayerManager : MonoBehaviour {
     GameObject player;
     public BetaCharacter playerScript;
     public InventoryManager playerInventory;
+    public bool lockCursorToScreen = false;
 
     // Use this for initialization
     void Awake () {
@@ -20,8 +21,11 @@ public class PlayerManager : MonoBehaviour {
 
         //QualitySettings.vSyncCount = 0;  // VSync must be disabled or disable in quality manually 
         //Application.targetFrameRate = 144;
-
-        Cursor.visible = false;
+        if (lockCursorToScreen)
+        {
+            Cursor.visible = false;
+        }
+       
         GameObject player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<BetaCharacter>();
         playerInventory = player.GetComponent<InventoryManager>();
@@ -50,8 +54,11 @@ public class PlayerManager : MonoBehaviour {
     {
         if (ApplicationIsBack == true)
         {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+            if (lockCursorToScreen)
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
         }
     }
 
