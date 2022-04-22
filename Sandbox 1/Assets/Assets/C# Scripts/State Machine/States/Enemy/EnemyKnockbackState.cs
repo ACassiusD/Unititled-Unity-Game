@@ -10,12 +10,9 @@ public class EnemyKnockbackState : EnemyState
 
     public override void Enter()
     {
+        Debug.Log("Enemy entered knockback state");
         movementComponent.Knockback();
-        movementComponent.stunTimer = 0.5f;
-        //start stun duration
-
-        Debug.Log("Enemy knocked back");
-        Debug.Log("Stun timer started");
+        movementComponent.stunTimer = movementComponent.stunDuration;
         base.Enter();
     }
 
@@ -37,12 +34,14 @@ public class EnemyKnockbackState : EnemyState
 
             float distance = Vector3.Distance(movementComponent.getPlayerScript().transform.position, movementComponent.characterController.transform.position);
 
-            if (distance < 100)
+            if (distance < movementComponent.exitChaseDistance)
             {
+                Debug.Log("Enemy moved to chasing state.");
                 stateMachine.ChangeState(movementComponent.chasing);
             }
             else
             {
+                Debug.Log("Enemy moved to standing state.");
                 stateMachine.ChangeState(movementComponent.standing);
             }
         }
@@ -51,5 +50,6 @@ public class EnemyKnockbackState : EnemyState
 
     public override void Exit()
     {
+        movementComponent.inHitStun = false;
     }
 }

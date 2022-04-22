@@ -15,9 +15,12 @@ public class BetaCharacter : MonoBehaviour, IDamageable
     public bool inHitStun = false;
     public bool matchSurfaceRotation = true;
     public int surfaceRotationSpeed = 20;
+    public PlayerAnimator animator;
 
     private void Awake()
     {
+        animator = GetComponent<PlayerAnimator>();   
+
         if (matchSurfaceRotation && transform.childCount > 0)
         {
             transform.GetChild(0).gameObject.AddComponent<Common_SurfaceRotation>().SetRotationSpeed(surfaceRotationSpeed);
@@ -29,6 +32,10 @@ public class BetaCharacter : MonoBehaviour, IDamageable
             Debug.LogError(this.name + " is missing a MoveComponent!");
         if (!healthBarScript)
             Debug.LogError(this.name + " is missing a HealthBarScript!");
+    }
+
+    private void updateAnimations()
+    {
     }
 
     public void onCreate()

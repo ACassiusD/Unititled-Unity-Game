@@ -37,6 +37,7 @@ public class EnemyChasingState : EnemyState
     {
         if (movementComponent.inHitStun && movementComponent.knockBackForce > 0)
         {
+            Debug.Log("Enemy going to knockback state.");
             stateMachine.ChangeState(movementComponent.knockback);
         }
 

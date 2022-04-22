@@ -117,7 +117,7 @@ MonoBehaviour:
   enableRotation: 1
   attackHitboxes:
   - {fileID: 3152995752454888626}
-  destoryOnHit: 0
+  destoryOnHit: 1
   collided: 0
   despawnTimer: 8
 --- !u!1 &3152995752338208169

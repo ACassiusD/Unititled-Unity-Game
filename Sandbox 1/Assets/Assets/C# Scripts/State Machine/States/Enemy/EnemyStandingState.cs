@@ -10,6 +10,7 @@ public class EnemyStandingState : EnemyState
 
     public override void Enter()
     {
+        //Debug.Log("Entered ENEMY Standing state");
         if (movementComponent.wanderscript != null)
         {
             movementComponent.wanderscript.enabled = true;
@@ -21,7 +22,7 @@ public class EnemyStandingState : EnemyState
         movementComponent.naveMeshAgent.enabled = true;
         movementComponent.isBeingControlled = false;
         movementComponent.isMoving = false;
-        Debug.Log("Entered ENEMY Standing state");
+
         base.Enter();
     }
 
@@ -33,20 +34,23 @@ public class EnemyStandingState : EnemyState
     {
         float distance = movementComponent.getDistanceFromTarget();
 
-        if (movementComponent.inHitStun && movementComponent.knockBackForce > 0)
+        if (movementComponent.inHitStun)
         {
             stateMachine.ChangeState(movementComponent.knockback);
         }
-
-        if (distance < movementComponent.enterChaseDistance)
+        else
         {
-            stateMachine.ChangeState(movementComponent.chasing);
-        }
+            if (distance < movementComponent.enterChaseDistance)
+            {
+                stateMachine.ChangeState(movementComponent.chasing);
+            }
 
-        if(movementComponent.getEnemyScript().attacked && distance <= movementComponent.exitChaseDistance)
-        {
-            stateMachine.ChangeState(movementComponent.chasing);
-            movementComponent.getEnemyScript().resetAttackedState();
+            if (movementComponent.getEnemyScript().attacked && distance <= movementComponent.exitChaseDistance)
+            {
+                stateMachine.ChangeState(movementComponent.chasing);
+                movementComponent.getEnemyScript().resetAttackedState();
+            }
+
         }
 
         base.LogicUpdate();

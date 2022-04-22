@@ -20,7 +20,10 @@ public class RidingState : PlayerState
 
     public override void Enter()
     {
-        Debug.Log("Entered riding state");
+        if (movementComponent.isDebugging)
+        {
+            Debug.Log("Entered riding state");
+        }
         base.Enter();
 
     }

@@ -17,18 +17,13 @@ public class PlayerManager : MonoBehaviour {
 
     // Use this for initialization
     void Awake () {
-        Debug.Log("Initializing shared player script");
-
+        //Debug.Log("Initializing shared player script");
         //QualitySettings.vSyncCount = 0;  // VSync must be disabled or disable in quality manually 
         //Application.targetFrameRate = 144;
         if (lockCursorToScreen)
         {
             Cursor.visible = false;
         }
-       
-        GameObject player = GameObject.FindWithTag("Player");
-        playerScript = player.GetComponent<BetaCharacter>();
-        playerInventory = player.GetComponent<InventoryManager>();
 
         if (Instance == null)
         {
@@ -39,10 +34,43 @@ public class PlayerManager : MonoBehaviour {
         {
             Destroy(gameObject);
         }
+
+        loadPlayerScript();
+        loadInventoryManager();
     }
 
+    private void loadInventoryManager()
+    {
+        playerInventory = player.GetComponent<InventoryManager>();
+        if (playerInventory == null)
+        {
+            Debug.LogError("Player Manager - Unable return load inventory script.");
+            Debug.Break();
+        }
+    }
+
+    private void loadPlayerScript()
+    {
+        GameObject player = GameObject.FindWithTag("Player");
+        if(player == null)
+        {
+            Debug.LogError("Player Manager - Find object with 'Player' Tag.");
+            Debug.Break();
+        }
+        playerScript = player.GetComponent<BetaCharacter>();
+        if(playerScript == null)
+        {
+            Debug.LogError("Player Manager - Unable return load player script.");
+            Debug.Break();
+        }
+    }
     public BetaCharacter getPlayerScript()
     {
+        if(playerScript == null)
+        {
+            Debug.LogError("Unable retrieve player script.");
+            Debug.Break();
+        }
         return playerScript;
     }
 

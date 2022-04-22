@@ -17,11 +17,15 @@ public class JumpingState : PlayerState
     }
 
     public override void Enter()
-    {   
-        //Initial Jump
+    {
+        if (movementComponent.isDebugging)
+        {
+            Debug.Log("Entered jumping state");
+        }
+
         movementComponent.AddJumpVelocity();
+        movementComponent.getPlayerScript().animator.setJumpingAnimation();
         justEntered = true;
-        Debug.Log("Entered jumping state");
         base.Enter();
     }
 
@@ -44,7 +48,6 @@ public class JumpingState : PlayerState
         }
         movementComponent.AddVelocityAndMove();
         movementComponent.MovePlayerViaInput();
-        justEntered = false;
         base.HandleInput();
     }
 
@@ -54,10 +57,14 @@ public class JumpingState : PlayerState
         if (movementComponent.isRiding)
         {
             stateMachine.ChangeState(movementComponent.riding);
-        }
-        if (movementComponent.characterController.isGrounded)
+        } 
+        if (movementComponent.isGrounded() && !justEntered)
         {
             stateMachine.ChangeState(movementComponent.standing);
+        }
+        if (justEntered)
+        {
+            justEntered = false;
         }
         base.LogicUpdate();
     }

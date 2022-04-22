@@ -31,6 +31,7 @@ public abstract class MoveComponent : MonoBehaviour
     public bool isEnabled = true;
     public int enterChaseDistance = 100;
     public int exitChaseDistance = 160;
+    public bool isDebugging = false;
 
     void Awake()
     {
@@ -129,22 +130,26 @@ public abstract class MoveComponent : MonoBehaviour
         Vector3 direction;
         if(knockBackDirection.magnitude > 0.1)
         {
-            direction = knockBackDirection; //Need to make this direction
+            direction = knockBackDirection; 
         }
         else
         {
             direction = this.transform.forward * -1; 
         }
 
-        Vector3 up = this.transform.up;
-        up.Normalize();
-        direction.Normalize();
-        direction.y = up.y;
-        var impact = Vector3.zero;
-        impact += direction.normalized * knockBackForce;
+        AddJumpVelocity();
 
-        //Apply vector to object
-        characterController.Move(impact * Time.deltaTime);
+        //Vector3 up = this.transform.up;
+        //up.Normalize();
+        //direction.Normalize();
+        //direction.y = up.y;
+        //var impact = Vector3.zero;
+        //impact += direction.normalized * knockBackForce;
+
+        //Vector3.ler
+
+        ////Apply vector to object
+        //characterController.Move(impact * Time.deltaTime);
         this.knockBackDirection = Vector3.zero;
         this.knockBackForce = 0;
     }

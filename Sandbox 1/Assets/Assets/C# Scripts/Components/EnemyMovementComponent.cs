@@ -11,6 +11,8 @@ public class EnemyMovementComponent : MoveComponent
     public NavMeshAgent naveMeshAgent;
     public Animal_WanderScript wanderscript;
     public Enemy enemyScript;
+    public float stunDuration = 1f;
+
     void Start()
     {
         playerScript = PlayerManager.Instance.getPlayerScript();

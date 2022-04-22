@@ -9,7 +9,7 @@ public class GroundedState : PlayerState
     public override void Enter()
     {
         base.Enter();
-        Debug.Log("Entered the grounded state!");
+        //Debug.Log("Entered the grounded state!");
     }
 
     public override void Exit()

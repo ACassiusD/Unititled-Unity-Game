@@ -12,9 +12,14 @@ public class PlayerMovementComponent : MoveComponent
     //Only movement variables specific to player should go here
     public bool isRiding = false;
     public Mount activeMount; //This might need to be moved out
-    
+    public float groundCheckDistance = 0.2f;
+    public float groundCheckOffsetX = 1f;
+    public float groundCheckOffsetY = 1f;
+    public float groundCheckOffsetZ = 1f;
+
     private void Start()
     {
+        //distanceToGround = this.GetComponent<Collider>().bounds.extents.y; 
         activeMount = null;
         isBeingControlled = true;
         //Initialize the players states.
@@ -52,6 +57,8 @@ public class PlayerMovementComponent : MoveComponent
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
 
+       // Debug.Log(horizontal + vertical);
+
         //Calcuate the Vector3 direction, and normalize it to a lenght of 1 unit (just get the direction we want to wak in p much)
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
 
@@ -70,10 +77,39 @@ public class PlayerMovementComponent : MoveComponent
             //reference for more information - https://www.youtube.com/watch?v=4HpC--2iowE
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
             characterController.Move(moveDir.normalized * moveSpeed * Time.deltaTime);
+            //Debug.Log(characterController.isGrounded);
         }
         else
         {
             isMoving = false;
+        }
+    }
+
+    public bool isGrounded()
+    {
+        var currentPos = transform.position + (transform.forward * groundCheckOffsetX);
+        if (isDebugging)
+        {
+            Debug.DrawRay(currentPos, (-Vector3.up * groundCheckDistance), Color.red);
+        }
+
+        if (characterController.isGrounded)
+        {
+            return true;
+            Debug.Log("IS GROUNDED");
+        }
+        else //Fallback check for slopes using a ray
+        {
+            if (Physics.Raycast(currentPos, -Vector3.up, groundCheckDistance))
+            {
+                // Debug.Log("IS GROUNDED");
+                return true;
+            }
+            else
+            {
+                // Debug.Log("NOT IS GROUNDED");
+                return false;
+            }
         }
     }
 }
