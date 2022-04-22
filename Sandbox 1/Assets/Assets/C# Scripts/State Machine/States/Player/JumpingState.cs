@@ -10,7 +10,7 @@ public class JumpingState : PlayerState
     public bool isTest = true;
     public bool isRiding = true;
     private bool jump;
-
+    private float jumptimer = 0f;
 
     public JumpingState(StateMachine stateMachine, PlayerMovementComponent movementComponent) : base(stateMachine, movementComponent)
     {
@@ -18,6 +18,9 @@ public class JumpingState : PlayerState
 
     public override void Enter()
     {
+        //Debug.Log("Jump state time = " + movementComponent.jumpStateTime);
+        jumptimer = movementComponent.jumpStateTime;
+        //Debug.Log(jumptimer);
         if (movementComponent.isDebugging)
         {
             Debug.Log("Entered jumping state");
@@ -25,7 +28,7 @@ public class JumpingState : PlayerState
 
         movementComponent.AddJumpVelocity();
         movementComponent.getPlayerScript().animator.setJumpingAnimation();
-        justEntered = true;
+        //justEntered = true;
         base.Enter();
     }
 
@@ -48,23 +51,22 @@ public class JumpingState : PlayerState
         }
         movementComponent.AddVelocityAndMove();
         movementComponent.MovePlayerViaInput();
+        jumptimer -= Time.deltaTime;
+        //Debug.Log(jumptimer);
         base.HandleInput();
     }
 
 
     public override void LogicUpdate()
     {
-        if (movementComponent.isRiding)
-        {
-            stateMachine.ChangeState(movementComponent.riding);
-        } 
-        if (movementComponent.isGrounded() && !justEntered)
+        if (movementComponent.isGrounded())
         {
             stateMachine.ChangeState(movementComponent.standing);
         }
-        if (justEntered)
+        if (jumptimer <= 0f)
         {
-            justEntered = false;
+            //Debug.Log("Timer Ended");
+            stateMachine.ChangeState(movementComponent.falling);
         }
         base.LogicUpdate();
     }

@@ -4,10 +4,12 @@ using UnityEngine;
 //It is the "Brain" of player movement.
 public class PlayerMovementComponent : MoveComponent
 {
-    public StandingState standing;
+    public IdleState standing;
     public DuckingState ducking;
     public JumpingState jumping;
     public RidingState riding;
+    public FallingState falling;
+    public MovingState moving;
     public Transform cam;
     //Only movement variables specific to player should go here
     public bool isRiding = false;
@@ -19,13 +21,17 @@ public class PlayerMovementComponent : MoveComponent
 
     private void Start()
     {
+        //Debug.Log("Jump state time = " + this.jumpStateTime);
         //distanceToGround = this.GetComponent<Collider>().bounds.extents.y; 
         activeMount = null;
         isBeingControlled = true;
         //Initialize the players states.
-        standing = new StandingState(stateMachine, this);
+        standing = new IdleState(stateMachine, this);
         jumping = new JumpingState(stateMachine, this);
         riding = new RidingState(stateMachine, this);
+        falling = new FallingState(stateMachine, this);
+        moving = new MovingState(stateMachine, this);
+
 
         if (characterController.isGrounded)
             stateMachine.Initialize(standing); 

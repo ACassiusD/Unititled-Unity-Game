@@ -4,7 +4,7 @@ using Polyperfect.Common;
 
 public class MountAnimatorComponent : MonoBehaviour
 {
-    IdleState[] idleStates;
+    Polyperfect.Common.IdleState[] idleStates;
     MovementState[] movementStates;
     AIState[] attackingStates;
     AIState[] deathStates;

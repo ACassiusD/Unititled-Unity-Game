@@ -13,7 +13,7 @@ public class MountWanderingState : MountState
     public override void Enter()
     {
        // movementComponent.wanderscript.enabled = true;
-        Debug.Log("Entered MOUNT WANDERING state");
+        //Debug.Log("Entered MOUNT WANDERING state");
         base.Enter();
     }
 

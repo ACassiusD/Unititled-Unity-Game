@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 
-public class StandingState : GroundedState
+public class IdleState : GroundedState
 {
     private bool jump;
     PlayerAnimator animator;
     private bool justEntered = true;
 
-    public StandingState(StateMachine stateMachine, PlayerMovementComponent moveComp) : base(stateMachine, moveComp)
+    public IdleState(StateMachine stateMachine, PlayerMovementComponent moveComp) : base(stateMachine, moveComp)
     {
         animator = movementComponent.getPlayerScript().animator;
     }
@@ -30,28 +30,17 @@ public class StandingState : GroundedState
         movementComponent.isGrounded();
         base.HandleInput();
         jump = Input.GetButtonDown("Jump");
-        animator.setIdleAnimation(); //default for stadning state
-        if (justEntered)
-        {
-            animator.setIdleAnimation();
-            justEntered = false;
-        }
-        else
-        {
-            if (movementComponent.isMoving)
-            {
-                if (movementComponent.isRunning)
-                    animator.setWalkingAnimation();
-                else
-                    animator.setWalkingAnimation();
-            }
-        }
     }
 
     //Decide the next state for the character.
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+  
+        if (movementComponent.isMoving)
+        {
+            stateMachine.ChangeState(movementComponent.moving);
+        }
         if (movementComponent.isRiding)
         {
             stateMachine.ChangeState(movementComponent.riding);

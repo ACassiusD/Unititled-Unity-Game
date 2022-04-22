@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour, IDamageable
     public EnemyAnimatorComponent enemyAnimator;
     HealthBar healthBarScript;
     Animal_WanderScript wanderscript;
-    IdleState[] idleStates;
+    Polyperfect.Common.IdleState[] idleStates;
     MovementState[] movementStates;
     AIState[] attackingStates;
     private AIState[] deathStates;

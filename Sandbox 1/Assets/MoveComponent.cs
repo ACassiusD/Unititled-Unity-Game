@@ -32,6 +32,7 @@ public abstract class MoveComponent : MonoBehaviour
     public int enterChaseDistance = 100;
     public int exitChaseDistance = 160;
     public bool isDebugging = false;
+    public float jumpStateTime = 1f;
 
     void Awake()
     {
