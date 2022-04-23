@@ -21,6 +21,11 @@ public class PlayerAnimator : MonoBehaviour
         mountAnimator = this.GetComponent<Animator>();
     }
 
+    public void restartJumpingAnimation()
+    {
+        mountAnimator.Play("Jumping", -1, 0f);
+    }
+
     public void setWalkingAnimation(float speed = 0)
     {
         if(debug)

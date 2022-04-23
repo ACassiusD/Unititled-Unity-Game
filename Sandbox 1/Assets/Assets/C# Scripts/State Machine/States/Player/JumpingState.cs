@@ -45,8 +45,10 @@ public class JumpingState : PlayerState
         {
             movementComponent.ZeroYVelocityIfGrounded();
             movementComponent.addGravity();
-            if (jump)
+            if (jump && movementComponent.jumpCount > 0)
             {
+                movementComponent.jumpCount--;
+                movementComponent.getPlayerScript().animator.restartJumpingAnimation();
                 movementComponent.MidAirJump();
             }
         }

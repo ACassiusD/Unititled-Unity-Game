@@ -99,6 +99,8 @@ Material:
     - _Float4: 0.13
     - _Globaltiling: 0.163
     - _MaskClipValue: 0.5
+    - _QueueControl: 0
+    - _QueueOffset: 0
     - _Roughness: 0.276
     - _SnowCover: 1
     - _SnowTiling: 7

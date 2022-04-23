@@ -17,9 +17,8 @@ public class PlayerMovementComponent : MoveComponent
     public bool isRiding = false;
     public Mount activeMount; //This might need to be moved out
     public float groundCheckDistance = 0.6f;
-    public float groundCheckOffsetX = 0.22f;
-    public float groundCheckOffsetY = 1f;
-    public float groundCheckOffsetZ = 1f;
+    public float groundCheckOutwardOffset = 0.22f;
+    public float groundCheckVerticleOffset = 0f;
     public float groundCheckTime = 0.1f;
     public float groundCheckTimer = 0f; //How long after jumping can we check for isGrounded again.
 
@@ -98,10 +97,18 @@ public class PlayerMovementComponent : MoveComponent
 
     public bool isGrounded()
     {
-        var currentPos = transform.position + (transform.forward * groundCheckOffsetX);
+        var currentPos = transform.position;
+        var frontOffsetPosition = transform.position + (transform.forward * groundCheckOutwardOffset) + (transform.up * groundCheckVerticleOffset);
+        var backOffsetPosition = transform.position + (-transform.forward * groundCheckOutwardOffset) + (transform.up * groundCheckVerticleOffset);
+        var leftOffsetPosition = transform.position + (-transform.right * groundCheckOutwardOffset) + (transform.up * groundCheckVerticleOffset);
+        var rightOffsetPosition = transform.position + (transform.right * groundCheckOutwardOffset) + (transform.up * groundCheckVerticleOffset);
         if (isDebugging)
         {
-            Debug.DrawRay(currentPos, (-Vector3.up * groundCheckDistance), Color.red);
+            Debug.DrawRay(frontOffsetPosition, (Vector3.forward * groundCheckDistance), Color.red);
+            Debug.DrawRay(backOffsetPosition, (-Vector3.forward * groundCheckDistance), Color.blue);
+            Debug.DrawRay(leftOffsetPosition, (-Vector3.right * groundCheckDistance), Color.yellow);
+            Debug.DrawRay(rightOffsetPosition, (Vector3.right * groundCheckDistance), Color.magenta);
+            Debug.DrawRay(currentPos, (-Vector3.up), Color.green);
         }
 
         if (characterController.isGrounded)
@@ -114,6 +121,22 @@ public class PlayerMovementComponent : MoveComponent
             if (Physics.Raycast(currentPos, -Vector3.up, groundCheckDistance))
             {
                 // Debug.Log("IS GROUNDED");
+                return true;
+            }
+            else if(Physics.Raycast(frontOffsetPosition, -Vector3.up, groundCheckDistance))
+            {
+                return true;
+            }
+            else if (Physics.Raycast(backOffsetPosition, -Vector3.up, groundCheckDistance))
+            {
+                return true;
+            }
+            else if (Physics.Raycast(leftOffsetPosition, -Vector3.up, groundCheckDistance))
+            {
+                return true;
+            }
+            else if (Physics.Raycast(rightOffsetPosition, -Vector3.up, groundCheckDistance))
+            {
                 return true;
             }
             else

@@ -148,6 +148,8 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _QueueControl: 0
+    - _QueueOffset: 0
     - _Roughness: 0.276
     - _SmoothnessTextureChannel: 1
     - _SnowCover: 1
