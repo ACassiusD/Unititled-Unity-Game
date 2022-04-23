@@ -37,18 +37,17 @@ public class IdleState : GroundedState
     {
         base.LogicUpdate();
   
-        if (movementComponent.isMoving)
-        {
+        if (movementComponent.isMoving){
             stateMachine.ChangeState(movementComponent.moving);
         }
-        if (movementComponent.isRiding)
-        {
+        if (movementComponent.isRiding){
             stateMachine.ChangeState(movementComponent.riding);
         }
-        else if (jump && movementComponent.jumpCount < movementComponent.maxJumps)
-        {
+        else if (jump && movementComponent.jumpCount < movementComponent.maxJumps){
             stateMachine.ChangeState(movementComponent.jumping);
         }
+        else if (Input.GetKeyDown("y")) { 
+            stateMachine.ChangeState(movementComponent.emote);
+        }
     }
-
 }

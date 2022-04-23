@@ -4,37 +4,17 @@ using UnityEngine;
 
 public class PlayerAnimator : MonoBehaviour
 {
+    public bool debug = false;
     Animator mountAnimator;
     string runningBool = "isRunning";
     string idleBool = "isIdle";
     string walkingBool = "isWalking";
-    string dancingBool = "isDancing";
+    string emoteBool = "isEmote";
     string jumpingBool = "isJumping";
     string fallingBool = "isFalling";
-
+    string ridingBool = "isRiding";
     public float walkAnimationSpeed = 1;
     public float runAnimaitonSpeed = 2;
-
-    public void Update()
-    {
-        if (Input.GetKeyDown("t"))
-        {
-            setIdleAnimation();
-        }
-        else if (Input.GetKeyDown("y"))
-        {
-            setWalkingAnimation();
-        }
-        else if (Input.GetKeyDown("u"))
-        {
-            setRunningAnimation();
-
-        }
-        else if (Input.GetKeyDown("i"))
-        {
-            setDanceAnimation();
-        }
-    }
 
     void Awake()
     {
@@ -43,36 +23,50 @@ public class PlayerAnimator : MonoBehaviour
 
     public void setWalkingAnimation(float speed = 0)
     {
+        if(debug)
+        debugAnimations("WALKING BOOL");
         ClearAnimation();
         SetAnimationBool(walkingBool, true, walkAnimationSpeed);
     }
 
-    public void setRunningAnimation() { 
+    public void setRunningAnimation() {
+        debugAnimations("RUNNING BOOL");
         ClearAnimation();
         SetAnimationBool(runningBool, true, runAnimaitonSpeed);
     }
 
     public void setIdleAnimation(float animationSpeed = 0)
     {
+        debugAnimations("IDLE BOOL");
         ClearAnimation();
         SetAnimationBool(idleBool, true, animationSpeed);
     }
 
     public void setJumpingAnimation(float animationSpeed = 0)
     {
+        debugAnimations("JUMPING BOOL");
         ClearAnimation();
         SetAnimationBool(jumpingBool, true, animationSpeed);
     }
     public void setFallingAnimation(float animationSpeed = 0)
     {
+        debugAnimations("FALLING BOOL");
         ClearAnimation();
         SetAnimationBool(fallingBool, true, animationSpeed);
     }
 
-    public void setDanceAnimation(float animationSpeed = 0)
+    public void setEmoteAnimation(float animationSpeed = 0)
     {
+        debugAnimations("Emote BOOL");
         ClearAnimation();
-        SetAnimationBool(dancingBool, true, animationSpeed);
+        SetAnimationBool(emoteBool, true, animationSpeed);
+    }
+
+    public void setRidingAnimation(float animationSpeed = 0)
+    {
+        debugAnimations("RIDING BOOL");
+        ClearAnimation();
+        SetAnimationBool(ridingBool, true, animationSpeed);
     }
 
     public void ClearAnimation()
@@ -81,9 +75,10 @@ public class PlayerAnimator : MonoBehaviour
         SetAnimationBool(walkingBool, false, 0);
         SetAnimationBool(runningBool, false, 0);
         SetAnimationBool(idleBool, false, 0);
-        SetAnimationBool(dancingBool, false, 0);
+        SetAnimationBool(emoteBool, false, 0);
         SetAnimationBool(fallingBool, false, 0);
         SetAnimationBool(jumpingBool, false, 0);
+        SetAnimationBool(ridingBool, false, 0);
     }
 
     void SetAnimationBool(string parameterName, bool value, float speed)
@@ -96,6 +91,14 @@ public class PlayerAnimator : MonoBehaviour
         if (!string.IsNullOrEmpty(parameterName))
         {
             mountAnimator.SetBool(parameterName, value);
+        }
+    }
+
+    void debugAnimations(string message)
+    {
+        if (debug)
+        {
+            Debug.Log(message);
         }
     }
 }

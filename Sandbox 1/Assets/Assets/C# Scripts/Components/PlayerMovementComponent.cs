@@ -10,14 +10,18 @@ public class PlayerMovementComponent : MoveComponent
     public RidingState riding;
     public FallingState falling;
     public MovingState moving;
+    public EmoteState emote;
+
     public Transform cam;
     //Only movement variables specific to player should go here
     public bool isRiding = false;
     public Mount activeMount; //This might need to be moved out
-    public float groundCheckDistance = 0.2f;
-    public float groundCheckOffsetX = 1f;
+    public float groundCheckDistance = 0.6f;
+    public float groundCheckOffsetX = 0.22f;
     public float groundCheckOffsetY = 1f;
     public float groundCheckOffsetZ = 1f;
+    public float groundCheckTime = 0.1f;
+    public float groundCheckTimer = 0f; //How long after jumping can we check for isGrounded again.
 
     private void Start()
     {
@@ -31,6 +35,7 @@ public class PlayerMovementComponent : MoveComponent
         riding = new RidingState(stateMachine, this);
         falling = new FallingState(stateMachine, this);
         moving = new MovingState(stateMachine, this);
+        emote = new EmoteState(stateMachine, this);
 
 
         if (characterController.isGrounded)

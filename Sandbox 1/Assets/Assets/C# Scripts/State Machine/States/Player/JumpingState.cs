@@ -18,6 +18,7 @@ public class JumpingState : PlayerState
 
     public override void Enter()
     {
+        movementComponent.groundCheckTimer = movementComponent.groundCheckTime;
         //Debug.Log("Jump state time = " + movementComponent.jumpStateTime);
         jumptimer = movementComponent.jumpStateTime;
         //Debug.Log(jumptimer);
@@ -52,6 +53,7 @@ public class JumpingState : PlayerState
         movementComponent.AddVelocityAndMove();
         movementComponent.MovePlayerViaInput();
         jumptimer -= Time.deltaTime;
+        movementComponent.groundCheckTimer -= Time.deltaTime;
         //Debug.Log(jumptimer);
         base.HandleInput();
     }
@@ -59,7 +61,7 @@ public class JumpingState : PlayerState
 
     public override void LogicUpdate()
     {
-        if (movementComponent.isGrounded())
+        if (movementComponent.isGrounded() && movementComponent.groundCheckTimer <= 0f)
         {
             stateMachine.ChangeState(movementComponent.standing);
         }

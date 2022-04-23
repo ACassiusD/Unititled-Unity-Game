@@ -10,16 +10,19 @@ public class RidingState : PlayerState
     bool justEntered = false;
     [SerializeField]
     public bool isTest = true;
+    PlayerAnimator animator;
 
     private bool jump;
     bool isGrounded = false;
 
     public RidingState(StateMachine stateMachine, PlayerMovementComponent movementComponent) : base(stateMachine, movementComponent)
     {
+        animator = movementComponent.getPlayerScript().animator;
     }
 
     public override void Enter()
     {
+        animator.setRidingAnimation();
         if (movementComponent.isDebugging)
         {
             Debug.Log("Entered riding state");
