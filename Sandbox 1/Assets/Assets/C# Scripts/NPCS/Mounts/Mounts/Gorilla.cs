@@ -10,15 +10,15 @@ public class Gorilla : Mount
     // Start is called before the first frame update
     void Start()
     {
-        moveComponent.mountWalkSpeed = 4;
-        moveComponent.mountRunSpeed = 15;
+        moveComponent.walkSpeed = 4;
+        moveComponent.runSpeed = 15;
         base.Start();
     }
 
     // Update is called once per frame
     void Update()
     {
-        moveComponent.mountRunSpeed = gorillaRunSpeed;
-        moveComponent.mountWalkSpeed = gorillaWalkSpeed;
+        moveComponent.runSpeed = gorillaRunSpeed;
+        moveComponent.walkSpeed = gorillaWalkSpeed;
     }
 }

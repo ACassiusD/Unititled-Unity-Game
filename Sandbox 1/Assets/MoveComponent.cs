@@ -10,12 +10,14 @@ public abstract class MoveComponent : MonoBehaviour
     public StateMachine stateMachine;
     public CharacterController characterController;
     Vector3 velocity = new Vector3(); //Velocity/gravity force will increase when character is falling, until they become grounded
-    public float moveSpeed = 50f;
+    public float moveSpeed = 50f; // Active speed
+    public float walkSpeed = 20; //Intended walk speed
+    public float runSpeed = 100; //Intended run speed
     public int jumpCount = 0;
     public int maxJumps = 2;
     public float jumpHeight = 20;
     public float gravity = -8f;
-    public float turnSmoothTime = 0.1f;
+    public float turnSmoothTime = 0.1f; 
     public bool isBeingControlled = false;
     public bool isControllable = true;
     public float rotationSpeed;
@@ -33,15 +35,24 @@ public abstract class MoveComponent : MonoBehaviour
     public int exitChaseDistance = 160;
     public bool isDebugging = false;
     public float jumpStateTime = 1f;
+    public float sprintTimer = 0f;
+    public float sprintLimit = 3f;
 
     void Awake()
     {
         characterController = GetComponent<CharacterController>();
         stateMachine = new StateMachine();
+        updateMoveSpeed();
+        ResetSprintTimer();
     }
 
     protected void Update()
     {
+        if (isEnabled)
+        {
+            toggleRun();
+            UpdateSprintTimer();
+        }
         isMoving = checkIfMoving();
         stateMachine.CurrentState.HandleInput();
         stateMachine.CurrentState.LogicUpdate();
@@ -53,7 +64,6 @@ public abstract class MoveComponent : MonoBehaviour
         jumpCount++;
     }
 
-
     public void ZeroYVelocityIfGrounded() //Grounded reset velocity check
     {
         if (characterController.isGrounded && velocity.y < 0)
@@ -62,12 +72,10 @@ public abstract class MoveComponent : MonoBehaviour
         }
     }
 
-
     public void addGravity()
     {
         velocity.y += gravity * Time.deltaTime; //Gravity Check
     }
-
 
     public void MidAirJump()
     {
@@ -77,12 +85,10 @@ public abstract class MoveComponent : MonoBehaviour
         }
     }
 
-
     public void AddVelocityAndMove()
     {
         characterController.Move(velocity * Time.deltaTime);
     }
-
 
     public void ResetMoveParams()
     {
@@ -104,7 +110,6 @@ public abstract class MoveComponent : MonoBehaviour
         if(this.target == null) { return 0f; }
         return Vector3.Distance(this.target.position, characterController.transform.position);
     }
-
     public bool IsInRangeOfPlayer()
     {
         if (getDistanceFromTarget() < exitChaseDistance)
@@ -140,18 +145,48 @@ public abstract class MoveComponent : MonoBehaviour
 
         AddJumpVelocity();
 
-        //Vector3 up = this.transform.up;
-        //up.Normalize();
-        //direction.Normalize();
-        //direction.y = up.y;
-        //var impact = Vector3.zero;
-        //impact += direction.normalized * knockBackForce;
 
-        //Vector3.ler
-
-        ////Apply vector to object
-        //characterController.Move(impact * Time.deltaTime);
         this.knockBackDirection = Vector3.zero;
         this.knockBackForce = 0;
     }
+
+    public void toggleRun(bool force = false)
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift) || force)
+        {
+            if (isRunning ? isRunning = false : isRunning = true) ;
+            ;           updateMoveSpeed();
+        }
+    }
+    public void updateMoveSpeed()
+    {
+        if (isRunning)
+        {
+            moveSpeed = runSpeed;
+        }
+        else
+        {
+            moveSpeed = walkSpeed;
+        }
+    }
+
+   protected void UpdateSprintTimer()
+   {
+        if (!isRunning || !isBeingControlled) { return; }
+        sprintTimer -= Time.deltaTime;
+
+        if(sprintTimer <= 0)
+        {
+            Debug.Log("Sprint Ended");
+            toggleRun(true);
+        }
+        else
+        {
+            Debug.Log(sprintTimer);
+        }
+   }
+   protected void ResetSprintTimer()
+   {
+        sprintTimer = sprintLimit;
+   }
 }

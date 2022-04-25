@@ -10,11 +10,8 @@ public class MountMoveComponent : MoveComponent
     Vector3 velocity = new Vector3(); //gravity force
     public Transform cam;
     public Animal_WanderScript wanderscript;
-    public float mountWalkSpeed = 20;
-    public float mountRunSpeed = 100;
     public NavMeshAgent naveMeshAgent;
     public Mount mountScript;
-
 
     private void Start()
     {
@@ -25,8 +22,6 @@ public class MountMoveComponent : MoveComponent
         wandering = new MountWanderingState(stateMachine, this);
         standing  = new MountStandingState(stateMachine, this); 
         jumping = new MountJumpingState(stateMachine, this);
-        
-        updateMoveSpeed();
         
         if (isBeingControlled)
         {
@@ -45,17 +40,11 @@ public class MountMoveComponent : MoveComponent
 
     protected void Update()
     {
-        if (isEnabled)
-        {
-            toggleRun();
-            base.Update();
-        }
+        base.Update(); 
     }
-
     public void MountJump() {
         MidAirJump();
     }
-
     public void MoveMountViaInput()
     {
         //Returns 0, -1 or 1 for corrosponding direction
@@ -66,8 +55,7 @@ public class MountMoveComponent : MoveComponent
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
 
         //If we picked up a movement input
-        if (direction.magnitude >= 0.1f)
-        {
+        if (direction.magnitude >= 0.1f){
             isMoving = true;
             //Mathf.Atan2(direction.x, direction.z) - Gives us the angle in radians our player needs to turn
             //Mathf.Rad2Deg Update the angle to degrees
@@ -80,35 +68,11 @@ public class MountMoveComponent : MoveComponent
             //reference for more information - https://www.youtube.com/watch?v=4HpC--2iowE
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
             characterController.Move(moveDir.normalized * moveSpeed * Time.deltaTime);
-            
         }
-        else
-        {
+        else {
             isMoving = false;
         }
     }
-
-    public void toggleRun()
-    {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            if (isRunning ? isRunning = false : isRunning = true);
-            updateMoveSpeed();
-        }
-    }
-
-    public void updateMoveSpeed()
-    {
-        if (isRunning)
-        {
-            moveSpeed = mountRunSpeed;
-        }
-        else
-        {
-            moveSpeed = mountWalkSpeed;
-        }
-    }
-
     public Mount getMountScript()
     {
         if (mountScript == null)
