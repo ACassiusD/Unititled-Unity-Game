@@ -24,6 +24,10 @@ public class MovingState : GroundedState
     //Hypotetically, we can only jump and shoot while standing, but not ducking or crouching. So cache these variables here instead of the sub class, grounded state
     public override void HandleInput()
     {
+        if (!movementComponent.isRunning)
+        {
+            movementComponent.RegenerateStamina();
+        }
         base.HandleInput();
         if (movementComponent.isRunning)
             animator.setWalkingAnimation();

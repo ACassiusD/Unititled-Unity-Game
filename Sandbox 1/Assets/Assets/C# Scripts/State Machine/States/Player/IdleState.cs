@@ -22,12 +22,18 @@ public class IdleState : GroundedState
         animator.setIdleAnimation();
         base.Enter();
         jump = false;
+        if (movementComponent.isRunning)
+        {
+            //Turn to walking state so stamina can recharge.
+            movementComponent.toggleRun(true);
+        }
     }
 
     //Hypotetically, we can only jump and shoot while standing, but not ducking or crouching. So cache these variables here instead of the sub class, grounded state
     public override void HandleInput()
     {
-        movementComponent.isGrounded();
+        //movementComponent.isGrounded();
+        movementComponent.RegenerateStamina();
         base.HandleInput();
         jump = Input.GetButtonDown("Jump");
     }

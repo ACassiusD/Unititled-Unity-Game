@@ -37,6 +37,7 @@ public abstract class MoveComponent : MonoBehaviour
     public float jumpStateTime = 1f;
     public float sprintTimer = 0f;
     public float sprintLimit = 3f;
+    public bool requiresStamina = false;
 
     void Awake()
     {
@@ -154,12 +155,13 @@ public abstract class MoveComponent : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.LeftShift) || force)
         {
-            if (isRunning ? isRunning = false : isRunning = true) ;
-            ;           updateMoveSpeed();
+            if (isRunning ? isRunning = false : isRunning = true);
+            updateMoveSpeed();
         }
     }
     public void updateMoveSpeed()
     {
+
         if (isRunning)
         {
             moveSpeed = runSpeed;
@@ -172,17 +174,27 @@ public abstract class MoveComponent : MonoBehaviour
 
    protected void UpdateSprintTimer()
    {
-        if (!isRunning || !isBeingControlled) { return; }
-        sprintTimer -= Time.deltaTime;
+        if (requiresStamina)
+        {
+            if (!isRunning || !isBeingControlled) { return; }
+            sprintTimer -= Time.deltaTime;
 
-        if(sprintTimer <= 0)
-        {
-            Debug.Log("Sprint Ended");
-            toggleRun(true);
-        }
-        else
-        {
-            Debug.Log(sprintTimer);
+            if (sprintTimer <= 0)
+            {
+                if (isDebugging)
+                {
+                    Debug.Log("Sprint Ended");
+                }
+
+                toggleRun(true);
+            }
+            else
+            {
+                if (isDebugging)
+                {
+                    Debug.Log(sprintTimer);
+                }
+            }
         }
    }
    protected void ResetSprintTimer()

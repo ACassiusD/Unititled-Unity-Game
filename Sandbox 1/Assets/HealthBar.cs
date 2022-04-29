@@ -12,9 +12,12 @@ public class HealthBar : MonoBehaviour
  
     public void setHealth(int currentHealth, int maxHealth)
     {
-        double rawPercentage = (float)currentHealth / (float)maxHealth;
-        double percentage = Math.Round(rawPercentage, 2);
-        image.fillAmount = (float)percentage;
+        if(image != null)
+        {
+            double rawPercentage = (float)currentHealth / (float)maxHealth;
+            double percentage = Math.Round(rawPercentage, 2);
+            image.fillAmount = (float)percentage;
+        }
     }
 
     void Start()

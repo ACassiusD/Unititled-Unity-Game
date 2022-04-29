@@ -37,6 +37,7 @@ public class RidingState : PlayerState
 
     public override void HandleInput()
     {
+        movementComponent.RegenerateStamina();
         movementComponent.MoveToMountedPosition();
     }
 

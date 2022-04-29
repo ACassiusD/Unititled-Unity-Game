@@ -16,6 +16,7 @@ public class BetaCharacter : MonoBehaviour, IDamageable
     public bool matchSurfaceRotation = true;
     public int surfaceRotationSpeed = 20;
     public PlayerAnimator animator;
+    protected Vector3 spawnPosition; 
 
     private void Awake()
     {
@@ -31,11 +32,16 @@ public class BetaCharacter : MonoBehaviour, IDamageable
         if (!movementComponent)
             Debug.LogError(this.name + " is missing a MoveComponent!");
         if (!healthBarScript)
-            Debug.LogError(this.name + " is missing a HealthBarScript!");
+            Debug.Log(this.name + " is missing a HealthBarScript!");
     }
 
-    private void updateAnimations()
+    public void Update()
     {
+        if (movementComponent.isRunning)
+        {
+            UpdateStaminaUI();
+        }
+        SetControls();
     }
 
     public void onCreate()
@@ -121,13 +127,61 @@ public class BetaCharacter : MonoBehaviour, IDamageable
     //Update floating healthbar in world space.
     public void updateHealthBar()
     {
-        healthBarScript.setHealth(currentHealth, maxHealth);
+        if(healthBarScript != null)
+        {
+            healthBarScript.setHealth(currentHealth, maxHealth);
+        }
+        UIController.Instance.setHealth(currentHealth, maxHealth);
     }
 
     //Kill/death command, despawn and drop loot.
     public void feint()
     {
-        Debug.Log("oof, you died");
+        //Debug.Log("oof, you died");
         //Destroy(gameObject);
     }
+
+    public void SetSpawn()
+    {
+        this.spawnPosition = this.transform.position;
+    }
+
+    protected void Respawn()
+    {
+       
+        if (this.spawnPosition.magnitude > 0)
+        {
+            this.transform.position = this.spawnPosition;
+        }
+    }
+
+    protected void SetControls()
+    {
+        bool attackKeyCaptured = Input.GetKeyDown("p");
+        bool attackKeyCaptured2 = Input.GetKeyDown("o");
+
+        if (attackKeyCaptured)
+        {
+            Respawn();
+        }
+        if (attackKeyCaptured2)
+        {
+            fullHeal();
+            SetSpawn();
+        }
+    }   
+    
+    protected void fullHeal()
+    {
+        currentHealth = maxHealth;
+        updateHealthBar();
+        movementComponent.sprintTimer = movementComponent.sprintLimit;
+        UpdateStaminaUI();
+    }
+
+    public void UpdateStaminaUI()
+    {
+        UIController.Instance.setStamina(movementComponent.sprintTimer, movementComponent.sprintLimit);
+    }
+
 }

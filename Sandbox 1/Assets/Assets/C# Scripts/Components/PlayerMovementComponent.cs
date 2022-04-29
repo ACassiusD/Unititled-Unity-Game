@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 //Player movement component contains a state machine, a working group states relevent to the player, varaible, and functions relevent to player movement.
@@ -11,7 +12,6 @@ public class PlayerMovementComponent : MoveComponent
     public FallingState falling;
     public MovingState moving;
     public EmoteState emote;
-
     public Transform cam;
     //Only movement variables specific to player should go here
     public bool isRiding = false;
@@ -41,6 +41,20 @@ public class PlayerMovementComponent : MoveComponent
             stateMachine.Initialize(standing); 
         else
             stateMachine.Initialize(jumping); 
+    }
+
+    public void RegenerateStamina()
+    {
+        if(sprintTimer < 0)
+            sprintTimer = 0; 
+        
+        if(sprintTimer < sprintLimit)
+            sprintTimer += 1*Time.deltaTime;
+        
+        if(sprintTimer > sprintLimit)
+            sprintTimer = sprintLimit;
+
+        playerScript.UpdateStaminaUI();
     }
 
     public void MoveToMountedPosition() //Moves entity to mounted seating position
