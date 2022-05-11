@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Cinemachine;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,16 +19,31 @@ public class CameraController : MonoBehaviour {
     public float maxCameraHeight = 15;
     public float minCameraHeight = 0;
     public Transform target; //What the camera looks at
+    public CinemachineFreeLook cinemachineFreeLook;
+    protected BetaCharacter characterScript;
+    bool playerRunningStatus = false;
 
 
     // Use this for initialization
     void Start () {
+        characterScript = PlayerManager.Instance.getPlayerScript();
+        if (characterScript.movementComponent.isRunning)
+        {
+            playerRunningStatus = true;
+            this.setCameraSprintingFOV();
+        }
+        else
+        {
+            playerRunningStatus = false;
+            this.setCameraNormalFOV();
+        }
         //Set negative to be behind the player
         isBeingControlled = false;
     }
 	
 	// Update is called once per frame
 	void Update () {
+        UpdateFOV();
         isBeingControlled = false;
         if (Input.GetKey("c"))
         {
@@ -36,9 +52,38 @@ public class CameraController : MonoBehaviour {
         }
     }
 
+    void UpdateFOV()
+    {
+        if (characterScript.movementComponent.isRunning != playerRunningStatus)
+        {
+            if (characterScript.movementComponent.isRunning)
+            {
+                playerRunningStatus = true;
+                setCameraSprintingFOV();
+            }
+            else
+            {
+                playerRunningStatus = false;
+                setCameraNormalFOV();
+            }
+        }
+    }
+
     private void LateUpdate()
     {
         MoveCamera();
+    }
+
+    public void setCameraSprintingFOV()
+    {
+        cinemachineFreeLook.m_CommonLens = true;
+        cinemachineFreeLook.m_Lens.FieldOfView = 95;
+    }
+
+    public void setCameraNormalFOV()
+    {
+        cinemachineFreeLook.m_CommonLens = true;
+        cinemachineFreeLook.m_Lens.FieldOfView = 90;
     }
 
     void MoveCamera()

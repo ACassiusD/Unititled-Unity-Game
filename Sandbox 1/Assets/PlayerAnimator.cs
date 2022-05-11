@@ -6,7 +6,7 @@ public class PlayerAnimator : MonoBehaviour
 {
     public bool debug = false;
     Animator mountAnimator;
-    string runningBool = "isRunning";
+    string runningBool = "isSprinting";
     string idleBool = "isIdle";
     string walkingBool = "isWalking";
     string emoteBool = "isEmote";

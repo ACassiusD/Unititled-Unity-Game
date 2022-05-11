@@ -57,7 +57,7 @@ public class InteractorComponent : MonoBehaviour
         bool isObjectHit = false;
         hitinfo = new RaycastHit();
         var cam = playerScript.movementComponent.cam;
-        if (Physics.Raycast(cam.position, cam.transform.forward, out hitinfo, distance, 1 << 8))
+        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hitinfo, distance, 1 << 8))
         {
             isObjectHit = true;
         }
@@ -150,7 +150,7 @@ public class InteractorComponent : MonoBehaviour
     private void debugRay()
     {
         var cam = playerScript.movementComponent.cam;
-        Debug.DrawRay(cam.position, cam.transform.forward * distance, Color.red);
+        Debug.DrawRay(cam.transform.position, cam.transform.forward * distance, Color.red);
     }
 
 }

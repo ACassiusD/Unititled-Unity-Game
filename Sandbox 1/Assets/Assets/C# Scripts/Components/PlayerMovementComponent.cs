@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Cinemachine;
 
 //Player movement component contains a state machine, a working group states relevent to the player, varaible, and functions relevent to player movement.
 //It is the "Brain" of player movement.
@@ -12,7 +13,7 @@ public class PlayerMovementComponent : MoveComponent
     public FallingState falling;
     public MovingState moving;
     public EmoteState emote;
-    public Transform cam;
+    public Camera cam;
     //Only movement variables specific to player should go here
     public bool isRiding = false;
     public Mount activeMount; //This might need to be moved out
@@ -21,11 +22,40 @@ public class PlayerMovementComponent : MoveComponent
     public float groundCheckVerticleOffset = 0f;
     public float groundCheckTime = 0.1f;
     public float groundCheckTimer = 0f; //How long after jumping can we check for isGrounded again.
+    public float slopeLimit = 45;
+    public float slopeSpeed = 50;
+    public bool onSteepSlope = false;
+    public float sphereRad = 5;
+    public float sphereDist = 5;
+    public float OSPOS = 0;
+
+    private float groundRayDistance = 1;
+    private RaycastHit slopeHit;
+
+    private bool OnStepSlope()
+    {
+        if (!isGrounded()) return false;
+
+        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, groundRayDistance))
+        {
+            float slopeAngle = Vector3.Angle(slopeHit.normal, Vector3.up);
+            Debug.DrawRay(transform.position, (Vector3.down * groundRayDistance), Color.red);
+            Debug.Log("slopeAngle " + "is " + slopeAngle);
+            if (slopeAngle > slopeLimit)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void Update()
+    {
+        base.Update();
+    }
 
     private void Start()
     {
-        //Debug.Log("Jump state time = " + this.jumpStateTime);
-        //distanceToGround = this.GetComponent<Collider>().bounds.extents.y; 
         activeMount = null;
         isBeingControlled = true;
         //Initialize the players states.
@@ -36,13 +66,11 @@ public class PlayerMovementComponent : MoveComponent
         moving = new MovingState(stateMachine, this);
         emote = new EmoteState(stateMachine, this);
 
-
         if (characterController.isGrounded)
             stateMachine.Initialize(standing); 
         else
             stateMachine.Initialize(jumping); 
     }
-
     public void RegenerateStamina()
     {
         if(sprintTimer < 0)
@@ -92,7 +120,7 @@ public class PlayerMovementComponent : MoveComponent
             isMoving = true;
             //Mathf.Atan2(direction.x, direction.z) - Gives us the angle in radians our player needs to turn
             //Mathf.Rad2Deg Update the angle to degrees
-            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
+            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.transform.eulerAngles.y;
             //Smooth the angle to not immediatly point towards it.
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref rotationSpeed, turnSmoothTime);
             //Rotate our player on the Y axis by the angle 
@@ -100,17 +128,46 @@ public class PlayerMovementComponent : MoveComponent
 
             //reference for more information - https://www.youtube.com/watch?v=4HpC--2iowE
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-            characterController.Move(moveDir.normalized * moveSpeed * Time.deltaTime);
-            //Debug.Log(characterController.isGrounded);
+
+            //Slide down slopes
+            if (onSteepSlope)
+            {
+                Vector3 slopeDir = Vector3.up - slopeHit.normal * Vector3.Dot(Vector3.up, slopeHit.normal); 
+                moveDir = slopeDir * (-slopeSpeed * Time.deltaTime);
+                moveDir.y = moveDir.y - slopeHit.point.y;
+                characterController.Move(moveDir.normalized * (moveSpeed) * Time.deltaTime);
+
+            }
+            else
+            {
+                characterController.Move(moveDir.normalized * (moveSpeed) * Time.deltaTime);
+            }
         }
         else
         {
+            //TODO: MAKE SLOPE SLIDE ACCELLERATE
+            //FIX SPEED ISSUES.
+            if (onSteepSlope)
+            {
+                Vector3 slopeDir = Vector3.up - slopeHit.normal * Vector3.Dot(Vector3.up, slopeHit.normal);
+                var moveDir = slopeDir * (-slopeSpeed * Time.deltaTime);
+                moveDir.y = moveDir.y - slopeHit.point.y;
+                characterController.Move(moveDir.normalized * (moveSpeed) * Time.deltaTime);
+            }
+
             isMoving = false;
         }
     }
 
+    private void OnDrawGizmos()
+    {
+        var currentPos = transform.position + (transform.forward * OSPOS) + (transform.up * groundCheckVerticleOffset);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(currentPos, sphereRad);
+    }
     public bool isGrounded()
     {
+        onSteepSlope = false;
         var currentPos = transform.position;
         var frontOffsetPosition = transform.position + (transform.forward * groundCheckOutwardOffset) + (transform.up * groundCheckVerticleOffset);
         var backOffsetPosition = transform.position + (-transform.forward * groundCheckOutwardOffset) + (transform.up * groundCheckVerticleOffset);
@@ -118,46 +175,38 @@ public class PlayerMovementComponent : MoveComponent
         var rightOffsetPosition = transform.position + (transform.right * groundCheckOutwardOffset) + (transform.up * groundCheckVerticleOffset);
         if (isDebugging)
         {
-            Debug.DrawRay(frontOffsetPosition, (Vector3.forward * groundCheckDistance), Color.red);
-            Debug.DrawRay(backOffsetPosition, (-Vector3.forward * groundCheckDistance), Color.blue);
-            Debug.DrawRay(leftOffsetPosition, (-Vector3.right * groundCheckDistance), Color.yellow);
-            Debug.DrawRay(rightOffsetPosition, (Vector3.right * groundCheckDistance), Color.magenta);
-            Debug.DrawRay(currentPos, (-Vector3.up), Color.green);
+            Debug.DrawRay(currentPos, (Vector3.down * groundCheckDistance), Color.green);
         }
 
-        if (characterController.isGrounded)
+        //TODO; ADD A LAYER MASK
+        RaycastHit testHit;
+        var spherePos = transform.position;// + (transform.forward * OSPOS) + (transform.up * groundCheckVerticleOffset);
+
+        if (Physics.Raycast(currentPos, -Vector3.up, out slopeHit, groundCheckDistance))
         {
+            // Debug.Log("IS GROUNDED");
+            float slopeAngle = Vector3.Angle(slopeHit.normal, Vector3.up);
+            if (slopeAngle > slopeLimit)
+            {
+                onSteepSlope = true;
+            }
             return true;
-            Debug.Log("IS GROUNDED");
         }
-        else //Fallback check for slopes using a ray
+        else if (Physics.SphereCast(spherePos, sphereRad, Vector3.down, out slopeHit, 0))
         {
-            if (Physics.Raycast(currentPos, -Vector3.up, groundCheckDistance))
+
+            float slopeAngle = Vector3.Angle(slopeHit.normal, Vector3.up);
+            if (slopeAngle > slopeLimit)
             {
-                // Debug.Log("IS GROUNDED");
-                return true;
+                onSteepSlope = true;
             }
-            else if(Physics.Raycast(frontOffsetPosition, -Vector3.up, groundCheckDistance))
-            {
-                return true;
-            }
-            else if (Physics.Raycast(backOffsetPosition, -Vector3.up, groundCheckDistance))
-            {
-                return true;
-            }
-            else if (Physics.Raycast(leftOffsetPosition, -Vector3.up, groundCheckDistance))
-            {
-                return true;
-            }
-            else if (Physics.Raycast(rightOffsetPosition, -Vector3.up, groundCheckDistance))
-            {
-                return true;
-            }
-            else
-            {
-                // Debug.Log("NOT IS GROUNDED");
-                return false;
-            }
+            return true;
+
+        }
+        else
+        {
+            //Debug.Log("NOT IS GROUNDED");
+            return false;
         }
     }
 }

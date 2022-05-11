@@ -44,7 +44,7 @@ public class FallingState : PlayerState
     {
         if (movementComponent.isGrounded())
         {
-            stateMachine.ChangeState(movementComponent.standing);
+              stateMachine.ChangeState(movementComponent.standing);
         }
         if (jump && movementComponent.jumpCount < movementComponent.maxJumps)
         {

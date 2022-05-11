@@ -192,7 +192,7 @@ public abstract class MoveComponent : MonoBehaviour
             {
                 if (isDebugging)
                 {
-                    Debug.Log(sprintTimer);
+                    Debug.Log("Sprint Timer = " + sprintTimer);
                 }
             }
         }

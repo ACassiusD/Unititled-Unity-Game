@@ -49,8 +49,8 @@ public class Spider : Mount
         float range = 5000;
         var cam = moveComponent.getPlayerScript().movementComponent.cam;
         RaycastHit specialAttackHit;
-        Debug.DrawRay(cam.position, cam.transform.forward * range, Color.red);
-        if (Physics.Raycast(cam.position, cam.transform.forward, out specialAttackHit, range, 1 << 8))
+        Debug.DrawRay(cam.transform.position, cam.transform.forward * range, Color.red);
+        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out specialAttackHit, range, 1 << 8))
         {
             var col = specialAttackHit.collider;
             Debug.Log("HIT ENEMY" + specialAttackHit.transform.name);
