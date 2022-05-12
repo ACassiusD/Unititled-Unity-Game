@@ -20,6 +20,7 @@ public class PlayerMovementComponent : MoveComponent
     public float groundCheckDistance = 0.6f;
     public float groundCheckOutwardOffset = 0.22f;
     public float groundCheckVerticleOffset = 0f;
+    public float groundCheckForwardOffset = 0;
     public float groundCheckTime = 0.1f;
     public float groundCheckTimer = 0f; //How long after jumping can we check for isGrounded again.
     public float slopeLimit = 45;
@@ -27,27 +28,11 @@ public class PlayerMovementComponent : MoveComponent
     public bool onSteepSlope = false;
     public float sphereRad = 5;
     public float sphereDist = 5;
-    public float OSPOS = 0;
 
     private float groundRayDistance = 1;
     private RaycastHit slopeHit;
+    private RaycastHit steepSlopeHit;
 
-    private bool OnStepSlope()
-    {
-        if (!isGrounded()) return false;
-
-        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, groundRayDistance))
-        {
-            float slopeAngle = Vector3.Angle(slopeHit.normal, Vector3.up);
-            Debug.DrawRay(transform.position, (Vector3.down * groundRayDistance), Color.red);
-            Debug.Log("slopeAngle " + "is " + slopeAngle);
-            if (slopeAngle > slopeLimit)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
 
     private void Update()
     {
@@ -132,9 +117,9 @@ public class PlayerMovementComponent : MoveComponent
             //Slide down slopes
             if (onSteepSlope)
             {
-                Vector3 slopeDir = Vector3.up - slopeHit.normal * Vector3.Dot(Vector3.up, slopeHit.normal); 
+                Vector3 slopeDir = Vector3.up - steepSlopeHit.normal * Vector3.Dot(Vector3.up, steepSlopeHit.normal); 
                 moveDir = slopeDir * (-slopeSpeed * Time.deltaTime);
-                moveDir.y = moveDir.y - slopeHit.point.y;
+                moveDir.y = moveDir.y - steepSlopeHit.point.y;
                 characterController.Move(moveDir.normalized * (moveSpeed) * Time.deltaTime);
 
             }
@@ -149,9 +134,9 @@ public class PlayerMovementComponent : MoveComponent
             //FIX SPEED ISSUES.
             if (onSteepSlope)
             {
-                Vector3 slopeDir = Vector3.up - slopeHit.normal * Vector3.Dot(Vector3.up, slopeHit.normal);
+                Vector3 slopeDir = Vector3.up - steepSlopeHit.normal * Vector3.Dot(Vector3.up, steepSlopeHit.normal);
                 var moveDir = slopeDir * (-slopeSpeed * Time.deltaTime);
-                moveDir.y = moveDir.y - slopeHit.point.y;
+                moveDir.y = moveDir.y - steepSlopeHit.point.y;
                 characterController.Move(moveDir.normalized * (moveSpeed) * Time.deltaTime);
             }
 
@@ -161,10 +146,11 @@ public class PlayerMovementComponent : MoveComponent
 
     private void OnDrawGizmos()
     {
-        var currentPos = transform.position + (transform.forward * OSPOS) + (transform.up * groundCheckVerticleOffset);
+        var currentPos = transform.position + (transform.forward * groundCheckForwardOffset) + (transform.up * groundCheckVerticleOffset);
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(currentPos, sphereRad);
+        //Gizmos.DrawWireSphere(currentPos, sphereRad);
     }
+
     public bool isGrounded()
     {
         onSteepSlope = false;
@@ -173,40 +159,73 @@ public class PlayerMovementComponent : MoveComponent
         var backOffsetPosition = transform.position + (-transform.forward * groundCheckOutwardOffset) + (transform.up * groundCheckVerticleOffset);
         var leftOffsetPosition = transform.position + (-transform.right * groundCheckOutwardOffset) + (transform.up * groundCheckVerticleOffset);
         var rightOffsetPosition = transform.position + (transform.right * groundCheckOutwardOffset) + (transform.up * groundCheckVerticleOffset);
+
+        var forwardDown = this.transform.forward - this.transform.up;
+        var backDown = (-this.transform.forward) - this.transform.up;
+        var rightDown = this.transform.right - this.transform.up; ;
+        var leftDown = (-this.transform.right) - this.transform.up; ;
+
         if (isDebugging)
         {
-            Debug.DrawRay(currentPos, (Vector3.down * groundCheckDistance), Color.green);
+            Debug.DrawRay(frontOffsetPosition, forwardDown * groundCheckDistance, Color.red);
+            Debug.DrawRay(backOffsetPosition, backDown * groundCheckDistance, Color.blue);
+            Debug.DrawRay(leftOffsetPosition, leftDown * groundCheckDistance, Color.yellow);
+            Debug.DrawRay(rightOffsetPosition, rightDown * groundCheckDistance, Color.magenta);
+            Debug.DrawRay(currentPos, (-Vector3.up), Color.green);
         }
-
-        //TODO; ADD A LAYER MASK
-        RaycastHit testHit;
-        var spherePos = transform.position;// + (transform.forward * OSPOS) + (transform.up * groundCheckVerticleOffset);
 
         if (Physics.Raycast(currentPos, -Vector3.up, out slopeHit, groundCheckDistance))
         {
-            // Debug.Log("IS GROUNDED");
-            float slopeAngle = Vector3.Angle(slopeHit.normal, Vector3.up);
-            if (slopeAngle > slopeLimit)
+            if (!checkSteepSlope(slopeHit))
             {
-                onSteepSlope = true;
+                onSteepSlope = false;
+                return true;
             }
+        }
+        if(Physics.Raycast(frontOffsetPosition, forwardDown, out slopeHit, groundCheckDistance))
+        {
+            if (!checkSteepSlope(slopeHit))
+            {
+                onSteepSlope = false;
+                return true;
+            }
+        }
+        if (Physics.Raycast(backOffsetPosition, backDown, out slopeHit, groundCheckDistance))
+        {
+            if (!checkSteepSlope(slopeHit))
+            {
+                onSteepSlope = false;
+                return true;
+            }
+        }
+        if (Physics.Raycast(leftOffsetPosition, leftDown, out slopeHit, groundCheckDistance))
+        {
+            if (!checkSteepSlope(slopeHit))
+            {
+                onSteepSlope = false;
+                return true;
+            }
+        }
+        if (Physics.Raycast(rightOffsetPosition, rightDown, out slopeHit, groundCheckDistance))
+        {
+            if (!checkSteepSlope(slopeHit))
+            {
+                onSteepSlope = false;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    protected bool checkSteepSlope(RaycastHit hit)
+    {
+        float slopeAngle = Vector3.Angle(hit.normal, Vector3.up);
+        if (slopeAngle > slopeLimit)
+        {
+            steepSlopeHit = hit;
+            onSteepSlope = true;
             return true;
         }
-        else if (Physics.SphereCast(spherePos, sphereRad, Vector3.down, out slopeHit, 0))
-        {
-
-            float slopeAngle = Vector3.Angle(slopeHit.normal, Vector3.up);
-            if (slopeAngle > slopeLimit)
-            {
-                onSteepSlope = true;
-            }
-            return true;
-
-        }
-        else
-        {
-            //Debug.Log("NOT IS GROUNDED");
-            return false;
-        }
+        return false;
     }
 }
