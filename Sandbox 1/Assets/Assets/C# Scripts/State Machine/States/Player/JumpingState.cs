@@ -24,7 +24,7 @@ public class JumpingState : PlayerState
         //Debug.Log(jumptimer);
         if (movementComponent.isDebugging)
         {
-            Debug.Log("Entered jumping state");
+            Debug.Log("JUMPING");
         }
 
         movementComponent.AddJumpVelocity();
@@ -63,7 +63,7 @@ public class JumpingState : PlayerState
 
     public override void LogicUpdate()
     {
-        if (movementComponent.isGrounded() && movementComponent.groundCheckTimer <= 0f)
+        if (movementComponent.IsGrounded() && movementComponent.groundCheckTimer <= 0f)
         {
             stateMachine.ChangeState(movementComponent.standing);
         }

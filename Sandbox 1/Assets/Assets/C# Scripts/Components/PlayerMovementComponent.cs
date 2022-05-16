@@ -151,7 +151,7 @@ public class PlayerMovementComponent : MoveComponent
         //Gizmos.DrawWireSphere(currentPos, sphereRad);
     }
 
-    public bool isGrounded()
+    public override bool IsGrounded()
     {
         onSteepSlope = false;
         var currentPos = transform.position;
@@ -174,14 +174,14 @@ public class PlayerMovementComponent : MoveComponent
             Debug.DrawRay(currentPos, (-Vector3.up), Color.green);
         }
 
-        if (Physics.Raycast(currentPos, -Vector3.up, out slopeHit, groundCheckDistance))
-        {
-            if (!checkSteepSlope(slopeHit))
-            {
-                onSteepSlope = false;
-                return true;
-            }
-        }
+        //if (Physics.Raycast(currentPos, -Vector3.up, out slopeHit, groundCheckDistance))
+        //{
+        //    if (!checkSteepSlope(slopeHit))
+        //    {
+        //        onSteepSlope = false;
+        //        return true;
+        //    }
+        //}
         if(Physics.Raycast(frontOffsetPosition, forwardDown, out slopeHit, groundCheckDistance))
         {
             if (!checkSteepSlope(slopeHit))

@@ -16,7 +16,7 @@ public class FallingState : PlayerState
     {
         if (movementComponent.isDebugging)
         {
-            Debug.Log("Entered Falling State");
+            Debug.Log("FALLING");
         }
         movementComponent.getPlayerScript().animator.setFallingAnimation();
     }
@@ -42,7 +42,7 @@ public class FallingState : PlayerState
     //Decide the next state for the character.
     public override void LogicUpdate()
     {
-        if (movementComponent.isGrounded())
+        if (movementComponent.IsGrounded())
         {
               stateMachine.ChangeState(movementComponent.standing);
         }

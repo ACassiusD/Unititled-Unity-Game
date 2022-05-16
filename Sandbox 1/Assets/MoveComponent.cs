@@ -67,7 +67,7 @@ public abstract class MoveComponent : MonoBehaviour
 
     public void ZeroYVelocityIfGrounded() //Grounded reset velocity check
     {
-        if (characterController.isGrounded && velocity.y < 0)
+        if (IsGrounded() && velocity.y < 0)
         {
             velocity.y = -2f;
         }
@@ -75,12 +75,15 @@ public abstract class MoveComponent : MonoBehaviour
 
     public void addGravity()
     {
-        velocity.y += gravity * Time.deltaTime; //Gravity Check
+        if (!IsGrounded())
+        {
+            velocity.y += gravity * Time.deltaTime; //Gravity Check
+        }
     }
 
     public void MidAirJump()
     {
-        if (!characterController.isGrounded && (jumpCount < maxJumps)) //Check for double jump
+        if (!IsGrounded() && (jumpCount < maxJumps)) //Check for double jump
         {
             AddJumpVelocity();
         }
@@ -88,6 +91,7 @@ public abstract class MoveComponent : MonoBehaviour
 
     public void AddVelocityAndMove()
     {
+        Debug.Log("VELOCITY = " + velocity);
         characterController.Move(velocity * Time.deltaTime);
     }
 
@@ -201,4 +205,9 @@ public abstract class MoveComponent : MonoBehaviour
    {
         sprintTimer = sprintLimit;
    }
+
+    public virtual bool IsGrounded()
+    {
+        return characterController.isGrounded;
+    }
 }

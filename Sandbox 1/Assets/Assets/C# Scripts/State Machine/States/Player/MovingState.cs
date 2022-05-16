@@ -17,7 +17,7 @@ public class MovingState : GroundedState
     {
         if (movementComponent.isDebugging)
         {
-            Debug.Log("entered moving state.");
+            Debug.Log("GROUNDED MOVING");
         }
     }
 
@@ -61,7 +61,7 @@ public class MovingState : GroundedState
         }
         else
         {
-            if (!movementComponent.isGrounded())
+            if (!movementComponent.IsGrounded())
             {
                 this.stateMachine.ChangeState(movementComponent.falling);
             }
