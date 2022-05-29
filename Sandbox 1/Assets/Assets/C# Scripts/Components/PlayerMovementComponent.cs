@@ -28,7 +28,7 @@ public class PlayerMovementComponent : MoveComponent
     public bool onSteepSlope = false;
     public float sphereRad = 5;
     public float sphereDist = 5;
-
+    public Vector3 moveDir;
     private float groundRayDistance = 1;
     private RaycastHit slopeHit;
     private RaycastHit steepSlopeHit;
@@ -112,7 +112,7 @@ public class PlayerMovementComponent : MoveComponent
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
             //reference for more information - https://www.youtube.com/watch?v=4HpC--2iowE
-            Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+            moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
 
             //Slide down slopes
             if (onSteepSlope)

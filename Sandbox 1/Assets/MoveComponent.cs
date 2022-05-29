@@ -9,7 +9,7 @@ public abstract class MoveComponent : MonoBehaviour
     //public static Transform playerTransform;
     public StateMachine stateMachine;
     public CharacterController characterController;
-    Vector3 velocity = new Vector3(); //Velocity/gravity force will increase when character is falling, until they become grounded
+    public Vector3 velocity = new Vector3(); //Velocity/gravity force will increase when character is falling, until they become grounded
     public float moveSpeed = 50f; // Active speed
     public float walkSpeed = 20; //Intended walk speed
     public float runSpeed = 100; //Intended run speed
@@ -91,7 +91,6 @@ public abstract class MoveComponent : MonoBehaviour
 
     public void AddVelocityAndMove()
     {
-        Debug.Log("VELOCITY = " + velocity);
         characterController.Move(velocity * Time.deltaTime);
     }
 
@@ -159,8 +158,11 @@ public abstract class MoveComponent : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.LeftShift) || force)
         {
-            if (isRunning ? isRunning = false : isRunning = true);
-            updateMoveSpeed();
+            if(stateMachine.CurrentState.ToString() != "FallingState" && stateMachine.CurrentState.ToString() != "JumpingState")
+            {
+                if (isRunning ? isRunning = false : isRunning = true) ;
+                updateMoveSpeed();
+            }
         }
     }
     public void updateMoveSpeed()

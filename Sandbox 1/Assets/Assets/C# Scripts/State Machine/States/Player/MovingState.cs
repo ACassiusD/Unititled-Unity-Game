@@ -32,13 +32,10 @@ public class MovingState : GroundedState
         }
         else
         {           
-            //movementComponent.cinemachineFreeLook.m_Lens.FieldOfView = 90;
-            //movementComponent.cinemachineFreeLook.m_CommonLens = false;
             animator.setWalkingAnimation();
             movementComponent.RegenerateStamina();
         }
 
-        base.HandleInput();
         jump = Input.GetButtonDown("Jump");
 
     }

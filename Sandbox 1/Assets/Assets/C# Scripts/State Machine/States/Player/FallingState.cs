@@ -42,7 +42,11 @@ public class FallingState : PlayerState
     //Decide the next state for the character.
     public override void LogicUpdate()
     {
-        if (movementComponent.IsGrounded())
+        if (movementComponent.IsGrounded() && movementComponent.isMoving)
+        {
+            stateMachine.ChangeState(movementComponent.moving);
+        }
+        else if(movementComponent.IsGrounded())
         {
               stateMachine.ChangeState(movementComponent.standing);
         }

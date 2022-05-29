@@ -47,16 +47,15 @@ public class JumpingState : PlayerState
             movementComponent.addGravity();
             if (jump && movementComponent.jumpCount > 0)
             {
-                movementComponent.jumpCount--;
+               movementComponent.jumpCount--;
                 movementComponent.getPlayerScript().animator.restartJumpingAnimation();
                 movementComponent.MidAirJump();
-            }
+           }
         }
         movementComponent.AddVelocityAndMove();
         movementComponent.MovePlayerViaInput();
         jumptimer -= Time.deltaTime;
         movementComponent.groundCheckTimer -= Time.deltaTime;
-        //Debug.Log(jumptimer);
         base.HandleInput();
     }
 
