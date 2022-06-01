@@ -71,7 +71,7 @@ public class Mount : MonoBehaviour, InteractableInterface //Mount class contains
 
     public void interact()
     {
-        Debug.Log("Interacted with mount");
+        //Debug.Log("Interacted with mount");
         
         if (!playerScript.getIsRiding()) 
             mount();

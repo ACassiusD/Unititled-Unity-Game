@@ -15,7 +15,7 @@ public class UIController : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject); //Must be moved to root of the gameobject.
         }
         else
         {

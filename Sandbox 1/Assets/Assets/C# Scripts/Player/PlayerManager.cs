@@ -41,17 +41,19 @@ public class PlayerManager : MonoBehaviour {
 
     private void loadInventoryManager()
     {
-        playerInventory = player.GetComponent<InventoryManager>();
-        if (playerInventory == null)
+        if (player.GetComponent<InventoryManager>() != null)
         {
-            Debug.LogError("Player Manager - Unable return load inventory script.");
-            Debug.Break();
+            playerInventory = player.GetComponent<InventoryManager>();
+
+        }else{
+            //Debug.LogError("Player Manager - Unable return load inventory script.");
+            //Debug.Break();
         }
     }
 
     private void loadPlayerScript()
     {
-        GameObject player = GameObject.FindWithTag("Player");
+        player = GameObject.FindWithTag("Player");
         if(player == null)
         {
             Debug.LogError("Player Manager - Find object with 'Player' Tag.");

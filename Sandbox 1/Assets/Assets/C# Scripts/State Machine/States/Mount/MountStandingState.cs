@@ -15,7 +15,10 @@ public class MountStandingState : MountState
     {
         movementComponent.getMountScript().mountAnimator.ClearAnimation();
         movementComponent.isMoving = false;
-        Debug.Log("Entered MOUNT Standing state");
+        if (movementComponent.isDebugging)
+        {
+            Debug.Log("Mount Standing state");
+        }
         base.Enter();
     }
 
