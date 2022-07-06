@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using Polyperfect.Animals;
 using Polyperfect.Common;
+using TMPro;
 
 public class Enemy : MonoBehaviour, IDamageable
 {
@@ -25,6 +26,8 @@ public class Enemy : MonoBehaviour, IDamageable
     public bool attacked = false;
     protected GameObject activeAOEObject = null;
     public GameObject aoeObject;
+    private bool attackOnCooldown = false;
+    public GameObject floatingDmgText;
 
     void Awake()
     {
@@ -35,7 +38,6 @@ public class Enemy : MonoBehaviour, IDamageable
 
     void Update()
     {
-        testFunction();
     }
 
     protected virtual void Start()
@@ -60,6 +62,7 @@ public class Enemy : MonoBehaviour, IDamageable
         }
         moveComponent.inHitStun = true;
         moveComponent.knockBackForce = knockBackForce;
+        Debug.Log("knockbackforce = " + knockBackForce);
         moveComponent.knockBackDirection = direction;
         return currentHealth;
     }
@@ -67,6 +70,11 @@ public class Enemy : MonoBehaviour, IDamageable
     //Update floating healthbar in world space.
     public void updateHealthBar()
     {
+        if (floatingDmgText)
+        {
+            var floatingDamageText = Instantiate(floatingDmgText, transform.position, this.transform.rotation, transform);
+            floatingDamageText.GetComponent<TextMeshPro>().text = currentHealth.ToString();
+        }
          healthBarScript.setHealth(currentHealth, maxHealth);
     }
 
@@ -83,10 +91,14 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public void testFunction()
     {
-        if((aoeObject != null) && (activeAOEObject == null) && (Input.GetKeyDown(KeyCode.R)))
-        {
-            activeAOEObject = Instantiate(aoeObject);
-            activeAOEObject.transform.position = this.transform.position;
-        }
+        //if((aoeObject != null) && (activeAOEObject == null) && (Input.GetKeyDown(KeyCode.R)))
+        //{
+            if(attackOnCooldown == false)
+            {
+                activeAOEObject = Instantiate(aoeObject);
+                activeAOEObject.transform.position = this.transform.position;
+                attackOnCooldown = true;
+            }
+        //}
     }
 }

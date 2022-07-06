@@ -8,7 +8,11 @@ public class EnemyChasingState : EnemyState
 
     public override void Enter()
     {
-        // Debug.Log("Entered Enemy Chasing state");
+        if (movementComponent.isDebugging)
+        {
+            Debug.Log("Enemy entered Chasing state");
+        }
+
         movementComponent.naveMeshAgent.enabled = false;
         if (movementComponent.wanderscript != null)
         {
@@ -41,9 +45,19 @@ public class EnemyChasingState : EnemyState
             stateMachine.ChangeState(movementComponent.knockback);
         }
 
-        if (movementComponent.IsInRangeOfPlayer() == false)
+        if (movementComponent.InChaseRange() == false)
         {
             stateMachine.ChangeState(movementComponent.standing);
+        }
+
+        if(movementComponent.InAttackRange() == true)
+        {
+            //Needs to be moved to a attacking state. Is attacking state going to be a new state machine?? or keep using movement state machine for enemies?
+            if (movementComponent.isDebugging)
+            {
+                Debug.Log("Enemy Began Attacking.");
+            }
+            movementComponent.getEnemyScript().testFunction();
         }
         base.LogicUpdate();
     }

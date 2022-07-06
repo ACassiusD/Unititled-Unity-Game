@@ -33,6 +33,7 @@ public abstract class MoveComponent : MonoBehaviour
     public bool isEnabled = true;
     public int enterChaseDistance = 100;
     public int exitChaseDistance = 160;
+    public int attackRange = 10;
     public bool isDebugging = false;
     public float jumpStateTime = 1f;
     public float sprintTimer = 0f;
@@ -114,9 +115,20 @@ public abstract class MoveComponent : MonoBehaviour
         if(this.target == null) { return 0f; }
         return Vector3.Distance(this.target.position, characterController.transform.position);
     }
-    public bool IsInRangeOfPlayer()
+    public bool InChaseRange()
     {
         if (getDistanceFromTarget() < exitChaseDistance)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public bool InAttackRange()
+    {
+        if (getDistanceFromTarget() <= minDistanceFromTarget)
         {
             return true;
         }
@@ -147,7 +159,7 @@ public abstract class MoveComponent : MonoBehaviour
             direction = this.transform.forward * -1; 
         }
 
-        AddJumpVelocity();
+        AddJumpVelocity(); //TODO: Make this work with the knockback variable passed from Recieve damage to have a variable knockback amount.
 
 
         this.knockBackDirection = Vector3.zero;

@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using Cinemachine;
+using Polyperfect.Common;
 
 //Player movement component contains a state machine, a working group states relevent to the player, varaible, and functions relevent to player movement.
 //It is the "Brain" of player movement.
@@ -227,5 +228,20 @@ public class PlayerMovementComponent : MoveComponent
             return true;
         }
         return false;
+    }
+
+    public void EnabledSurfaceRotation()
+    {
+        GetComponentInChildren<Common_SurfaceRotation>().enabled = true;
+
+    }
+
+    public void DisableSurfaceRotation()
+    {
+            var surfaceRoationObj = GetComponentInChildren<Common_SurfaceRotation>();
+        var obj = transform.GetChild(0).gameObject;
+        surfaceRoationObj.enabled = false;
+        var euler = obj.transform.rotation.eulerAngles;
+        obj.transform.rotation = Quaternion.Euler(0, euler.y ,0);
     }
 }

@@ -27,12 +27,14 @@ public class RidingState : PlayerState
         {
             Debug.Log("Entered riding state");
         }
+        movementComponent.EnabledSurfaceRotation();
         base.Enter();
 
     }
     public override void Exit()
     {
         movementComponent.activeMount.dismount();
+        movementComponent.DisableSurfaceRotation();
     }
 
     public override void HandleInput()

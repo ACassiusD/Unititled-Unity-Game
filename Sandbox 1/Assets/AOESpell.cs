@@ -12,6 +12,7 @@ public class AOESpell : MonoBehaviour
     public int damage = 5;
     public bool debug = false;
     public bool isStatic = false;
+    public GameObject attackImpactEffect;
 
     private void Start()
     {
@@ -59,6 +60,9 @@ public class AOESpell : MonoBehaviour
         if (isStatic) return;
         if (despawnTimer <= 0)
         {
+            var impact = Instantiate(attackImpactEffect);
+            //impact.play
+            impact.transform.position = this.transform.position;
             Destroy(gameObject);
         }
     }

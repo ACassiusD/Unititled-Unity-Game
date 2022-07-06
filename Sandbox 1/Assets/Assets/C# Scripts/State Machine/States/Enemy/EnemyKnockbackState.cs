@@ -10,7 +10,11 @@ public class EnemyKnockbackState : EnemyState
 
     public override void Enter()
     {
-        Debug.Log("Enemy entered knockback state");
+        if (movementComponent.isDebugging)
+        {
+            Debug.Log("Enemy entered Knockback state");
+        }
+
         movementComponent.Knockback();
         movementComponent.stunTimer = movementComponent.stunDuration;
         base.Enter();
@@ -22,7 +26,10 @@ public class EnemyKnockbackState : EnemyState
         movementComponent.addGravity();
         movementComponent.AddVelocityAndMove();
         movementComponent.stunTimer -= Time.deltaTime;
-        Debug.Log("Time = " + movementComponent.stunTimer);
+        if (movementComponent.isDebugging)
+        {
+            Debug.Log("Time = " + movementComponent.stunTimer);
+        }
     }
 
     public override void LogicUpdate()
@@ -36,12 +43,10 @@ public class EnemyKnockbackState : EnemyState
 
             if (distance < movementComponent.exitChaseDistance)
             {
-                Debug.Log("Enemy moved to chasing state.");
                 stateMachine.ChangeState(movementComponent.chasing);
             }
             else
             {
-                Debug.Log("Enemy moved to standing state.");
                 stateMachine.ChangeState(movementComponent.standing);
             }
         }

@@ -120,6 +120,8 @@ MonoBehaviour:
   destoryOnHit: 1
   collided: 0
   despawnTimer: 8
+  damage: 50
+  knockback: 1
 --- !u!1 &3152995752338208169
 GameObject:
   m_ObjectHideFlags: 0

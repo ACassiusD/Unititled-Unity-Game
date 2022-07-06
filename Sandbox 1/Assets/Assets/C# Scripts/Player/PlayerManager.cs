@@ -19,7 +19,7 @@ public class PlayerManager : MonoBehaviour {
     void Awake () {
         //Debug.Log("Initializing shared player script");
         //QualitySettings.vSyncCount = 0;  // VSync must be disabled or disable in quality manually 
-        //Application.targetFrameRate = 144;
+        Application.targetFrameRate = 144;
         if (lockCursorToScreen)
         {
             Cursor.visible = false;

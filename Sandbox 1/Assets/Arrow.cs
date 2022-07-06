@@ -5,11 +5,13 @@ using UnityEngine;
 public class Arrow : MonoBehaviour
 {
     Rigidbody rb;
-    public bool enableRotation = false;
+    public bool enableRotation = true;
     public Collider[] attackHitboxes;
-    public bool destoryOnHit = false;
+    public bool destoryOnHit = true;
     public bool collided = false;
     public float despawnTimer = 10f;
+    public int damage = 50;
+    public int knockback = 100;
 
     void Start()
     {
@@ -47,12 +49,8 @@ public class Arrow : MonoBehaviour
             {
                 var enemyScript = c.gameObject.GetComponent<Enemy>();
 
-                int[] dmgValues;
-                var attackValues = new Dictionary<string, int>();
-                attackValues.Add("damage", 10);
-                attackValues.Add("knockback", 3000);
                 hitCount++;
-                enemyScript.receiveDamage(10, 3000, rb.velocity);
+                enemyScript.receiveDamage(damage, knockback, rb.velocity);
                 debugMsg += ("|Hit " + c.name);
                 Debug.Log(this.name + " Hit (" + hitCount + ") " + debugMsg);
                 collided = true;

@@ -16,12 +16,14 @@ public class BetaCharacter : MonoBehaviour, IDamageable
     public bool matchSurfaceRotation = true;
     public int surfaceRotationSpeed = 20;
     public PlayerAnimator animator;
-    protected Vector3 spawnPosition; 
+    protected Vector3 spawnPosition;
+    //If true, this animal will rotate to match the terrain. Ensure you have set the layer of the terrain as 'Terrain'
 
     private void Awake()
     {
         animator = GetComponent<PlayerAnimator>();   
-
+        
+        //Match surface rotation to the terrain
         if (matchSurfaceRotation && transform.childCount > 0)
         {
             transform.GetChild(0).gameObject.AddComponent<Common_SurfaceRotation>().SetRotationSpeed(surfaceRotationSpeed);

@@ -10,7 +10,11 @@ public class EnemyStandingState : EnemyState
 
     public override void Enter()
     {
-        //Debug.Log("Entered ENEMY Standing state");
+        if (movementComponent.isDebugging)
+        {
+            Debug.Log("Enemy entered Standing state");
+        }
+
         if (movementComponent.wanderscript != null)
         {
             movementComponent.wanderscript.enabled = true;
