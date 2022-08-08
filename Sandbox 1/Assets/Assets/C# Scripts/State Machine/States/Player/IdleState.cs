@@ -17,7 +17,7 @@ public class IdleState : GroundedState
         justEntered = true;
         if (movementComponent.isDebugging)
         {
-            Debug.Log("IDLE ");
+            Debug.Log("IDLE");
         }
         animator.setIdleAnimation();
         base.Enter();
@@ -43,6 +43,10 @@ public class IdleState : GroundedState
     {
         base.LogicUpdate();
   
+        if(movementComponent.stunTimer != 0)
+        {
+            stateMachine.ChangeState(movementComponent.stun);
+        }
         if (movementComponent.isMoving){
             stateMachine.ChangeState(movementComponent.moving);
         }

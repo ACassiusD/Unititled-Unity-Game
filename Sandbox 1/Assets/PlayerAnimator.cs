@@ -6,6 +6,7 @@ public class PlayerAnimator : MonoBehaviour
 {
     public bool debug = false;
     Animator mountAnimator;
+    //1. First, reprisent the animation bool in code.
     string runningBool = "isSprinting";
     string idleBool = "isIdle";
     string walkingBool = "isWalking";
@@ -13,6 +14,7 @@ public class PlayerAnimator : MonoBehaviour
     string jumpingBool = "isJumping";
     string fallingBool = "isFalling";
     string ridingBool = "isRiding";
+    string stunnedBool = "isStunned";
     public float walkAnimationSpeed = 1;
     public float runAnimaitonSpeed = 2;
 
@@ -26,6 +28,7 @@ public class PlayerAnimator : MonoBehaviour
         mountAnimator.Play("Jumping", -1, 0f);
     }
 
+    //2. Second, create the function to set the bool
     public void setWalkingAnimation(float speed = 0)
     {
         if(debug)
@@ -74,6 +77,13 @@ public class PlayerAnimator : MonoBehaviour
         SetAnimationBool(ridingBool, true, animationSpeed);
     }
 
+    public void setStunnedAnimation(float animationSpeed = 0)
+    {
+        debugAnimations("STUNNED BOOL");
+        ClearAnimation();
+        SetAnimationBool(stunnedBool, true, animationSpeed);
+    }
+
     public void ClearAnimation()
     {
         mountAnimator.speed = 1;
@@ -84,6 +94,7 @@ public class PlayerAnimator : MonoBehaviour
         SetAnimationBool(fallingBool, false, 0);
         SetAnimationBool(jumpingBool, false, 0);
         SetAnimationBool(ridingBool, false, 0);
+        SetAnimationBool(stunnedBool, false, 0);
     }
 
     void SetAnimationBool(string parameterName, bool value, float speed)

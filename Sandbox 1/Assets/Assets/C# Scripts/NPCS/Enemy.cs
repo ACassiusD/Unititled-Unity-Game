@@ -26,7 +26,9 @@ public class Enemy : MonoBehaviour, IDamageable
     public bool attacked = false;
     protected GameObject activeAOEObject = null;
     public GameObject aoeObject;
-    private bool attackOnCooldown = false;
+    public float attackCooldown = 5f;
+    public  float attackCooldownTimer = 5f;
+    public bool attackOnCooldown = false;
     public GameObject floatingDmgText;
 
     void Awake()
@@ -38,6 +40,15 @@ public class Enemy : MonoBehaviour, IDamageable
 
     void Update()
     {
+        if (attackOnCooldown)
+        {
+            attackCooldownTimer -= Time.deltaTime;
+            if (attackCooldownTimer <= 0)
+            {
+                attackOnCooldown = false;
+                attackCooldownTimer = attackCooldown;
+            }
+        }
     }
 
     protected virtual void Start()
@@ -62,7 +73,6 @@ public class Enemy : MonoBehaviour, IDamageable
         }
         moveComponent.inHitStun = true;
         moveComponent.knockBackForce = knockBackForce;
-        Debug.Log("knockbackforce = " + knockBackForce);
         moveComponent.knockBackDirection = direction;
         return currentHealth;
     }

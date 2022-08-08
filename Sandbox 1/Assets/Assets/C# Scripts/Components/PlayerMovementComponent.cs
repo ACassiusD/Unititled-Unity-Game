@@ -14,6 +14,7 @@ public class PlayerMovementComponent : MoveComponent
     public FallingState falling;
     public MovingState moving;
     public EmoteState emote;
+    public StunnedState stun;
     public Camera cam;
     //Only movement variables specific to player should go here
     public bool isRiding = false;
@@ -42,6 +43,7 @@ public class PlayerMovementComponent : MoveComponent
 
     private void Start()
     {
+        this.stunDuration = 1f;
         activeMount = null;
         isBeingControlled = true;
         //Initialize the players states.
@@ -51,6 +53,7 @@ public class PlayerMovementComponent : MoveComponent
         falling = new FallingState(stateMachine, this);
         moving = new MovingState(stateMachine, this);
         emote = new EmoteState(stateMachine, this);
+        stun = new StunnedState(stateMachine, this);
 
         if (characterController.isGrounded)
             stateMachine.Initialize(standing); 

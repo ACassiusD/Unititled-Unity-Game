@@ -106,6 +106,7 @@ public class BetaCharacter : MonoBehaviour, IDamageable
             return 0;
         }
         //Knockback(knockBackForce);
+        movementComponent.stunTimer = movementComponent.stunDuration;
         return currentHealth;
     }
 

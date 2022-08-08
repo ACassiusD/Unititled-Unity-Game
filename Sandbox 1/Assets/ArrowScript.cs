@@ -49,7 +49,6 @@ public class ArrowScript : MonoBehaviour
             if (Physics.Raycast(cam.position, cam.transform.forward, out hitinfo, rayRange, finalmask))
             {
                 newArrow.transform.LookAt(hitinfo.point);
-                Debug.Log(hitinfo.collider.name);
             }
             else
             {

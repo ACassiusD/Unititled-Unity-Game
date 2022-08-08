@@ -11,7 +11,7 @@ public class Arrow : MonoBehaviour
     public bool collided = false;
     public float despawnTimer = 10f;
     public int damage = 50;
-    public int knockback = 100;
+    public int knockbackForce = 100;
 
     void Start()
     {
@@ -40,7 +40,6 @@ public class Arrow : MonoBehaviour
         var cols = Physics.OverlapBox(hitboxCollider.bounds.center, hitboxCollider.bounds.extents, hitboxCollider.transform.rotation, LayerMask.GetMask("Interactive"));
         foreach (Collider c in cols)
         {
-            Debug.Log(c.name);
             if (c.tag == "Player")
             {
                 return;
@@ -48,15 +47,17 @@ public class Arrow : MonoBehaviour
             if (c.tag == "Enemy")
             {
                 var enemyScript = c.gameObject.GetComponent<Enemy>();
-
+                var knockbackDirection = rb.velocity;
                 hitCount++;
-                enemyScript.receiveDamage(damage, knockback, rb.velocity);
+
+                enemyScript.receiveDamage(damage, knockbackForce, knockbackDirection);
                 debugMsg += ("|Hit " + c.name);
                 Debug.Log(this.name + " Hit (" + hitCount + ") " + debugMsg);
                 collided = true;
                 if (destoryOnHit)
                 {
                     Destroy(this.gameObject);
+                    break;
                 }
             }
         }

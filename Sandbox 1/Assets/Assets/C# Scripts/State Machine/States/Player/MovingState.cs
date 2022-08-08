@@ -45,6 +45,10 @@ public class MovingState : GroundedState
     {
         base.LogicUpdate();
 
+        if (movementComponent.stunTimer != 0)
+        {
+            stateMachine.ChangeState(movementComponent.stun);
+        }
         if (movementComponent.isRiding)
         {
             stateMachine.ChangeState(movementComponent.riding);

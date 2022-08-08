@@ -186,9 +186,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2df52917a9a79341827b7b0bb835e6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destoryTime: 3
-  offset: {x: 0, y: 2, z: 0}
+  destoryTime: 1.5
+  offset: {x: 0, y: 3.5, z: 0}
   randomizeIntensity: {x: 0.5, y: 0, z: 0}
+  xrand: 0.6
+  yrand: 0.6
 --- !u!95 &813664200258323777
 Animator:
   serializedVersion: 4

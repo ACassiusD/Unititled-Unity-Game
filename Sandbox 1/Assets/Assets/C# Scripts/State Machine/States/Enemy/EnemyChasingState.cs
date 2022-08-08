@@ -10,7 +10,7 @@ public class EnemyChasingState : EnemyState
     {
         if (movementComponent.isDebugging)
         {
-            Debug.Log("Enemy entered Chasing state");
+            //Debug.Log("Enemy entered Chasing state");
         }
 
         movementComponent.naveMeshAgent.enabled = false;
@@ -41,7 +41,7 @@ public class EnemyChasingState : EnemyState
     {
         if (movementComponent.inHitStun && movementComponent.knockBackForce > 0)
         {
-            Debug.Log("Enemy going to knockback state.");
+            //Debug.Log("Enemy going to knockback state.");
             stateMachine.ChangeState(movementComponent.knockback);
         }
 

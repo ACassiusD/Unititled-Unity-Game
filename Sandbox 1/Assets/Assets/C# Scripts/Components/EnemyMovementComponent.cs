@@ -2,16 +2,16 @@ using UnityEngine.AI;
 using Polyperfect.Animals;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class EnemyMovementComponent : MoveComponent
 {
     public EnemyStandingState standing;
     public EnemyChasingState chasing;
-    public EnemyKnockbackState   knockback;
+    public EnemyKnockbackState knockback;
     public NavMeshAgent naveMeshAgent;
     public Animal_WanderScript wanderscript;
     public Enemy enemyScript;
-    public float stunDuration = 1f;
 
     void Start()
     {

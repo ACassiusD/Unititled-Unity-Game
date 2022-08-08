@@ -10,10 +10,8 @@ public class EnemyKnockbackState : EnemyState
 
     public override void Enter()
     {
-        if (movementComponent.isDebugging)
-        {
+        //if (movementComponent.isDebugging)
             Debug.Log("Enemy entered Knockback state");
-        }
 
         movementComponent.Knockback();
         movementComponent.stunTimer = movementComponent.stunDuration;
@@ -25,6 +23,7 @@ public class EnemyKnockbackState : EnemyState
         movementComponent.ZeroYVelocityIfGrounded();
         movementComponent.addGravity();
         movementComponent.AddVelocityAndMove();
+        movementComponent.ConsumeImpact();
         movementComponent.stunTimer -= Time.deltaTime;
         if (movementComponent.isDebugging)
         {
@@ -36,7 +35,6 @@ public class EnemyKnockbackState : EnemyState
     {
         if (movementComponent.characterController.isGrounded && movementComponent.stunTimer <= 0)
         {
-            Debug.Log("Stun timer ended");
             movementComponent.stunTimer = 0;
 
             float distance = Vector3.Distance(movementComponent.getPlayerScript().transform.position, movementComponent.characterController.transform.position);
@@ -54,7 +52,11 @@ public class EnemyKnockbackState : EnemyState
     }
 
     public override void Exit()
-    {
+    {   
+        //if (movementComponent.isDebugging)
+            Debug.Log("Enemy Exit Knockback state");
         movementComponent.inHitStun = false;
     }
+
+
 }

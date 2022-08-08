@@ -29,7 +29,6 @@ public abstract class MoveComponent : MonoBehaviour
     public bool inHitStun = false;
     public int knockBackForce = 0;
     public Vector3 knockBackDirection;
-    public float stunTimer = 0f;
     public bool isEnabled = true;
     public int enterChaseDistance = 100;
     public int exitChaseDistance = 160;
@@ -39,6 +38,10 @@ public abstract class MoveComponent : MonoBehaviour
     public float sprintTimer = 0f;
     public float sprintLimit = 3f;
     public bool requiresStamina = false;
+    public float mass = 3.0f; // defines the character mass
+    public Vector3 impact = Vector3.zero;
+    public float stunTimer = 0f;
+    public float stunDuration = 1f;
 
     void Awake()
     {
@@ -149,21 +152,30 @@ public abstract class MoveComponent : MonoBehaviour
 
     public void Knockback()
     {
-        Vector3 direction;
-        if(knockBackDirection.magnitude > 0.1)
+        Vector3 kb_direction = this.knockBackDirection;
+        int kb_force = this.knockBackForce;
+        this.impact = Vector3.zero;
+
+        if (!(knockBackDirection.magnitude > 0.1))
         {
-            direction = knockBackDirection; 
-        }
-        else
-        {
-            direction = this.transform.forward * -1; 
+            kb_direction = this.transform.forward * -1; 
         }
 
-        AddJumpVelocity(); //TODO: Make this work with the knockback variable passed from Recieve damage to have a variable knockback amount.
+        //Add impact
+        kb_direction.Normalize();
+        if (kb_direction.y < 0) kb_direction.y = -kb_direction.y; // reflect down force on the ground
+        this.impact += kb_direction.normalized * kb_force / mass;
 
 
-        this.knockBackDirection = Vector3.zero;
-        this.knockBackForce = 0;
+        //AddJumpVelocity(); //TODO: Make this work with the knockback variable passed from Recieve damage to have a variable knockback amount.
+    }
+
+    public void ConsumeImpact()
+    {
+        Debug.Log("consuming impact.");
+        if (impact.magnitude > 0.2) characterController.Move(impact * Time.deltaTime);
+        // consumes the impact energy each cycle:
+        this.impact = Vector3.Lerp(impact, Vector3.zero, 5 * Time.deltaTime);
     }
 
     public void toggleRun(bool force = false)

@@ -87,14 +87,16 @@ MonoBehaviour:
   attackHitboxes:
   - {fileID: 1810758952690431071}
   isActiveDamage: 1
-  timer: 0
-  cooldown: 0.5
-  despawnTimer: 2.5
+  damageCooldownTimer: 0
+  damageCooldown: 2
+  despawnTimer: 0.6
   damage: 60
   debug: 0
   isStatic: 0
   attackImpactEffect: {fileID: 2200871025112629684, guid: e0be208f1ef3d9346bdc89657f454aeb,
     type: 3}
+  useCooldown: 8
+  useCooldownTimer: 0
 --- !u!1 &2278864091870912394
 GameObject:
   m_ObjectHideFlags: 0
