@@ -60,6 +60,8 @@ public class PlayerMovementComponent : MoveComponent
         else
             stateMachine.Initialize(jumping); 
     }
+
+    //VIOLATES SINGLE USE PRINCIPAL, MOVE INTO SEPERATE CLASS FOR STAMINA MAINTENANCE. 
     public void RegenerateStamina()
     {
         if(sprintTimer < 0)
@@ -86,6 +88,7 @@ public class PlayerMovementComponent : MoveComponent
     }
 
 
+    //VIOLATES SINGLE USE PRINCIPAL, MOVE INTO SEPERATE CLASS FOR STAMINA MAINTENANCE. 
     public void SetActiveMount(Mount mount)    //This should not be in the move controller.
     {
         this.activeMount = mount;
@@ -186,8 +189,12 @@ public class PlayerMovementComponent : MoveComponent
         //        return true;
         //    }
         //}
-        if(Physics.Raycast(frontOffsetPosition, forwardDown, out slopeHit, groundCheckDistance))
+
+        if (Physics.Raycast(frontOffsetPosition, forwardDown, out slopeHit, groundCheckDistance))
         {
+            //Do not check for ground collision on collectables.
+            if (slopeHit.transform.gameObject.layer == LayerMask.NameToLayer("Collectable")) return false;
+           
             if (!checkSteepSlope(slopeHit))
             {
                 onSteepSlope = false;
@@ -196,6 +203,7 @@ public class PlayerMovementComponent : MoveComponent
         }
         if (Physics.Raycast(backOffsetPosition, backDown, out slopeHit, groundCheckDistance))
         {
+            if (slopeHit.transform.gameObject.layer == LayerMask.NameToLayer("Collectable")) return false;
             if (!checkSteepSlope(slopeHit))
             {
                 onSteepSlope = false;
@@ -204,6 +212,7 @@ public class PlayerMovementComponent : MoveComponent
         }
         if (Physics.Raycast(leftOffsetPosition, leftDown, out slopeHit, groundCheckDistance))
         {
+            if (slopeHit.transform.gameObject.layer == LayerMask.NameToLayer("Collectable")) return false;
             if (!checkSteepSlope(slopeHit))
             {
                 onSteepSlope = false;
@@ -212,6 +221,7 @@ public class PlayerMovementComponent : MoveComponent
         }
         if (Physics.Raycast(rightOffsetPosition, rightDown, out slopeHit, groundCheckDistance))
         {
+            if (slopeHit.transform.gameObject.layer == LayerMask.NameToLayer("Collectable")) return false;
             if (!checkSteepSlope(slopeHit))
             {
                 onSteepSlope = false;
@@ -236,12 +246,11 @@ public class PlayerMovementComponent : MoveComponent
     public void EnabledSurfaceRotation()
     {
         GetComponentInChildren<Common_SurfaceRotation>().enabled = true;
-
     }
 
     public void DisableSurfaceRotation()
     {
-            var surfaceRoationObj = GetComponentInChildren<Common_SurfaceRotation>();
+        var surfaceRoationObj = GetComponentInChildren<Common_SurfaceRotation>();
         var obj = transform.GetChild(0).gameObject;
         surfaceRoationObj.enabled = false;
         var euler = obj.transform.rotation.eulerAngles;
