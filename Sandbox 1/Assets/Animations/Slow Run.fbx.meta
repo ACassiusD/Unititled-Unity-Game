@@ -95,7 +95,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.2673006
+      - time: 0.26478806
         functionName: StepAudio
         data: 
         objectReferenceParameter: {instanceID: 0}
@@ -103,7 +103,7 @@ ModelImporter:
         intParameter: 0
         messageOptions: 0
       - time: 0.8042684
-        functionName: NewEvent
+        functionName: StepAudio
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

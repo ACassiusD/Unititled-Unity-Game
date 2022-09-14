@@ -26,6 +26,12 @@ public class InventorySlot //Isnt a monobehavior, doesnt need to start or update
         ClearSlot();
     }
 
+    public void UpdateInventorySlot(InventoryItemData data, int amount)
+    {
+        itemData = data;
+        stackSize = amount;
+    }
+
     //Clear Slot
     public void ClearSlot()
     {
