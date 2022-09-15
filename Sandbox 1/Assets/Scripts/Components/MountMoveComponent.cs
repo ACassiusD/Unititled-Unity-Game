@@ -48,8 +48,8 @@ public class MountMoveComponent : MoveComponent
     public void MoveMountViaInput()
     {
         //Returns 0, -1 or 1 for corrosponding direction
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
+        float horizontal = playerControls.Player.Movement.ReadValue<Vector2>().x;
+        float vertical = playerControls.Player.Movement.ReadValue<Vector2>().y;
 
         //Calcuate the Vector3 direction, and normalize it to a lenght of 1 unit (just get the direction we want to wak in p much)
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;

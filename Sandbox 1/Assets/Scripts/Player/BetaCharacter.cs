@@ -163,8 +163,8 @@ public class BetaCharacter : MonoBehaviour, IDamageable
 
     protected void SetControls()
     {
-        bool attackKeyCaptured = Input.GetKeyDown("p");
-        bool attackKeyCaptured2 = Input.GetKeyDown("o");
+        bool attackKeyCaptured = movementComponent.playerControls.Player.P.WasPerformedThisFrame();
+        bool attackKeyCaptured2 = movementComponent.playerControls.Player.O.WasPerformedThisFrame();
 
         if (attackKeyCaptured)
         {

@@ -20,6 +20,7 @@ public class InteractorComponent : MonoBehaviour
     BetaCharacter playerScript;
     Outline outlineScript;
     Color outLineColor;
+    PlayerControls playerControls;
 
     public void Start()
     {
@@ -28,7 +29,7 @@ public class InteractorComponent : MonoBehaviour
 
     private void Update()
     {
-        bool capturedKeyPress = Input.GetMouseButtonDown(1);
+        bool capturedKeyPress = playerControls.Player.MouseButton1.WasPerformedThisFrame();
         clearActiveScript();
         isObjectHit = castRay();
         if (isObjectHit)
@@ -36,6 +37,21 @@ public class InteractorComponent : MonoBehaviour
 
             CallInteraction(hitinfo, capturedKeyPress);
         }
+    }
+
+    private void OnEnable()
+    {
+        playerControls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        playerControls.Disable();
+    }
+
+    private void Awake()
+    {
+        playerControls = new PlayerControls();
     }
 
     //Runs at the beginning of every new frame, removes highlighting and clears the script from memory

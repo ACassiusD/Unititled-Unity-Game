@@ -101,14 +101,11 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public void testFunction()
     {
-        //if((aoeObject != null) && (activeAOEObject == null) && (Input.GetKeyDown(KeyCode.R)))
-        //{
-            if(attackOnCooldown == false)
-            {
-                activeAOEObject = Instantiate(aoeObject);
-                activeAOEObject.transform.position = this.transform.position;
-                attackOnCooldown = true;
-            }
-        //}
+        if(attackOnCooldown == false)
+        {
+            activeAOEObject = Instantiate(aoeObject);
+            activeAOEObject.transform.position = this.transform.position;
+            attackOnCooldown = true;
+        }
     }
 }

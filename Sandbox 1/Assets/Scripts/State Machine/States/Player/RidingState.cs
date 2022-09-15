@@ -22,6 +22,7 @@ public class RidingState : PlayerState
 
     public override void Enter()
     {
+        movementComponent.isRunning = false;
         animator.setRidingAnimation();
         if (movementComponent.isDebugging)
         {
@@ -46,7 +47,7 @@ public class RidingState : PlayerState
 
     public override void LogicUpdate()
     {
-        bool capturedKeyPress = Input.GetKeyDown(KeyCode.LeftControl);
+        bool capturedKeyPress = movementComponent.playerControls.Player.LeftControl.WasPerformedThisFrame(); 
         if (capturedKeyPress)
         {
             movementComponent.isRiding = false;

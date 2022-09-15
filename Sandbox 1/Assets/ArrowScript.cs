@@ -14,6 +14,7 @@ public class ArrowScript : MonoBehaviour
     public float mass = 5f;
     public bool useGravity = true;
     public int rayRange = 2000;
+    private PlayerControls playerControls;
 
     void Start()
     {
@@ -21,9 +22,24 @@ public class ArrowScript : MonoBehaviour
         cam = PlayerManager.Instance.getPlayerScript().movementComponent.cam.transform;
     }
 
+    private void Awake()
+    {
+        playerControls = new PlayerControls();
+    }
+
+    private void OnDisable()
+    {
+        playerControls.Disable();
+    }
+
+    private void OnEnable()
+    {
+        playerControls.Enable();
+    }
+
     void Update()
     {
-        bool capturedKeyPress = Input.GetMouseButtonDown(0);
+        bool capturedKeyPress = playerControls.Player.MouseButton1.WasPerformedThisFrame();
         if (capturedKeyPress)
         {
             //Rotate the character to face firing direction

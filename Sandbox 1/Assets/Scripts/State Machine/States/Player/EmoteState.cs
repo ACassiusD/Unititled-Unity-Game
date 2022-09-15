@@ -4,9 +4,9 @@ public class EmoteState : PlayerState
 {
     PlayerAnimator animator;
     private bool jump;
-    private float horizontal = Input.GetAxisRaw("Horizontal");
-    private float vertical = Input.GetAxisRaw("Vertical");
-    
+    private float horizontal = 0;
+    private float vertical = 0;
+
     public EmoteState(StateMachine stateMachine, PlayerMovementComponent movementComponent) : base(stateMachine, movementComponent)
     {
         animator = movementComponent.getPlayerScript().animator;
@@ -24,9 +24,9 @@ public class EmoteState : PlayerState
 
     public override void HandleInput()
     {
-        jump = Input.GetButtonDown("Jump");
-        horizontal = Input.GetAxisRaw("Horizontal");
-        vertical = Input.GetAxisRaw("Vertical");
+        jump = movementComponent.playerControls.Player.Jump.WasPerformedThisFrame();
+        horizontal = movementComponent.playerControls.Player.Movement.ReadValue<Vector2>().x;//Input.GetAxisRaw("Horizontal");
+        vertical = movementComponent.playerControls.Player.Movement.ReadValue<Vector2>().y;//= Input.GetAxisRaw("Vertical");
     }
 
 

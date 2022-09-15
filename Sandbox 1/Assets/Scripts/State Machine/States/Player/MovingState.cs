@@ -36,7 +36,7 @@ public class MovingState : GroundedState
             movementComponent.RegenerateStamina();
         }
 
-        jump = Input.GetButtonDown("Jump");
+        jump = movementComponent.playerControls.Player.Jump.WasPerformedThisFrame();
 
     }
 

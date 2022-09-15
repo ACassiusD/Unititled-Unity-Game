@@ -42,13 +42,25 @@ public abstract class MoveComponent : MonoBehaviour
     public Vector3 impact = Vector3.zero;
     public float stunTimer = 0f;
     public float stunDuration = 1f;
+    public PlayerControls playerControls;
 
     void Awake()
     {
-        characterController = GetComponent<CharacterController>();
+        characterController = GetComponent<CharacterController>(); 
         stateMachine = new StateMachine();
         updateMoveSpeed();
         ResetSprintTimer();
+        playerControls = new PlayerControls();
+    }
+
+    private void OnEnable()
+    {
+        playerControls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        playerControls.Disable();
     }
 
     protected void Update()
@@ -180,7 +192,7 @@ public abstract class MoveComponent : MonoBehaviour
 
     public void toggleRun(bool force = false)
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift) || force)
+        if (playerControls.Player.ToggleRun.WasPressedThisFrame() || force)
         {
             if(stateMachine.CurrentState.ToString() != "FallingState" && stateMachine.CurrentState.ToString() != "JumpingState")
             {

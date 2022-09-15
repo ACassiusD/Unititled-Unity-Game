@@ -35,7 +35,7 @@ public class IdleState : GroundedState
         movementComponent.IsGrounded();
         movementComponent.RegenerateStamina();
         base.HandleInput();
-        jump = Input.GetButtonDown("Jump");
+        jump = movementComponent.playerControls.Player.Jump.WasPerformedThisFrame();
     }
 
     //Decide the next state for the character.
@@ -56,7 +56,7 @@ public class IdleState : GroundedState
         else if (jump && movementComponent.jumpCount < movementComponent.maxJumps){
             stateMachine.ChangeState(movementComponent.jumping);
         }
-        else if (Input.GetKeyDown("y")) { 
+        else if (movementComponent.playerControls.Player.Y.WasPerformedThisFrame()) { 
             stateMachine.ChangeState(movementComponent.emote);
         }
     }

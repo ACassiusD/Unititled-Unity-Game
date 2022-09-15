@@ -30,7 +30,7 @@ public class MountJumpingState : MountState
 
     public override void HandleInput()
     {
-        jump = Input.GetButtonDown("Jump");
+        jump = movementComponent.playerControls.Player.Jump.WasPerformedThisFrame();
         if (!justEntered)
         {
             movementComponent.ZeroYVelocityIfGrounded();

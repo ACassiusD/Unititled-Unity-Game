@@ -35,7 +35,6 @@ public class PlayerMovementComponent : MoveComponent
     private RaycastHit slopeHit;
     private RaycastHit steepSlopeHit;
 
-
     private void Update()
     {
         base.Update();
@@ -58,7 +57,7 @@ public class PlayerMovementComponent : MoveComponent
         if (characterController.isGrounded)
             stateMachine.Initialize(standing); 
         else
-            stateMachine.Initialize(jumping); 
+            stateMachine.Initialize(jumping);
     }
 
     //VIOLATES SINGLE USE PRINCIPAL, MOVE INTO SEPERATE CLASS FOR STAMINA MAINTENANCE. 
@@ -98,8 +97,8 @@ public class PlayerMovementComponent : MoveComponent
     public void MovePlayerViaInput()
     {
         //Returns 0, -1 or 1 for corrosponding direction
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
+        float horizontal = playerControls.Player.Movement.ReadValue<Vector2>().x;
+        float vertical = playerControls.Player.Movement.ReadValue<Vector2>().y;
 
        // Debug.Log(horizontal + vertical);
 
@@ -128,7 +127,6 @@ public class PlayerMovementComponent : MoveComponent
                 moveDir = slopeDir * (-slopeSpeed * Time.deltaTime);
                 moveDir.y = moveDir.y - steepSlopeHit.point.y;
                 characterController.Move(moveDir.normalized * (moveSpeed) * Time.deltaTime);
-
             }
             else
             {
@@ -146,7 +144,6 @@ public class PlayerMovementComponent : MoveComponent
                 moveDir.y = moveDir.y - steepSlopeHit.point.y;
                 characterController.Move(moveDir.normalized * (moveSpeed) * Time.deltaTime);
             }
-
             isMoving = false;
         }
     }

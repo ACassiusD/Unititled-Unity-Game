@@ -29,7 +29,7 @@ public class MountStandingState : MountState
         movementComponent.addGravity();
         movementComponent.AddVelocityAndMove();
         movementComponent.MoveMountViaInput();
-        jump = Input.GetButtonDown("Jump");
+        jump = movementComponent.playerControls.Player.Jump.WasPerformedThisFrame();
     }
 
     //DECIDE NEXT STATE

@@ -6,17 +6,27 @@ using UnityEngine.VFX;
 public class MeleeAnimation : MonoBehaviour
 {
     public VisualEffect anim;
+    private PlayerControls playerControls;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        
+        playerControls = new PlayerControls();
+    }
+
+    private void OnEnable()
+    {
+        playerControls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        playerControls.Disable();
     }
 
     // Update is called once per frame
     void Update()
     {
-        bool middleMouseClicked = Input.GetMouseButtonDown(2);
+        bool middleMouseClicked = playerControls.Player.MiddleMouse.WasPerformedThisFrame();
 
         if (middleMouseClicked)
         {
