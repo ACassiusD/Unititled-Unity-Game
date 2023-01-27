@@ -13,18 +13,12 @@ public class PlayerManager : MonoBehaviour {
     GameObject player;
     public BetaCharacter playerScript;
     public InventoryManager playerInventory;
-    public bool lockCursorToScreen = false;
 
     // Use this for initialization
     void Awake () {
         //Debug.Log("Initializing shared player script");
         //QualitySettings.vSyncCount = 0;  // VSync must be disabled or disable in quality manually 
         Application.targetFrameRate = 144;
-        if (lockCursorToScreen)
-        {
-            Cursor.visible = false;
-        }
-
         if (Instance == null)
         {
             Instance = this;
@@ -80,16 +74,4 @@ public class PlayerManager : MonoBehaviour {
     {
         return playerInventory.heldObject;
     }
-    void OnApplicationFocus(bool ApplicationIsBack)
-    {
-        if (ApplicationIsBack == true)
-        {
-            if (lockCursorToScreen)
-            {
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
-            }
-        }
-    }
-
 }

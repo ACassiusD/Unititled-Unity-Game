@@ -140,7 +140,7 @@ public class Mount : MonoBehaviour, InteractableInterface //Mount class contains
         if (attackKeyCaptured){
             basicAttack();
         }
-        if (Input.GetMouseButtonDown(1)){
+        if (moveComponent.playerControls.Player.MouseButton2.WasPerformedThisFrame()){
             specialAttack();
         }
     }

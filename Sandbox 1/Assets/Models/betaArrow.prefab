@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2009962257945799466}
   - component: {fileID: 4323496667113185248}
   - component: {fileID: 3152995752513257758}
-  - component: {fileID: 3152995752513257762}
+  - component: {fileID: 1888983226944926476}
   m_Layer: 11
   m_Name: betaArrow
   m_TagString: Untagged
@@ -102,7 +102,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &3152995752513257762
+--- !u!114 &1888983226944926476
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -111,7 +111,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2810485035850956341}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8fd2a0961e164c94298da5ae4e15c14a, type: 3}
+  m_Script: {fileID: 11500000, guid: 6e51b786567ba7646b120d2b57fd53d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enableRotation: 1
@@ -119,9 +119,9 @@ MonoBehaviour:
   - {fileID: 3152995752454888626}
   destoryOnHit: 1
   collided: 0
-  despawnTimer: 8
+  despawnTimer: 10
   damage: 50
-  knockbackForce: 150
+  knockbackForce: 100
 --- !u!1 &3152995752338208169
 GameObject:
   m_ObjectHideFlags: 0
