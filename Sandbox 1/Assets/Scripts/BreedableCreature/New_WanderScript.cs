@@ -4,9 +4,6 @@ using UnityEngine.AI;
 using Quaternion = UnityEngine.Quaternion;
 using Random = UnityEngine.Random;
 using Vector3 = UnityEngine.Vector3;
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
 
 namespace Polyperfect.Common
 {
@@ -14,9 +11,6 @@ namespace Polyperfect.Common
     public class New_WanderScript : MonoBehaviour
     {
         private const float CONTINGENCY_DISTANCE = 1f;
-
-        //[SerializeField, Tooltip("If true, this animal will never leave it's zone, even if it's chasing or running away from another animal.")]
-        //private bool constainedToWanderZone = false;
 
         [SerializeField, Tooltip("How far away from it's origin this animal will wander by itself.")]
         private float wanderZone = 10f;
@@ -27,19 +21,17 @@ namespace Polyperfect.Common
         [SerializeField, Tooltip("How fast the animnal rotates to match the surface rotation.")]
         private float surfaceRotationSpeed = 2f;
 
-        [SerializeField]
-        float moveSpeed = 0f;
-
         private CharacterController characterController;
         private NavMeshAgent navMeshAgent;
-        private float turnSpeed = 0f;
+        public float moveSpeed = 0f;
+        public float turnSpeed = 0f;
         public bool wanderState;
         public bool idleState;
+        public float walkMoveSpeed = 10;
+        public float walkTurnSpeed = 100;
+
         Vector3 startPosition;
         Vector3 wanderTarget;
-        float idleUpdateTime;
-        private bool useNavMesh = false;
-        private Vector3 targetLocation = Vector3.zero;
 
         private void Awake()
         {
@@ -51,7 +43,6 @@ namespace Polyperfect.Common
 
             if (navMeshAgent)
             {
-                useNavMesh = true; 
                 navMeshAgent.stoppingDistance = CONTINGENCY_DISTANCE;
             }
 
@@ -99,12 +90,9 @@ namespace Polyperfect.Common
             }
             else if (idleState)
             {
-                if (Time.time >= idleUpdateTime)
-                {
-                    HandleBeginWander();
-                    wanderState = true;
-                    idleState = false;
-                }
+                HandleBeginWander();
+                wanderState = true;
+                idleState = false;
             }
 
             if (navMeshAgent){
@@ -126,6 +114,14 @@ namespace Polyperfect.Common
         void SetMoveSlow()
         {
             var minSpeed = float.MaxValue;
+
+            var stateSpeed = walkMoveSpeed;
+            if (stateSpeed < minSpeed)
+            {
+                minSpeed = stateSpeed;
+            }
+
+            turnSpeed = walkTurnSpeed;
             moveSpeed = minSpeed;
         }
 
@@ -161,8 +157,16 @@ namespace Polyperfect.Common
             StartCoroutine(ConstantTicking(Random.Range(.7f, 1f)));
         }
 
+        IEnumerator ConstantTicking(float delay)
+        {
+            while (true)
+            {
+                yield return new WaitForSeconds(delay);
+            }
+            // ReSharper disable once IteratorNeverReturns
+        }
 
-/*        public void OnDrawGizmosSelected()
+        /*        public void OnDrawGizmosSelected()
         {
             // Draw target position.
             if (useNavMesh && navMeshAgent.enabled == true)
@@ -183,13 +187,5 @@ namespace Polyperfect.Common
             }
         }
 */
-        IEnumerator ConstantTicking(float delay)
-        {
-            while (true)
-            {
-                yield return new WaitForSeconds(delay);
-            }
-            // ReSharper disable once IteratorNeverReturns
-        }
     }
 }

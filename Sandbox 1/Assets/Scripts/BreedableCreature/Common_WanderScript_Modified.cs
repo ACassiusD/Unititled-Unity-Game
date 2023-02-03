@@ -63,12 +63,8 @@ namespace Polyperfect.Common
             StartCoroutine(RandomStartingDelay());
         }
 
-        bool started = false;
-
         void Update()
         {
-            if (!started)
-                return;
             if (forceUpdate)
             {
                 forceUpdate = false;
@@ -155,11 +151,9 @@ namespace Polyperfect.Common
             }
         }
 
-
         IEnumerator RandomStartingDelay()
         {
             yield return new WaitForSeconds(Random.Range(0f, 2f));
-            started = true;
             StartCoroutine(ConstantTicking(Random.Range(.7f, 1f)));
         }
 
