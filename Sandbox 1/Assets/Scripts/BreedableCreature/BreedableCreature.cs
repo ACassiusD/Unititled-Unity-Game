@@ -5,7 +5,7 @@ using UnityEngine.Rendering.Universal;
 
 public class BreedableCreature : MonoBehaviour, InteractableInterface, iBreedable
 {
-    public Color skinColor = Random.ColorHSV();
+    public Color skinColor;
     public Color sphereCastColor;
     public Material skinColorMaterial;
     BetaCharacter playerScript;

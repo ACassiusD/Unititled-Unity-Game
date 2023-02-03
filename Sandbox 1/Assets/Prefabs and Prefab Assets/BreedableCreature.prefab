@@ -11,13 +11,10 @@ GameObject:
   - component: {fileID: 2575079211959781171}
   - component: {fileID: 2575079211959781174}
   - component: {fileID: 2575079211959781175}
-  - component: {fileID: 2575079211959781168}
   - component: {fileID: 2575079211959781173}
   - component: {fileID: 2575079211959781179}
   - component: {fileID: 2575079211959781178}
   - component: {fileID: 2575079211959781183}
-  - component: {fileID: 2575079211959781182}
-  - component: {fileID: 2575079211959781176}
   - component: {fileID: 2575079211959781181}
   m_Layer: 8
   m_Name: BreedableCreature
@@ -91,19 +88,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &2575079211959781168
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2575079211959781132}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2575079211959781173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,88 +159,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!95 &2575079211959781182
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2575079211959781132}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &2575079211959781176
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2575079211959781132}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36003be02bd7fc54db18675085e2ab6f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  idleStates:
-  - stateName: scared
-    animationBool: isScared
-    minStateTime: 10
-    maxStateTime: 20
-    stateWeight: 1
-  movementStates:
-  - stateName: walk
-    animationBool: isWalking
-    maxStateTime: 5
-    moveSpeed: 3
-    turnSpeed: 50
-  attackingStates:
-  - stateName: attacking
-    animationBool: isAttacking
-  deathStates:
-  - stateName: dead_1
-    animationBool: isDead1
-  - stateName: dead_2
-    animationBool: isDead2
-  - stateName: dead_3
-    animationBool: isDead3
-  species: NA
-  stats: {fileID: 11400000, guid: 7c0caf258cdab7a4fa8d1b3f9a9a5510, type: 2}
-  wanderZone: 20
-  awareness: 20
-  scent: 10
-  constainedToWanderZone: 0
-  nonAgressiveTowards: []
-  matchSurfaceRotation: 0
-  surfaceRotationSpeed: 2
-  logChanges: 0
-  showGizmos: 0
-  drawWanderRange: 1
-  drawScentRange: 1
-  drawAwarenessRange: 1
-  deathEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  attackingEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  idleEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  movementEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  CurrentState: 0
-  moveSpeed: 0
 --- !u!114 &2575079211959781181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -304,4 +206,3 @@ MonoBehaviour:
   stunTimer: 0
   stunDuration: 1
   wanderscript: {fileID: 0}
-  naveMeshAgent: {fileID: 0}
