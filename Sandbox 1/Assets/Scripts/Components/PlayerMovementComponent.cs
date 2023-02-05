@@ -1,6 +1,5 @@
-using System;
+
 using UnityEngine;
-using Cinemachine;
 using Polyperfect.Common;
 
 //Player movement component contains a state machine, a working group states relevent to the player, varaible, and functions relevent to player movement.

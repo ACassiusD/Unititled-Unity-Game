@@ -12,6 +12,7 @@ public abstract class MoveComponent : MonoBehaviour
     public Vector3 velocity = new Vector3(); //Velocity/gravity force will increase when character is falling, until they become grounded
     public float moveSpeed = 50f; // Active speed
     public float walkSpeed = 20; //Intended walk speed
+    public float walkTurnSpeed = 100;
     public float runSpeed = 100; //Intended run speed
     public int jumpCount = 0;
     public int maxJumps = 2;
@@ -67,7 +68,7 @@ public abstract class MoveComponent : MonoBehaviour
     {
         if (isEnabled)
         {
-            toggleRun();
+            //toggleRun();
             UpdateSprintTimer();
         }
         isMoving = checkIfMoving();
@@ -190,17 +191,15 @@ public abstract class MoveComponent : MonoBehaviour
         this.impact = Vector3.Lerp(impact, Vector3.zero, 5 * Time.deltaTime);
     }
 
-    public void toggleRun(bool force = false)
+    public virtual void toggleRun()
     {
-        if (playerControls.Player.ToggleRun.WasPressedThisFrame() || force)
+        if(stateMachine.CurrentState.ToString() != "FallingState" && stateMachine.CurrentState.ToString() != "JumpingState")
         {
-            if(stateMachine.CurrentState.ToString() != "FallingState" && stateMachine.CurrentState.ToString() != "JumpingState")
-            {
-                if (isRunning ? isRunning = false : isRunning = true) ;
-                updateMoveSpeed();
-            }
+            if (isRunning ? isRunning = false : isRunning = true) ;
+            updateMoveSpeed();
         }
     }
+
     public void updateMoveSpeed()
     {
 
@@ -228,7 +227,7 @@ public abstract class MoveComponent : MonoBehaviour
                     Debug.Log("Sprint Ended");
                 }
 
-                toggleRun(true);
+                toggleRun();
             }
             else
             {

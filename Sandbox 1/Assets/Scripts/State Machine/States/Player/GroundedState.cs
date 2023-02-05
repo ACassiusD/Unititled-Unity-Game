@@ -26,6 +26,11 @@ public class GroundedState : PlayerState
         movementComponent.addGravity();
         movementComponent.AddVelocityAndMove();
         movementComponent.MovePlayerViaInput();
+
+        if (movementComponent.playerControls.Player.ToggleRun.WasPressedThisFrame())
+        {
+            movementComponent.toggleRun();
+        }
     }
 
 }

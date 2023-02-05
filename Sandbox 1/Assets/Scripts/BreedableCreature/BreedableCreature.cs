@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
 
+[RequireComponent(typeof(BreedableCreatureMoveComponent))]
 public class BreedableCreature : MonoBehaviour, InteractableInterface, iBreedable
 {
     public Color skinColor;
@@ -15,9 +13,11 @@ public class BreedableCreature : MonoBehaviour, InteractableInterface, iBreedabl
     public float breedingRange { get; set; }
     [field: SerializeField]
     public bool availableToMate { get; set; }
+    BreedableCreatureMoveComponent moveComponent; 
 
     void Awake()
     {
+        moveComponent = GetComponent<BreedableCreatureMoveComponent>();
         skinColor = Random.ColorHSV();
         breedingRange = 6;
         ApplyMaterial();

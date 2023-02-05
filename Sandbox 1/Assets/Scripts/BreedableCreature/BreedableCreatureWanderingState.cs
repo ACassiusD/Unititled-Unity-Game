@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BreedableCreatureWanderingState : BreedableCreatureState
@@ -8,36 +6,35 @@ public class BreedableCreatureWanderingState : BreedableCreatureState
     {
     }
 
-    //ENTER LOGIC
+    //Run only once when Breedable Creature first enters the Wandering state.
     public override void Enter()
     {
-        // movementComponent.wanderscript.enabled = true;
-        //Debug.Log("Entered MOUNT WANDERING state");
+        Debug.Log("Entered Wander State");
+        movementComponent.handleBeginWander();
         base.Enter();
     }
 
-    //HANDLE STANDING MOVEMENT LOGIC
+    //Runs once per frame. Use function to handle core logic for idle
     public override void HandleInput()
     {
-
+        //Wander
+        movementComponent.wander();
     }
 
-    //DECIDE NEXT STATE
+    //Runs once per frame. Use function to decide if we will be entering a new state.
     public override void LogicUpdate()
     {
+        var displacementFromTarget = Vector3.ProjectOnPlane(movementComponent.targetPosition - movementComponent.transform.position, Vector3.up);
+        if (displacementFromTarget.magnitude < BreedableCreatureMoveComponent.CONTINGENCY_DISTANCE)
+        {
+            stateMachine.ChangeState(movementComponent.idle);
+        }
+
         base.LogicUpdate();
-        //if (movementComponent.isBeingControlled)
-        //{
-        //    stateMachine.ChangeState(movementComponent.standing);
-       // }
     }
 
-    //EXIT LOGIC
+    //Run only once when Breedable Creature first exits the Idle state.
     public override void Exit()
     {
-        if (movementComponent.wanderscript != null)
-        {
-            movementComponent.wanderscript.enabled = false;
-        }
     }
 }

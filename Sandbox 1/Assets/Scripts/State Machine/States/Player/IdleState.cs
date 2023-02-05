@@ -25,7 +25,7 @@ public class IdleState : GroundedState
         if (movementComponent.isRunning)
         {
             //Turn to walking state so stamina can recharge.
-            movementComponent.toggleRun(true);
+            movementComponent.toggleRun();
         }
     }
 

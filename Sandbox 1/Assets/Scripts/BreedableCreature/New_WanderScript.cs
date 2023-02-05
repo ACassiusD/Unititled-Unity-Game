@@ -63,7 +63,6 @@ namespace Polyperfect.Common
             updatePositionViaState();
         }
 
-
         /**
          * Update the wanderers position by reading current active state and acting accordingly
          * While Wandering.....Calculate current distance from target, if close enough, switch to idle state
@@ -95,13 +94,15 @@ namespace Polyperfect.Common
                 idleState = false;
             }
 
-            if (navMeshAgent){
+            if (navMeshAgent)
+            {
                 navMeshAgent.destination = targetPosition;
                 navMeshAgent.speed = moveSpeed;
                 navMeshAgent.angularSpeed = turnSpeed;
             }
-            else{ 
-                characterController.SimpleMove(moveSpeed * UnityEngine.Vector3.ProjectOnPlane(targetPosition - position, Vector3.up).normalized); 
+            else
+            {
+                characterController.SimpleMove(moveSpeed * UnityEngine.Vector3.ProjectOnPlane(targetPosition - position, Vector3.up).normalized);
             }
         }
 
@@ -111,20 +112,26 @@ namespace Polyperfect.Common
                 facePosition, turnSpeed * Time.deltaTime * Mathf.Deg2Rad, 0f), Vector3.up), Vector3.up);
         }
 
+        /**
+         * Sets the move speed for wonder state, can probably be added to the onEnter for wanderstate.
+         **/ 
         void SetMoveSlow()
         {
             var minSpeed = float.MaxValue;
 
-            var stateSpeed = walkMoveSpeed;
-            if (stateSpeed < minSpeed)
+            if (walkMoveSpeed < minSpeed)
             {
-                minSpeed = stateSpeed;
+                minSpeed = walkMoveSpeed;
             }
 
             turnSpeed = walkTurnSpeed;
             moveSpeed = minSpeed;
         }
 
+        /**
+         * Is called during IdleState right before wander state is started.
+         * This will be the onEnter() of our wanderstate.
+         */
         void HandleBeginWander()
         {
             var rand = Random.insideUnitSphere * wanderZone;
@@ -135,6 +142,10 @@ namespace Polyperfect.Common
             SetMoveSlow();
         }
 
+        /**
+         * Checked weather the passed targeted position is valid
+         * Disabled the component if not
+         **/
         void ValidatePosition(ref Vector3 targetPos)
         {
             if (navMeshAgent)
@@ -166,7 +177,7 @@ namespace Polyperfect.Common
             // ReSharper disable once IteratorNeverReturns
         }
 
-        /*        public void OnDrawGizmosSelected()
+/*        public void OnDrawGizmosSelected()
         {
             // Draw target position.
             if (useNavMesh && navMeshAgent.enabled == true)
@@ -185,7 +196,7 @@ namespace Polyperfect.Common
                     Gizmos.DrawLine(transform.position, targetLocation);
                 }
             }
-        }
-*/
+        }*/
+
     }
 }

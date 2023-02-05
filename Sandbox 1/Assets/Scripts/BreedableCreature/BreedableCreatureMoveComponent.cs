@@ -1,19 +1,28 @@
-using Polyperfect.Animals;
-using Polyperfect.Common;
+
+using UnityEngine;
+using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 public class BreedableCreatureMoveComponent : MoveComponent
 {
     public BreedableCreatureWanderingState wandering;
-    //public New_WanderScript wanderscript;
-    public Animal_WanderScript wanderscript;
+    public BreedableCreatureIdleState idle;
+
+    //THESE SHOULD BE MOVED TO MOVE COMPONENT.
+    private NavMeshAgent navMeshAgent;
+    public const float CONTINGENCY_DISTANCE = 1f;
+    public float turnSpeed = 0f;
+    Vector3 wanderTarget;
+    public Vector3 targetPosition;
+    private float wanderZone = 10f; //"How far away from it's origin this animal will wander by itself.
+    Vector3 startPosition;
 
     private void Start()
     {
-        isEnabled = true;
-        //wanderscript = this.GetComponent<New_WanderScript>();
-        wanderscript = this.GetComponent<Animal_WanderScript>();
-        wandering = new BreedableCreatureWanderingState(stateMachine, this); 
-        stateMachine.Initialize(wandering);
+        wandering = new BreedableCreatureWanderingState(stateMachine, this);
+        idle = new BreedableCreatureIdleState(stateMachine, this);
+        stateMachine.Initialize(idle);
+        startPosition = transform.position;
     }
 
     public void Reset()
@@ -24,5 +33,78 @@ public class BreedableCreatureMoveComponent : MoveComponent
     protected void Update()
     {
         base.Update();
+    }
+
+    public void handleBeginWander()
+    {
+        var rand = Random.insideUnitSphere * wanderZone;
+        var targetPos = startPosition + rand;
+        ValidatePosition(ref targetPos);
+
+        wanderTarget = targetPos;
+        SetMoveSlow();
+    }
+
+    public void wander()
+    {
+        //Make the entity wander.
+        var position = transform.position;
+        targetPosition = position;
+
+        targetPosition = wanderTarget;
+        Debug.DrawLine(position, targetPosition, Color.yellow);
+        FaceDirection((targetPosition - position).normalized);
+
+        if (navMeshAgent)
+        {
+            navMeshAgent.destination = targetPosition;
+            navMeshAgent.speed = moveSpeed;
+            navMeshAgent.angularSpeed = turnSpeed;
+        }
+        else
+        {
+            characterController.SimpleMove(moveSpeed * UnityEngine.Vector3.ProjectOnPlane(targetPosition - position, Vector3.up).normalized);
+        }
+    }
+
+    /**
+     * Checked weather the passed targeted position is valid
+     * Disabled the component if not
+     **/
+    void ValidatePosition(ref Vector3 targetPos)
+    {
+        if (navMeshAgent)
+        {
+            NavMeshHit hit;
+            if (!NavMesh.SamplePosition(targetPos, out hit, Mathf.Infinity, 1 << NavMesh.GetAreaFromName("Walkable")))
+            {
+                Debug.LogError("Unable to sample nav mesh. Please ensure there's a Nav Mesh layer with the name Walkable");
+                enabled = false;
+                return;
+            }
+
+            targetPos = hit.position;
+        }
+    }
+    void FaceDirection(Vector3 facePosition)
+    {
+        transform.rotation = Quaternion.LookRotation(Vector3.ProjectOnPlane(Vector3.RotateTowards(transform.forward,
+            facePosition, turnSpeed * Time.deltaTime * Mathf.Deg2Rad, 0f), Vector3.up), Vector3.up);
+    }
+
+    /**
+     * Sets the move speed for wonder state, can probably be added to the onEnter for wanderstate.
+     **/
+    void SetMoveSlow()
+    {
+        var minSpeed = float.MaxValue;
+
+        if (moveSpeed < minSpeed)
+        {
+            minSpeed = moveSpeed;
+        }
+
+        turnSpeed = walkTurnSpeed;
+        moveSpeed = minSpeed;
     }
 }
