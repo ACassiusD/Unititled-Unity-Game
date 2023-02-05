@@ -16,9 +16,8 @@ public class MountStandingState : MountState
         movementComponent.getMountScript().mountAnimator.ClearAnimation();
         movementComponent.isMoving = false;
         if (movementComponent.isDebugging)
-        {
             Debug.Log("Mount Standing state");
-        }
+
         base.Enter();
     }
 
@@ -29,21 +28,22 @@ public class MountStandingState : MountState
         movementComponent.addGravity();
         movementComponent.AddVelocityAndMove();
         movementComponent.MoveMountViaInput();
+        
         jump = movementComponent.playerControls.Player.Jump.WasPerformedThisFrame();
+        
+        if (movementComponent.playerControls.Player.ToggleRun.WasPressedThisFrame())
+            movementComponent.toggleRun();
     }
 
     //DECIDE NEXT STATE
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        
         if (!movementComponent.isBeingControlled)
-        {
             stateMachine.ChangeState(movementComponent.wandering);
-        }
         else if (jump && movementComponent.jumpCount < movementComponent.maxJumps)
-        {
             stateMachine.ChangeState(movementComponent.jumping);
-        }
     }
 
     //EXIT LOGIC

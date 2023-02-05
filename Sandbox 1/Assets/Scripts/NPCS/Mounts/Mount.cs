@@ -136,13 +136,14 @@ public class Mount : MonoBehaviour, InteractableInterface //Mount class contains
     // Gets commands from player and responds
     public void getCommandUpdates()
     {
-        bool attackKeyCaptured = Input.GetKeyDown("q");
+        //Switch to new input system.
+ /*       bool attackKeyCaptured = Input.GetKeyDown("q");
         if (attackKeyCaptured){
             basicAttack();
         }
         if (moveComponent.playerControls.Player.MouseButton2.WasPerformedThisFrame()){
             specialAttack();
-        }
+        }*/
     }
 
     public void UpdateTameStatus(bool tamedStats, BetaCharacter owner)

@@ -11,23 +11,23 @@ public class MountMoveComponent : MoveComponent
     public Animal_WanderScript wanderscript;
     public NavMeshAgent naveMeshAgent;
     public Mount mountScript;
-    public PlayerControls playerControls;
 
-    void Awake()
+    protected void Awake()
     {
-        playerControls = new PlayerControls();
-        wandering = new MountWanderingState(stateMachine, this);
-        standing = new MountStandingState(stateMachine, this);
-        jumping = new MountJumpingState(stateMachine, this);
-        wanderscript = this.GetComponent<Animal_WanderScript>();
-        naveMeshAgent = this.GetComponent<NavMeshAgent>();
+        base.Awake();
     }
 
-    private void Start()
+    protected void Start()
     {
         isEnabled = true;
         isBeingControlled = false;
-        
+
+        wanderscript = this.GetComponent<Animal_WanderScript>();
+        naveMeshAgent = this.GetComponent<NavMeshAgent>();
+        wandering = new MountWanderingState(stateMachine, this);
+        standing = new MountStandingState(stateMachine, this);
+        jumping = new MountJumpingState(stateMachine, this);
+
         if (isBeingControlled)
         {
             stateMachine.Initialize(standing);
@@ -47,9 +47,11 @@ public class MountMoveComponent : MoveComponent
     {
         base.Update(); 
     }
+
     public void MountJump() {
         MidAirJump();
     }
+
     public void MoveMountViaInput()
     {
         //Returns 0, -1 or 1 for corrosponding direction

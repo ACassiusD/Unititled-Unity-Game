@@ -14,7 +14,6 @@ public class BreedableCreatureIdleState : BreedableCreatureState
     {
 
         waitTime = Random.Range(4f, 6f); //Decide how long we want to idle for
-        Debug.Log("Entered Idle State. -- " + waitTime + "seconds");
         currentTime = waitTime;
         base.Enter();
     }
