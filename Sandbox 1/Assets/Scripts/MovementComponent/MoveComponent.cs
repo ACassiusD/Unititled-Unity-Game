@@ -43,7 +43,13 @@ public abstract class MoveComponent : MonoBehaviour
     public Vector3 impact = Vector3.zero;
     public float stunTimer = 0f;
     public float stunDuration = 1f;
-    public PlayerControls playerControls;
+
+    //Using constructor here because when accessing stateMachine in the derrived classes in Start() Method.
+    //Even tho awake is usually called first, inheritance is not considered.
+    public MoveComponent()
+    {
+        stateMachine = new StateMachine();
+    }
 
     void Awake()
     {
@@ -51,17 +57,6 @@ public abstract class MoveComponent : MonoBehaviour
         stateMachine = new StateMachine();
         updateMoveSpeed();
         ResetSprintTimer();
-        playerControls = new PlayerControls();
-    }
-
-    private void OnEnable()
-    {
-        playerControls.Enable();
-    }
-
-    private void OnDisable()
-    {
-        playerControls.Disable();
     }
 
     protected void Update()

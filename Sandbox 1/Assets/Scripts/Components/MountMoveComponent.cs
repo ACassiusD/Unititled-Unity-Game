@@ -7,21 +7,26 @@ public class MountMoveComponent : MoveComponent
     public MountStandingState standing;
     public MountWanderingState wandering;
     public MountJumpingState jumping;
-    Vector3 velocity = new Vector3(); //gravity force
     public Transform cam;
     public Animal_WanderScript wanderscript;
     public NavMeshAgent naveMeshAgent;
     public Mount mountScript;
+    public PlayerControls playerControls;
+
+    void Awake()
+    {
+        playerControls = new PlayerControls();
+        wandering = new MountWanderingState(stateMachine, this);
+        standing = new MountStandingState(stateMachine, this);
+        jumping = new MountJumpingState(stateMachine, this);
+        wanderscript = this.GetComponent<Animal_WanderScript>();
+        naveMeshAgent = this.GetComponent<NavMeshAgent>();
+    }
 
     private void Start()
     {
         isEnabled = true;
         isBeingControlled = false;
-        wanderscript = this.GetComponent<Animal_WanderScript>();
-        naveMeshAgent = this.GetComponent<NavMeshAgent>();
-        wandering = new MountWanderingState(stateMachine, this);
-        standing  = new MountStandingState(stateMachine, this); 
-        jumping = new MountJumpingState(stateMachine, this);
         
         if (isBeingControlled)
         {

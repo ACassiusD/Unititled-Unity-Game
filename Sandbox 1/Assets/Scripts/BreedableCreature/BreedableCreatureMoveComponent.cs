@@ -8,7 +8,6 @@ public class BreedableCreatureMoveComponent : MoveComponent
     public BreedableCreatureWanderingState wandering;
     public BreedableCreatureIdleState idle;
 
-    //THESE SHOULD BE MOVED TO MOVE COMPONENT.
     private NavMeshAgent navMeshAgent;
     public const float CONTINGENCY_DISTANCE = 1f;
     public float turnSpeed = 0f;
@@ -17,6 +16,10 @@ public class BreedableCreatureMoveComponent : MoveComponent
     private float wanderZone = 10f; //"How far away from it's origin this animal will wander by itself.
     Vector3 startPosition;
 
+    private void Awake()
+    {
+        navMeshAgent = GetComponent<NavMeshAgent>();
+    }
     private void Start()
     {
         wandering = new BreedableCreatureWanderingState(stateMachine, this);
@@ -57,13 +60,14 @@ public class BreedableCreatureMoveComponent : MoveComponent
 
         if (navMeshAgent)
         {
+            Debug.Log("Wandering with the NAV MESH");
             navMeshAgent.destination = targetPosition;
             navMeshAgent.speed = moveSpeed;
             navMeshAgent.angularSpeed = turnSpeed;
         }
         else
         {
-            characterController.SimpleMove(moveSpeed * UnityEngine.Vector3.ProjectOnPlane(targetPosition - position, Vector3.up).normalized);
+            characterController.SimpleMove(moveSpeed * Vector3.ProjectOnPlane(targetPosition - position, Vector3.up).normalized);
         }
     }
 

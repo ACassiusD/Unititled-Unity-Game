@@ -33,6 +33,12 @@ public class PlayerMovementComponent : MoveComponent
     private float groundRayDistance = 1;
     private RaycastHit slopeHit;
     private RaycastHit steepSlopeHit;
+    public PlayerControls playerControls;
+
+    private void Awake()
+    {
+        playerControls = new PlayerControls();
+    }
 
     private void Update()
     {
@@ -251,5 +257,14 @@ public class PlayerMovementComponent : MoveComponent
         surfaceRoationObj.enabled = false;
         var euler = obj.transform.rotation.eulerAngles;
         obj.transform.rotation = Quaternion.Euler(0, euler.y ,0);
+    }
+    private void OnEnable()
+    {
+        playerControls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        playerControls.Disable();
     }
 }
