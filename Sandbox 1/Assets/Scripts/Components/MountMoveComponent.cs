@@ -20,7 +20,6 @@ public class MountMoveComponent : MoveComponent
 
     protected void Start()
     {
-        isEnabled = true;
         isBeingControlled = false;
 
         wanderscript = this.GetComponent<Animal_WanderScript>();

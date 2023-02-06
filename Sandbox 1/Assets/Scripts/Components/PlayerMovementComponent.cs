@@ -14,6 +14,7 @@ public class PlayerMovementComponent : MoveComponent
     public EmoteState emote;
     public StunnedState stun;
     public Camera cam;
+    
     //Only movement variables specific to player should go here
     public bool isRiding = false;
     public Mount activeMount; //This might need to be moved out
@@ -29,14 +30,8 @@ public class PlayerMovementComponent : MoveComponent
     public float sphereRad = 5;
     public float sphereDist = 5;
     public Vector3 moveDir;
-    private float groundRayDistance = 1;
     private RaycastHit slopeHit;
     private RaycastHit steepSlopeHit;
-
-    protected void Awake()
-    {
-        base.Awake();
-    }
 
     public bool isMoving()
     {
@@ -49,11 +44,6 @@ public class PlayerMovementComponent : MoveComponent
 
         //If we picked up a movement input
         return (direction.magnitude >= 0.1f);
-    }
-
-    protected void Update()
-    {
-        base.Update();
     }
 
     private void Start()
@@ -91,7 +81,7 @@ public class PlayerMovementComponent : MoveComponent
         playerScript.UpdateStaminaUI();
     }
 
-    public void MoveToMountedPosition() //Moves entity to mounted seating position
+    public void MoveToMountedPosition() 
     {
         //Calculate where the rider needs to be positioned, then transform him to that position and rotation
         Vector3 ridingPositon = activeMount.transform.position;
@@ -104,7 +94,7 @@ public class PlayerMovementComponent : MoveComponent
 
 
     //VIOLATES SINGLE USE PRINCIPAL, MOVE INTO SEPERATE CLASS FOR STAMINA MAINTENANCE. 
-    public void SetActiveMount(Mount mount)    //This should not be in the move controller.
+    public void SetActiveMount(Mount mount)
     {
         this.activeMount = mount;
         isRiding = true;
@@ -115,8 +105,6 @@ public class PlayerMovementComponent : MoveComponent
         //Returns 0, -1 or 1 for corrosponding direction
         float horizontal = playerControls.Player.Movement.ReadValue<Vector2>().x;
         float vertical = playerControls.Player.Movement.ReadValue<Vector2>().y;
-
-       // Debug.Log(horizontal + vertical);
 
         //Calcuate the Vector3 direction, and normalize it to a lenght of 1 unit (just get the direction we want to wak in p much)
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
@@ -144,9 +132,7 @@ public class PlayerMovementComponent : MoveComponent
                 characterController.Move(moveDir.normalized * (moveSpeed) * Time.deltaTime);
             }
             else
-            {
                 characterController.Move(moveDir.normalized * (moveSpeed) * Time.deltaTime);
-            }
         }
         else
         {

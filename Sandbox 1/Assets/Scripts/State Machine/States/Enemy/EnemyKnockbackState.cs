@@ -55,7 +55,6 @@ public class EnemyKnockbackState : EnemyState
     {   
         //if (movementComponent.isDebugging)
             Debug.Log("Enemy Exit Knockback state");
-        movementComponent.inHitStun = false;
     }
 
 

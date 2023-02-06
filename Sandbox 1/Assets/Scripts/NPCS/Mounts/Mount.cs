@@ -88,7 +88,6 @@ public class Mount : MonoBehaviour, InteractableInterface //Mount class contains
         {
             moveComponent.wanderscript.enabled = false;
         }
-        moveComponent.isEnabled = true;
 
         moveComponent.naveMeshAgent.enabled = false;
         gameObject.layer = 12;
@@ -119,7 +118,6 @@ public class Mount : MonoBehaviour, InteractableInterface //Mount class contains
             moveComponent.wanderscript.UpdateAI();
             moveComponent.wanderscript.enabled = true;
         }
-        moveComponent.isEnabled = false;
         moveComponent.naveMeshAgent.enabled = true;
     }
 

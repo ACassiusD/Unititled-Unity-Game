@@ -38,12 +38,6 @@ public class EnemyChasingState : EnemyState
     //Get next state
     public override void LogicUpdate()
     {
-        if (movementComponent.inHitStun && movementComponent.knockBackForce > 0)
-        {
-            //Debug.Log("Enemy going to knockback state.");
-            stateMachine.ChangeState(movementComponent.knockback);
-        }
-
         if (movementComponent.InChaseRange() == false)
         {
             stateMachine.ChangeState(movementComponent.standing);

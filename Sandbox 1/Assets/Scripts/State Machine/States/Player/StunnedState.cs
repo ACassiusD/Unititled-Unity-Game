@@ -39,7 +39,6 @@ public class StunnedState : PlayerState
     {
         //if (movementComponent.isDebugging)
         Debug.Log("Enemy Exit Knockback state");
-        movementComponent.inHitStun = false;
     }
 
 

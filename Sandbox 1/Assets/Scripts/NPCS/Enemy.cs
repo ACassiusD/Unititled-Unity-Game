@@ -71,9 +71,9 @@ public class Enemy : MonoBehaviour, IDamageable
             feint();
             return 0;
         }
-        moveComponent.inHitStun = true;
         moveComponent.knockBackForce = knockBackForce;
         moveComponent.knockBackDirection = direction;
+        moveComponent.stateMachine.ChangeState(moveComponent.knockback);
         return currentHealth;
     }
 

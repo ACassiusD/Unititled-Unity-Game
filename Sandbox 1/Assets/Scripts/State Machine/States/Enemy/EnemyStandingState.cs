@@ -37,23 +37,15 @@ public class EnemyStandingState : EnemyState
     {
         float distance = movementComponent.getDistanceFromTarget();
 
-        if (movementComponent.inHitStun)
+        if (distance < movementComponent.enterChaseDistance)
         {
-            stateMachine.ChangeState(movementComponent.knockback);
+            stateMachine.ChangeState(movementComponent.chasing);
         }
-        else
+
+        if (movementComponent.getEnemyScript().attacked && distance <= movementComponent.exitChaseDistance)
         {
-            if (distance < movementComponent.enterChaseDistance)
-            {
-                stateMachine.ChangeState(movementComponent.chasing);
-            }
-
-            if (movementComponent.getEnemyScript().attacked && distance <= movementComponent.exitChaseDistance)
-            {
-                stateMachine.ChangeState(movementComponent.chasing);
-                movementComponent.getEnemyScript().resetAttackedState();
-            }
-
+            stateMachine.ChangeState(movementComponent.chasing);
+            movementComponent.getEnemyScript().resetAttackedState();
         }
 
         base.LogicUpdate();

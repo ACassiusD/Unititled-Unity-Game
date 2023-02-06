@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //Abstract MoveComponent class, with basic commands that most entities would want.
+[RequireComponent(typeof(CharacterController))]
 public abstract class MoveComponent : MonoBehaviour
 {
     public static BetaCharacter playerScript;
@@ -20,16 +21,14 @@ public abstract class MoveComponent : MonoBehaviour
     public float gravity = -8f;
     public float turnSmoothTime = 0.1f; 
     public bool isBeingControlled = false;
-    public bool isControllable = true;
     public float rotationSpeed;
     public Transform target;
     public float distanceFromTarget;
     public float minDistanceFromTarget = 20;
     public bool isRunning = false;
-    public bool inHitStun = false;
+    //public bool inHitStun = false;
     public int knockBackForce = 0;
     public Vector3 knockBackDirection;
-    public bool isEnabled = true;
     public int enterChaseDistance = 100;
     public int exitChaseDistance = 160;
     public int attackRange = 10;
@@ -62,11 +61,7 @@ public abstract class MoveComponent : MonoBehaviour
 
     protected void Update()
     {
-        if (isEnabled)
-        {
-            //toggleRun();
-            UpdateSprintTimer();
-        }
+        UpdateSprintTimer();
         stateMachine.CurrentState.HandleInput();
         stateMachine.CurrentState.LogicUpdate();
     }
