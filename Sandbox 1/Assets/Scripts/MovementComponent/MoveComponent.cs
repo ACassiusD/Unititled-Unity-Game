@@ -13,7 +13,6 @@ public abstract class MoveComponent : MonoBehaviour
     public Vector3 velocity = new Vector3(); //Velocity/gravity force will increase when character is falling, until they become grounded
     public float moveSpeed = 50f; // Active speed
     public float walkSpeed = 20; //Intended walk speed
-    public float walkTurnSpeed = 100;
     public float runSpeed = 100; //Intended run speed
     public int jumpCount = 0;
     public int maxJumps = 2;
@@ -21,7 +20,7 @@ public abstract class MoveComponent : MonoBehaviour
     public float gravity = -8f;
     public float turnSmoothTime = 0.1f; 
     public bool isBeingControlled = false;
-    public float rotationSpeed;
+    public float rotationSpeed = 100;
     public Transform target;
     public float distanceFromTarget;
     public float minDistanceFromTarget = 20;

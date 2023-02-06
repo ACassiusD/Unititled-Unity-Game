@@ -10,7 +10,6 @@ public class BreedableCreatureMoveComponent : MoveComponent
 
     private NavMeshAgent navMeshAgent;
     public const float CONTINGENCY_DISTANCE = 1f;
-    public float turnSpeed = 0f;
     Vector3 wanderTarget;
     public Vector3 targetPosition;
     public float wanderZone = 10f; //"How far away from it's origin this animal will wander by itself.
@@ -54,7 +53,6 @@ public class BreedableCreatureMoveComponent : MoveComponent
     {
         //Make the entity wander.
         var position = transform.position;
-        targetPosition = position;
 
         targetPosition = wanderTarget;
         Debug.DrawLine(position, targetPosition, Color.yellow);
@@ -65,7 +63,9 @@ public class BreedableCreatureMoveComponent : MoveComponent
             Debug.Log("Wandering with the NAV MESH");
             navMeshAgent.destination = targetPosition;
             navMeshAgent.speed = moveSpeed;
-            navMeshAgent.angularSpeed = turnSpeed;
+            navMeshAgent.angularSpeed = rotationSpeed;
+            navMeshAgent.autoBraking = false;
+            navMeshAgent.acceleration = 100;
         }
         else
         {
@@ -94,8 +94,8 @@ public class BreedableCreatureMoveComponent : MoveComponent
     }
     void FaceDirection(Vector3 facePosition)
     {
-        transform.rotation = Quaternion.LookRotation(Vector3.ProjectOnPlane(Vector3.RotateTowards(transform.forward,
-            facePosition, turnSpeed * Time.deltaTime * Mathf.Deg2Rad, 0f), Vector3.up), Vector3.up);
+/*        transform.rotation = Quaternion.LookRotation(Vector3.ProjectOnPlane(Vector3.RotateTowards(transform.forward,
+            facePosition, rotationSpeed * Time.deltaTime * Mathf.Deg2Rad, 0f), Vector3.up), Vector3.up);*/
     }
 
     /**
@@ -110,7 +110,6 @@ public class BreedableCreatureMoveComponent : MoveComponent
             minSpeed = moveSpeed;
         }
 
-        turnSpeed = walkTurnSpeed;
         moveSpeed = minSpeed;
     }
 }

@@ -36,5 +36,6 @@ public class BreedableCreatureWanderingState : BreedableCreatureState
     //Run only once when Breedable Creature first exits the Idle state.
     public override void Exit()
     {
+        Debug.Log("Exit Wander State");
     }
 }
