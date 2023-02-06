@@ -1,6 +1,7 @@
 
 using UnityEngine;
 using Polyperfect.Common;
+using System;
 
 //Player movement component contains a state machine, a working group states relevent to the player, varaible, and functions relevent to player movement.
 //It is the "Brain" of player movement.
@@ -37,6 +38,19 @@ public class PlayerMovementComponent : MoveComponent
     protected void Awake()
     {
         base.Awake();
+    }
+
+    public bool isMoving()
+    {
+        //Returns 0, -1 or 1 for corrosponding direction
+        float horizontal = playerControls.Player.Movement.ReadValue<Vector2>().x;
+        float vertical = playerControls.Player.Movement.ReadValue<Vector2>().y;
+
+        //Calcuate the Vector3 direction, and normalize it to a lenght of 1 unit (just get the direction we want to wak in p much)
+        Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
+
+        //If we picked up a movement input
+        return (direction.magnitude >= 0.1f);
     }
 
     protected void Update()
@@ -112,7 +126,6 @@ public class PlayerMovementComponent : MoveComponent
         //If we picked up a movement input
         if (direction.magnitude >= 0.1f)
         {
-            isMoving = true;
             //Mathf.Atan2(direction.x, direction.z) - Gives us the angle in radians our player needs to turn
             //Mathf.Rad2Deg Update the angle to degrees
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.transform.eulerAngles.y;
@@ -148,7 +161,6 @@ public class PlayerMovementComponent : MoveComponent
                 moveDir.y = moveDir.y - steepSlopeHit.point.y;
                 characterController.Move(moveDir.normalized * (moveSpeed) * Time.deltaTime);
             }
-            isMoving = false;
         }
     }
 

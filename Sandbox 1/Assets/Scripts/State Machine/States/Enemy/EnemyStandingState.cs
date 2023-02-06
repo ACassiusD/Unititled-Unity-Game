@@ -25,7 +25,6 @@ public class EnemyStandingState : EnemyState
         }
         movementComponent.naveMeshAgent.enabled = true;
         movementComponent.isBeingControlled = false;
-        movementComponent.isMoving = false;
 
         base.Enter();
     }

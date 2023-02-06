@@ -54,7 +54,7 @@ public class Mount : MonoBehaviour, InteractableInterface //Mount class contains
 
             if (moveComponent.isBeingControlled)
             {
-                if (moveComponent.isMoving)
+                if (moveComponent.isMoving() == true)
                 {
                     //Running
                     if (moveComponent.isRunning)

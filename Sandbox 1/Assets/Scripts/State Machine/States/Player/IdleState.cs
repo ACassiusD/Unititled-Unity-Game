@@ -42,12 +42,13 @@ public class IdleState : GroundedState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-  
-        if(movementComponent.stunTimer != 0)
+
+        if (movementComponent.stunTimer != 0)
         {
             stateMachine.ChangeState(movementComponent.stun);
         }
-        if (movementComponent.isMoving){
+        if (movementComponent.isMoving())
+        {
             stateMachine.ChangeState(movementComponent.moving);
         }
         if (movementComponent.isRiding){

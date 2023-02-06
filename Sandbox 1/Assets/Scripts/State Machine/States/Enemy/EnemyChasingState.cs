@@ -18,7 +18,6 @@ public class EnemyChasingState : EnemyState
         {
             movementComponent.wanderscript.enabled = false;
         }
-        movementComponent.isMoving = true;
         movementComponent.setTarget(EnemyMovementComponent.playerScript.transform);
         base.Enter();
     }

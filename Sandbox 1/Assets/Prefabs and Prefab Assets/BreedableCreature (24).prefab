@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2575079211959781132
+--- !u!1 &3332351284847728575
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,51 +8,52 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2575079211959781171}
-  - component: {fileID: 2575079211959781174}
-  - component: {fileID: 2575079211959781175}
-  - component: {fileID: 2575079211959781173}
-  - component: {fileID: 2575079211959781179}
-  - component: {fileID: 2575079211959781178}
-  - component: {fileID: 2575079211959781183}
-  - component: {fileID: 2575079211959781181}
+  - component: {fileID: 3332351284847728574}
+  - component: {fileID: 3332351284847728518}
+  - component: {fileID: 3332351284847728519}
+  - component: {fileID: 3332351284847728516}
+  - component: {fileID: 3332351284847728517}
+  - component: {fileID: 3332351284847728514}
+  - component: {fileID: 3332351284847728515}
+  - component: {fileID: 3332351284847728512}
+  - component: {fileID: 3332351284847728513}
   m_Layer: 8
-  m_Name: BreedableCreature
+  m_Name: BreedableCreature (24)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2575079211959781171
+--- !u!4 &3332351284847728574
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2575079211959781132}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 819.26, y: 182.64, z: 1004.09}
+  m_GameObject: {fileID: 3332351284847728575}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 792.08, y: 182.40244, z: 1028.36}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &2575079211959781174
+--- !u!33 &3332351284847728518
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2575079211959781132}
+  m_GameObject: {fileID: 3332351284847728575}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &2575079211959781175
+--- !u!23 &3332351284847728519
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2575079211959781132}
+  m_GameObject: {fileID: 3332351284847728575}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -88,13 +89,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &2575079211959781173
+--- !u!114 &3332351284847728516
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2575079211959781132}
+  m_GameObject: {fileID: 3332351284847728575}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
@@ -107,31 +108,31 @@ MonoBehaviour:
   bakeKeys: []
   bakeValues: []
   outlineFillMaterial: {fileID: 0}
---- !u!114 &2575079211959781179
+--- !u!114 &3332351284847728517
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2575079211959781132}
+  m_GameObject: {fileID: 3332351284847728575}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a7df7431100ee1142a65c27a993cddd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skinColor: {r: 1, g: 0, b: 0, a: 1}
+  skinColor: {r: 1, g: 1, b: 1, a: 1}
   sphereCastColor: {r: 1, g: 0, b: 0, a: 1}
   skinColorMaterial: {fileID: 0}
   matingCheckInterval: 10
   <breedingRange>k__BackingField: 6
   <availableToMate>k__BackingField: 1
---- !u!114 &2575079211959781178
+--- !u!114 &3332351284847728514
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2575079211959781132}
+  m_GameObject: {fileID: 3332351284847728575}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 691bac03990199048af8ce656fce5f60, type: 3}
@@ -140,14 +141,14 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 8
-  breedableCreaturePrefab: {fileID: 2575079211959781132}
---- !u!143 &2575079211959781183
+  breedableCreaturePrefab: {fileID: 3332351284847728575}
+--- !u!143 &3332351284847728515
 CharacterController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2575079211959781132}
+  m_GameObject: {fileID: 3332351284847728575}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
@@ -159,13 +160,13 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2575079211959781181
+--- !u!114 &3332351284847728512
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2575079211959781132}
+  m_GameObject: {fileID: 3332351284847728575}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 533eea799fd4b954bb71bc369d14ba5b, type: 3}
@@ -174,7 +175,8 @@ MonoBehaviour:
   characterController: {fileID: 0}
   velocity: {x: 0, y: 0, z: 0}
   moveSpeed: 50
-  walkSpeed: 20
+  walkSpeed: 10
+  walkTurnSpeed: 100
   runSpeed: 100
   jumpCount: 0
   maxJumps: 2
@@ -205,4 +207,27 @@ MonoBehaviour:
   impact: {x: 0, y: 0, z: 0}
   stunTimer: 0
   stunDuration: 1
-  wanderscript: {fileID: 0}
+  turnSpeed: 0
+  targetPosition: {x: 0, y: 0, z: 0}
+--- !u!195 &3332351284847728513
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3332351284847728575}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0.5
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4

@@ -22,7 +22,6 @@ public abstract class MoveComponent : MonoBehaviour
     public bool isBeingControlled = false;
     public bool isControllable = true;
     public float rotationSpeed;
-    public bool isMoving = false;
     public Transform target;
     public float distanceFromTarget;
     public float minDistanceFromTarget = 20;
@@ -68,7 +67,6 @@ public abstract class MoveComponent : MonoBehaviour
             //toggleRun();
             UpdateSprintTimer();
         }
-        isMoving = checkIfMoving();
         stateMachine.CurrentState.HandleInput();
         stateMachine.CurrentState.LogicUpdate();
     }
@@ -110,12 +108,6 @@ public abstract class MoveComponent : MonoBehaviour
 
     public void ResetMoveParams()
     {
-    }
-
-    //Needs to be refactored to consider more than just the player, also should not just return true/false based on if the input is pressed, check if player is actually moving or update isMoving in the state.
-    public bool checkIfMoving()
-    {
-        return this.isMoving;
     }
 
     public void setTarget(Transform target)
@@ -214,7 +206,11 @@ public abstract class MoveComponent : MonoBehaviour
    {
         if (requiresStamina)
         {
-            if (!isRunning || !isBeingControlled) { return; }
+            //if (!isRunning || !isBeingControlled) { return; }
+            if (stateMachine.CurrentState.ToString() != "MovingState" || !isBeingControlled) 
+            {
+                return; 
+            }
             sprintTimer -= Time.deltaTime;
 
             if (sprintTimer <= 0)

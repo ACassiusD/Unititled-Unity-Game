@@ -13,7 +13,7 @@ public class BreedableCreatureIdleState : BreedableCreatureState
     public override void Enter()
     {
 
-        waitTime = Random.Range(4f, 6f); //Decide how long we want to idle for
+        waitTime = Random.Range(movementComponent.idleTimeMin, movementComponent.idleTimeMax); //Decide how long we want to idle for
         currentTime = waitTime;
         base.Enter();
     }

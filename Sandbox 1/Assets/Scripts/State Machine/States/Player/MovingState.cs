@@ -43,6 +43,19 @@ public class MovingState : GroundedState
     //Decide the next state for the character.
     public override void LogicUpdate()
     {
+        //Returns 0, -1 or 1 for corrosponding direction
+        float horizontal = movementComponent.playerControls.Player.Movement.ReadValue<Vector2>().x;
+        float vertical = movementComponent.playerControls.Player.Movement.ReadValue<Vector2>().y;
+        bool isMoving = false; 
+        //Calcuate the Vector3 direction, and normalize it to a lenght of 1 unit (just get the direction we want to wak in p much)
+        Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
+
+        //If we picked up a movement input
+        if (direction.magnitude >= 0.1f)
+        {
+            isMoving = true;
+        }
+
         base.LogicUpdate();
 
         if (movementComponent.stunTimer != 0)
@@ -57,15 +70,12 @@ public class MovingState : GroundedState
         {
             stateMachine.ChangeState(movementComponent.jumping);
         }
-        else if(!movementComponent.isMoving){
+        else if(isMoving){
             this.stateMachine.ChangeState(movementComponent.standing);
         }
-        else
+        else if (!movementComponent.IsGrounded())
         {
-            if (!movementComponent.IsGrounded())
-            {
-                this.stateMachine.ChangeState(movementComponent.falling);
-            }
+             this.stateMachine.ChangeState(movementComponent.falling);   
         }
     }
 }

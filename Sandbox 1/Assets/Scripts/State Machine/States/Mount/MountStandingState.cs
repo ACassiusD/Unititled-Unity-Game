@@ -14,7 +14,6 @@ public class MountStandingState : MountState
     public override void Enter()
     {
         movementComponent.getMountScript().mountAnimator.ClearAnimation();
-        movementComponent.isMoving = false;
         if (movementComponent.isDebugging)
             Debug.Log("Mount Standing state");
 

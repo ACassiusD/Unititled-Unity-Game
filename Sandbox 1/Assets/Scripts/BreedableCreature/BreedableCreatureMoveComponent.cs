@@ -15,6 +15,8 @@ public class BreedableCreatureMoveComponent : MoveComponent
     public Vector3 targetPosition;
     private float wanderZone = 10f; //"How far away from it's origin this animal will wander by itself.
     Vector3 startPosition;
+    public float idleTimeMin = 5f;
+    public float idleTimeMax = 15f;
 
     private void Awake()
     {

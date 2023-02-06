@@ -1,8 +1,6 @@
 using UnityEngine.AI;
 using Polyperfect.Animals;
-using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 public class EnemyMovementComponent : MoveComponent
 {
@@ -68,7 +66,6 @@ public class EnemyMovementComponent : MoveComponent
         if (distanceFromTarget >= minDistanceFromTarget)
         {
             this.getEnemyScript().enemyAnimator.setRunningAnimation();
-            this.isMoving = true;
             this.isRunning = true;
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
             characterController.Move(moveDir.normalized * moveSpeed * Time.deltaTime);
@@ -76,7 +73,6 @@ public class EnemyMovementComponent : MoveComponent
         else
         {
             this.getEnemyScript().enemyAnimator.setIdleAnimation();
-            this.isMoving = false;
             this.isRunning = false;
         }
     } 
