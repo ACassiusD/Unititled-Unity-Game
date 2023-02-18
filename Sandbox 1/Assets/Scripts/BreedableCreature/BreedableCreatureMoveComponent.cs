@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
+//TEST
 public class BreedableCreatureMoveComponent : MoveComponent
 {
     public BreedableCreatureWanderingState wandering;
