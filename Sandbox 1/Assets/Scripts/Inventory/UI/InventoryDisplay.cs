@@ -1,49 +1,41 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 //An abstract UI representation of an inventory, could be a player inventory or a storage chest inventory etc.
 public abstract class InventoryDisplay : MonoBehaviour
 {
     [SerializeField] MouseItemData mouseInventoryItem;
-    
     protected InventorySystem inventorySystem; //Inventory system we want to display
-
-    //Create a dictionary of UI slot elements that will be displayed to represent the inventory
-    //Match each ui slot representation with its backend class
-    protected Dictionary<InventorySlot_UI, InventorySlot> slotDictionary;
-                   
-    //Public getters
-    public InventorySystem InventorySystem => inventorySystem;
+    protected Dictionary<InventorySlot_UI, InventorySlot> slotDictionary; // Pair up the ui slots with the system slots.
+    
+    //Public getters       
+    public InventorySystem InventorySystem => inventorySystem;    
     public Dictionary<InventorySlot_UI, InventorySlot> SlotDictionary => slotDictionary;
-
-    public abstract void AssignSlot(InventorySystem invToDisplay); //Abstract classes must be overridden
-
+  
     protected virtual void Start()
     {
-
     }
+
+    public abstract void AssignSlot(InventorySystem invToDisplay); //Implemented in child classes.
 
     //A backend slot is passed, we loop through the Inventories SlotDictionary until we find the slot we passed on, then update the ui slot that coorosponds to it.
     protected virtual void UpdateSlot(InventorySlot updatedSlot) //Virutal classes override is optional
     {
         foreach(var slot in SlotDictionary)
         {
-            if (slot.Value == updatedSlot) //backend slot
+            if (slot.Value == updatedSlot) //Slot value = backend slot
             {
-                slot.Key.UpdateUISlot(updatedSlot); //ui slot
+                slot.Key.UpdateUISlot(updatedSlot); //Slot key = ui slot
             }
         }
     }
 
     public void SlotClicked(InventorySlot_UI clickedUISlot)
     {
-        //Clicked slot has an item - mouse doesnt have an item - pick up that item
-
         bool isShiftPressed = Keyboard.current.leftShiftKey.isPressed;
 
+        //Does the clicked slot have item data - does the mouse have no item data
         if(clickedUISlot.AssignedInventorySlot.ItemData != null & mouseInventoryItem.AssignedInventorySlot.ItemData == null)
         {
             //If the player is holding shift key? Split the stack.
@@ -53,7 +45,7 @@ public abstract class InventoryDisplay : MonoBehaviour
                 clickedUISlot.UpdateUISlot();
                 return;
             }
-            else
+            else //Pick up the item in the clicked slot.
             {
                 mouseInventoryItem.UpdateMouseSlot(clickedUISlot.AssignedInventorySlot);
                 clickedUISlot.ClearSlot();
@@ -62,7 +54,7 @@ public abstract class InventoryDisplay : MonoBehaviour
         }
 
 
-        //clicked clot doesnt ahve an item - mouse does have an item - place mthe mouse item into the empty sot.
+        //clicked slot doesnt have an item - mouse does have an item - place mthe mouse item into the empty sot.
         if(clickedUISlot.AssignedInventorySlot.ItemData == null && mouseInventoryItem.AssignedInventorySlot.ItemData != null)
         { 
             clickedUISlot.AssignedInventorySlot.AssignItem(mouseInventoryItem.AssignedInventorySlot);
@@ -72,7 +64,7 @@ public abstract class InventoryDisplay : MonoBehaviour
             return;
         }
 
-        //are both items the safe? if so combine them/
+        //are both items the same? if so combine them/
         //is the slot stack size + mosue stack size ? the slot max stack size? is so, take from mouse.
         //If different items, then swap the item.
 
@@ -81,6 +73,7 @@ public abstract class InventoryDisplay : MonoBehaviour
         {
             bool isSameItem = clickedUISlot.AssignedInventorySlot.ItemData == mouseInventoryItem.AssignedInventorySlot.ItemData;
 
+            //Are both items the same, if so combine them.
             if (isSameItem && clickedUISlot.AssignedInventorySlot.EnoughRoomLeftInStack(mouseInventoryItem.AssignedInventorySlot.StackSize))
             {
                 clickedUISlot.AssignedInventorySlot.AssignItem(mouseInventoryItem.AssignedInventorySlot);
