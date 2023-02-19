@@ -17,7 +17,7 @@ public abstract class InventoryDisplay : MonoBehaviour
     {
     }
 
-    public abstract void AssignSlot(InventorySystem invToDisplay); //Implemented in child classes.
+    public abstract void AssignSlots(InventorySystem invToDisplay); //Implemented in child classes.
 
     //A backend slot is passed, we loop through the Inventories SlotDictionary until we find the slot we passed on, then update the ui slot that coorosponds to it.
     protected virtual void UpdateSlot(InventorySlot updatedSlot) //Virutal classes override is optional
