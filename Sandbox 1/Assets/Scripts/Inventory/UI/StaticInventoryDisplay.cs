@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,15 +9,13 @@ public class StaticInventoryDisplay : InventoryDisplay
     protected override void Start()
     {
         base.Start();
+
         if(inventoryHolder != null)
         {
             inventorySystem = inventoryHolder.InventorySystem; //Assign the inventory system class variable
             inventorySystem.OnInventorySlotChange += UpdateSlot; //Subscrive the UpdateSlots() function to event
         }
-        else
-        {
-            Debug.LogWarning($"No inventory assigned to {this.gameObject}");
-        }
+        else Debug.LogWarning($"No inventory assigned to {this.gameObject}");
 
         AssignSlot(inventorySystem);
     }

@@ -23,16 +23,18 @@ public class ItemPickUp : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //Check if what we colided with has an inventory component. 
         var inventory = other.transform.GetComponent<InventoryHolder>();
-
         if (!inventory) return;
 
+        //If it does. Add it to their inventory.
         if (inventory.InventorySystem.AddToInventory(ItemData, 1))
         {
             Destroy(this.gameObject);
             return;
         }
 
+        //Allow players to pick up collectables when riding a mount.
         if (other.tag == "TamedMount")
         {
             Mount mountScript = other.GetComponent<Mount>();
