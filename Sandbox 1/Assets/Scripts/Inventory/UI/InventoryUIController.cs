@@ -22,9 +22,8 @@ public class InventoryUIController : MonoBehaviour
 
     void Update()
     {
-        if (Keyboard.current.bKey.wasPressedThisFrame) DisplayInventory(new InventorySystem(Random.Range(20,30)));
-
-        if (inventoryPanel.gameObject.activeInHierarchy && Keyboard.current.escapeKey.wasPressedThisFrame) inventoryPanel.gameObject.SetActive(false);
+        if (inventoryPanel.gameObject.activeInHierarchy && Keyboard.current.escapeKey.wasPressedThisFrame) 
+            inventoryPanel.gameObject.SetActive(false);
     }
 
     void DisplayInventory(InventorySystem invToDisplay)

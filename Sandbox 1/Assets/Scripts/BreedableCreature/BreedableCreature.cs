@@ -1,7 +1,8 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(BreedableCreatureMoveComponent))]
-public class BreedableCreature : MonoBehaviour, InteractableInterface, iBreedable
+public class BreedableCreature : MonoBehaviour, IInteractable, iBreedable
 {
     public Color skinColor;
     public Color sphereCastColor;
@@ -13,6 +14,8 @@ public class BreedableCreature : MonoBehaviour, InteractableInterface, iBreedabl
     public float breedingRange { get; set; }
     [field: SerializeField]
     public bool availableToMate { get; set; }
+    public UnityAction<IInteractable> OnInteractionComplete { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+
     BreedableCreatureMoveComponent moveComponent; 
 
     void Awake()
@@ -35,11 +38,12 @@ public class BreedableCreature : MonoBehaviour, InteractableInterface, iBreedabl
         playerScript = PlayerManager.Instance.getPlayerScript();
     }
 
-    public void interact()
+    public void Interact(Interactor interactor, out bool interactSuccessful)
     {
         //if player holding love fruit, eat it then attempt breed
         Debug.Log("iNTERACTED WITH " + this.name);
         breeder.AttemptToBreed(this);
+        interactSuccessful = true; 
     }
 
     /**
@@ -66,5 +70,8 @@ public class BreedableCreature : MonoBehaviour, InteractableInterface, iBreedabl
         Gizmos.DrawWireSphere(sphereCastOrigin, breedingRange);
     }
 
-
+    public void EndInteraction()
+    {
+        throw new System.NotImplementedException();
+    }
 }

@@ -1,8 +1,9 @@
 ﻿using Polyperfect.Animals;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
-public class Mount : MonoBehaviour, InteractableInterface //Mount class contains a movement component to move, and mount specific functions and params. 
+public class Mount : MonoBehaviour, IInteractable //Mount class contains a movement component to move, and mount specific functions and params. 
 {
     //TODO: CREATE MOUNTMoveComponent and states, use animatior to update them.
     public MountAnimatorComponent mountAnimator;   
@@ -16,6 +17,8 @@ public class Mount : MonoBehaviour, InteractableInterface //Mount class contains
     public bool tamed = true;
     public BetaCharacter owner = null;
 
+    public UnityAction<IInteractable> OnInteractionComplete { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+
     public void onCreate()
     {
         playerScript = PlayerManager.Instance.getPlayerScript();
@@ -26,11 +29,6 @@ public class Mount : MonoBehaviour, InteractableInterface //Mount class contains
         moveComponent = this.GetComponent<MountMoveComponent>();
         mountAnimator = this.GetComponent<MountAnimatorComponent>();
 
-//        if (!moveComponent)
- //           Debug.LogError(this.name + " is missing a MountMoveComponent!");
- //       if (!mountAnimator)
- //           Debug.LogError(this.name + " is missing a MountAnimatorComponent!");
-
         if (!moveComponent.isBeingControlled)
             isWandering = true;
 
@@ -40,10 +38,7 @@ public class Mount : MonoBehaviour, InteractableInterface //Mount class contains
     protected void Update()
     {
         if (moveComponent.isBeingControlled)
-        {
             updateAnimations();
-            getCommandUpdates();
-        }
     }
 
     private void updateAnimations()
@@ -71,14 +66,14 @@ public class Mount : MonoBehaviour, InteractableInterface //Mount class contains
 
     }
 
-    public void interact()
+    public void Interact(Interactor interactor, out bool interactSuccessful)
     {
-        //Debug.Log("Interacted with mount");
-        
         if (!playerScript.getIsRiding()) 
             mount();
         else
             dismount();
+
+        interactSuccessful = true;
     }
 
     public void mount()
@@ -131,19 +126,6 @@ public class Mount : MonoBehaviour, InteractableInterface //Mount class contains
         Debug.Log(this.name + " Special Attacks!!!");
     }
 
-    // Gets commands from player and responds
-    public void getCommandUpdates()
-    {
-        //Switch to new input system.
- /*       bool attackKeyCaptured = Input.GetKeyDown("q");
-        if (attackKeyCaptured){
-            basicAttack();
-        }
-        if (moveComponent.playerControls.Player.MouseButton2.WasPerformedThisFrame()){
-            specialAttack();
-        }*/
-    }
-
     public void UpdateTameStatus(bool tamedStats, BetaCharacter owner)
     {
         tamed = tamedStats;
@@ -159,5 +141,10 @@ public class Mount : MonoBehaviour, InteractableInterface //Mount class contains
     public BetaCharacter getOwner()
     {
         return owner;
+    }
+
+    public void EndInteraction()
+    {
+        throw new System.NotImplementedException();
     }
 }

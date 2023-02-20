@@ -10,6 +10,7 @@ public class InventoryHolder : MonoBehaviour
 
     public InventorySystem InventorySystem => inventorySystem;
 
+    //Unity action is similar to a unity event that can be invoked, it takes no paramaters and returns no values.
     public static UnityAction<InventorySystem> OnDynamicInventoryDisplayRequested;
 
     private void Awake()

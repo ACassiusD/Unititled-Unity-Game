@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
-public class Plots : MonoBehaviour, InteractableInterface
+public class Plots : MonoBehaviour, IInteractable
 {
     public Crop CropPrefab;
     public Material tilledMaterial;
@@ -11,6 +12,8 @@ public class Plots : MonoBehaviour, InteractableInterface
     public bool renderMesh = true;
     Renderer MR;
     Crop myCrop;
+
+    public UnityAction<IInteractable> OnInteractionComplete { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
     void Awake()
     {
@@ -30,7 +33,7 @@ public class Plots : MonoBehaviour, InteractableInterface
         return myCrop;
     }
 
-    public void interact()
+    public void Interact()
     {
         if (myCrop)
         {
@@ -112,5 +115,13 @@ public class Plots : MonoBehaviour, InteractableInterface
         isSeeded = false;
     }
 
-    
+    public void Interact(Interactor interactor, out bool interactSuccessful)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void EndInteraction()
+    {
+        throw new System.NotImplementedException();
+    }
 }
