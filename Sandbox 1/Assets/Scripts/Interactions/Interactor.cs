@@ -9,6 +9,7 @@ public class Interactor : MonoBehaviour
     public bool isDebugging = false;
     bool isObjectHit = false;
     public bool isInteracting { get; private set; }
+    bool capturedKeyPress = false;
 
     Transform hitObject;
     [SerializeField] Material highlightMaterial;
@@ -25,11 +26,12 @@ public class Interactor : MonoBehaviour
 
     private void Update()
     {
-        bool capturedKeyPress = playerControls.Player.MouseButton2.WasPerformedThisFrame();
+        capturedKeyPress = false;
+        capturedKeyPress = playerControls.Player.MouseButton2.WasPerformedThisFrame();
         clearActiveScript();
         isObjectHit = castRay();
-        if (isObjectHit && capturedKeyPress)
-            CallInteraction(hitinfo);
+        if (isObjectHit)
+            HandleHighlightAndInteraction(hitinfo);
     }
 
     private void OnEnable()
@@ -78,7 +80,7 @@ public class Interactor : MonoBehaviour
     }
 
     //If an object intercepted with the ray, attempt to find the IInteractable within the object hierarchy and then call interact.
-    private void CallInteraction(RaycastHit hitinfo)
+    private void HandleHighlightAndInteraction(RaycastHit hitinfo)
     {
         hitObject = hitinfo.transform;
 
@@ -90,11 +92,12 @@ public class Interactor : MonoBehaviour
         if (hitObject.GetComponent<Outline>())
         {
             targetOutlineScript = hitObject.GetComponent<Outline>();
+            outlineObject();
 
             IInteractable interactableObject = hitObject.GetComponent<IInteractable>();
             if (interactableObject != null)
             {
-                finallyInteract(interactableObject);
+                StartInteraction(interactableObject);
                 return;
             }
         }
@@ -102,18 +105,21 @@ public class Interactor : MonoBehaviour
         else if (hitObject.parent && hitObject.parent.GetComponentInChildren<Outline>()) 
         {
             targetOutlineScript = hitObject.parent.GetComponentInChildren<Outline>();
+            outlineObject();
+
             hitObject = hitObject.parent;
             IInteractable interactableObject = hitObject.GetComponent<IInteractable>();
             if (interactableObject != null)
             {
-                finallyInteract(interactableObject);
+                StartInteraction(interactableObject);
                 return;
             }
         }
         //Try getting from children
         else if (hitObject.GetComponentInChildren<Outline>() != null) 
         {
-            targetOutlineScript = hitObject.GetComponentInChildren<Outline>();
+            targetOutlineScript = hitObject.parent.GetComponentInChildren<Outline>();
+            outlineObject();
 
             foreach (Transform child in transform)
             {
@@ -121,29 +127,30 @@ public class Interactor : MonoBehaviour
 
                 if (interactableObject != null)
                 {
-                    finallyInteract(interactableObject);
-                    return;
+                    StartInteraction(interactableObject);
                 }
             }
         }
     }
 
-    private void finallyInteract(IInteractable interactable)
+    private void outlineObject()
     {
         if (targetOutlineScript != null)
         {
             outLineColor = targetOutlineScript.OutlineColor;
             outLineColor.a = 255.0f;
             targetOutlineScript.outlineFillMaterial.SetColor("_OutlineColor", outLineColor);
-            StartInteraction(interactable);
         }
     }
     
     //Expanded out into its own method so we can assign the isInteracting variable;
     void StartInteraction(IInteractable interactable)
     {
-        interactable.Interact(this, out bool interactSuccessful);
-        isInteracting = true;
+        if (capturedKeyPress)
+        {
+            interactable.Interact(this, out bool interactSuccessful);
+            isInteracting = true;
+        }
     }
 
     void EndInteraction()
