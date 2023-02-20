@@ -11235,7 +11235,7 @@ GameObject:
   - component: {fileID: 294340013}
   - component: {fileID: 294340012}
   - component: {fileID: 294340011}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108470,6 +108470,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2031196621}
+  - component: {fileID: 2031196623}
+  - component: {fileID: 2031196622}
   m_Layer: 0
   m_Name: Small Chest
   m_TagString: Untagged
@@ -108494,6 +108496,40 @@ Transform:
   m_Father: {fileID: 1770129854}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2031196622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2031196620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 0.99215686, g: 0.84313726, b: 0.17254902, a: 0}
+  outlineWidth: 10
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+  outlineFillMaterial: {fileID: 0}
+--- !u!114 &2031196623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2031196620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e40d8a318e1e27141a1a4d0dd9d3b5fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventorySize: 10
+  inventorySystem:
+    inventorySlots: []
 --- !u!1 &2032459563
 GameObject:
   m_ObjectHideFlags: 0
