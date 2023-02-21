@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /**
@@ -15,5 +13,4 @@ public class InventoryItemData : ScriptableObject
     public Sprite icon;
     public int maxStackSize;
     public int goldValue;
-
 }
