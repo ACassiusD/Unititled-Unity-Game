@@ -134,6 +134,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""BKey"",
+                    ""type"": ""Button"",
+                    ""id"": ""3c23316b-f6fe-4995-b75f-1fdcf04a455b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -312,6 +321,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""tilde"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c9e1faa9-aa49-403d-bbe8-a30529833aed"",
+                    ""path"": ""<Keyboard>/b"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BKey"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -332,6 +352,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Player_MouseLook = m_Player.FindAction("MouseLook", throwIfNotFound: true);
         m_Player_LeftControl = m_Player.FindAction("LeftControl", throwIfNotFound: true);
         m_Player_tilde = m_Player.FindAction("tilde", throwIfNotFound: true);
+        m_Player_BKey = m_Player.FindAction("BKey", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -403,6 +424,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_MouseLook;
     private readonly InputAction m_Player_LeftControl;
     private readonly InputAction m_Player_tilde;
+    private readonly InputAction m_Player_BKey;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -419,6 +441,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @MouseLook => m_Wrapper.m_Player_MouseLook;
         public InputAction @LeftControl => m_Wrapper.m_Player_LeftControl;
         public InputAction @tilde => m_Wrapper.m_Player_tilde;
+        public InputAction @BKey => m_Wrapper.m_Player_BKey;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -464,6 +487,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @tilde.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTilde;
                 @tilde.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTilde;
                 @tilde.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTilde;
+                @BKey.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBKey;
+                @BKey.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBKey;
+                @BKey.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBKey;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -504,6 +530,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @tilde.started += instance.OnTilde;
                 @tilde.performed += instance.OnTilde;
                 @tilde.canceled += instance.OnTilde;
+                @BKey.started += instance.OnBKey;
+                @BKey.performed += instance.OnBKey;
+                @BKey.canceled += instance.OnBKey;
             }
         }
     }
@@ -522,5 +551,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnMouseLook(InputAction.CallbackContext context);
         void OnLeftControl(InputAction.CallbackContext context);
         void OnTilde(InputAction.CallbackContext context);
+        void OnBKey(InputAction.CallbackContext context);
     }
 }

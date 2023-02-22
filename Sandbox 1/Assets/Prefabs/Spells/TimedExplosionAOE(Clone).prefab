@@ -88,7 +88,6 @@ GameObject:
   - component: {fileID: 1859178609475916085}
   - component: {fileID: 73346958432995446}
   - component: {fileID: 8859774363749831429}
-  - component: {fileID: 1796841483319345180}
   m_Layer: 0
   m_Name: TimedExplosionAOE(Clone)
   m_TagString: Untagged
@@ -144,21 +143,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5395470079655651887}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b182286fc13374045871f9ea4a158955, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isActive: 1
-  degreesPerSecond: 5
---- !u!114 &1796841483319345180
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5395470079655651887}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dace64eaf1450384790fac22cca603c7, type: 3}
+  m_Script: {fileID: 11500000, guid: 3771a2dbb395c074ca0eca33104f0657, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   attackHitboxes:

@@ -7,7 +7,7 @@ public class ChestInventory : InventoryHolder, IInteractable
     public void Interact(Interactor interactor, out bool interactSuccessful)
     {
         //If the unity event OnDynamicInventoryDisplayRequested  is not null, invoke it.
-        OnDynamicInventoryDisplayRequested?.Invoke(inventorySystem);
+        OnDynamicInventoryDisplayRequested?.Invoke(primaryInventorySystem);
         interactSuccessful = true;
     }
 

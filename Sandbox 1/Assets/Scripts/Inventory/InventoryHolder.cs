@@ -1,20 +1,23 @@
 using UnityEngine;
 using UnityEngine.Events;
 
+/**
+ * Class given to entities that will have an inventory,
+ * Can be overridden to give more functionallity, i.e. PlayerInventoryHolder 
+ */
 [System.Serializable]
-//Class given to entities that will have an inventory
 public class InventoryHolder : MonoBehaviour
 {
     [SerializeField] private int inventorySize;
-    [SerializeField] protected InventorySystem inventorySystem;
+    [SerializeField] protected InventorySystem primaryInventorySystem;
 
-    public InventorySystem InventorySystem => inventorySystem;
+    public InventorySystem PrimaryInventorySystem => primaryInventorySystem;
 
     //Unity action is similar to a unity event that can be invoked, it takes no paramaters and returns no values.
     public static UnityAction<InventorySystem> OnDynamicInventoryDisplayRequested;
 
-    private void Awake()
+    protected virtual void Awake()
     {
-        inventorySystem = new InventorySystem(inventorySize);
+        primaryInventorySystem = new InventorySystem(inventorySize);
     }
 }

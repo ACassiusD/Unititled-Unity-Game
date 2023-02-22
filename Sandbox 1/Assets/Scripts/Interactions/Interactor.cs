@@ -23,6 +23,10 @@ public class Interactor : MonoBehaviour
     {
         playerScript = PlayerManager.Instance.getPlayerScript();
     }
+    private void Awake()
+    {
+        playerControls = new PlayerControls();
+    }
 
     private void Update()
     {
@@ -42,11 +46,6 @@ public class Interactor : MonoBehaviour
     private void OnDisable()
     {
         playerControls.Disable();
-    }
-
-    private void Awake()
-    {
-        playerControls = new PlayerControls();
     }
 
     //Runs at the beginning of every new frame, removes highlighting and clears the script from memory

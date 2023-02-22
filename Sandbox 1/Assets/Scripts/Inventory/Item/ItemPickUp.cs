@@ -28,7 +28,7 @@ public class ItemPickUp : MonoBehaviour
         if (!inventory) return;
 
         //If it does. Add it to their inventory.
-        if (inventory.InventorySystem.AddToInventory(ItemData, 1))
+        if (inventory.PrimaryInventorySystem.AddToInventory(ItemData, 1))
         {
             Destroy(this.gameObject);
             return;
@@ -44,7 +44,7 @@ public class ItemPickUp : MonoBehaviour
        
             if (!parentInventory) return;
 
-            if (parentInventory.InventorySystem.AddToInventory(ItemData, 1))
+            if (parentInventory.PrimaryInventorySystem.AddToInventory(ItemData, 1))
             {
                 Destroy(this.gameObject);
             }

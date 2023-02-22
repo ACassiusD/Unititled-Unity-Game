@@ -4157,6 +4157,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 808922705}
     m_Modifications:
+    - target: {fileID: -5546988263252168169, guid: 0c3ed34ddfeb301498bab1a007fed00b,
+        type: 3}
+      propertyPath: m_Name
+      value: Canvas
+      objectReference: {fileID: 0}
     - target: {fileID: 3594067509297098603, guid: 0c3ed34ddfeb301498bab1a007fed00b,
         type: 3}
       propertyPath: cam
@@ -4257,17 +4262,17 @@ PrefabInstance:
     - target: {fileID: 5627443193023503879, guid: 0c3ed34ddfeb301498bab1a007fed00b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1283.51
+      value: 940.59564
       objectReference: {fileID: 0}
     - target: {fileID: 5627443193023503879, guid: 0c3ed34ddfeb301498bab1a007fed00b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 169.87
+      value: 221.9
       objectReference: {fileID: 0}
     - target: {fileID: 5627443193023503879, guid: 0c3ed34ddfeb301498bab1a007fed00b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -22.4
+      value: 1272.6019
       objectReference: {fileID: 0}
     - target: {fileID: 5627443193023503879, guid: 0c3ed34ddfeb301498bab1a007fed00b,
         type: 3}
@@ -4277,17 +4282,17 @@ PrefabInstance:
     - target: {fileID: 5627443193023503879, guid: 0c3ed34ddfeb301498bab1a007fed00b,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5627443193023503879, guid: 0c3ed34ddfeb301498bab1a007fed00b,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5627443193023503879, guid: 0c3ed34ddfeb301498bab1a007fed00b,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5627443193023503879, guid: 0c3ed34ddfeb301498bab1a007fed00b,
         type: 3}
@@ -33865,17 +33870,17 @@ PrefabInstance:
     - target: {fileID: 8655172793742681713, guid: 1070dfa1b11333041918f2463b64250e,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.22598179
+      value: -0.22598182
       objectReference: {fileID: 0}
     - target: {fileID: 8655172793742681713, guid: 1070dfa1b11333041918f2463b64250e,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.17560734
+      value: 0.17560735
       objectReference: {fileID: 0}
     - target: {fileID: 8655172793742681713, guid: 1070dfa1b11333041918f2463b64250e,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.041455224
+      value: 0.041455235
       objectReference: {fileID: 0}
     - target: {fileID: 8655172793742681718, guid: 1070dfa1b11333041918f2463b64250e,
         type: 3}
@@ -33920,12 +33925,12 @@ PrefabInstance:
     - target: {fileID: 8655172793830323241, guid: 1070dfa1b11333041918f2463b64250e,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.17998023
+      value: 0.17998022
       objectReference: {fileID: 0}
     - target: {fileID: 8655172793830323241, guid: 1070dfa1b11333041918f2463b64250e,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.012790764
+      value: 0.012790775
       objectReference: {fileID: 0}
     - target: {fileID: 8655172794473433636, guid: 1070dfa1b11333041918f2463b64250e,
         type: 3}
@@ -86696,6 +86701,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 808922705}
     m_Modifications:
+    - target: {fileID: -288114740793412289, guid: 44a825fbc0804b442b326e340a0c1366,
+        type: 3}
+      propertyPath: m_Name
+      value: Canvas
+      objectReference: {fileID: 0}
     - target: {fileID: 586323694748882851, guid: 44a825fbc0804b442b326e340a0c1366,
         type: 3}
       propertyPath: cam
@@ -108522,7 +108532,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventorySize: 10
-  inventorySystem:
+  primaryInventorySystem:
     inventorySlots: []
 --- !u!1 &2032459563
 GameObject:
@@ -112273,7 +112283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseInventoryItem: {fileID: 1144468069}
-  inventoryHolder: {fileID: 2554163051583158824}
+  inventoryHolder: {fileID: 2554163051583158830}
   slots:
   - {fileID: 8881089032360923928}
   - {fileID: 1603138955}
@@ -113301,11 +113311,12 @@ GameObject:
   - component: {fileID: 2460890104282647474}
   - component: {fileID: 2460890104282647476}
   - component: {fileID: 2460890104282647477}
-  - component: {fileID: 2554163051583158824}
   - component: {fileID: 2554163051583158825}
   - component: {fileID: 2554163051583158826}
   - component: {fileID: 2554163051583158828}
   - component: {fileID: 2554163051583158829}
+  - component: {fileID: 2554163051583158830}
+  - component: {fileID: 2554163051583158831}
   m_Layer: 10
   m_Name: BetaCharacter_0.2
   m_TagString: Player
@@ -114867,21 +114878,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &2554163051583158824
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2460375269804751357}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6b1f8c3f8733644eabb45d6cc1ed02c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventorySize: 10
-  inventorySystem:
-    inventorySlots: []
 --- !u!82 &2554163051583158825
 AudioSource:
   m_ObjectHideFlags: 0
@@ -115027,6 +115023,36 @@ MonoBehaviour:
   mass: 5
   useGravity: 0
   rayRange: 2000
+--- !u!114 &2554163051583158830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2460375269804751357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f00a9aa394c6ac4e9556132a9c1e2f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventorySize: 10
+  primaryInventorySystem:
+    inventorySlots: []
+  secondaryInventorySize: 40
+  secondaryInventorySystem:
+    inventorySlots: []
+--- !u!114 &2554163051583158831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2460375269804751357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 911aa47a231ca114ea6af41ce80fe266, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!137 &2580334552508126999
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0

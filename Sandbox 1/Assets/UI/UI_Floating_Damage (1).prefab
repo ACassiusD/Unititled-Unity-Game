@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5328896383451125090}
   - component: {fileID: 5328896383451125091}
   - component: {fileID: 5328896383451125092}
-  - component: {fileID: 6840269507826066590}
   - component: {fileID: 813664200258323777}
   m_Layer: 0
   m_Name: UI_Floating_Damage (1)
@@ -174,23 +173,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 5328896383451125091}
   m_maskType: 0
---- !u!114 &6840269507826066590
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5328896383451125093}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2df52917a9a79341827b7b0bb835e6a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destoryTime: 1.5
-  offset: {x: 0, y: 3.5, z: 0}
-  randomizeIntensity: {x: 0.5, y: 0, z: 0}
-  xrand: 0.6
-  yrand: 0.6
 --- !u!95 &813664200258323777
 Animator:
   serializedVersion: 4

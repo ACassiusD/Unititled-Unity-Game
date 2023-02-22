@@ -41,9 +41,8 @@ public class Arrow : MonoBehaviour
         foreach (Collider c in cols)
         {
             if (c.tag == "Player")
-            {
-                return;
-            }
+                return;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+
             if (c.tag == "Enemy")
             {
                 var enemyScript = c.gameObject.GetComponent<Enemy>();
