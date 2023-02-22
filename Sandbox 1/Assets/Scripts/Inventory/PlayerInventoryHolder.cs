@@ -14,6 +14,8 @@ public class PlayerInventoryHolder : InventoryHolder
     //Getter
     public InventorySystem SecondaryInventorySystem => secondaryInventorySystem;
 
+    public static UnityAction<InventorySystem> OnPlayerBackpackDisplayRequested;
+
     protected override void Awake()
     {
         playerControls = new PlayerControls();
@@ -25,7 +27,7 @@ public class PlayerInventoryHolder : InventoryHolder
     {
         if (playerControls.Player.BKey.WasPerformedThisFrame())
         {
-            OnDynamicInventoryDisplayRequested?.Invoke(SecondaryInventorySystem);
+            OnPlayerBackpackDisplayRequested?.Invoke(SecondaryInventorySystem);
         }
     }
 
@@ -37,6 +39,15 @@ public class PlayerInventoryHolder : InventoryHolder
     private void OnDisable()
     {
         playerControls.Disable();
+    }
+
+    public bool AddToInventory(InventoryItemData data, int amount)
+    {
+        if (primaryInventorySystem.AddToInventory(data, amount))
+            return true;
+        if (secondaryInventorySystem.AddToInventory(data, amount))
+            return true;
+        return false;
     }
 
 }

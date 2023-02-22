@@ -24,11 +24,11 @@ public class ItemPickUp : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //Check if what we colided with has an inventory component. 
-        var inventory = other.transform.GetComponent<InventoryHolder>();
+        var inventory = other.transform.GetComponent<PlayerInventoryHolder>();
         if (!inventory) return;
 
         //If it does. Add it to their inventory.
-        if (inventory.PrimaryInventorySystem.AddToInventory(ItemData, 1))
+        if (inventory.AddToInventory(ItemData, 1))
         {
             Destroy(this.gameObject);
             return;

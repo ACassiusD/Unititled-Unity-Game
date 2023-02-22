@@ -21,6 +21,10 @@ public class DynamicInventoryDisplay : InventoryDisplay
     {
         ClearSlots();
         inventorySystem = invToDisplay;
+
+        if(inventorySystem != null)
+            inventorySystem.OnInventorySlotChange += UpdateSlot;
+
         AssignSlots(invToDisplay);
     }
 
@@ -48,5 +52,12 @@ public class DynamicInventoryDisplay : InventoryDisplay
         }
 
         if(slotDictionary!= null) slotDictionary.Clear();
+    }
+
+    //When we close panel with escape key. Unsubscibe to event.
+    private void OnDisable()
+    {
+        if (inventorySystem != null)
+            inventorySystem.OnInventorySlotChange -= UpdateSlot;
     }
 }

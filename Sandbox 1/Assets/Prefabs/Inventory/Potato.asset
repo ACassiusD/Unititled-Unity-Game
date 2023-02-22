@@ -15,4 +15,5 @@ MonoBehaviour:
   displayName: Potato
   description: This is a potato
   icon: {fileID: 1091906764, guid: 343273aa6f57df8429b306d6273535ff, type: 3}
-  maxStackSize: 5
+  maxStackSize: 2
+  goldValue: 0
