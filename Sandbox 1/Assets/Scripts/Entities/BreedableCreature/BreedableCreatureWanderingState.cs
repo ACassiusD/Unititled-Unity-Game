@@ -9,7 +9,6 @@ public class BreedableCreatureWanderingState : BreedableCreatureState
     //Run only once when Breedable Creature first enters the Wandering state.
     public override void Enter()
     {
-        Debug.Log("Entered Wander State");
         movementComponent.handleBeginWander();
         base.Enter();
     }
@@ -36,6 +35,6 @@ public class BreedableCreatureWanderingState : BreedableCreatureState
     //Run only once when Breedable Creature first exits the Idle state.
     public override void Exit()
     {
-        Debug.Log("Exit Wander State");
+       // Debug.Log("Exit Wander State");
     }
 }

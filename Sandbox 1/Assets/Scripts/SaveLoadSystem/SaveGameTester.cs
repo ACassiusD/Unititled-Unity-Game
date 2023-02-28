@@ -7,11 +7,11 @@ public class SaveGameTester : MonoBehaviour
 {
     public void SaveGame()
     {
-        SaveGameManager.Save();
+        SaveGameManager.SaveGame();
     }
 
     public void LoadGame()
     {
-        //SaveGameManager.Load();
+        SaveGameManager.LoadGame();
     }
 }

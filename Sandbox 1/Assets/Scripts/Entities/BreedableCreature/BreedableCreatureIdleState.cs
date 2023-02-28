@@ -12,7 +12,7 @@ public class BreedableCreatureIdleState : BreedableCreatureState
     //Run only once when Breedable Creature first enters the Idle state.
     public override void Enter()
     {
-        Debug.Log("Entered Wander State");
+        //Debug.Log("Entered Wander State");
         waitTime = Random.Range(movementComponent.idleTimeMin, movementComponent.idleTimeMax); //Decide how long we want to idle for
         currentTime = waitTime;
         base.Enter();
@@ -37,6 +37,6 @@ public class BreedableCreatureIdleState : BreedableCreatureState
     //Run only once when Breedable Creature first exits the Idle state.
     public override void Exit()
     {
-        Debug.Log("Exit Wander State");
+        //Debug.Log("Exit Wander State");
     }
 }

@@ -15,5 +15,5 @@ MonoBehaviour:
   displayName: Tomato
   description: This is a tomato
   icon: {fileID: 1758439789, guid: 343273aa6f57df8429b306d6273535ff, type: 3}
-  maxStackSize: 3
+  maxStackSize: 4
   goldValue: 0

@@ -143,6 +143,24 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""KeyNum1"",
+                    ""type"": ""Button"",
+                    ""id"": ""a3145c68-deff-4c82-a8d4-97301f8cb0f2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""KeyNum2"",
+                    ""type"": ""Button"",
+                    ""id"": ""18f98cc3-1f44-48b5-aa4a-f18a59b9e58f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -332,6 +350,28 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""BKey"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9632dfb5-53a3-4ae7-beef-f27755150ad1"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""KeyNum1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""33a41cc2-655a-4477-a149-fe20e722610f"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""KeyNum2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -353,6 +393,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Player_LeftControl = m_Player.FindAction("LeftControl", throwIfNotFound: true);
         m_Player_tilde = m_Player.FindAction("tilde", throwIfNotFound: true);
         m_Player_BKey = m_Player.FindAction("BKey", throwIfNotFound: true);
+        m_Player_KeyNum1 = m_Player.FindAction("KeyNum1", throwIfNotFound: true);
+        m_Player_KeyNum2 = m_Player.FindAction("KeyNum2", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -425,6 +467,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_LeftControl;
     private readonly InputAction m_Player_tilde;
     private readonly InputAction m_Player_BKey;
+    private readonly InputAction m_Player_KeyNum1;
+    private readonly InputAction m_Player_KeyNum2;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -442,6 +486,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @LeftControl => m_Wrapper.m_Player_LeftControl;
         public InputAction @tilde => m_Wrapper.m_Player_tilde;
         public InputAction @BKey => m_Wrapper.m_Player_BKey;
+        public InputAction @KeyNum1 => m_Wrapper.m_Player_KeyNum1;
+        public InputAction @KeyNum2 => m_Wrapper.m_Player_KeyNum2;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -490,6 +536,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @BKey.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBKey;
                 @BKey.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBKey;
                 @BKey.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBKey;
+                @KeyNum1.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnKeyNum1;
+                @KeyNum1.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnKeyNum1;
+                @KeyNum1.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnKeyNum1;
+                @KeyNum2.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnKeyNum2;
+                @KeyNum2.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnKeyNum2;
+                @KeyNum2.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnKeyNum2;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -533,6 +585,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @BKey.started += instance.OnBKey;
                 @BKey.performed += instance.OnBKey;
                 @BKey.canceled += instance.OnBKey;
+                @KeyNum1.started += instance.OnKeyNum1;
+                @KeyNum1.performed += instance.OnKeyNum1;
+                @KeyNum1.canceled += instance.OnKeyNum1;
+                @KeyNum2.started += instance.OnKeyNum2;
+                @KeyNum2.performed += instance.OnKeyNum2;
+                @KeyNum2.canceled += instance.OnKeyNum2;
             }
         }
     }
@@ -552,5 +610,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnLeftControl(InputAction.CallbackContext context);
         void OnTilde(InputAction.CallbackContext context);
         void OnBKey(InputAction.CallbackContext context);
+        void OnKeyNum1(InputAction.CallbackContext context);
+        void OnKeyNum2(InputAction.CallbackContext context);
     }
 }

@@ -61,7 +61,6 @@ public class BreedableCreatureMoveComponent : MoveComponent
 
         if (navMeshAgent)
         {
-            Debug.Log("Wandering with the NAV MESH");
             navMeshAgent.destination = targetPosition;
             navMeshAgent.speed = moveSpeed;
             navMeshAgent.angularSpeed = rotationSpeed;
