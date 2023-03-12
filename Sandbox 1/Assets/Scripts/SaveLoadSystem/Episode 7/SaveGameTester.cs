@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SaveGameTester : MonoBehaviour
 {
-    public void SaveGame()
+/*    public void SaveGame()
     {
         SaveGameManager.SaveGame();
     }
@@ -13,5 +13,5 @@ public class SaveGameTester : MonoBehaviour
     public void LoadGame()
     {
         SaveGameManager.LoadGame();
-    }
+    }*/
 }
