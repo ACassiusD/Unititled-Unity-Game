@@ -26,6 +26,7 @@ namespace SaveLoadSystem
 
         public static void LoadData(SaveData _data)
         {
+            Debug.Log("Loading Game...");
             data = _data;
         }
         
