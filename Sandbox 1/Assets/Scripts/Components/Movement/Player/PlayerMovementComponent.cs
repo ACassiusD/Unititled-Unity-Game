@@ -1,6 +1,5 @@
 using UnityEngine;
 using Polyperfect.Common;
-using UnityEngine.PlayerLoop;
 
 //Player movement component contains a state machine, a working group states relevent to the player, varaible, and functions relevent to player movement.
 //It is the "Brain" of player movement.

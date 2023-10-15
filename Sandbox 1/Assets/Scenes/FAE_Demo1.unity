@@ -36364,7 +36364,7 @@ PrefabInstance:
     - target: {fileID: 8655172795592257669, guid: 1070dfa1b11333041918f2463b64250e,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.020356603
+      value: -0.02035661
       objectReference: {fileID: 0}
     - target: {fileID: 8655172795592257669, guid: 1070dfa1b11333041918f2463b64250e,
         type: 3}
@@ -36374,7 +36374,7 @@ PrefabInstance:
     - target: {fileID: 8655172795592257669, guid: 1070dfa1b11333041918f2463b64250e,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0037342669
+      value: 0.0037342685
       objectReference: {fileID: 0}
     - target: {fileID: 8655172795592257690, guid: 1070dfa1b11333041918f2463b64250e,
         type: 3}
@@ -120556,7 +120556,6 @@ GameObject:
   - component: {fileID: 2554163051583158828}
   - component: {fileID: 2554163051583158829}
   - component: {fileID: 2554163051583158830}
-  - component: {fileID: 2554163051583158831}
   - component: {fileID: 2554163051583158832}
   m_Layer: 10
   m_Name: BetaCharacter_0.2
@@ -121349,8 +121348,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterController: {fileID: 2460890104282647479}
+  target: {fileID: 0}
   velocity: {x: 0, y: 0, z: 0}
-  moveSpeed: 4.5
+  knockBackDirection: {x: 0, y: 0, z: 0}
+  impact: {x: 0, y: 0, z: 0}
+  isDebugging: 0
+  isRunning: 0
+  isBeingControlled: 1
+  currentSpeed: 50
   walkSpeed: 7.5
   runSpeed: 12
   jumpCount: 0
@@ -121358,24 +121363,17 @@ MonoBehaviour:
   jumpHeight: 6
   gravity: -60
   turnSmoothTime: 0.1
-  isBeingControlled: 1
   rotationSpeed: -32.19619
-  target: {fileID: 0}
   distanceFromTarget: 0
   minDistanceFromTarget: 20
-  isRunning: 0
   knockBackForce: 0
-  knockBackDirection: {x: 0, y: 0, z: 0}
   enterChaseDistance: 100
   exitChaseDistance: 160
   attackRange: 10
-  isDebugging: 0
   jumpStateTime: 0.3
   sprintTimer: 3
   sprintLimit: 10
-  requiresStamina: 1
   mass: 3
-  impact: {x: 0, y: 0, z: 0}
   stunTimer: 0
   stunDuration: 1
   cam: {fileID: 1186539530}
@@ -121406,7 +121404,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
-  movementComponent: {fileID: 2460890104282647476}
+  playerMovementComponent: {fileID: 0}
   currentHealth: 1000
   maxHealth: 1000
   inHitStun: 0
@@ -122282,18 +122280,6 @@ MonoBehaviour:
   secondaryInventorySize: 30
   secondaryInventorySystem:
     inventorySlots: []
---- !u!114 &2554163051583158831
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2460375269804751357}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 911aa47a231ca114ea6af41ce80fe266, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2554163051583158832
 MonoBehaviour:
   m_ObjectHideFlags: 0
