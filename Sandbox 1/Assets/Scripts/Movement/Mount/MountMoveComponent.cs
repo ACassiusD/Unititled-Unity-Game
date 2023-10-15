@@ -73,7 +73,7 @@ public class MountMoveComponent : MoveComponent
 
             //reference for more information - https://www.youtube.com/watch?v=4HpC--2iowE
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-            characterController.Move(moveDir.normalized * moveSpeed * Time.deltaTime);
+            characterController.Move(moveDir.normalized * currentSpeed * Time.deltaTime);
         }
     }
 

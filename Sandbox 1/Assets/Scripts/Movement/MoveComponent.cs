@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-//Abstract MoveComponent class, with basic commands that most entities would want.
+//Base/Abstract MoveComponent class, contains movement properties and methods to manipulate those properties
 [RequireComponent(typeof(CharacterController))]
 public abstract class MoveComponent : MonoBehaviour
 {
@@ -10,37 +8,36 @@ public abstract class MoveComponent : MonoBehaviour
     //public static Transform playerTransform;
     public StateMachine stateMachine;
     public CharacterController characterController;
+    public PlayerControls playerControls;
+    public Transform target;
     public Vector3 velocity = new Vector3(); //Velocity/gravity force will increase when character is falling, until they become grounded
-    public float moveSpeed = 50f; // Active speed
-    public float walkSpeed = 20; //Intended walk speed
-    public float runSpeed = 100; //Intended run speed
+    public Vector3 knockBackDirection;
+    public Vector3 impact = Vector3.zero;
+    public bool isDebugging = false;
+    public bool isRunning = false; //TODO: REMOVE THIS VARIABLE, THIS KIND OF INFORMATION SHOULD BE KEPT IN THE STATE MACHINE.
+    public bool isBeingControlled = false; // Indicates weather user inputs are currently controlling this character.
+    public float currentSpeed = 50f;
+    public float walkSpeed = 20;
+    public float runSpeed = 100; 
     public int jumpCount = 0;
     public int maxJumps = 2;
     public float jumpHeight = 20;
     public float gravity = -8f;
     public float turnSmoothTime = 0.1f; 
-    public bool isBeingControlled = false;
     public float rotationSpeed = 100;
-    public Transform target;
     public float distanceFromTarget;
     public float minDistanceFromTarget = 20;
-    public bool isRunning = false;
-    //public bool inHitStun = false;
     public int knockBackForce = 0;
-    public Vector3 knockBackDirection;
     public int enterChaseDistance = 100;
     public int exitChaseDistance = 160;
     public int attackRange = 10;
-    public bool isDebugging = false;
     public float jumpStateTime = 1f;
     public float sprintTimer = 0f;
     public float sprintLimit = 3f;
-    public bool requiresStamina = false;
-    public float mass = 3.0f; // defines the character mass
-    public Vector3 impact = Vector3.zero;
+    public float mass = 3.0f;
     public float stunTimer = 0f;
     public float stunDuration = 1f;
-    public PlayerControls playerControls;
+
 
     //Using constructor here because when accessing stateMachine in the derrived classes in Start() Method.
     //Even tho awake is usually called first, inheritance is not considered.
@@ -58,9 +55,8 @@ public abstract class MoveComponent : MonoBehaviour
         ResetSprintTimer();
     }
 
-    protected void Update()
+    protected virtual void Update()
     {
-        UpdateSprintTimer();
         stateMachine.CurrentState.HandleInput();
         stateMachine.CurrentState.LogicUpdate();
     }
@@ -185,46 +181,58 @@ public abstract class MoveComponent : MonoBehaviour
 
     public void updateMoveSpeed()
     {
-
+        //TODO: This shoudl use the state
         if (isRunning)
         {
-            moveSpeed = runSpeed;
+            currentSpeed = runSpeed;
         }
         else
         {
-            moveSpeed = walkSpeed;
+            currentSpeed = walkSpeed;
         }
     }
 
-   protected void UpdateSprintTimer()
-   {
-        if (requiresStamina)
-        {
-            //if (!isRunning || !isBeingControlled) { return; }
-            if (stateMachine.CurrentState.ToString() != "MovingState" || !isBeingControlled) 
-            {
-                return; 
-            }
-            sprintTimer -= Time.deltaTime;
+    /// <summary>
+    /// Regenrate Sprint Meter, for actions like resting or sitting idle.
+    /// </summary>
+    public void RegenerateStaminaMeter()
+    {
+        if (!isBeingControlled)
+            return;
 
-            if (sprintTimer <= 0)
-            {
-                if (isDebugging)
-                {
-                    Debug.Log("Sprint Ended");
-                }
+        sprintTimer += 1 * Time.deltaTime;
 
-                toggleRun();
-            }
-            else
-            {
-                if (isDebugging)
-                {
-                    Debug.Log("Sprint Timer = " + sprintTimer);
-                }
-            }
+        //Do not let it go above the limit
+        if (sprintTimer > sprintLimit)
+             sprintTimer = sprintLimit;
+
+        Debug.Log("Sprint Timer = " + sprintTimer);
+    }
+
+    
+    /// <summary>
+    /// Consume Sprint Meter, decrementing the value.
+    /// If stamina value reaches hits 0 or lower, switch to walking.
+    /// </summary>
+    public void ConsumeSprintMeter()
+    {
+        if (!isBeingControlled)
+            return;
+
+        sprintTimer -= 1 * Time.deltaTime;
+
+        if (sprintTimer <= 0){
+            sprintTimer = 0;
+            toggleRun();
+            if (isDebugging)
+                Debug.Log("Sprint Ended");
         }
-   }
+
+        Debug.Log("Sprint Timer = " + sprintTimer);
+    }
+
+
+
    protected void ResetSprintTimer()
    {
         sprintTimer = sprintLimit;

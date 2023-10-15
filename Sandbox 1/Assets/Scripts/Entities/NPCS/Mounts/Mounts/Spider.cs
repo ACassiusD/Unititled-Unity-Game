@@ -46,7 +46,7 @@ public class Spider : Mount
     public override void specialAttack()
     {
         float range = 5000;
-        var cam = moveComponent.getPlayerScript().movementComponent.cam;
+        var cam = moveComponent.getPlayerScript().playerMovementComponent.cam;
         RaycastHit specialAttackHit;
         Debug.DrawRay(cam.transform.position, cam.transform.forward * range, Color.red);
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out specialAttackHit, range, 1 << 8))

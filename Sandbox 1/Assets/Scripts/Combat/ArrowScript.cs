@@ -19,7 +19,7 @@ public class ArrowScript : MonoBehaviour
     void Start()
     {
         betaCharacter = gameObject.GetComponent<BetaCharacter>();
-        cam = PlayerManager.Instance.getPlayerScript().movementComponent.cam.transform;
+        cam = PlayerManager.Instance.getPlayerScript().playerMovementComponent.cam.transform;
     }
 
     private void Awake()

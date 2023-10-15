@@ -1,5 +1,6 @@
 using UnityEngine;
 using Polyperfect.Common;
+using UnityEngine.PlayerLoop;
 
 //Player movement component contains a state machine, a working group states relevent to the player, varaible, and functions relevent to player movement.
 //It is the "Brain" of player movement.
@@ -32,6 +33,12 @@ public class PlayerMovementComponent : MoveComponent
     public Vector3 moveDir;
     private RaycastHit slopeHit;
     private RaycastHit steepSlopeHit;
+
+    protected override void Update()
+    {
+        playerScript.UpdateStaminaUI();
+        base.Update();
+    }
 
     public bool isMoving()
     {
@@ -66,21 +73,6 @@ public class PlayerMovementComponent : MoveComponent
             stateMachine.Initialize(jumping);
     }
 
-    //VIOLATES SINGLE USE PRINCIPAL, MOVE INTO SEPERATE CLASS FOR STAMINA MAINTENANCE. 
-    public void RegenerateStamina()
-    {
-        if(sprintTimer < 0)
-            sprintTimer = 0; 
-        
-        if(sprintTimer < sprintLimit)
-            sprintTimer += 1*Time.deltaTime;
-        
-        if(sprintTimer > sprintLimit)
-            sprintTimer = sprintLimit;
-
-        playerScript.UpdateStaminaUI();
-    }
-
     public void MoveToMountedPosition() 
     {
         //Calculate where the rider needs to be positioned, then transform him to that position and rotation
@@ -90,14 +82,6 @@ public class PlayerMovementComponent : MoveComponent
 
         //Rotation
         transform.rotation = activeMount.transform.rotation;
-    }
-
-
-    //VIOLATES SINGLE USE PRINCIPAL, MOVE INTO SEPERATE CLASS FOR STAMINA MAINTENANCE. 
-    public void SetActiveMount(Mount mount)
-    {
-        this.activeMount = mount;
-        isRiding = true;
     }
 
     public void MovePlayerViaInput()
@@ -129,10 +113,10 @@ public class PlayerMovementComponent : MoveComponent
                 Vector3 slopeDir = Vector3.up - steepSlopeHit.normal * Vector3.Dot(Vector3.up, steepSlopeHit.normal); 
                 moveDir = slopeDir * (-slopeSpeed * Time.deltaTime);
                 moveDir.y = moveDir.y - steepSlopeHit.point.y;
-                characterController.Move(moveDir.normalized * (moveSpeed) * Time.deltaTime);
+                characterController.Move(moveDir.normalized * (currentSpeed) * Time.deltaTime);
             }
             else
-                characterController.Move(moveDir.normalized * (moveSpeed) * Time.deltaTime);
+                characterController.Move(moveDir.normalized * (currentSpeed) * Time.deltaTime);
         }
         else
         {
@@ -143,7 +127,7 @@ public class PlayerMovementComponent : MoveComponent
                 Vector3 slopeDir = Vector3.up - steepSlopeHit.normal * Vector3.Dot(Vector3.up, steepSlopeHit.normal);
                 var moveDir = slopeDir * (-slopeSpeed * Time.deltaTime);
                 moveDir.y = moveDir.y - steepSlopeHit.point.y;
-                characterController.Move(moveDir.normalized * (moveSpeed) * Time.deltaTime);
+                characterController.Move(moveDir.normalized * (currentSpeed) * Time.deltaTime);
             }
         }
     }

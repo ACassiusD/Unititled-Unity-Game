@@ -62,14 +62,14 @@ public class BreedableCreatureMoveComponent : MoveComponent
         if (navMeshAgent)
         {
             navMeshAgent.destination = targetPosition;
-            navMeshAgent.speed = moveSpeed;
+            navMeshAgent.speed = currentSpeed;
             navMeshAgent.angularSpeed = rotationSpeed;
             navMeshAgent.autoBraking = false;
             navMeshAgent.acceleration = 100;
         }
         else
         {
-            characterController.SimpleMove(moveSpeed * Vector3.ProjectOnPlane(targetPosition - position, Vector3.up).normalized);
+            characterController.SimpleMove(currentSpeed * Vector3.ProjectOnPlane(targetPosition - position, Vector3.up).normalized);
         }
     }
 
@@ -105,11 +105,11 @@ public class BreedableCreatureMoveComponent : MoveComponent
     {
         var minSpeed = float.MaxValue;
 
-        if (moveSpeed < minSpeed)
+        if (currentSpeed < minSpeed)
         {
-            minSpeed = moveSpeed;
+            minSpeed = currentSpeed;
         }
 
-        moveSpeed = minSpeed;
+        currentSpeed = minSpeed;
     }
 }

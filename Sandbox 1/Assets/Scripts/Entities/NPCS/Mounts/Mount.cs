@@ -1,21 +1,19 @@
-﻿using Polyperfect.Animals;
-using UnityEngine;
-using UnityEngine.AI;
+﻿using UnityEngine;
 using UnityEngine.Events;
 
 public class Mount : MonoBehaviour, IInteractable //Mount class contains a movement component to move, and mount specific functions and params. 
 {
-    //TODO: CREATE MOUNTMoveComponent and states, use animatior to update them.
-    public MountAnimatorComponent mountAnimator;   
-    BetaCharacter playerScript;
+    public MountAnimatorComponent mountAnimator;
     public MountMoveComponent moveComponent;
+    public BetaCharacter owner = null;
+    BetaCharacter playerScript;
     public float ridingHeight = 5.4f;
     protected float walkAnimationSpeed = 1;
     protected float runAnimaitonSpeed = 2;
     public float dismountDistance = 8.0f;
     public bool isWandering = false;
     public bool tamed = true;
-    public BetaCharacter owner = null;
+
 
     public UnityAction<IInteractable> OnInteractionComplete { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 

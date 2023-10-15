@@ -1,6 +1,4 @@
 using Polyperfect.Common;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BetaCharacter : MonoBehaviour, IDamageable
@@ -8,7 +6,7 @@ public class BetaCharacter : MonoBehaviour, IDamageable
     public CharacterController controller;
     private GameObject[] tamedMounts; //Create MountCollection() Class
     Mount currentMount;
-    public PlayerMovementComponent movementComponent;
+    public PlayerMovementComponent playerMovementComponent;
     HealthBar healthBarScript;
     public int currentHealth = 500;
     public int maxHealth = 500;
@@ -32,9 +30,9 @@ public class BetaCharacter : MonoBehaviour, IDamageable
             transform.GetChild(0).gameObject.AddComponent<Common_SurfaceRotation>().SetRotationSpeed(surfaceRotationSpeed);
         }
         healthBarScript = this.GetComponentInChildren<HealthBar>();
-        movementComponent = this.GetComponent<PlayerMovementComponent>();
+        playerMovementComponent = this.GetComponent<PlayerMovementComponent>();
         
-        if (!movementComponent)
+        if (!playerMovementComponent)
             Debug.LogError(this.name + " is missing a MoveComponent!");
         if (!healthBarScript)
             Debug.Log(this.name + " is missing a HealthBarScript!");
@@ -42,7 +40,7 @@ public class BetaCharacter : MonoBehaviour, IDamageable
 
     public void Update()
     {
-        if (movementComponent.isRunning)
+        if (playerMovementComponent.isRunning)
         {
             UpdateStaminaUI();
         }
@@ -57,7 +55,7 @@ public class BetaCharacter : MonoBehaviour, IDamageable
 
     public void DisMount(float dismountDistance = 10f)
     {
-        movementComponent.activeMount = null;
+        playerMovementComponent.activeMount = null;
         this.transform.Translate(dismountDistance, 0, 0);
     }
 
@@ -73,22 +71,22 @@ public class BetaCharacter : MonoBehaviour, IDamageable
     
     public bool getIsRiding()
     {
-        return movementComponent.isRiding;
+        return playerMovementComponent.isRiding;
     }
 
     public void setIsRiding(bool passedVal)
     {
-        movementComponent.isRiding = passedVal;
+        playerMovementComponent.isRiding = passedVal;
     }
     public void setActiveMount(Mount mount)
     {
-        movementComponent.activeMount = mount;
-        movementComponent.isRiding = true;
+        playerMovementComponent.activeMount = mount;
+        playerMovementComponent.isRiding = true;
     }
 
     public void moveToMountedPosition()
     {
-        var activeMount = movementComponent.activeMount;
+        var activeMount = playerMovementComponent.activeMount;
         
         //Calculate where the rider needs to be positioned, then transform him to that position and rotation
         Vector3 ridingPositon = activeMount.transform.position;
@@ -109,7 +107,7 @@ public class BetaCharacter : MonoBehaviour, IDamageable
             return 0;
         }
         //Knockback(knockBackForce);
-        movementComponent.stunTimer = movementComponent.stunDuration;
+        playerMovementComponent.stunTimer = playerMovementComponent.stunDuration;
         return currentHealth;
     }
 
@@ -127,7 +125,7 @@ public class BetaCharacter : MonoBehaviour, IDamageable
         impact += direction.normalized * knockBackForce;
 
         //Apply vector to object
-        movementComponent.characterController.Move(impact * Time.deltaTime);
+        playerMovementComponent.characterController.Move(impact * Time.deltaTime);
     }
 
     //Update floating healthbar in world space.
@@ -163,8 +161,8 @@ public class BetaCharacter : MonoBehaviour, IDamageable
 
     protected void SetControls()
     {
-        bool attackKeyCaptured = movementComponent.playerControls.Player.P.WasPerformedThisFrame();
-        bool attackKeyCaptured2 = movementComponent.playerControls.Player.O.WasPerformedThisFrame();
+        bool attackKeyCaptured = playerMovementComponent.playerControls.Player.P.WasPerformedThisFrame();
+        bool attackKeyCaptured2 = playerMovementComponent.playerControls.Player.O.WasPerformedThisFrame();
 
         if (attackKeyCaptured)
         {
@@ -181,13 +179,26 @@ public class BetaCharacter : MonoBehaviour, IDamageable
     {
         currentHealth = maxHealth;
         updateHealthBar();
-        movementComponent.sprintTimer = movementComponent.sprintLimit;
+        playerMovementComponent.sprintTimer = playerMovementComponent.sprintLimit;
         UpdateStaminaUI();
     }
 
+    /// <summary>
+    /// Updates the Stamina bar UI for the user. If the user is in control, users stamina values will be used.
+    /// If the user is riding a mount, mounts stamina values will be used.
+    /// </summary>
     public void UpdateStaminaUI()
     {
-        UIController.Instance.setStamina(movementComponent.sprintTimer, movementComponent.sprintLimit);
+        float currentSprintTime = playerMovementComponent.sprintTimer;
+        float currentSprintLimit = playerMovementComponent.sprintLimit;
+
+        if(playerMovementComponent.isBeingControlled == false)
+        {
+            MountMoveComponent mountMoveComponent = playerMovementComponent.activeMount.GetComponent<MountMoveComponent>();
+            currentSprintLimit = mountMoveComponent.sprintLimit;
+            currentSprintTime = mountMoveComponent.sprintTimer;
+        }
+        UIController.Instance.setStamina(currentSprintTime, currentSprintLimit);
     }
 
 }

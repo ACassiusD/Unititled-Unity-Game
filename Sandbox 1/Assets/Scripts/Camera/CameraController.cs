@@ -33,7 +33,7 @@ public class CameraController : MonoBehaviour {
     // Use this for initialization
     void Start () {
         characterScript = PlayerManager.Instance.getPlayerScript();
-        if (characterScript.movementComponent.isRunning)
+        if (characterScript.playerMovementComponent.isRunning)
         {
             playerRunningStatus = true;
             this.setCameraSprintingFOV();
@@ -69,9 +69,9 @@ public class CameraController : MonoBehaviour {
 
     void SetFOV()
     {
-        if (characterScript.movementComponent.isRunning != playerRunningStatus)
+        if (characterScript.playerMovementComponent.isRunning != playerRunningStatus)
         {
-            if (characterScript.movementComponent.isRunning)
+            if (characterScript.playerMovementComponent.isRunning)
             {
                 lerp = 0;
                 playerRunningStatus = true;

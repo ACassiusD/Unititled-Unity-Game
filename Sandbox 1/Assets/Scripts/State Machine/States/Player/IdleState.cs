@@ -32,8 +32,9 @@ public class IdleState : GroundedState
     //Hypotetically, we can only jump and shoot while standing, but not ducking or crouching. So cache these variables here instead of the sub class, grounded state
     public override void HandleInput()
     {
+        movementComponent.RegenerateStaminaMeter();
         movementComponent.IsGrounded();
-        movementComponent.RegenerateStamina();
+        //movementComponent.RegenerateStamina();
         base.HandleInput();
         jump = movementComponent.playerControls.Player.Jump.WasPerformedThisFrame();
     }

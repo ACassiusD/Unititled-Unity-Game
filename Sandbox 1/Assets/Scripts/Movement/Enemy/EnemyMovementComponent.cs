@@ -68,7 +68,7 @@ public class EnemyMovementComponent : MoveComponent
             this.getEnemyScript().enemyAnimator.setRunningAnimation();
             this.isRunning = true;
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-            characterController.Move(moveDir.normalized * moveSpeed * Time.deltaTime);
+            characterController.Move(moveDir.normalized * currentSpeed * Time.deltaTime);
         }
         else
         {

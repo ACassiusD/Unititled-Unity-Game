@@ -23,6 +23,7 @@ public class RidingState : PlayerState
     public override void Enter()
     {
         movementComponent.isRunning = false;
+        movementComponent.isBeingControlled = false;
         animator.setRidingAnimation();
         if (movementComponent.isDebugging)
         {
@@ -34,13 +35,14 @@ public class RidingState : PlayerState
     }
     public override void Exit()
     {
+        movementComponent.isBeingControlled = true;
         movementComponent.activeMount.dismount();
         movementComponent.DisableSurfaceRotation();
     }
 
     public override void HandleInput()
     {
-        movementComponent.RegenerateStamina();
+        //movementComponent.RegenerateStamina();
         movementComponent.MoveToMountedPosition();
     }
 

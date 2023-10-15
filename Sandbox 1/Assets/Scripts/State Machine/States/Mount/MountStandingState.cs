@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+//TODO: Need an idle state
 public class MountStandingState : MountState
 {
     private bool jump;
@@ -32,6 +31,23 @@ public class MountStandingState : MountState
         
         if (movementComponent.playerControls.Player.ToggleRun.WasPressedThisFrame())
             movementComponent.toggleRun();
+
+        //if idle
+        if (!movementComponent.isMoving())
+        {
+            movementComponent.RegenerateStaminaMeter();
+        }
+        else
+        {
+            if(movementComponent.currentSpeed == movementComponent.walkSpeed)
+            {
+                movementComponent.RegenerateStaminaMeter();
+            }
+            else
+            {
+                movementComponent.ConsumeSprintMeter();
+            }
+        }
     }
 
     //DECIDE NEXT STATE
