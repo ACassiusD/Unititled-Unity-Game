@@ -1,3 +1,4 @@
+using UnityEngine;
 /// <summary>
 /// Base Stats Component class for storing and managing player stats.
 /// </summary>
