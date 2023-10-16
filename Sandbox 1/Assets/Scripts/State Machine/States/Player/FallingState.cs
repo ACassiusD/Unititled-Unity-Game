@@ -8,7 +8,7 @@ public class FallingState : PlayerState
 
     public FallingState(StateMachine stateMachine, PlayerMovementComponent moveComp) : base(stateMachine, moveComp)
     {
-        animator = movementComponent.getPlayerScript().animator;
+        animator = movementComponent.getPlayerScript().playerAnimator;
     }
 
     //While entering, calculate all relevent variables and other beginning methods here.
@@ -18,7 +18,7 @@ public class FallingState : PlayerState
         {
             Debug.Log("FALLING");
         }
-        movementComponent.getPlayerScript().animator.setFallingAnimation();
+        movementComponent.getPlayerScript().playerAnimator.setFallingAnimation();
     }
 
     //Hypotetically, we can only jump and shoot while standing, but not ducking or crouching. So cache these variables here instead of the sub class, grounded state

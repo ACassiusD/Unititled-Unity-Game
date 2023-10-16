@@ -9,7 +9,7 @@ public class EmoteState : PlayerState
 
     public EmoteState(StateMachine stateMachine, PlayerMovementComponent movementComponent) : base(stateMachine, movementComponent)
     {
-        animator = movementComponent.getPlayerScript().animator;
+        animator = movementComponent.getPlayerScript().playerAnimator;
     }
 
     public override void Enter()

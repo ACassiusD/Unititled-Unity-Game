@@ -6,7 +6,7 @@ public class StunnedState : PlayerState
 
     public StunnedState(StateMachine stateMachine, PlayerMovementComponent movementComponent) : base(stateMachine, movementComponent)
     {
-        animator = movementComponent.getPlayerScript().animator;
+        animator = movementComponent.getPlayerScript().playerAnimator;
     }
 
     public override void Enter()

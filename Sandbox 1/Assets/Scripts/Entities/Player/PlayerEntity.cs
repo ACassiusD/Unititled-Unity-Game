@@ -3,32 +3,31 @@ using UnityEngine;
 
 public class PlayerEntity : MonoBehaviour, IDamageable
 {
+    protected Vector3 spawnPosition;
     public CharacterController controller;
-    private GameObject[] tamedMounts; //Create MountCollection() Class
-    Mount currentMount;
+    private GameObject[] tamedMounts;
     public PlayerMovementComponent playerMovementComponent;
-    HealthBar healthBarScript;
-    public int currentHealth = 500;
-    public int maxHealth = 500;
+    public PlayerAnimator playerAnimator;
+    public InventoryHolder inventory;
+    public Mount currentMount;
+    public HealthBar healthBarScript;
     public bool inHitStun = false;
     public bool matchSurfaceRotation = true;
     public int surfaceRotationSpeed = 20;
-    public PlayerAnimator animator;
-    protected Vector3 spawnPosition;
-    public InventoryHolder inventory;
-    
-    //If true, this animal will rotate to match the terrain. Ensure you have set the layer of the terrain as 'Terrain'
+    public int currentHealth = 500;
+    public int maxHealth = 500;
 
+    //If true, this animal will rotate to match the terrain. Ensure you have set the layer of the terrain as 'Terrain'
     private void Awake()
     {
         inventory = this.GetComponent<InventoryHolder>();
-        animator = GetComponent<PlayerAnimator>();   
+        playerAnimator = GetComponent<PlayerAnimator>();   
         
         //Match surface rotation to the terrain
-        if (matchSurfaceRotation && transform.childCount > 0)
-        {
+        if (matchSurfaceRotation && transform.childCount > 0) { 
             transform.GetChild(0).gameObject.AddComponent<Common_SurfaceRotation>().SetRotationSpeed(surfaceRotationSpeed);
         }
+
         healthBarScript = this.GetComponentInChildren<HealthBar>();
         playerMovementComponent = this.GetComponent<PlayerMovementComponent>();
         
@@ -41,9 +40,8 @@ public class PlayerEntity : MonoBehaviour, IDamageable
     public void Update()
     {
         if (playerMovementComponent.isRunning)
-        {
             UpdateStaminaUI();
-        }
+        
         SetControls();
     }
 
@@ -58,16 +56,6 @@ public class PlayerEntity : MonoBehaviour, IDamageable
         playerMovementComponent.activeMount = null;
         this.transform.Translate(dismountDistance, 0, 0);
     }
-
-
-    //Text function for testing item pick up
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Item")
-        {
-            //inventory.AddItem(other.GetComponent<Item>());
-        }
-    }
     
     public bool getIsRiding()
     {
@@ -78,6 +66,7 @@ public class PlayerEntity : MonoBehaviour, IDamageable
     {
         playerMovementComponent.isRiding = passedVal;
     }
+
     public void setActiveMount(Mount mount)
     {
         playerMovementComponent.activeMount = mount;

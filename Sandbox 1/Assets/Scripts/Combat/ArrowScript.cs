@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ArrowScript : MonoBehaviour
 {
     public GameObject arrowPrefab;
     public int power = 30;
-    public Transform arrowPos;
+    public Transform projectileOrigin;
     PlayerEntity betaCharacter;
     Transform cam;
     public float forwardVel = 50f;
@@ -47,7 +45,7 @@ public class ArrowScript : MonoBehaviour
 
             //Instantiate and postion new arrow
             GameObject newArrow = Instantiate(arrowPrefab);
-            newArrow.transform.position = arrowPos.transform.position;
+            newArrow.transform.position = projectileOrigin.transform.position;
             Rigidbody rb = newArrow.GetComponent<Rigidbody>();
 
             //Trace ray for aim target position and rotate accordingly

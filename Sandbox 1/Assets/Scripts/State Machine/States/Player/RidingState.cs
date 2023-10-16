@@ -17,7 +17,7 @@ public class RidingState : PlayerState
 
     public RidingState(StateMachine stateMachine, PlayerMovementComponent movementComponent) : base(stateMachine, movementComponent)
     {
-        animator = movementComponent.getPlayerScript().animator;
+        animator = movementComponent.getPlayerScript().playerAnimator;
     }
 
     public override void Enter()

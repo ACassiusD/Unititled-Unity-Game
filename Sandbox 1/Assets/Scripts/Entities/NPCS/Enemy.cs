@@ -1,9 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
-using Polyperfect.Animals;
-using Polyperfect.Common;
 using TMPro;
 
 public class Enemy : MonoBehaviour, IDamageable
@@ -11,11 +6,6 @@ public class Enemy : MonoBehaviour, IDamageable
     public EnemyMovementComponent moveComponent;
     public EnemyAnimatorComponent enemyAnimator;
     HealthBar healthBarScript;
-    Animal_WanderScript wanderscript;
-    Polyperfect.Common.IdleState[] idleStates;
-    MovementState[] movementStates;
-    AIState[] attackingStates;
-    private AIState[] deathStates;
     public float walkAnimationSpeed = 1;
     public float runAnimaitonSpeed = 2;
     public float distanceToPlayer = 0;

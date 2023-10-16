@@ -8,7 +8,7 @@ public class IdleState : GroundedState
 
     public IdleState(StateMachine stateMachine, PlayerMovementComponent moveComp) : base(stateMachine, moveComp)
     {
-        animator = movementComponent.getPlayerScript().animator;
+        animator = movementComponent.getPlayerScript().playerAnimator;
     }
 
     //While entering, calculate all relevent variables and other beginning methods here.

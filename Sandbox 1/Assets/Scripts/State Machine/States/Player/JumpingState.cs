@@ -28,7 +28,7 @@ public class JumpingState : PlayerState
         }
 
         movementComponent.AddJumpVelocity();
-        movementComponent.getPlayerScript().animator.setJumpingAnimation();
+        movementComponent.getPlayerScript().playerAnimator.setJumpingAnimation();
         //justEntered = true;
         base.Enter();
     }
@@ -48,7 +48,7 @@ public class JumpingState : PlayerState
             if (jump && movementComponent.jumpCount > 0)
             {
                movementComponent.jumpCount--;
-                movementComponent.getPlayerScript().animator.restartJumpingAnimation();
+                movementComponent.getPlayerScript().playerAnimator.restartJumpingAnimation();
                 movementComponent.MidAirJump();
            }
         }
