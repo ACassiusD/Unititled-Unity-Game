@@ -8,15 +8,14 @@ public class StatsComponent : MonoBehaviour
     public float maxHealth = 100;
     public float stamina = 100.0f;
 
-    //public virtual void TakeDamage(float damage)
-    //{
-    //    currentHealth -= damage;
-    //    currentHealth = Mathf.Clamp(currentHealth, 0.0f, 100.0f);
-    //}
+    public void TakeDamage(float damageAmount)
+    {
+        currentHealth -= damageAmount;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+    }
 
-    //public virtual void ConsumeStamina(float amount)
-    //{
-    //    stamina -= amount;
-    //    stamina = Mathf.Clamp(stamina, 0.0f, 100.0f);
-    //}
+    public bool IsDead()
+    {
+        return currentHealth <= 0;
+    }
 }

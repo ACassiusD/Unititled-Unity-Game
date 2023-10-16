@@ -5,21 +5,18 @@ public class Enemy : MonoBehaviour, IDamageable
 {
     public EnemyMovementComponent moveComponent;
     public EnemyAnimatorComponent enemyAnimator;
+    private EnemyStats stats;
     protected GameObject activeAOEObject = null;
     public GameObject floatingDmgText;
     public GameObject aoeObject;
     private HealthBar healthBarScript;
-    public bool isWandering = false;
-    public bool attacked = false;
 
+    //Comaat vars to be moved into compat component
+    public bool attacked = false; //This needs to be refactored.
     public bool attackOnCooldown = false;
-    public float walkAnimationSpeed = 1;
-    public float runAnimaitonSpeed = 2;
     public float distanceToPlayer = 0;
     public float attackCooldown = 5f;
     public float attackCooldownTimer = 5f;
-
-    private EnemyStats stats;
 
     void Awake()
     {
@@ -54,18 +51,29 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public float receiveDamage(float damageAmount, int knockBackForce, Vector3 direction = new Vector3())
     {
+        // set attacked state to true
         attacked = true;
 
-        stats.currentHealth -= damageAmount;
-        updateHealthBar();
-        if (stats.currentHealth <= 0)
+        // Update the health using the StatsComponent's method
+        stats.TakeDamage(damageAmount);
+
+        // Kill entity if health is now 0
+        if (stats.IsDead())
         {
             feint();
             return 0;
         }
+        else
+        {
+            // Update UI Health bar
+            updateHealthBar();
+        }
+
+        // Set Knockback to the movement component.
         moveComponent.knockBackForce = knockBackForce;
         moveComponent.knockBackDirection = direction;
         moveComponent.stateMachine.ChangeState(moveComponent.knockback);
+
         return stats.currentHealth;
     }
 
