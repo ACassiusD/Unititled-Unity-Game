@@ -9,7 +9,6 @@ public class PlayerManager : MonoBehaviour {
     public static PlayerManager Instance { get; private set; }
     GameObject player;
     public BetaCharacter playerScript;
-    public InventoryManager playerInventory;
 
     // Use this for initialization
     void Awake () {
@@ -25,23 +24,10 @@ public class PlayerManager : MonoBehaviour {
             Destroy(gameObject);
         }
 
-        loadPlayerScript();
-        loadInventoryManager();
+        loadPlayerscript();
     }
 
-    private void loadInventoryManager()
-    {
-        if (player.GetComponent<InventoryManager>() != null)
-        {
-            playerInventory = player.GetComponent<InventoryManager>();
-
-        }else{
-            //Debug.LogError("Player Manager - Unable return load inventory script.");
-            //Debug.Break();
-        }
-    }
-
-    private void loadPlayerScript()
+    private void loadPlayerscript()
     {
         player = GameObject.FindWithTag("Player");
         if(player == null)
@@ -64,10 +50,5 @@ public class PlayerManager : MonoBehaviour {
             Debug.Break();
         }
         return playerScript;
-    }
-
-    public string getPlayerHeldItem()
-    {
-        return playerInventory.heldObject;
     }
 }
