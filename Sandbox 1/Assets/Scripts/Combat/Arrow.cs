@@ -10,7 +10,7 @@ public class Arrow : MonoBehaviour
     public bool destoryOnHit = true;
     public bool collided = false;
     public float despawnTimer = 10f;
-    public int damage = 50;
+    public float damage = 50;
     public int knockbackForce = 100;
 
     void Start()

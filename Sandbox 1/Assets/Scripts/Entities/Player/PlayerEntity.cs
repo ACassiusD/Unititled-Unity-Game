@@ -14,8 +14,8 @@ public class PlayerEntity : MonoBehaviour, IDamageable
     public bool inHitStun = false;
     public bool matchSurfaceRotation = true;
     public int surfaceRotationSpeed = 20;
-    public int currentHealth = 500;
-    public int maxHealth = 500;
+    public float currentHealth = 500;
+    public float maxHealth = 500;
 
     //If true, this animal will rotate to match the terrain. Ensure you have set the layer of the terrain as 'Terrain'
     private void Awake()
@@ -86,7 +86,7 @@ public class PlayerEntity : MonoBehaviour, IDamageable
         transform.rotation = activeMount.transform.rotation;
     }
 
-    public int receiveDamage(int damageAmount, int knockBackForce, Vector3 direction = new Vector3())
+    public float receiveDamage(float damageAmount, int knockBackForce, Vector3 direction = new Vector3())
     {
         currentHealth -= damageAmount;
         updateHealthBar();

@@ -5,27 +5,28 @@ public class Enemy : MonoBehaviour, IDamageable
 {
     public EnemyMovementComponent moveComponent;
     public EnemyAnimatorComponent enemyAnimator;
-    HealthBar healthBarScript;
+    protected GameObject activeAOEObject = null;
+    public GameObject floatingDmgText;
+    public GameObject aoeObject;
+    private HealthBar healthBarScript;
+    public bool isWandering = false;
+    public bool attacked = false;
+
+    public bool attackOnCooldown = false;
     public float walkAnimationSpeed = 1;
     public float runAnimaitonSpeed = 2;
     public float distanceToPlayer = 0;
-    public bool isWandering = false;
-    //Move to a StatPage class
-    public int currentHealth = 90;
-    public int maxHealth = 100;
-    public bool attacked = false;
-    protected GameObject activeAOEObject = null;
-    public GameObject aoeObject;
     public float attackCooldown = 5f;
-    public  float attackCooldownTimer = 5f;
-    public bool attackOnCooldown = false;
-    public GameObject floatingDmgText;
+    public float attackCooldownTimer = 5f;
+
+    private EnemyStats stats;
 
     void Awake()
     {
         enemyAnimator = this.GetComponent<EnemyAnimatorComponent>();
         healthBarScript = this.GetComponentInChildren<HealthBar>();
         moveComponent = this.GetComponent<EnemyMovementComponent>();
+        stats = this.GetComponentInChildren<EnemyStats>();
     }
 
     void Update()
@@ -51,12 +52,13 @@ public class Enemy : MonoBehaviour, IDamageable
             Debug.LogError(this.name + " is missing a HealthBarScript!");
     }
 
-    public int receiveDamage(int damageAmount, int knockBackForce, Vector3 direction = new Vector3())
+    public float receiveDamage(float damageAmount, int knockBackForce, Vector3 direction = new Vector3())
     {
         attacked = true;
-        currentHealth -= damageAmount;
+
+        stats.currentHealth -= damageAmount;
         updateHealthBar();
-        if (currentHealth <= 0)
+        if (stats.currentHealth <= 0)
         {
             feint();
             return 0;
@@ -64,7 +66,7 @@ public class Enemy : MonoBehaviour, IDamageable
         moveComponent.knockBackForce = knockBackForce;
         moveComponent.knockBackDirection = direction;
         moveComponent.stateMachine.ChangeState(moveComponent.knockback);
-        return currentHealth;
+        return stats.currentHealth;
     }
 
     //Update floating healthbar in world space.
@@ -73,9 +75,9 @@ public class Enemy : MonoBehaviour, IDamageable
         if (floatingDmgText)
         {
             var floatingDamageText = Instantiate(floatingDmgText, transform.position, this.transform.rotation, transform);
-            floatingDamageText.GetComponent<TextMeshPro>().text = currentHealth.ToString();
+            floatingDamageText.GetComponent<TextMeshPro>().text = stats.currentHealth.ToString();
         }
-         healthBarScript.setHealth(currentHealth, maxHealth);
+         healthBarScript.setHealth(stats.currentHealth, stats.maxHealth);
     }
 
     //Kill/death command, despawn and drop loot.

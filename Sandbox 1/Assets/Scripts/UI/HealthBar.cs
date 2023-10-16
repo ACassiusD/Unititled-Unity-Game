@@ -11,7 +11,7 @@ public class HealthBar : MonoBehaviour
 {
     public Image healthBar;
     
-    public void setHealth(int currentHealth, int maxHealth)
+    public void setHealth(float currentHealth, float maxHealth)
     {
         if(healthBar != null)
         {
