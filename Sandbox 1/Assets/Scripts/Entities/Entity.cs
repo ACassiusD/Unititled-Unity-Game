@@ -9,7 +9,7 @@ public class Entity : MonoBehaviour, IInteractable
     public CharacterController controller = new CharacterController();   
     protected static GameObject playerReference;
     private static GameObject canvas;
-    static BetaCharacter playerScript;
+    static PlayerEntity playerScript;
     public HealthBar healthBarScript;
     private RectTransform rectTransform;
     public float aiRotationSpeed = 1.5f;

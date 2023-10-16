@@ -8,7 +8,7 @@ public class PlayerManager : MonoBehaviour {
     //public get, so you can only get this instance
     public static PlayerManager Instance { get; private set; }
     GameObject player;
-    public BetaCharacter playerScript;
+    public PlayerEntity playerScript;
 
     // Use this for initialization
     void Awake () {
@@ -35,14 +35,14 @@ public class PlayerManager : MonoBehaviour {
             Debug.LogError("Player Manager - Find object with 'Player' Tag.");
             Debug.Break();
         }
-        playerScript = player.GetComponent<BetaCharacter>();
+        playerScript = player.GetComponent<PlayerEntity>();
         if(playerScript == null)
         {
             Debug.LogError("Player Manager - Unable return load player script.");
             Debug.Break();
         }
     }
-    public BetaCharacter getPlayerScript()
+    public PlayerEntity getPlayerScript()
     {
         if(playerScript == null)
         {

@@ -1,7 +1,7 @@
 using Polyperfect.Common;
 using UnityEngine;
 
-public class BetaCharacter : MonoBehaviour, IDamageable
+public class PlayerEntity : MonoBehaviour, IDamageable
 {
     public CharacterController controller;
     private GameObject[] tamedMounts; //Create MountCollection() Class

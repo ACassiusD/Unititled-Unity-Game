@@ -14,7 +14,7 @@ public class Interactor : MonoBehaviour
     Transform hitObject;
     [SerializeField] Material highlightMaterial;
     Outline targetOutlineScript;
-    BetaCharacter playerScript;
+    PlayerEntity playerScript;
     Color outLineColor;
     PlayerControls playerControls;
 

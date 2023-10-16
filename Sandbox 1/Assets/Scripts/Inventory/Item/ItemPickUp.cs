@@ -66,7 +66,7 @@ public class ItemPickUp : MonoBehaviour
         if (other.tag == "TamedMount")
         {
             Mount mountScript = other.GetComponent<Mount>();
-            BetaCharacter owner = mountScript.getOwner();
+            PlayerEntity owner = mountScript.getOwner();
 
             var parentInventory = owner.inventory;
        

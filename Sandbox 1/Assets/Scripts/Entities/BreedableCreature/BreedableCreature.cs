@@ -7,7 +7,7 @@ public class BreedableCreature : MonoBehaviour, IInteractable, iBreedable
     public Color skinColor;
     public Color sphereCastColor;
     public Material skinColorMaterial;
-    BetaCharacter playerScript;
+    PlayerEntity playerScript;
     BreedableCreatureBreeder breeder;
     public float matingCheckInterval = 10f;
     [field: SerializeField]

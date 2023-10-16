@@ -20,7 +20,7 @@ public class CameraController : MonoBehaviour {
     public float minCameraHeight = 0;
     public Transform target; //What the camera looks at
     public CinemachineFreeLook cinemachineFreeLook;
-    protected BetaCharacter characterScript;
+    protected PlayerEntity characterScript;
     bool playerRunningStatus = false;
     private float lerp = 0f;
     private float lerpDuration = .5f;

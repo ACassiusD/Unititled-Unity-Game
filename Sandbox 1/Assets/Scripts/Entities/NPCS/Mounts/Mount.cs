@@ -5,8 +5,8 @@ public class Mount : MonoBehaviour, IInteractable //Mount class contains a movem
 {
     public MountAnimatorComponent mountAnimator;
     public MountMoveComponent moveComponent;
-    public BetaCharacter owner = null;
-    BetaCharacter playerScript;
+    public PlayerEntity owner = null;
+    PlayerEntity playerScript;
     public float ridingHeight = 5.4f;
     protected float walkAnimationSpeed = 1;
     protected float runAnimaitonSpeed = 2;
@@ -124,7 +124,7 @@ public class Mount : MonoBehaviour, IInteractable //Mount class contains a movem
         Debug.Log(this.name + " Special Attacks!!!");
     }
 
-    public void UpdateTameStatus(bool tamedStats, BetaCharacter owner)
+    public void UpdateTameStatus(bool tamedStats, PlayerEntity owner)
     {
         tamed = tamedStats;
         this.owner = owner;
@@ -136,7 +136,7 @@ public class Mount : MonoBehaviour, IInteractable //Mount class contains a movem
         owner = null;
     }
 
-    public BetaCharacter getOwner()
+    public PlayerEntity getOwner()
     {
         return owner;
     }

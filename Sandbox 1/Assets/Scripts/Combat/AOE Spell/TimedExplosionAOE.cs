@@ -36,7 +36,7 @@ public class TimedExplosionAOE : MonoBehaviour //Can implement a AEO interface a
         var cols = Physics.OverlapBox(hitboxCollider.bounds.center, hitboxCollider.bounds.extents, hitboxCollider.transform.rotation, LayerMask.GetMask("Player"));
         foreach (Collider c in cols)
         {
-            var script = c.GetComponent<BetaCharacter>();
+            var script = c.GetComponent<PlayerEntity>();
             int[] dmgValues;
             hitCount++;
             script.receiveDamage(damage, 3000);

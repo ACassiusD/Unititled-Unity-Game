@@ -4,7 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public abstract class MoveComponent : MonoBehaviour
 {
-    public static BetaCharacter playerScript;
+    public static PlayerEntity playerScript;
     //public static Transform playerTransform;
     public StateMachine stateMachine;
     public CharacterController characterController;
@@ -133,7 +133,7 @@ public abstract class MoveComponent : MonoBehaviour
         }
     }
 
-    public BetaCharacter getPlayerScript()
+    public PlayerEntity getPlayerScript()
     {
         if(playerScript == null)
         {
@@ -205,8 +205,6 @@ public abstract class MoveComponent : MonoBehaviour
         //Do not let it go above the limit
         if (sprintTimer > sprintLimit)
              sprintTimer = sprintLimit;
-
-        Debug.Log("Sprint Timer = " + sprintTimer);
     }
 
     

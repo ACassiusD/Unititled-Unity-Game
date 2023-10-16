@@ -7,7 +7,7 @@ public class ArrowScript : MonoBehaviour
     public GameObject arrowPrefab;
     public int power = 30;
     public Transform arrowPos;
-    BetaCharacter betaCharacter;
+    PlayerEntity betaCharacter;
     Transform cam;
     public float forwardVel = 50f;
     public float upwardVel = 50f;
@@ -18,7 +18,7 @@ public class ArrowScript : MonoBehaviour
 
     void Start()
     {
-        betaCharacter = gameObject.GetComponent<BetaCharacter>();
+        betaCharacter = gameObject.GetComponent<PlayerEntity>();
         cam = PlayerManager.Instance.getPlayerScript().playerMovementComponent.cam.transform;
     }
 
