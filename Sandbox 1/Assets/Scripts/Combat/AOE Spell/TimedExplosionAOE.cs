@@ -10,7 +10,7 @@ public class TimedExplosionAOE : MonoBehaviour //Can implement a AEO interface a
     //How often the player can be hit by the AOE Effect
     public float damageCooldown = 0.5f;
     public float despawnTimer = 0.5f;
-    public int damage = 5;
+    public float damage = 5;
     public bool debug = false;
     public GameObject attackImpactEffect;
     public float useCooldown = 8.0f;

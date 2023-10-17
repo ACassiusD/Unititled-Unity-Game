@@ -72,7 +72,7 @@ public class Enemy : MonoBehaviour, IDamageable
         // Set Knockback to the movement component.
         moveComponent.knockBackForce = knockBackForce;
         moveComponent.knockBackDirection = direction;
-        moveComponent.stateMachine.ChangeState(moveComponent.knockback);
+        moveComponent.movementStateMachine.ChangeState(moveComponent.knockback);
 
         return stats.currentHealth;
     }

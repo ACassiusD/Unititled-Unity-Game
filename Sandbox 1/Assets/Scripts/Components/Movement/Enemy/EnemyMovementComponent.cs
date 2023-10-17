@@ -16,12 +16,12 @@ public class EnemyMovementComponent : MoveComponent
         playerScript = PlayerManager.Instance.getPlayerScript();
         getNavMesh();
         getWanderScript();
-        standing = new EnemyStandingState(stateMachine, this);
-        chasing = new EnemyChasingState(stateMachine, this);
-        knockback = new EnemyKnockbackState(stateMachine, this);
+        standing = new EnemyStandingState(movementStateMachine, this);
+        chasing = new EnemyChasingState(movementStateMachine, this);
+        knockback = new EnemyKnockbackState(movementStateMachine, this);
 
         //Initialize state machine.
-        stateMachine.Initialize(standing);
+        movementStateMachine.Initialize(standing);
     }
 
     Animal_WanderScript getWanderScript()

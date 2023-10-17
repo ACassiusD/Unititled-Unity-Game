@@ -24,17 +24,17 @@ public class MountMoveComponent : MoveComponent
 
         wanderscript = this.GetComponent<Animal_WanderScript>();
         naveMeshAgent = this.GetComponent<NavMeshAgent>();
-        wandering = new MountWanderingState(stateMachine, this);
-        standing = new MountStandingState(stateMachine, this);
-        jumping = new MountJumpingState(stateMachine, this);
+        wandering = new MountWanderingState(movementStateMachine, this);
+        standing = new MountStandingState(movementStateMachine, this);
+        jumping = new MountJumpingState(movementStateMachine, this);
 
         if (isBeingControlled)
         {
-            stateMachine.Initialize(standing);
+            movementStateMachine.Initialize(standing);
         }
         else
         {
-            stateMachine.Initialize(wandering);
+            movementStateMachine.Initialize(wandering);
         }
     }
 

@@ -57,19 +57,20 @@ public class PlayerMovementComponent : MoveComponent
         this.stunDuration = 1f;
         activeMount = null;
         isBeingControlled = true;
+
         //Initialize the players states.
-        standing = new IdleState(stateMachine, this);
-        jumping = new JumpingState(stateMachine, this);
-        riding = new RidingState(stateMachine, this);
-        falling = new FallingState(stateMachine, this);
-        moving = new MovingState(stateMachine, this);
-        emote = new EmoteState(stateMachine, this);
-        stun = new StunnedState(stateMachine, this);
+        standing = new IdleState(movementStateMachine, this);
+        jumping = new JumpingState(movementStateMachine, this);
+        riding = new RidingState(movementStateMachine, this);
+        falling = new FallingState(movementStateMachine, this);
+        moving = new MovingState(movementStateMachine, this);
+        emote = new EmoteState(movementStateMachine, this);
+        stun = new StunnedState(movementStateMachine, this);
 
         if (characterController.isGrounded)
-            stateMachine.Initialize(standing); 
+            movementStateMachine.Initialize(standing); 
         else
-            stateMachine.Initialize(jumping);
+            movementStateMachine.Initialize(jumping);
     }
 
     public void MoveToMountedPosition() 

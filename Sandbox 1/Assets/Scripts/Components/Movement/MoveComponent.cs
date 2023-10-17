@@ -6,7 +6,7 @@ public abstract class MoveComponent : MonoBehaviour
 {
     public static PlayerEntity playerScript;
     //public static Transform playerTransform;
-    public StateMachine stateMachine;
+    public StateMachine movementStateMachine;
     public CharacterController characterController;
     public PlayerControls playerControls;
     public Transform target;
@@ -43,7 +43,7 @@ public abstract class MoveComponent : MonoBehaviour
     //Even tho awake is usually called first, inheritance is not considered.
     public MoveComponent()
     {
-        stateMachine = new StateMachine();
+        movementStateMachine = new StateMachine();
     }
 
     protected void Awake()
@@ -57,8 +57,8 @@ public abstract class MoveComponent : MonoBehaviour
 
     protected virtual void Update()
     {
-        stateMachine.CurrentState.HandleInput();
-        stateMachine.CurrentState.LogicUpdate();
+        movementStateMachine.CurrentState.HandleInput();
+        movementStateMachine.CurrentState.LogicUpdate();
     }
 
     public void AddJumpVelocity() //Add jump Velocity to Y axis
@@ -172,7 +172,7 @@ public abstract class MoveComponent : MonoBehaviour
 
     public virtual void toggleRun()
     {
-        if(stateMachine.CurrentState.ToString() != "FallingState" && stateMachine.CurrentState.ToString() != "JumpingState")
+        if(movementStateMachine.CurrentState.ToString() != "FallingState" && movementStateMachine.CurrentState.ToString() != "JumpingState")
         {
             if (isRunning ? isRunning = false : isRunning = true) ;
             updateMoveSpeed();

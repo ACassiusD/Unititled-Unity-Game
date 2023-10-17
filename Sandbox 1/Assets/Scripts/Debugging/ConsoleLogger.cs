@@ -41,7 +41,7 @@ public class ConsoleLogger : MonoBehaviour
             "Y Velocity............" + playerMovementComponent.velocity + "\n" +
             "Move Direction..." +playerMovementComponent.moveDir + "\n" +
             "Move Speed......." + playerMovementComponent.currentSpeed + "\n" +
-            "Move State........" + playerMovementComponent.stateMachine.CurrentState.ToString() + "\n" +
+            "Move State........" + playerMovementComponent.movementStateMachine.CurrentState.ToString() + "\n" +
             "Sprint Timer......." + playerMovementComponent.sprintTimer + "\n" +
             "Jumps..............." + playerMovementComponent.jumpCount + "/" + playerMovementComponent.maxJumps;
         console.text = maintext; 

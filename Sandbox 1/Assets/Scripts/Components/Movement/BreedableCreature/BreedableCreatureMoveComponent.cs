@@ -3,7 +3,11 @@ using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
-//TEST
+
+/// <summary>
+/// Movement Component contains logic to move entity in 3D space.
+/// Possibly also contains state machine and states relevant to movement.
+/// </summary>
 public class BreedableCreatureMoveComponent : MoveComponent
 {
     public BreedableCreatureWanderingState wandering;
@@ -22,11 +26,12 @@ public class BreedableCreatureMoveComponent : MoveComponent
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
     }
+
     private void Start()
     {
-        wandering = new BreedableCreatureWanderingState(stateMachine, this);
-        idle = new BreedableCreatureIdleState(stateMachine, this);
-        stateMachine.Initialize(idle);
+        wandering = new BreedableCreatureWanderingState(movementStateMachine, this);
+        idle = new BreedableCreatureIdleState(movementStateMachine, this);
+        movementStateMachine.Initialize(idle);
         startPosition = transform.position;
     }
 

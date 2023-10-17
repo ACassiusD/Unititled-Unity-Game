@@ -5,17 +5,18 @@ public class PlayerEntity : MonoBehaviour, IDamageable
 {
     protected Vector3 spawnPosition;
     public CharacterController controller;
-    private GameObject[] tamedMounts;
+
     public PlayerMovementComponent playerMovementComponent;
-    public PlayerAnimator playerAnimator;
-    public InventoryHolder inventory;
+    private PlayerStatsComponent playerStatsComponent;
+    private PlayerCombatComponent playerCombatComponent;
+    public PlayerAnimator playerAnimator; //playerAnimatorComponent
+    public InventoryHolder inventory; //playerInventoryComponent
+
     public Mount currentMount;
     public HealthBar healthBarScript;
     public bool inHitStun = false;
     public bool matchSurfaceRotation = true;
     public int surfaceRotationSpeed = 20;
-    public float currentHealth = 500;
-    public float maxHealth = 500;
 
     //If true, this animal will rotate to match the terrain. Ensure you have set the layer of the terrain as 'Terrain'
     private void Awake()
@@ -30,6 +31,7 @@ public class PlayerEntity : MonoBehaviour, IDamageable
 
         healthBarScript = this.GetComponentInChildren<HealthBar>();
         playerMovementComponent = this.GetComponent<PlayerMovementComponent>();
+        playerStatsComponent = this.GetComponentInChildren<PlayerStatsComponent>();
         
         if (!playerMovementComponent)
             Debug.LogError(this.name + " is missing a MoveComponent!");
@@ -44,12 +46,6 @@ public class PlayerEntity : MonoBehaviour, IDamageable
         
         SetControls();
     }
-
-    public void onCreate()
-    {
-        tamedMounts = GameObject.FindGameObjectsWithTag("TamedMount"); //Populate tamed mounts
-    }
-
 
     public void DisMount(float dismountDistance = 10f)
     {
@@ -88,16 +84,16 @@ public class PlayerEntity : MonoBehaviour, IDamageable
 
     public float receiveDamage(float damageAmount, int knockBackForce, Vector3 direction = new Vector3())
     {
-        currentHealth -= damageAmount;
+        playerStatsComponent.currentHealth -= damageAmount;
         updateHealthBar();
-        if (currentHealth <= 0)
+        if (playerStatsComponent.currentHealth <= 0)
         {
             feint();
             return 0;
         }
         //Knockback(knockBackForce);
         playerMovementComponent.stunTimer = playerMovementComponent.stunDuration;
-        return currentHealth;
+        return playerStatsComponent.currentHealth;
     }
 
     public void Knockback(float knockBackForce)
@@ -122,9 +118,9 @@ public class PlayerEntity : MonoBehaviour, IDamageable
     {
         if(healthBarScript != null)
         {
-            healthBarScript.setHealth(currentHealth, maxHealth);
+            healthBarScript.setHealth(playerStatsComponent.currentHealth, playerStatsComponent.maxHealth);
         }
-        UIController.Instance.setHealth(currentHealth, maxHealth);
+        UIController.Instance.setHealth(playerStatsComponent.currentHealth, playerStatsComponent.maxHealth);
     }
 
     //Kill/death command, despawn and drop loot.
@@ -166,7 +162,7 @@ public class PlayerEntity : MonoBehaviour, IDamageable
     
     protected void fullHeal()
     {
-        currentHealth = maxHealth;
+        playerStatsComponent.currentHealth = playerStatsComponent.maxHealth;
         updateHealthBar();
         playerMovementComponent.sprintTimer = playerMovementComponent.sprintLimit;
         UpdateStaminaUI();
