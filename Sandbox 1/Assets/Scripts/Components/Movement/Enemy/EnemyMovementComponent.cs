@@ -75,5 +75,12 @@ public class EnemyMovementComponent : MoveComponent
             this.getEnemyScript().enemyAnimator.setIdleAnimation();
             this.isRunning = false;
         }
-    } 
+    }
+
+    public void DoKnockback(int knockBackForce, Vector3 direction = new Vector3())
+    {
+        this.knockBackForce = knockBackForce;
+        this.knockBackDirection = direction;
+        movementStateMachine.ChangeState(knockback);
+    }
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Arrow : MonoBehaviour
@@ -49,7 +47,7 @@ public class Arrow : MonoBehaviour
                 var knockbackDirection = rb.velocity;
                 hitCount++;
 
-                enemyScript.receiveDamage(damage, knockbackForce, knockbackDirection);
+                enemyScript.ReceiveDamage(damage, knockbackForce, knockbackDirection);
                 debugMsg += ("|Hit " + c.name);
                 Debug.Log(this.name + " Hit (" + hitCount + ") " + debugMsg);
                 collided = true;

@@ -6,32 +6,41 @@ public class PlayerEntity : MonoBehaviour, IDamageable
     protected Vector3 spawnPosition;
     public CharacterController controller;
 
+    //Components to control entity logic
     public PlayerMovementComponent playerMovementComponent;
     private PlayerStatsComponent playerStatsComponent;
     private PlayerCombatComponent playerCombatComponent;
     public PlayerAnimator playerAnimator; //playerAnimatorComponent
     public InventoryHolder inventory; //playerInventoryComponent
 
+    //Move to MountManager Comopnent eventually
     public Mount currentMount;
+
+    //Move to UI manager component.
     public HealthBar healthBarScript;
-    public bool inHitStun = false;
-    public bool matchSurfaceRotation = true;
-    public int surfaceRotationSpeed = 20;
+
+    //Move to combat override state machine.
+    [SerializeField] private bool inHitStun = false;
+
+    [SerializeField] private bool matchSurfaceRotation = true;
+    [SerializeField] private int surfaceRotationSpeed = 20;
 
     //If true, this animal will rotate to match the terrain. Ensure you have set the layer of the terrain as 'Terrain'
     private void Awake()
     {
         inventory = this.GetComponent<InventoryHolder>();
-        playerAnimator = GetComponent<PlayerAnimator>();   
-        
+        playerAnimator = GetComponent<PlayerAnimator>();
+        healthBarScript = this.GetComponentInChildren<HealthBar>();
+        playerMovementComponent = this.GetComponent<PlayerMovementComponent>();
+        playerStatsComponent = this.GetComponentInChildren<PlayerStatsComponent>();
+        playerCombatComponent = this.GetComponentInChildren<PlayerCombatComponent>();
+        //Pass the entitys stats to the combat component.
+        playerCombatComponent.Initialize(playerStatsComponent);
+
         //Match surface rotation to the terrain
         if (matchSurfaceRotation && transform.childCount > 0) { 
             transform.GetChild(0).gameObject.AddComponent<Common_SurfaceRotation>().SetRotationSpeed(surfaceRotationSpeed);
         }
-
-        healthBarScript = this.GetComponentInChildren<HealthBar>();
-        playerMovementComponent = this.GetComponent<PlayerMovementComponent>();
-        playerStatsComponent = this.GetComponentInChildren<PlayerStatsComponent>();
         
         if (!playerMovementComponent)
             Debug.LogError(this.name + " is missing a MoveComponent!");
@@ -82,18 +91,11 @@ public class PlayerEntity : MonoBehaviour, IDamageable
         transform.rotation = activeMount.transform.rotation;
     }
 
-    public float receiveDamage(float damageAmount, int knockBackForce, Vector3 direction = new Vector3())
+    public float ReceiveDamage(float damageAmount, int knockBackForce, Vector3 direction = new Vector3())
     {
-        playerStatsComponent.currentHealth -= damageAmount;
-        updateHealthBar();
-        if (playerStatsComponent.currentHealth <= 0)
-        {
-            feint();
-            return 0;
-        }
-        //Knockback(knockBackForce);
-        playerMovementComponent.stunTimer = playerMovementComponent.stunDuration;
-        return playerStatsComponent.currentHealth;
+        float newCurrentHealthValue =  playerCombatComponent.ReceiveDamage(damageAmount, knockBackForce, direction);
+        UpdateFloatingHealthBarUI();
+        return newCurrentHealthValue;
     }
 
     public void Knockback(float knockBackForce)
@@ -113,8 +115,10 @@ public class PlayerEntity : MonoBehaviour, IDamageable
         playerMovementComponent.characterController.Move(impact * Time.deltaTime);
     }
 
-    //Update floating healthbar in world space.
-    public void updateHealthBar()
+    /// <summary>
+    /// Update floating healthbar in world space.
+    /// </summary>
+    public void UpdateFloatingHealthBarUI()
     {
         if(healthBarScript != null)
         {
@@ -123,18 +127,26 @@ public class PlayerEntity : MonoBehaviour, IDamageable
         UIController.Instance.setHealth(playerStatsComponent.currentHealth, playerStatsComponent.maxHealth);
     }
 
-    //Kill/death command, despawn and drop loot.
-    public void feint()
+
+    /// <summary>
+    /// What happens when the entity's health reaches 0
+    /// </summary>
+    public void Feint()
     {
-        //Debug.Log("oof, you died");
-        //Destroy(gameObject);
+        playerCombatComponent.Feint();
     }
 
+    /// <summary>
+    /// Set the spawn position for the entity.
+    /// </summary>
     public void SetSpawn()
     {
         this.spawnPosition = this.transform.position;
     }
 
+    /// <summary>
+    /// Repawn entity in set spawn position
+    /// </summary>
     protected void Respawn()
     {
        
@@ -158,17 +170,20 @@ public class PlayerEntity : MonoBehaviour, IDamageable
             fullHeal();
             SetSpawn();
         }
-    }   
+    }
     
+
     protected void fullHeal()
     {
         playerStatsComponent.currentHealth = playerStatsComponent.maxHealth;
-        updateHealthBar();
+        UpdateFloatingHealthBarUI();
         playerMovementComponent.sprintTimer = playerMovementComponent.sprintLimit;
         UpdateStaminaUI();
     }
 
+
     /// <summary>
+    /// TODO: It might be good to move this into a player UI specific class, but its ok here for now.
     /// Updates the Stamina bar UI for the user. If the user is in control, users stamina values will be used.
     /// If the user is riding a mount, mounts stamina values will be used.
     /// </summary>

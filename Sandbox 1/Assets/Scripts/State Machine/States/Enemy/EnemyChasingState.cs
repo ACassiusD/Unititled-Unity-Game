@@ -50,7 +50,7 @@ public class EnemyChasingState : EnemyState
             {
                 Debug.Log("Enemy Began Attacking.");
             }
-            movementComponent.getEnemyScript().testFunction();
+            movementComponent.getEnemyScript().TestFunction();
         }
         base.LogicUpdate();
     }

@@ -44,7 +44,7 @@ public class AOESpell : MonoBehaviour //Can implement a AEO interface at one poi
             var script = c.GetComponent<PlayerEntity>();
             int[] dmgValues;
             hitCount++;
-            script.receiveDamage(damage, 3000);
+            script.ReceiveDamage(damage, 3000);
             debugMsg += ("|Hit " + c.name);
         }
         if (debug)

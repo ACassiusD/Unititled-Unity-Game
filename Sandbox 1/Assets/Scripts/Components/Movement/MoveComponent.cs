@@ -164,7 +164,7 @@ public abstract class MoveComponent : MonoBehaviour
 
     public void ConsumeImpact()
     {
-        Debug.Log("consuming impact.");
+        //Debug.Log("consuming impact.");
         if (impact.magnitude > 0.2) characterController.Move(impact * Time.deltaTime);
         // consumes the impact energy each cycle:
         this.impact = Vector3.Lerp(impact, Vector3.zero, 5 * Time.deltaTime);
@@ -226,7 +226,7 @@ public abstract class MoveComponent : MonoBehaviour
                 Debug.Log("Sprint Ended");
         }
 
-        Debug.Log("Sprint Timer = " + sprintTimer);
+        //Debug.Log("Sprint Timer = " + sprintTimer);
     }
 
 

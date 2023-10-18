@@ -8,10 +8,15 @@ public class StatsComponent : MonoBehaviour
     public float maxHealth = 100;
     public float stamina = 100.0f;
 
-    public void TakeDamage(float damageAmount)
+    public void ModifyHealth(float amount)
     {
-        currentHealth -= damageAmount;
+        currentHealth += amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+    }
+
+    public float GetCurrentHealth()
+    {
+        return currentHealth;
     }
 
     public bool IsDead()

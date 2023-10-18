@@ -7,7 +7,6 @@ public class BreedableCreature : MonoBehaviour, IInteractable, iBreedable
     public Color skinColor;
     public Color sphereCastColor;
     public Material skinColorMaterial;
-    PlayerEntity playerScript;
     BreedableCreatureBreeder breeder;
     public float matingCheckInterval = 10f;
     [field: SerializeField]
@@ -16,11 +15,8 @@ public class BreedableCreature : MonoBehaviour, IInteractable, iBreedable
     public bool availableToMate { get; set; }
     public UnityAction<IInteractable> OnInteractionComplete { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
-    BreedableCreatureMoveComponent moveComponent; 
-
     void Awake()
     {
-        moveComponent = GetComponent<BreedableCreatureMoveComponent>();
         skinColor = Random.ColorHSV();
         breedingRange = 6;
         ApplyMaterial();
@@ -35,15 +31,13 @@ public class BreedableCreature : MonoBehaviour, IInteractable, iBreedable
     {   
         breedingRange = 5f; // The range of the SphereCast
         availableToMate = false;
-        playerScript = PlayerManager.Instance.getPlayerScript();
     }
 
     public void Interact(Interactor interactor, out bool interactSuccessful)
     {
         //if player holding love fruit, eat it then attempt breed
-        Debug.Log("iNTERACTED WITH " + this.name);
         breeder.AttemptToBreed(this);
-        interactSuccessful = true; 
+        interactSuccessful = true;
     }
 
     /**

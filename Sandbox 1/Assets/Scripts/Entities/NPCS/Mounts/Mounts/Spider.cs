@@ -60,7 +60,7 @@ public class Spider : Mount
                 {
                     var enemyScript = col.gameObject.GetComponent<Enemy>();
                     int[] dmgValues;
-                    enemyScript.receiveDamage(10, 3000);
+                    enemyScript.ReceiveDamage(10, 3000);
                     Debug.Log ("|Hit " + col.name);
                 }
             }

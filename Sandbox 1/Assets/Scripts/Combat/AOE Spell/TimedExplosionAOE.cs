@@ -39,7 +39,7 @@ public class TimedExplosionAOE : MonoBehaviour //Can implement a AEO interface a
             var script = c.GetComponent<PlayerEntity>();
             int[] dmgValues;
             hitCount++;
-            script.receiveDamage(damage, 3000);
+            script.ReceiveDamage(damage, 3000);
             debugMsg += ("|Hit " + c.name);
         }
         if (debug)

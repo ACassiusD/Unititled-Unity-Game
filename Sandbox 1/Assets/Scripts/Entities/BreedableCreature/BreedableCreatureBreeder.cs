@@ -22,7 +22,7 @@ public class BreedableCreatureBreeder : MonoBehaviour
     {
         if (!initiator.availableToMate) { return; }
 
-        Debug.Log("Looking for mate");
+        //Debug.Log("Looking for mate");
 
         List<BreedableCreature> potentialMates = new List<BreedableCreature> { };
         Vector3 origin = initiator.transform.position;
@@ -34,7 +34,7 @@ public class BreedableCreatureBreeder : MonoBehaviour
             if (creature != null && initiator != creature)
             {
                 potentialMates.Add(creature);
-                Debug.Log("Detected creature: " + creature.name);
+               // Debug.Log("Detected creature: " + creature.name);
             }
         }
 
