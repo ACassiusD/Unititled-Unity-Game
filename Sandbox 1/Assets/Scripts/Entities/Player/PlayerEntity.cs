@@ -19,9 +19,6 @@ public class PlayerEntity : MonoBehaviour, IDamageable
     //Move to UI manager component.
     public HealthBar healthBarScript;
 
-    //Move to combat override state machine.
-    [SerializeField] private bool inHitStun = false;
-
     [SerializeField] private bool matchSurfaceRotation = true;
     [SerializeField] private int surfaceRotationSpeed = 20;
 
@@ -34,6 +31,7 @@ public class PlayerEntity : MonoBehaviour, IDamageable
         playerMovementComponent = this.GetComponent<PlayerMovementComponent>();
         playerStatsComponent = this.GetComponentInChildren<PlayerStatsComponent>();
         playerCombatComponent = this.GetComponentInChildren<PlayerCombatComponent>();
+
         //Pass the entitys stats to the combat component.
         playerCombatComponent.Initialize(playerStatsComponent);
 
@@ -50,6 +48,7 @@ public class PlayerEntity : MonoBehaviour, IDamageable
 
     public void Update()
     {
+        //Can't be handled in movementStateMachine since it has no access to this method.
         if (playerMovementComponent.isRunning)
             UpdateStaminaUI();
         
@@ -61,12 +60,8 @@ public class PlayerEntity : MonoBehaviour, IDamageable
         playerMovementComponent.activeMount = null;
         this.transform.Translate(dismountDistance, 0, 0);
     }
-    
-    public bool getIsRiding()
-    {
-        return playerMovementComponent.isRiding;
-    }
 
+    //TODO: Update to a state
     public void setIsRiding(bool passedVal)
     {
         playerMovementComponent.isRiding = passedVal;
@@ -93,26 +88,10 @@ public class PlayerEntity : MonoBehaviour, IDamageable
 
     public float ReceiveDamage(float damageAmount, int knockBackForce, Vector3 direction = new Vector3())
     {
-        float newCurrentHealthValue =  playerCombatComponent.ReceiveDamage(damageAmount, knockBackForce, direction);
+        float newCurrentHealthValue = playerCombatComponent.ReceiveDamage(damageAmount, knockBackForce, direction);
         UpdateFloatingHealthBarUI();
+        playerMovementComponent.stunTimer = playerMovementComponent.stunDuration;
         return newCurrentHealthValue;
-    }
-
-    public void Knockback(float knockBackForce)
-    {
-        inHitStun = true;
-
-        //Add Impact
-        Vector3 direction = this.transform.forward * -1; //Need to make this direction
-        Vector3 up = this.transform.up;
-        up.Normalize();
-        direction.Normalize();
-        direction.y = up.y;
-        var impact = Vector3.zero;
-        impact += direction.normalized * knockBackForce;
-
-        //Apply vector to object
-        playerMovementComponent.characterController.Move(impact * Time.deltaTime);
     }
 
     /// <summary>

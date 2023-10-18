@@ -237,4 +237,19 @@ public class PlayerMovementComponent : MoveComponent
         var euler = obj.transform.rotation.eulerAngles;
         obj.transform.rotation = Quaternion.Euler(0, euler.y ,0);
     }
+
+    //public void Knockback(float knockBackForce)
+    //{
+    //    //Add Impact
+    //    Vector3 direction = this.transform.forward * -1; //Need to make this direction
+    //    Vector3 up = this.transform.up;
+    //    up.Normalize();
+    //    direction.Normalize();
+    //    direction.y = up.y;
+    //    var impact = Vector3.zero;
+    //    impact += direction.normalized * knockBackForce;
+
+    //    //Apply vector to object
+    //    playerMovementComponent.characterController.Move(impact * Time.deltaTime);
+    //}
 }

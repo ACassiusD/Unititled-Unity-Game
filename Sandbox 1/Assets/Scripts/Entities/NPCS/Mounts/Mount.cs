@@ -66,7 +66,9 @@ public class Mount : MonoBehaviour, IInteractable //Mount class contains a movem
 
     public void Interact(Interactor interactor, out bool interactSuccessful)
     {
-        if (!playerScript.getIsRiding()) 
+        //If interactor is player.
+
+        if (playerScript.playerMovementComponent.movementStateMachine.CurrentState.ToString() != "RidingState")
             mount();
         else
             dismount();
@@ -76,7 +78,6 @@ public class Mount : MonoBehaviour, IInteractable //Mount class contains a movem
 
     public void mount()
     {
-        playerScript.setIsRiding(true);
         if (moveComponent.wanderscript != null)
         {
             moveComponent.wanderscript.enabled = false;
@@ -93,7 +94,6 @@ public class Mount : MonoBehaviour, IInteractable //Mount class contains a movem
 
     public void dismount()
     {
-        playerScript.setIsRiding(false);
         gameObject.layer = 8;
 
         moveComponent.naveMeshAgent.enabled = true;
