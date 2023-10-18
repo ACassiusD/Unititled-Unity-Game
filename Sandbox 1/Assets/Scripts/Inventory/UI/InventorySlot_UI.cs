@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,7 +12,7 @@ public class InventorySlot_UI : MonoBehaviour
     private Button button;
 
     public InventorySlot AssignedInventorySlot => assignedInventorySlot; //Public getter, no setter.
-    public InventoryDisplay ParentDisplay{ get; private set; }
+    public InventoryDisplay ParentDisplay { get; private set; }
 
     private void Awake()
     {
@@ -40,7 +38,7 @@ public class InventorySlot_UI : MonoBehaviour
     public void UpdateUISlot(InventorySlot slot)
     {
         //Add slot data to this UI Slot representation
-        if(slot.ItemData != null)
+        if (slot.ItemData != null)
         {
             itemSprite.sprite = slot.ItemData.icon;
             itemSprite.color = Color.white;

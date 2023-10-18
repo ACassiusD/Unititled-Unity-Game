@@ -28,7 +28,7 @@ public class BreedableCreature : MonoBehaviour, IInteractable, iBreedable
     }
 
     public void onCreate()
-    {   
+    {
         breedingRange = 5f; // The range of the SphereCast
         availableToMate = false;
     }

@@ -10,10 +10,10 @@ using UnityEngine.UI;
 public class HealthBar : MonoBehaviour
 {
     public Image healthBar;
-    
+
     public void setHealth(float currentHealth, float maxHealth)
     {
-        if(healthBar != null)
+        if (healthBar != null)
         {
             double rawPercentage = (float)currentHealth / (float)maxHealth;
             double percentage = Math.Round(rawPercentage, 2);

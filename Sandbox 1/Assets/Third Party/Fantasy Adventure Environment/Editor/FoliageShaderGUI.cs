@@ -2,9 +2,8 @@
 // Copyright Staggart Creations
 // staggart.xyz
 
-using UnityEngine;
 using UnityEditor;
-using System.Collections;
+using UnityEngine;
 
 namespace FAE
 {
@@ -34,7 +33,7 @@ namespace FAE
 
         MaterialEditor m_MaterialEditor;
         private Material targetMat;
-        
+
         //Meta
         bool showHelp;
         bool showHelpColor;
@@ -56,7 +55,7 @@ namespace FAE
 
             this.m_MaterialEditor = materialEditor;
             targetMat = (Material)materialEditor.target;
-            
+
             this.FindProperties(props);
             //Style similar to Standard shader
             m_MaterialEditor.SetDefaultGUIWidths();
@@ -71,7 +70,7 @@ namespace FAE
                 EditorGUILayout.Space();
             }
 #endif
-            
+
             EditorGUI.BeginChangeCheck();
 
             //Draw fields
@@ -108,7 +107,7 @@ namespace FAE
             _MaskClipValue.floatValue = EditorGUILayout.Slider(_MaskClipValue.floatValue, 0f, 1f);
             EditorGUILayout.EndHorizontal();
             this.m_MaterialEditor.TexturePropertySingleLine(mainTexName, this._MainTex);
-            if(targetMat.HasProperty("_BumpMap"))this.m_MaterialEditor.TexturePropertySingleLine(normalMapName, this._BumpMap);
+            if (targetMat.HasProperty("_BumpMap")) this.m_MaterialEditor.TexturePropertySingleLine(normalMapName, this._BumpMap);
 
             EditorGUILayout.Space();
         }
@@ -139,7 +138,7 @@ namespace FAE
             if (UnityEngine.Rendering.GraphicsSettings.currentRenderPipeline == null)
             {
 #endif
-            visualizeVectors = EditorGUILayout.Toggle("Visualize wind", visualizeVectors);
+                visualizeVectors = EditorGUILayout.Toggle("Visualize wind", visualizeVectors);
 #if UNITY_2019_3_OR_NEWER
             }
 #endif
@@ -162,7 +161,7 @@ namespace FAE
             m_MaterialEditor.ShaderProperty(_LeafFlutter, _LeafFlutter.displayName);
             if (showHelpAnimation) EditorGUILayout.HelpBox("Local wind turbulence", MessageType.None);
             m_MaterialEditor.ShaderProperty(_WindAmplitudeMultiplier, _WindAmplitudeMultiplier.displayName);
-            if (showHelpAnimation) EditorGUILayout.HelpBox("Multiply the wind amplitude for this material.Essentally this is the size of the wind waves.", MessageType.None);     
+            if (showHelpAnimation) EditorGUILayout.HelpBox("Multiply the wind amplitude for this material.Essentally this is the size of the wind waves.", MessageType.None);
             m_MaterialEditor.ShaderProperty(_WindSwinging, _WindSwinging.displayName);
             if (showHelpAnimation) EditorGUILayout.HelpBox("Higher values mean the object always sways back against the wind direction", MessageType.None);
 
@@ -207,10 +206,10 @@ namespace FAE
 
             //Main maps
             _MainTex = FindProperty("_MainTex", props);
-            if(targetMat.HasProperty("_BumpMap")) _BumpMap = FindProperty("_BumpMap", props);
+            if (targetMat.HasProperty("_BumpMap")) _BumpMap = FindProperty("_BumpMap", props);
 
             //Color
-            if(targetMat.HasProperty("_WindTint")) _WindTint = FindProperty("_WindTint", props);
+            if (targetMat.HasProperty("_WindTint")) _WindTint = FindProperty("_WindTint", props);
             _Color = FindProperty("_Color", props);
             _AmbientOcclusion = FindProperty("_AmbientOcclusion", props);
             _TransmissionSize = FindProperty("_TransmissionSize", props);

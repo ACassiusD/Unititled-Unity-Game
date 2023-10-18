@@ -1,6 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
-using UnityEditor;
+﻿using UnityEditor;
+using UnityEngine;
 
 namespace FAE
 {
@@ -26,7 +25,7 @@ namespace FAE
         SerializedProperty trunkWindSpeed;
         SerializedProperty trunkWindWeight;
         SerializedProperty trunkWindSwinging;
-        
+
         void OnEnable()
         {
             wc = (WindController)target;
@@ -70,7 +69,7 @@ namespace FAE
             }
 
         }
-        
+
         private void DrawFields()
         {
             DoHeader();
@@ -83,7 +82,7 @@ namespace FAE
                 EditorGUILayout.HelpBox("Assign a wind vector map for wind to function", MessageType.Error);
                 return;
             }
-            
+
             EditorGUILayout.PropertyField(listenToWindZone, new GUIContent("Listen to Wind Zone"));
             if (showHelp) EditorGUILayout.HelpBox("When a Wind Zone is assigned, the wind strength and tree trunk weight values are divided by it's \"Main\" parameter value.\n\nThis allows you to use weather systems such as Enviro", MessageType.Info);
             if (listenToWindZone.boolValue)
@@ -107,7 +106,7 @@ namespace FAE
 
             EditorGUILayout.Space();
             EditorGUILayout.EndVertical();
-            
+
             EditorGUILayout.Space();
 
             EditorGUILayout.BeginVertical(EditorStyles.helpBox);
@@ -166,7 +165,7 @@ namespace FAE
             newWindController.AddComponent<WindController>();
 
             Selection.activeGameObject = newWindController;
-            
+
             Undo.RegisterCreatedObjectUndo(newWindController, "Created Wind Controller");
         }
     }

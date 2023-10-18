@@ -2,12 +2,11 @@
 // Staggart Creations
 // http://staggart.xyz
 
-using UnityEngine;
-using System.IO;
-
-using UnityEditor;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using UnityEditor;
+using UnityEngine;
 
 namespace FAE
 {
@@ -249,7 +248,7 @@ namespace FAE
                         {
                             Texture mainTex = null;
                             if (mats[i].HasProperty("_MainTex")) mainTex = mats[i].GetTexture("_MainTex");
-                            
+
                             if (mats[i].HasProperty("_Color")) mats[i].SetColor("_BaseColor", mats[i].GetColor("_Color"));
                             if (mats[i].HasProperty("_TintColor")) mats[i].SetColor("_BaseColor", mats[i].GetColor("_TintColor"));
 
@@ -268,9 +267,9 @@ namespace FAE
                             }
 
                             mats[i].shader = Shader.Find(dest);
-                            
+
                             if (mainTex) mats[i].SetTexture("_BaseMap", mainTex);
-                            
+
                         }
 
                         if (mats[i].HasProperty("_TransmissionAmount"))
@@ -292,7 +291,7 @@ namespace FAE
                     }
                 }
                 EditorUtility.ClearProgressBar();
-                
+
                 Debug.Log(count + " materials were configured for the " + config + " render pipeline");
 
                 AssetDatabase.Refresh();
@@ -308,14 +307,14 @@ namespace FAE
 
         private static float delayTime;
         private const float renameDelaySec = 1f;
-        
+
         private static void PostURPConversion()
         {
             //Wait 1s
             if (EditorApplication.timeSinceStartup >= delayTime)
             {
                 EditorApplication.update -= PostURPConversion;
-      
+
                 //If any controllers are present in the open scene, these need to be nudged to apply the correct shaders
                 CliffAppearance[] cliffControllers = GameObject.FindObjectsOfType<CliffAppearance>();
                 for (int i = 0; i < cliffControllers.Length; i++)
@@ -323,23 +322,23 @@ namespace FAE
                     cliffControllers[i].OnEnable();
                 }
 
-                string[] shaderFileGUIDS = AssetDatabase.FindAssets("t: Shader", new[] {PACKAGE_ROOT_FOLDER + "/Shaders/URP"});
+                string[] shaderFileGUIDS = AssetDatabase.FindAssets("t: Shader", new[] { PACKAGE_ROOT_FOLDER + "/Shaders/URP" });
 
                 //Force a re-import of the Shader Graphs, depending on the angle of the sun, and the orbit of Jupiter, they fail to reference the FAE.hlsl file if imported last
                 for (int i = 0; i < shaderFileGUIDS.Length; i++)
                 {
                     AssetDatabase.ImportAsset(AssetDatabase.GUIDToAssetPath(shaderFileGUIDS[i]));
                 }
-                
+
                 if (EditorUtility.DisplayDialog("Fantasy Adventure Environment", "Ensure the Depth/Opaque Texture options are enabled in your pipeline settings, otherwise the water isn't visible in the game view", "Show me", "OK"))
                 {
                     Selection.activeObject = UnityEngine.Rendering.GraphicsSettings.renderPipelineAsset;
                 }
-                
+
                 AssetDatabase.SaveAssets();
-                
+
             }
-            
+
         }
 #endif
     }

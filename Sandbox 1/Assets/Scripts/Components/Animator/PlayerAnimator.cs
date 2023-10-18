@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAnimator : MonoBehaviour
@@ -31,13 +29,14 @@ public class PlayerAnimator : MonoBehaviour
     //2. Second, create the function to set the bool
     public void setWalkingAnimation(float speed = 0)
     {
-        if(debug)
-        debugAnimations("WALKING BOOL");
+        if (debug)
+            debugAnimations("WALKING BOOL");
         ClearAnimation();
         SetAnimationBool(walkingBool, true, walkAnimationSpeed);
     }
 
-    public void setRunningAnimation() {
+    public void setRunningAnimation()
+    {
         debugAnimations("RUNNING BOOL");
         ClearAnimation();
         SetAnimationBool(runningBool, true, runAnimaitonSpeed);

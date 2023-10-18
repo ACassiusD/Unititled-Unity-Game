@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-public class DuckingState : GroundedState
+﻿public class DuckingState : GroundedState
 {
     private bool belowCeiling;
     private bool crouchHeld;

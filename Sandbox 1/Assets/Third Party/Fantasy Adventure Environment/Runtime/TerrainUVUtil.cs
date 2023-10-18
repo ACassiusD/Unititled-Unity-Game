@@ -3,7 +3,6 @@
 // staggart.xyz
 
 using UnityEngine;
-using System.Collections;
 
 namespace FAE
 {

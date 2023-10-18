@@ -1,9 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using Polyperfect.Common;
 using UnityEditor;
-using System.Linq;
-using Polyperfect.Common;
 
 #if UNITY_EDITOR
 namespace Polyperfect.Animals

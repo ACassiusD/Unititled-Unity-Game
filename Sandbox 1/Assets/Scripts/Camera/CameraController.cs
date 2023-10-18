@@ -1,9 +1,8 @@
 ﻿using Cinemachine;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraController : MonoBehaviour {
+public class CameraController : MonoBehaviour
+{
 
     [SerializeField]
     private float currentDistance = 0;
@@ -31,7 +30,8 @@ public class CameraController : MonoBehaviour {
 
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         characterScript = PlayerManager.Instance.getPlayerScript();
         if (characterScript.playerMovementComponent.isRunning)
         {
@@ -46,9 +46,10 @@ public class CameraController : MonoBehaviour {
         //Set negative to be behind the player
         isBeingControlled = false;
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
         SetFOV();
         UpdateFOV();
         isBeingControlled = false;
@@ -60,7 +61,7 @@ public class CameraController : MonoBehaviour {
         {
             setCameraNormalFOV();
         }
-        else if(startSprintFOVTransition)
+        else if (startSprintFOVTransition)
         {
             setCameraSprintingFOV();
         }
@@ -95,7 +96,7 @@ public class CameraController : MonoBehaviour {
         lerp += Time.deltaTime / lerpDuration;
         //Debug.Log(lerp);
         cinemachineFreeLook.m_Lens.FieldOfView = Mathf.Lerp(cinemachineFreeLook.m_Lens.FieldOfView, sprintingFOV, lerp);
-        if(lerp > 1)
+        if (lerp > 1)
         {
             startSprintFOVTransition = false;
         }

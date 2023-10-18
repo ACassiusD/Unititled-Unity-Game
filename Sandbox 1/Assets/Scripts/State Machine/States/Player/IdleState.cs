@@ -52,13 +52,16 @@ public class IdleState : GroundedState
         {
             stateMachine.ChangeState(movementComponent.moving);
         }
-        if (movementComponent.isRiding){
+        if (movementComponent.isRiding)
+        {
             stateMachine.ChangeState(movementComponent.riding);
         }
-        else if (jump && movementComponent.jumpCount < movementComponent.maxJumps){
+        else if (jump && movementComponent.jumpCount < movementComponent.maxJumps)
+        {
             stateMachine.ChangeState(movementComponent.jumping);
         }
-        else if (movementComponent.playerControls.Player.Y.WasPerformedThisFrame()) { 
+        else if (movementComponent.playerControls.Player.Y.WasPerformedThisFrame())
+        {
             stateMachine.ChangeState(movementComponent.emote);
         }
     }

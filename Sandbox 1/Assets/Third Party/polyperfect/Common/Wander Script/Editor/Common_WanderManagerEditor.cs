@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using UnityEditor;
 using UnityEngine;
-using UnityEditor;
 
 #if UNITY_EDITOR
 namespace Polyperfect.Common
@@ -34,7 +32,7 @@ namespace Polyperfect.Common
 
             GUILayout.Space(5);
 
-			if (GUILayout.Button("Kill 'Em All"))
+            if (GUILayout.Button("Kill 'Em All"))
             {
                 Manager.Nuke();
             }

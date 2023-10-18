@@ -1,4 +1,3 @@
-using SaveLoadSystem;
 using UnityEngine;
 
 public class PlayerSaveData : MonoBehaviour
@@ -20,21 +19,21 @@ public class PlayerSaveData : MonoBehaviour
         MyData.PlayerRotation = myTransform.rotation;
         MyData.CurrentHealth = currentHealth;
 
-/*        if (playerControls.Player.KeyNum1.WasPerformedThisFrame())
-        {
-            //SaveGameManager.CurrentSaveData.PlayerData = MyData;
-            //SaveGameManager.SaveGame();
-        }
+        /*        if (playerControls.Player.KeyNum1.WasPerformedThisFrame())
+                {
+                    //SaveGameManager.CurrentSaveData.PlayerData = MyData;
+                    //SaveGameManager.SaveGame();
+                }
 
 
-        if (playerControls.Player.KeyNum2.WasPerformedThisFrame())
-        {
-            //SaveGameManager.LoadGame();
-            //MyData = SaveGameManager.CurrentSaveData.PlayerData;
-            myTransform.position = MyData.PlayerPosition;
-            myTransform.rotation = MyData.PlayerRotation;
-            currentHealth = MyData.CurrentHealth;
-        }*/
+                if (playerControls.Player.KeyNum2.WasPerformedThisFrame())
+                {
+                    //SaveGameManager.LoadGame();
+                    //MyData = SaveGameManager.CurrentSaveData.PlayerData;
+                    myTransform.position = MyData.PlayerPosition;
+                    myTransform.rotation = MyData.PlayerRotation;
+                    currentHealth = MyData.CurrentHealth;
+                }*/
     }
     private void OnEnable()
     {

@@ -3,12 +3,10 @@
 // staggart.xyz
 
 using UnityEngine;
-using System.Collections;
 
 namespace FAE
 {
 #if UNITY_EDITOR
-    using UnityEditor;
     [ExecuteInEditMode]
 #endif
 

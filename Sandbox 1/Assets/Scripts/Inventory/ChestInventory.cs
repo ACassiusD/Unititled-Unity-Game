@@ -27,11 +27,11 @@ public class ChestInventory : InventoryHolder, IInteractable
     private void LoadInventory(SaveData data)
     {
         //Check the save data for this specific chests inventory, and if it exists, load it in.
-        if(data.chestDictionary.TryGetValue(GetComponent<UniqueID>().ID, out ChestSaveData chestData))
+        if (data.chestDictionary.TryGetValue(GetComponent<UniqueID>().ID, out ChestSaveData chestData))
         {
             this.primaryInventorySystem = chestData.inventorySystem;
             this.transform.position = chestData.position;
-            this.transform.rotation= chestData.rotation;
+            this.transform.rotation = chestData.rotation;
         }
     }
 
@@ -61,7 +61,7 @@ public struct ChestSaveData
     {
         inventorySystem = _inventorySystem;
         position = _position;
-        rotation = _rotation;  
+        rotation = _rotation;
     }
 
 

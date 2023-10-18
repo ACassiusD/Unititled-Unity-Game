@@ -9,7 +9,8 @@ public class PlayerEntity : MonoBehaviour, IDamageable
     //Components to control entity logic
     public PlayerMovementComponent playerMovementComponent;
     private PlayerStatsComponent playerStatsComponent;
-    private PlayerCombatComponent playerCombatComponent;
+    private PlayerCombatComponent playerCombatComponent; //TODO: Flesh out combat component with arrow script stuff and its own state machine.
+    //TODO: ADD Combat override Component / state machines.
     public PlayerAnimator playerAnimator; //playerAnimatorComponent
     public InventoryHolder inventory; //playerInventoryComponent
 
@@ -35,11 +36,14 @@ public class PlayerEntity : MonoBehaviour, IDamageable
         //Pass the entitys stats to the combat component.
         playerCombatComponent.Initialize(playerStatsComponent);
 
-        //Match surface rotation to the terrain
-        if (matchSurfaceRotation && transform.childCount > 0) { 
+
+        //Match surface rotation to the terrain. 
+        //TODO: Move to movement component? 
+        if (matchSurfaceRotation && transform.childCount > 0)
+        {
             transform.GetChild(0).gameObject.AddComponent<Common_SurfaceRotation>().SetRotationSpeed(surfaceRotationSpeed);
         }
-        
+
         if (!playerMovementComponent)
             Debug.LogError(this.name + " is missing a MoveComponent!");
         if (!healthBarScript)
@@ -51,7 +55,7 @@ public class PlayerEntity : MonoBehaviour, IDamageable
         //Can't be handled in movementStateMachine since it has no access to this method.
         if (playerMovementComponent.isRunning)
             UpdateStaminaUI();
-        
+
         SetControls();
     }
 
@@ -76,7 +80,7 @@ public class PlayerEntity : MonoBehaviour, IDamageable
     public void moveToMountedPosition()
     {
         var activeMount = playerMovementComponent.activeMount;
-        
+
         //Calculate where the rider needs to be positioned, then transform him to that position and rotation
         Vector3 ridingPositon = activeMount.transform.position;
         ridingPositon.y = ridingPositon.y + activeMount.ridingHeight;
@@ -99,7 +103,7 @@ public class PlayerEntity : MonoBehaviour, IDamageable
     /// </summary>
     public void UpdateFloatingHealthBarUI()
     {
-        if(healthBarScript != null)
+        if (healthBarScript != null)
         {
             healthBarScript.setHealth(playerStatsComponent.currentHealth, playerStatsComponent.maxHealth);
         }
@@ -128,7 +132,7 @@ public class PlayerEntity : MonoBehaviour, IDamageable
     /// </summary>
     protected void Respawn()
     {
-       
+
         if (this.spawnPosition.magnitude > 0)
         {
             this.transform.position = this.spawnPosition;
@@ -150,7 +154,7 @@ public class PlayerEntity : MonoBehaviour, IDamageable
             SetSpawn();
         }
     }
-    
+
 
     protected void fullHeal()
     {
@@ -171,7 +175,7 @@ public class PlayerEntity : MonoBehaviour, IDamageable
         float currentSprintTime = playerMovementComponent.sprintTimer;
         float currentSprintLimit = playerMovementComponent.sprintLimit;
 
-        if(playerMovementComponent.isBeingControlled == false)
+        if (playerMovementComponent.isBeingControlled == false)
         {
             MountMoveComponent mountMoveComponent = playerMovementComponent.activeMount.GetComponent<MountMoveComponent>();
             currentSprintLimit = mountMoveComponent.sprintLimit;

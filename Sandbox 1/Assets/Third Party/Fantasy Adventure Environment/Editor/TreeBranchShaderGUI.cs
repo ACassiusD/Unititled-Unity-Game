@@ -2,9 +2,8 @@
 // Copyright Staggart Creations
 // staggart.xyz
 
-using UnityEngine;
 using UnityEditor;
-using System.Collections;
+using UnityEngine;
 
 namespace FAE
 {
@@ -45,7 +44,7 @@ namespace FAE
         GUIContent mainTexName = new GUIContent("Diffuse", "Diffuse (RGB) and Transparency (A)");
         GUIContent normalMapName = new GUIContent("Normal Map");
         private Material targetMat;
-        
+
         private bool visualizeVectors;
 
         public override void OnGUI(MaterialEditor materialEditor, MaterialProperty[] props)
@@ -57,9 +56,9 @@ namespace FAE
 
             this.m_MaterialEditor = materialEditor;
             targetMat = (Material)materialEditor.target;
-            
+
             this.FindProperties(props);
-            
+
             //Style similar to Standard shader
             m_MaterialEditor.SetDefaultGUIWidths();
             m_MaterialEditor.UseDefaultMargins();
@@ -73,7 +72,7 @@ namespace FAE
                 EditorGUILayout.Space();
             }
 #endif
-            
+
             EditorGUI.BeginChangeCheck();
 
             //Draw fields
@@ -115,7 +114,7 @@ namespace FAE
             EditorGUILayout.EndHorizontal();
 
             this.m_MaterialEditor.TexturePropertySingleLine(mainTexName, this._MainTex, this._Color);
-            if(targetMat.HasProperty("_BumpMap")) this.m_MaterialEditor.TexturePropertySingleLine(normalMapName, this._BumpMap);
+            if (targetMat.HasProperty("_BumpMap")) this.m_MaterialEditor.TexturePropertySingleLine(normalMapName, this._BumpMap);
 
             EditorGUILayout.Space();
         }
@@ -163,7 +162,7 @@ namespace FAE
             if (UnityEngine.Rendering.GraphicsSettings.currentRenderPipeline == null)
             {
 #endif
-            visualizeVectors = EditorGUILayout.Toggle("Visualize wind", visualizeVectors);
+                visualizeVectors = EditorGUILayout.Toggle("Visualize wind", visualizeVectors);
 #if UNITY_2019_3_OR_NEWER
             }
 #endif
@@ -209,7 +208,7 @@ namespace FAE
             //Main maps
             _Color = FindProperty("_Color", props);
             _MainTex = FindProperty("_MainTex", props);
-            if(targetMat.HasProperty("_BumpMap")) _BumpMap = FindProperty("_BumpMap", props);
+            if (targetMat.HasProperty("_BumpMap")) _BumpMap = FindProperty("_BumpMap", props);
 
             //Color
             _HueVariation = FindProperty("_HueVariation", props);

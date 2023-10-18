@@ -2,10 +2,9 @@
 // Copyright Staggart Creations
 // staggart.xyz
 
-using UnityEngine;
-using System.Collections;
-using System.IO;
 using System;
+using System.IO;
+using UnityEngine;
 using Workflow = FAE.TerrainUVUtil.Workflow;
 
 namespace FAE
@@ -414,7 +413,7 @@ namespace FAE
             if (workflow == Workflow.Terrain)
             {
 #if UNITY_2018_3_OR_NEWER
-            if (terrains[0].terrainData.terrainLayers.Length == 0 && !isMegaSplat) return;
+                if (terrains[0].terrainData.terrainLayers.Length == 0 && !isMegaSplat) return;
 #else
                 if (terrains[0].terrainData.splatPrototypes.Length == 0 && !isMegaSplat) return;
 #endif

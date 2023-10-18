@@ -10,7 +10,7 @@ public class StaticInventoryDisplay : InventoryDisplay
     {
         base.Start();
 
-        if(inventoryHolder != null)
+        if (inventoryHolder != null)
         {
             inventorySystem = inventoryHolder.PrimaryInventorySystem; //Assign the inventory system class variable
             inventorySystem.OnInventorySlotChange += UpdateSlot; //Subscrive the UpdateSlots() function to event

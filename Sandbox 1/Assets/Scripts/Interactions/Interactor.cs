@@ -66,7 +66,7 @@ public class Interactor : MonoBehaviour
         bool isObjectHit = false;
         hitinfo = new RaycastHit();
         var cam = playerScript.playerMovementComponent.cam;
-        
+
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hitinfo, distance, 1 << 8))
             isObjectHit = true;
         else
@@ -101,7 +101,7 @@ public class Interactor : MonoBehaviour
             }
         }
         //Try getting from parent
-        else if (hitObject.parent && hitObject.parent.GetComponentInChildren<Outline>()) 
+        else if (hitObject.parent && hitObject.parent.GetComponentInChildren<Outline>())
         {
             targetOutlineScript = hitObject.parent.GetComponentInChildren<Outline>();
             outlineObject();
@@ -115,7 +115,7 @@ public class Interactor : MonoBehaviour
             }
         }
         //Try getting from children
-        else if (hitObject.GetComponentInChildren<Outline>() != null) 
+        else if (hitObject.GetComponentInChildren<Outline>() != null)
         {
             targetOutlineScript = hitObject.parent.GetComponentInChildren<Outline>();
             outlineObject();
@@ -141,7 +141,7 @@ public class Interactor : MonoBehaviour
             targetOutlineScript.outlineFillMaterial.SetColor("_OutlineColor", outLineColor);
         }
     }
-    
+
     //Expanded out into its own method so we can assign the isInteracting variable;
     void StartInteraction(IInteractable interactable)
     {

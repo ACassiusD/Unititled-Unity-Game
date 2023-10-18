@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 
 namespace FAE
@@ -129,13 +127,13 @@ namespace FAE
                     FAE_Core.InstallShaders(FAE_Core.ShaderInstallation.BuiltIn);
                 }
 #endif
-                using (new EditorGUI.DisabledGroupScope(UnityEngine.Rendering.GraphicsSettings.renderPipelineAsset == null))
+            using (new EditorGUI.DisabledGroupScope(UnityEngine.Rendering.GraphicsSettings.renderPipelineAsset == null))
+            {
+                if (GUILayout.Button("<b><size=16>Universal Render Pipeline</size></b>\n<i>Unpack Shader Graph shaders and URP materials</i>", Button))
                 {
-                    if (GUILayout.Button("<b><size=16>Universal Render Pipeline</size></b>\n<i>Unpack Shader Graph shaders and URP materials</i>", Button))
-                    {
-                        FAE_Core.InstallShaders(FAE_Core.ShaderInstallation.UniversalRP);
-                    }
+                    FAE_Core.InstallShaders(FAE_Core.ShaderInstallation.UniversalRP);
                 }
+            }
 #if FAE_DEV
             }
             EditorGUILayout.EndHorizontal();

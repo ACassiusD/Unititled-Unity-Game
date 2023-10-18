@@ -1,6 +1,6 @@
-using UnityEngine.AI;
 using Polyperfect.Animals;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyMovementComponent : MoveComponent
 {
@@ -26,7 +26,7 @@ public class EnemyMovementComponent : MoveComponent
 
     Animal_WanderScript getWanderScript()
     {
-        if(wanderscript == null)
+        if (wanderscript == null)
         {
             wanderscript = this.GetComponent<Animal_WanderScript>();
         }
@@ -44,7 +44,7 @@ public class EnemyMovementComponent : MoveComponent
 
     public Enemy getEnemyScript()
     {
-        if(enemyScript == null)
+        if (enemyScript == null)
         {
             enemyScript = this.GetComponent<Enemy>();
         }

@@ -21,7 +21,7 @@ public class StunnedState : PlayerState
     {
         movementComponent.stunTimer -= Time.deltaTime;
         //if (movementComponent.isDebugging)
-            Debug.Log("Time = " + movementComponent.stunTimer);
+        Debug.Log("Time = " + movementComponent.stunTimer);
     }
 
     public override void LogicUpdate()
@@ -30,7 +30,7 @@ public class StunnedState : PlayerState
         {
             Debug.Log("Stun timer ended");
             movementComponent.stunTimer = 0;
-                stateMachine.ChangeState(movementComponent.standing);
+            stateMachine.ChangeState(movementComponent.standing);
         }
         base.LogicUpdate();
     }

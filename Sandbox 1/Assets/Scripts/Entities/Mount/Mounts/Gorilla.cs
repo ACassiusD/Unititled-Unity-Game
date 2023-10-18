@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Gorilla : Mount
+﻿public class Gorilla : Mount
 {
     public float gorillaWalkSpeed = 4;
     public float gorillaRunSpeed = 15;

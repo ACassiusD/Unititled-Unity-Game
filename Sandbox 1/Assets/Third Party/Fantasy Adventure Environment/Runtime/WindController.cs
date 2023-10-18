@@ -3,12 +3,10 @@
 // staggart.xyz
 
 using UnityEngine;
-using System.Collections;
 
 namespace FAE
 {
 #if UNITY_EDITOR
-    using UnityEditor;
     [ExecuteInEditMode]
 #endif
 
@@ -44,13 +42,13 @@ namespace FAE
         //Current wind parameters to be read externally
         public static float _windStrength;
         public static float _windAmplitude;
-        
+
         private static readonly int _WindVectors = Shader.PropertyToID("_WindVectors");
         private static readonly int _WindSpeed = Shader.PropertyToID("_WindSpeed");
         private static readonly int _WindStrength = Shader.PropertyToID("_WindStrength");
         private static readonly int _WindAmplitude = Shader.PropertyToID("_WindAmplitude");
         private static readonly int _WindDirection = Shader.PropertyToID("_WindDirection");
-        
+
         private static readonly int _TrunkWindSpeed = Shader.PropertyToID("_TrunkWindSpeed");
         private static readonly int _TrunkWindWeight = Shader.PropertyToID("_TrunkWindWeight");
         private static readonly int _TrunkWindSwinging = Shader.PropertyToID("_TrunkWindSwinging");
@@ -78,7 +76,7 @@ namespace FAE
 #if UNITY_5_5_OR_NEWER
             visualizeVectors = (Shader.GetGlobalFloat("_WindDebug") == 1) ? true : false;
 #endif
-            
+
             SetShaderParameters();
         }
 
@@ -119,7 +117,7 @@ namespace FAE
             SetShaderParameters();
 #endif
         }
-        
+
         private void SetShaderParameters()
         {
             Shader.SetGlobalTexture(_WindVectors, windVectors);

@@ -1,7 +1,6 @@
-using UnityEngine;
 using Polyperfect.Animals;
+using UnityEngine;
 using UnityEngine.AI;
-using System;
 
 public class MountMoveComponent : MoveComponent
 {
@@ -45,10 +44,11 @@ public class MountMoveComponent : MoveComponent
 
     protected void Update()
     {
-        base.Update(); 
+        base.Update();
     }
 
-    public void MountJump() {
+    public void MountJump()
+    {
         MidAirJump();
     }
 
@@ -62,7 +62,8 @@ public class MountMoveComponent : MoveComponent
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
 
         //If we picked up a movement input
-        if (direction.magnitude >= 0.1f){
+        if (direction.magnitude >= 0.1f)
+        {
             //Mathf.Atan2(direction.x, direction.z) - Gives us the angle in radians our player needs to turn
             //Mathf.Rad2Deg Update the angle to degrees
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;

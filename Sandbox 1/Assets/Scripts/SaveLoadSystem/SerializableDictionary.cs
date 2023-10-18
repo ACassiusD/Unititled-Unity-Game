@@ -1,5 +1,5 @@
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
@@ -17,7 +17,7 @@ public class SerializableDictionary<TKey, TValue> : Dictionary<TKey, TValue>, IS
         keys.Clear();
         values.Clear();
         foreach (KeyValuePair<TKey, TValue> pair in this)
-         {
+        {
             keys.Add(pair.Key);
             values.Add(pair.Value);
         }

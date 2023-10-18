@@ -1,10 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class MouseItemData : MonoBehaviour
 {
@@ -29,10 +28,10 @@ public class MouseItemData : MonoBehaviour
     private void Update()
     {
         //TODO: Add controller support.
-        if(AssignedInventorySlot.ItemData != null) //If has an item, follow the mouse position.
+        if (AssignedInventorySlot.ItemData != null) //If has an item, follow the mouse position.
         {
             transform.position = Mouse.current.position.ReadValue();
-            if(Mouse.current.leftButton.wasPressedThisFrame && !isMousePointerOverUIObject())
+            if (Mouse.current.leftButton.wasPressedThisFrame && !isMousePointerOverUIObject())
             {
                 ClearSlot();
                 //TODO: Drop the item on the ground.

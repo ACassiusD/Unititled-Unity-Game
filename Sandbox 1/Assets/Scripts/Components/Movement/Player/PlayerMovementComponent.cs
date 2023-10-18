@@ -1,5 +1,5 @@
-using UnityEngine;
 using Polyperfect.Common;
+using UnityEngine;
 
 //Player movement component contains a state machine, a working group states relevent to the player, varaible, and functions relevent to player movement.
 //It is the "Brain" of player movement.
@@ -14,7 +14,7 @@ public class PlayerMovementComponent : MoveComponent
     public EmoteState emote;
     public StunnedState stun;
     public Camera cam;
-    
+
     //Only movement variables specific to player should go here
     public bool isRiding = false;
     public Mount activeMount; //This might need to be moved out
@@ -68,12 +68,12 @@ public class PlayerMovementComponent : MoveComponent
         stun = new StunnedState(movementStateMachine, this);
 
         if (characterController.isGrounded)
-            movementStateMachine.Initialize(standing); 
+            movementStateMachine.Initialize(standing);
         else
             movementStateMachine.Initialize(jumping);
     }
 
-    public void MoveToMountedPosition() 
+    public void MoveToMountedPosition()
     {
         //Calculate where the rider needs to be positioned, then transform him to that position and rotation
         Vector3 ridingPositon = activeMount.transform.position;
@@ -110,7 +110,7 @@ public class PlayerMovementComponent : MoveComponent
             //Slide down slopes
             if (onSteepSlope)
             {
-                Vector3 slopeDir = Vector3.up - steepSlopeHit.normal * Vector3.Dot(Vector3.up, steepSlopeHit.normal); 
+                Vector3 slopeDir = Vector3.up - steepSlopeHit.normal * Vector3.Dot(Vector3.up, steepSlopeHit.normal);
                 moveDir = slopeDir * (-slopeSpeed * Time.deltaTime);
                 moveDir.y = moveDir.y - steepSlopeHit.point.y;
                 characterController.Move(moveDir.normalized * (currentSpeed) * Time.deltaTime);
@@ -175,7 +175,7 @@ public class PlayerMovementComponent : MoveComponent
         {
             //Do not check for ground collision on collectables.
             if (slopeHit.transform.gameObject.layer == LayerMask.NameToLayer("Collectable")) return false;
-           
+
             if (!checkSteepSlope(slopeHit))
             {
                 onSteepSlope = false;
@@ -235,7 +235,7 @@ public class PlayerMovementComponent : MoveComponent
         var obj = transform.GetChild(0).gameObject;
         surfaceRoationObj.enabled = false;
         var euler = obj.transform.rotation.eulerAngles;
-        obj.transform.rotation = Quaternion.Euler(0, euler.y ,0);
+        obj.transform.rotation = Quaternion.Euler(0, euler.y, 0);
     }
 
     //public void Knockback(float knockBackForce)

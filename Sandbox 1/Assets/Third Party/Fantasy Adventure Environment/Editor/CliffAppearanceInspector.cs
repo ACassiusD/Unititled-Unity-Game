@@ -2,10 +2,8 @@
 // Copyright Staggart Creations
 // staggart.xyz
 
-using System;
-using UnityEngine;
-using System.Collections;
 using UnityEditor;
+using UnityEngine;
 
 namespace FAE
 {
@@ -37,7 +35,7 @@ namespace FAE
         void OnEnable()
         {
             ca = (CliffAppearance)target;
-            
+
             targetMaterials = serializedObject.FindProperty("targetMaterials");
 
             objectColor = serializedObject.FindProperty("objectColor");
@@ -164,7 +162,7 @@ namespace FAE
 
             EditorGUILayout.PropertyField(globalColor, new GUIContent("Color"));
             EditorGUILayout.PropertyField(globalTiling, new GUIContent("Tiling"));
-            
+
             EditorGUILayout.Space();
             EditorGUILayout.EndVertical();
 

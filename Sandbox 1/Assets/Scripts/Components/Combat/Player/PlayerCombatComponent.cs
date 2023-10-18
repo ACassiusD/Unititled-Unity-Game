@@ -5,7 +5,7 @@ public class PlayerCombatComponent : CombatComponent
     public float ReceiveDamage(float damageAmount, int knockBackForce, Vector3 direction = new Vector3())
     {
         TakeDamage(damageAmount);
-        
+
         //STUN CODE
         //playerMovementComponent.stunTimer = playerMovementComponent.stunDuration;
 

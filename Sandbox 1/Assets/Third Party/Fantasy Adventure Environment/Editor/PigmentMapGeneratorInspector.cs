@@ -2,12 +2,8 @@
 // Copyright Staggart Creations
 // staggart.xyz
 
-using UnityEngine;
-using System.Collections;
 using UnityEditor;
-using UnityEditor.Callbacks;
-using FAE;
-using System;
+using UnityEngine;
 
 namespace FAE
 {

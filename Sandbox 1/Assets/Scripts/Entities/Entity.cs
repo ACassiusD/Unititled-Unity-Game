@@ -6,7 +6,7 @@ using UnityEngine.Events;
 //This class defines any "living" creature and the most basic of functions like movement, health system etc.
 public class Entity : MonoBehaviour, IInteractable
 {
-    public CharacterController controller = new CharacterController();   
+    public CharacterController controller = new CharacterController();
     protected static GameObject playerReference;
     private static GameObject canvas;
     static PlayerEntity playerScript;
@@ -19,7 +19,8 @@ public class Entity : MonoBehaviour, IInteractable
 
     public UnityAction<IInteractable> OnInteractionComplete { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
-    protected virtual void Start () {
+    protected virtual void Start()
+    {
         if (!playerReference)
         {
             playerReference = GameObject.FindGameObjectWithTag("Player");

@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.InputSystem;
 
 /**
  * Represents the player's inventory with 2 different inventories (hotbar and backpack)

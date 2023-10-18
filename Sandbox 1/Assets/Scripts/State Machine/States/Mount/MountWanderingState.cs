@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class MountWanderingState : MountState
 {
     // Start is called before the first frame update
@@ -12,7 +8,7 @@ public class MountWanderingState : MountState
     //ENTER LOGIC
     public override void Enter()
     {
-       // movementComponent.wanderscript.enabled = true;
+        // movementComponent.wanderscript.enabled = true;
         //Debug.Log("Entered MOUNT WANDERING state");
         base.Enter();
     }
@@ -36,7 +32,7 @@ public class MountWanderingState : MountState
     //EXIT LOGIC
     public override void Exit()
     {
-        if(movementComponent.wanderscript != null)
+        if (movementComponent.wanderscript != null)
         {
             movementComponent.wanderscript.enabled = false;
         }

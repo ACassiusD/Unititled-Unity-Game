@@ -1,6 +1,6 @@
-using UnityEngine;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 //A dynamic inventory is one that can change its size or other dynamic properties. Unlike the Player UI inventory which stays the same.
 //Can be used to for things like chests.
@@ -22,7 +22,7 @@ public class DynamicInventoryDisplay : InventoryDisplay
         ClearSlots();
         inventorySystem = invToDisplay;
 
-        if(inventorySystem != null)
+        if (inventorySystem != null)
             inventorySystem.OnInventorySlotChange += UpdateSlot;
 
         AssignSlots(invToDisplay);
@@ -35,7 +35,7 @@ public class DynamicInventoryDisplay : InventoryDisplay
 
         if (invToDisplay == null) return;
 
-        for(int i = 0; i < invToDisplay.InventorySize; i++)
+        for (int i = 0; i < invToDisplay.InventorySize; i++)
         {
             var uiSlot = Instantiate(slotPrefab, transform);
             slotDictionary.Add(uiSlot, invToDisplay.InventorySlots[i]);
@@ -46,12 +46,12 @@ public class DynamicInventoryDisplay : InventoryDisplay
 
     private void ClearSlots()
     {
-        foreach(var item in transform.Cast<Transform>())
+        foreach (var item in transform.Cast<Transform>())
         {
             Destroy(item.gameObject);
         }
 
-        if(slotDictionary!= null) slotDictionary.Clear();
+        if (slotDictionary != null) slotDictionary.Clear();
     }
 
     //When we close panel with escape key. Unsubscibe to event.

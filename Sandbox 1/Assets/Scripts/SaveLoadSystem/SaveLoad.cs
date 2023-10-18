@@ -2,7 +2,6 @@ using SaveLoadSystem;
 using System.IO;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Experimental.GlobalIllumination;
 
 //SaveLoadManager. Rename. Manages saving and loading of data. Contains unity actions that can be subscribed to that fire during saving and loading.
 public class SaveLoad
@@ -63,6 +62,6 @@ public class SaveLoad
     {
         string fullPath = Application.persistentDataPath + SaveDirectory + FileName;
 
-        if(File.Exists(fullPath)) File.Delete(fullPath);
+        if (File.Exists(fullPath)) File.Delete(fullPath);
     }
 }

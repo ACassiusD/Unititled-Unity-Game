@@ -1,5 +1,4 @@
 ﻿using Polyperfect.Common;
-using UnityEngine;
 
 namespace Polyperfect.Animals
 {

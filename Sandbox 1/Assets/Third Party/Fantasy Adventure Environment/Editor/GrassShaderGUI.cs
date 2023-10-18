@@ -2,9 +2,8 @@
 // Copyright Staggart Creations
 // staggart.xyz
 
-using UnityEngine;
 using UnityEditor;
-using System.Collections;
+using UnityEngine;
 
 namespace FAE
 {
@@ -144,7 +143,7 @@ namespace FAE
 
             if (_PigmentMapInfluence.floatValue == 1)
             {
-            EditorGUILayout.HelpBox("These colors are disabled because the pigment map influence value is set to 1, so they would have no effect", MessageType.None);
+                EditorGUILayout.HelpBox("These colors are disabled because the pigment map influence value is set to 1, so they would have no effect", MessageType.None);
             }
 
 
@@ -244,9 +243,9 @@ namespace FAE
             showHelpHeightmap = GUILayout.Toggle(showHelpHeightmap, "?", "Button", GUILayout.Width(25f)); GUILayout.Label("Heightmap", EditorStyles.boldLabel);
             EditorGUILayout.EndHorizontal();
 #if UNITY_5_5_OR_NEWER
-            if(!hasPigmentMap)
+            if (!hasPigmentMap)
             {
-            EditorGUILayout.HelpBox("No height map was found, please add the PigmentMapGenerator script to your terrain to enable these features", MessageType.Warning);
+                EditorGUILayout.HelpBox("No height map was found, please add the PigmentMapGenerator script to your terrain to enable these features", MessageType.Warning);
                 _HeightmapInfluence.floatValue = 0;
                 EditorGUI.BeginDisabledGroup(true);
             }
@@ -276,13 +275,13 @@ namespace FAE
             EditorGUILayout.EndHorizontal();
 
 #if UNITY_5_5_OR_NEWER
-            if(!hasPigmentMap)
+            if (!hasPigmentMap)
             {
                 EditorGUILayout.HelpBox("No pigment map was found, please add the PigmentMapGenerator script to your terrain to enable these features", MessageType.Warning);
                 _PigmentMapInfluence.floatValue = 0;
                 EditorGUI.BeginDisabledGroup(true);
             }
-            
+
 #endif
             if (showHelpPigmentmap) EditorGUILayout.HelpBox("The pigment map is generated through the PigmentMapGenerator script on your terrain. It colors the grass by the terrain's color.", MessageType.None);
             m_MaterialEditor.ShaderProperty(_PigmentMapInfluence, "Influence");

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TimedExplosionAOE : MonoBehaviour //Can implement a AEO interface at one point, try not to use inheritance.

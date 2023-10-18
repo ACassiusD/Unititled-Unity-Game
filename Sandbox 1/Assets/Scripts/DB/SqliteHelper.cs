@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Mono.Data.Sqlite;
-using UnityEngine;
+﻿using Mono.Data.Sqlite;
 using System.Data;
+using UnityEngine;
 
 namespace DataBank
 {

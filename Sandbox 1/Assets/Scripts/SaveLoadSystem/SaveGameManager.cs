@@ -29,7 +29,7 @@ namespace SaveLoadSystem
             Debug.Log("Loading Game...");
             data = _data;
         }
-        
+
         public static void TryLoadData()
         {
             SaveLoad.LoadGame();

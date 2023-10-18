@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AOESpell : MonoBehaviour //Can implement a AEO interface at one point, try not to use inheritance.
@@ -8,7 +6,7 @@ public class AOESpell : MonoBehaviour //Can implement a AEO interface at one poi
     public bool isActiveDamage = false;
     public float damageCooldownTimer = 0.0f;
     //How often the player can be hit by the AOE Effect
-    public float damageCooldown = 0.5f; 
+    public float damageCooldown = 0.5f;
     public float despawnTimer = 0.5f;
     public int damage = 5;
     public bool debug = false;
@@ -51,7 +49,7 @@ public class AOESpell : MonoBehaviour //Can implement a AEO interface at one poi
         {
             Debug.Log(this.name + " Attacks - Hit (" + hitCount + ") " + debugMsg);
         }
-        damageCooldownTimer = damageCooldown; 
+        damageCooldownTimer = damageCooldown;
     }
     void UpdateTimers()
     {
@@ -59,7 +57,8 @@ public class AOESpell : MonoBehaviour //Can implement a AEO interface at one poi
         despawnTimer -= Time.deltaTime;
     }
 
-    void DespawnCheck(){
+    void DespawnCheck()
+    {
         if (isStatic) return;
         if (despawnTimer <= 0)
         {

@@ -1,5 +1,4 @@
 //REMOVE MONOBEHAVIOR INHERITANCE - only using for inspector variables
-using UnityEngine;
 public abstract class State
 {
     protected StateMachine stateMachine;

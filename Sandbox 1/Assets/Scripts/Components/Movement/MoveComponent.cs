@@ -18,12 +18,12 @@ public abstract class MoveComponent : MonoBehaviour
     public bool isBeingControlled = false; // Indicates weather user inputs are currently controlling this character.
     public float currentSpeed = 50f;
     public float walkSpeed = 20;
-    public float runSpeed = 100; 
+    public float runSpeed = 100;
     public int jumpCount = 0;
     public int maxJumps = 2;
     public float jumpHeight = 20;
     public float gravity = -8f;
-    public float turnSmoothTime = 0.1f; 
+    public float turnSmoothTime = 0.1f;
     public float rotationSpeed = 100;
     public float distanceFromTarget;
     public float minDistanceFromTarget = 20;
@@ -107,7 +107,7 @@ public abstract class MoveComponent : MonoBehaviour
 
     public float getDistanceFromTarget()
     {
-        if(this.target == null) { return 0f; }
+        if (this.target == null) { return 0f; }
         return Vector3.Distance(this.target.position, characterController.transform.position);
     }
     public bool InChaseRange()
@@ -135,7 +135,7 @@ public abstract class MoveComponent : MonoBehaviour
 
     public PlayerEntity getPlayerScript()
     {
-        if(playerScript == null)
+        if (playerScript == null)
         {
             playerScript = PlayerManager.Instance.getPlayerScript();
         }
@@ -150,7 +150,7 @@ public abstract class MoveComponent : MonoBehaviour
 
         if (!(knockBackDirection.magnitude > 0.1))
         {
-            kb_direction = this.transform.forward * -1; 
+            kb_direction = this.transform.forward * -1;
         }
 
         //Add impact
@@ -172,7 +172,7 @@ public abstract class MoveComponent : MonoBehaviour
 
     public virtual void toggleRun()
     {
-        if(movementStateMachine.CurrentState.ToString() != "FallingState" && movementStateMachine.CurrentState.ToString() != "JumpingState")
+        if (movementStateMachine.CurrentState.ToString() != "FallingState" && movementStateMachine.CurrentState.ToString() != "JumpingState")
         {
             if (isRunning ? isRunning = false : isRunning = true) ;
             updateMoveSpeed();
@@ -204,10 +204,10 @@ public abstract class MoveComponent : MonoBehaviour
 
         //Do not let it go above the limit
         if (sprintTimer > sprintLimit)
-             sprintTimer = sprintLimit;
+            sprintTimer = sprintLimit;
     }
 
-    
+
     /// <summary>
     /// Consume Sprint Meter, decrementing the value.
     /// If stamina value reaches hits 0 or lower, switch to walking.
@@ -219,7 +219,8 @@ public abstract class MoveComponent : MonoBehaviour
 
         sprintTimer -= 1 * Time.deltaTime;
 
-        if (sprintTimer <= 0){
+        if (sprintTimer <= 0)
+        {
             sprintTimer = 0;
             toggleRun();
             if (isDebugging)
@@ -231,10 +232,10 @@ public abstract class MoveComponent : MonoBehaviour
 
 
 
-   protected void ResetSprintTimer()
-   {
+    protected void ResetSprintTimer()
+    {
         sprintTimer = sprintLimit;
-   }
+    }
 
     public virtual bool IsGrounded()
     {

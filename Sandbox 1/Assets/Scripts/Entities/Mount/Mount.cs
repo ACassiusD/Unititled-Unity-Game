@@ -41,7 +41,7 @@ public class Mount : MonoBehaviour, IInteractable //Mount class contains a movem
 
     private void updateAnimations()
     {
-        if(mountAnimator != null)
+        if (mountAnimator != null)
         {
             mountAnimator.ClearAnimation();
 
@@ -100,9 +100,9 @@ public class Mount : MonoBehaviour, IInteractable //Mount class contains a movem
         moveComponent.isBeingControlled = false;
         playerScript.DisMount(dismountDistance);
         isWandering = true;
-        if(mountAnimator != null)
+        if (mountAnimator != null)
         {
-             mountAnimator.ClearAnimation();
+            mountAnimator.ClearAnimation();
 
         }
         if (moveComponent.wanderscript != null)

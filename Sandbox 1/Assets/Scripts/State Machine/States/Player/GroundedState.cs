@@ -1,6 +1,4 @@
-﻿
-using UnityEngine;
-public class GroundedState : PlayerState
+﻿public class GroundedState : PlayerState
 {
     public GroundedState(StateMachine stateMachine, PlayerMovementComponent moveComponent) : base(stateMachine, moveComponent)
     {

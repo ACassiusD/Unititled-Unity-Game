@@ -2,9 +2,8 @@
 // Copyright Staggart Creations
 // staggart.xyz
 
-using UnityEngine;
 using UnityEditor;
-using System.Collections;
+using UnityEngine;
 
 namespace FAE
 {
@@ -39,9 +38,9 @@ namespace FAE
 #if UNITY_2019_3_OR_NEWER
             targetMat = materialEditor.target as Material;
 #endif
-            
+
             this.FindProperties(props);
-            
+
             //Style similar to Standard shader
             m_MaterialEditor.SetDefaultGUIWidths();
             m_MaterialEditor.UseDefaultMargins();
@@ -55,7 +54,7 @@ namespace FAE
                 EditorGUILayout.Space();
             }
 #endif
-            
+
             EditorGUI.BeginChangeCheck();
 
             //Draw fields
@@ -76,7 +75,7 @@ namespace FAE
             m_MaterialEditor.ShaderProperty(_UseSpeedTreeWind, new GUIContent("Sample SpeedTree wind"));
             if (showHelp) EditorGUILayout.HelpBox("If this is a tree created using the SpeedTree Unity Modeler, this toggle will make the shader read the wind information as stored by SpeedTree.", MessageType.None);
 
-            if(showHelp) GUIHelper.DrawWindInfo();
+            if (showHelp) GUIHelper.DrawWindInfo();
 
             GUIHelper.DrawFooter();
 

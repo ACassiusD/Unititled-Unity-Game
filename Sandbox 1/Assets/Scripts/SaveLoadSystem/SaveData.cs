@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace SaveLoadSystem
 {
@@ -15,7 +14,7 @@ namespace SaveLoadSystem
         {
             collectedItems = new List<string>();
             activeItems = new SerializableDictionary<string, ItemPickUpSaveData>();
-            chestDictionary = new SerializableDictionary<string, ChestSaveData> (); 
+            chestDictionary = new SerializableDictionary<string, ChestSaveData>();
         }
     }
 }

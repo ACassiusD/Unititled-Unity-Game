@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -34,7 +33,7 @@ public class BreedableCreatureBreeder : MonoBehaviour
             if (creature != null && initiator != creature)
             {
                 potentialMates.Add(creature);
-               // Debug.Log("Detected creature: " + creature.name);
+                // Debug.Log("Detected creature: " + creature.name);
             }
         }
 

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyKnockbackState : EnemyState
@@ -11,7 +9,7 @@ public class EnemyKnockbackState : EnemyState
     public override void Enter()
     {
         //if (movementComponent.isDebugging)
-            Debug.Log("Enemy entered Knockback state");
+        Debug.Log("Enemy entered Knockback state");
 
         movementComponent.Knockback();
         movementComponent.stunTimer = movementComponent.stunDuration;
@@ -52,9 +50,9 @@ public class EnemyKnockbackState : EnemyState
     }
 
     public override void Exit()
-    {   
+    {
         //if (movementComponent.isDebugging)
-            Debug.Log("Enemy Exit Knockback state");
+        Debug.Log("Enemy Exit Knockback state");
     }
 
 

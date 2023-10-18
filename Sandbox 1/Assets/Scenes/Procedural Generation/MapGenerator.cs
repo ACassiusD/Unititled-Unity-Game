@@ -1,15 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using System;
+using System.Collections.Generic;
 using System.Threading;
+using UnityEngine;
 
 public class MapGenerator : MonoBehaviour
 {
     public const int mapChunkSize = 241;
-    [Range(0,6)]
+    [Range(0, 6)]
     public int levelOfDetail;
-    public enum DrawMode { Noisemap, Colormap, Mesh};
+    public enum DrawMode { Noisemap, Colormap, Mesh };
     public DrawMode drawmode;
     public float noiseScale;
 
@@ -52,7 +51,8 @@ public class MapGenerator : MonoBehaviour
 
     public void RequestMapData(Action<MapData> callback)
     {
-        ThreadStart threadStart = delegate {
+        ThreadStart threadStart = delegate
+        {
             MapDataThread(callback);
         };
 
@@ -70,7 +70,8 @@ public class MapGenerator : MonoBehaviour
 
     public void RequestMeshData(MapData mapData, Action<MeshData> callback)
     {
-        ThreadStart threadStart = delegate {
+        ThreadStart threadStart = delegate
+        {
             MeshDataThread(mapData, callback);
         };
 
@@ -113,11 +114,15 @@ public class MapGenerator : MonoBehaviour
 
         //Generate a color map array based on noise values.
         Color[] colorMap = new Color[mapChunkSize * mapChunkSize];
-        for(int y=0; y < mapChunkSize; y++){
-            for (int x = 0; x < mapChunkSize; x++){
+        for (int y = 0; y < mapChunkSize; y++)
+        {
+            for (int x = 0; x < mapChunkSize; x++)
+            {
                 float currentHeight = noiseMap[x, y];
-                for(int i = 0; i < regions.Length; i++){
-                    if(currentHeight <= regions[i].height){
+                for (int i = 0; i < regions.Length; i++)
+                {
+                    if (currentHeight <= regions[i].height)
+                    {
                         colorMap[y * mapChunkSize + x] = regions[i].color;
                         break;
                     }
@@ -129,10 +134,12 @@ public class MapGenerator : MonoBehaviour
 
     void OnValidate()
     {
-        if (lacunarity < 1){
+        if (lacunarity < 1)
+        {
             lacunarity = 1;
         }
-        if (octaves < 0){
+        if (octaves < 0)
+        {
             octaves = 0;
         }
     }
@@ -142,7 +149,8 @@ public class MapGenerator : MonoBehaviour
         public readonly Action<T> callback;
         public readonly T parameter;
 
-        public MapThreadInfo(Action<T> callback, T parameter){
+        public MapThreadInfo(Action<T> callback, T parameter)
+        {
             this.callback = callback;
             this.parameter = parameter;
         }

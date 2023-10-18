@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 //Takes the noise map, turns it into a texture, and applies it to a plane in the game scene.
@@ -10,7 +8,8 @@ public class MapDisplay : MonoBehaviour
     public MeshFilter meshFilter;
     public MeshRenderer meshRenderer;
 
-    public void DrawTexture(Texture2D texture){
+    public void DrawTexture(Texture2D texture)
+    {
         //Set textuyre to plans renderer
         texureRender.sharedMaterial.mainTexture = texture;
 

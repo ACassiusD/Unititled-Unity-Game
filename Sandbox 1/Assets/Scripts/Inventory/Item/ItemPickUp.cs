@@ -1,5 +1,4 @@
 using SaveLoadSystem;
-using System;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -44,7 +43,7 @@ public class ItemPickUp : MonoBehaviour
 
     private void OnDestroy()
     {
-        if(SaveGameManager.data.activeItems.ContainsKey(id)) SaveGameManager.data.activeItems.Remove(id);
+        if (SaveGameManager.data.activeItems.ContainsKey(id)) SaveGameManager.data.activeItems.Remove(id);
         SaveLoad.OnLoadGame -= LoadGame;
     }
 
@@ -69,7 +68,7 @@ public class ItemPickUp : MonoBehaviour
             PlayerEntity owner = mountScript.getOwner();
 
             var parentInventory = owner.inventory;
-       
+
             if (!parentInventory) return;
 
             if (parentInventory.PrimaryInventorySystem.AddToInventory(ItemData, 1))

@@ -1,11 +1,10 @@
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events; //Using to alert whoever cares that inventory system has changed
-using System.Linq;
 
 [System.Serializable]
-public class InventorySystem 
+public class InventorySystem
 {
     //Hold amount of inv slots we want.
     [SerializeField] private List<InventorySlot> inventorySlots;
@@ -28,10 +27,11 @@ public class InventorySystem
 
     public bool AddToInventory(InventoryItemData itemToAdd, int amount)
     {
-        if(ContainsItem(itemToAdd, out List<InventorySlot> invSlot)) //Check wheather item exists in inventory
+        if (ContainsItem(itemToAdd, out List<InventorySlot> invSlot)) //Check wheather item exists in inventory
         {
-            foreach(var slot in invSlot){
-                if(slot.EnoughRoomLeftInStack(amount))
+            foreach (var slot in invSlot)
+            {
+                if (slot.EnoughRoomLeftInStack(amount))
                 {
                     slot.AddToStack(amount);
                     OnInventorySlotChange?.Invoke(slot);
@@ -39,8 +39,8 @@ public class InventorySystem
                 }
             }
         }
-        
-        if(HasFreeSlot(out InventorySlot freeSlot)) //Gets first avaliable slot.
+
+        if (HasFreeSlot(out InventorySlot freeSlot)) //Gets first avaliable slot.
         {
             if (freeSlot.EnoughRoomLeftInStack(amount))
             {
@@ -55,9 +55,9 @@ public class InventorySystem
 
     //Checks if item is in the inventory, an passes back approriate slot
     // Do any of our slots have the item to add in them?
-    public bool ContainsItem(InventoryItemData itemToAdd, out List<InventorySlot> invSlot) 
+    public bool ContainsItem(InventoryItemData itemToAdd, out List<InventorySlot> invSlot)
     {
-        invSlot = InventorySlots.Where(slot => slot.ItemData == itemToAdd).ToList(); 
+        invSlot = InventorySlots.Where(slot => slot.ItemData == itemToAdd).ToList();
         return invSlot == null ? false : true;
     }
 

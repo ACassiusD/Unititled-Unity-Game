@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -19,10 +17,13 @@ public class ConsoleLogger : MonoBehaviour
 
         console = gameObject.GetComponentInChildren<TextMeshProUGUI>();
 
-        if (Instance == null){
+        if (Instance == null)
+        {
             Instance = this;
             //DontDestroyOnLoad(gameObject);
-        }else{
+        }
+        else
+        {
             Destroy(gameObject);
         }
 
@@ -39,12 +40,12 @@ public class ConsoleLogger : MonoBehaviour
     {
         maintext =
             "Y Velocity............" + playerMovementComponent.velocity + "\n" +
-            "Move Direction..." +playerMovementComponent.moveDir + "\n" +
+            "Move Direction..." + playerMovementComponent.moveDir + "\n" +
             "Move Speed......." + playerMovementComponent.currentSpeed + "\n" +
             "Move State........" + playerMovementComponent.movementStateMachine.CurrentState.ToString() + "\n" +
             "Sprint Timer......." + playerMovementComponent.sprintTimer + "\n" +
             "Jumps..............." + playerMovementComponent.jumpCount + "/" + playerMovementComponent.maxJumps;
-        console.text = maintext; 
+        console.text = maintext;
     }
 
 }

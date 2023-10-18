@@ -55,12 +55,13 @@ public class MovingState : GroundedState
         {
             stateMachine.ChangeState(movementComponent.jumping);
         }
-        else if(!movementComponent.isMoving()){
+        else if (!movementComponent.isMoving())
+        {
             this.stateMachine.ChangeState(movementComponent.standing);
         }
         else if (!movementComponent.IsGrounded())
         {
-             this.stateMachine.ChangeState(movementComponent.falling);   
+            this.stateMachine.ChangeState(movementComponent.falling);
         }
     }
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 //Slot class. Represents individual slot to hold items in the inventory. 
@@ -11,7 +9,7 @@ public class InventorySlot //Isnt a monobehavior, doesnt need to start or update
     [SerializeField] private int stackSize; //Current stack size - how many of the data do we have?
 
     //getters
-    public InventoryItemData ItemData => itemData; 
+    public InventoryItemData ItemData => itemData;
     public int StackSize => stackSize;
 
     //Constructor to make a empty inventory slot
@@ -20,7 +18,7 @@ public class InventorySlot //Isnt a monobehavior, doesnt need to start or update
         itemData = source;
         stackSize = amount;
     }
-    
+
     //Null constructor
     public InventorySlot()
     {
@@ -79,7 +77,7 @@ public class InventorySlot //Isnt a monobehavior, doesnt need to start or update
 
     public bool SplitStack(out InventorySlot splitStack)
     {
-        if(stackSize <= 1) //Is there enought to split
+        if (stackSize <= 1) //Is there enought to split
         {
             splitStack = null;
             splitStack = null;

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BillBoard : MonoBehaviour
@@ -9,7 +7,7 @@ public class BillBoard : MonoBehaviour
     private void Awake()
     {
         cam = GameObject.Find("MainCamera1").GetComponent<Camera>().transform;
-        if (cam == null){Debug.LogError("Missing Reference to camera in Billboard.cs for " + this.name);}
+        if (cam == null) { Debug.LogError("Missing Reference to camera in Billboard.cs for " + this.name); }
     }
     void Update()
     {

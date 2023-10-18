@@ -43,7 +43,7 @@ public class EnemyChasingState : EnemyState
             stateMachine.ChangeState(movementComponent.standing);
         }
 
-        if(movementComponent.InAttackRange() == true)
+        if (movementComponent.InAttackRange() == true)
         {
             //Needs to be moved to a attacking state. Is attacking state going to be a new state machine?? or keep using movement state machine for enemies?
             if (movementComponent.isDebugging)

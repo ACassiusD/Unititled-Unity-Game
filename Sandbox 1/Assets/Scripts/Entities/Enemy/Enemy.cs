@@ -1,5 +1,5 @@
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class Enemy : MonoBehaviour, IDamageable
 {
@@ -80,7 +80,7 @@ public class Enemy : MonoBehaviour, IDamageable
             var floatingDamageText = Instantiate(floatingDmgText, transform.position, this.transform.rotation, transform);
             floatingDamageText.GetComponent<TextMeshPro>().text = EnemyStats.currentHealth.ToString();
         }
-         healthBarScript.setHealth(EnemyStats.currentHealth, EnemyStats.maxHealth);
+        healthBarScript.setHealth(EnemyStats.currentHealth, EnemyStats.maxHealth);
     }
 
     //Kill/death command, despawn and drop loot.
@@ -97,7 +97,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public void TestFunction()
     {
-        if(attackOnCooldown == false)
+        if (attackOnCooldown == false)
         {
             activeAOEObject = Instantiate(aoeObject);
             activeAOEObject.transform.position = this.transform.position;

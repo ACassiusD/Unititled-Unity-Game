@@ -99,8 +99,8 @@ public class BreedableCreatureMoveComponent : MoveComponent
     }
     void FaceDirection(Vector3 facePosition)
     {
-/*        transform.rotation = Quaternion.LookRotation(Vector3.ProjectOnPlane(Vector3.RotateTowards(transform.forward,
-            facePosition, rotationSpeed * Time.deltaTime * Mathf.Deg2Rad, 0f), Vector3.up), Vector3.up);*/
+        /*        transform.rotation = Quaternion.LookRotation(Vector3.ProjectOnPlane(Vector3.RotateTowards(transform.forward,
+                    facePosition, rotationSpeed * Time.deltaTime * Mathf.Deg2Rad, 0f), Vector3.up), Vector3.up);*/
     }
 
     /**

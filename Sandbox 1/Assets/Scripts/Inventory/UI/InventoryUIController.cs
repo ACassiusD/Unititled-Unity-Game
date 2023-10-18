@@ -27,7 +27,7 @@ public class InventoryUIController : MonoBehaviour
 
     void Update()
     {
-        if (chestPanel.gameObject.activeInHierarchy && Keyboard.current.escapeKey.wasPressedThisFrame) 
+        if (chestPanel.gameObject.activeInHierarchy && Keyboard.current.escapeKey.wasPressedThisFrame)
             chestPanel.gameObject.SetActive(false);
 
         if (playerBackpackPanel.gameObject.activeInHierarchy && Keyboard.current.escapeKey.wasPressedThisFrame)
@@ -36,7 +36,7 @@ public class InventoryUIController : MonoBehaviour
 
     void DisplayInventory(InventorySystem invToDisplay)
     {
-        chestPanel.gameObject.SetActive(true); 
+        chestPanel.gameObject.SetActive(true);
         chestPanel.RefreshDynamicInventory(invToDisplay);
     }
 

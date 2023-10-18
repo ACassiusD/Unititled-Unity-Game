@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Events;
+﻿using UnityEngine.Events;
 
 //Interface used by an interactable item.
-public interface IInteractable {
+public interface IInteractable
+{
 
     //Unity actions store a reference to a method that can be called at a later time.
     public UnityAction<IInteractable> OnInteractionComplete { get; set; }

@@ -1,6 +1,4 @@
-﻿
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class Spider : Mount
@@ -53,15 +51,15 @@ public class Spider : Mount
         {
             var col = specialAttackHit.collider;
             Debug.Log("HIT ENEMY" + specialAttackHit.transform.name);
-            if(col != null)
+            if (col != null)
             {
-                
+
                 if (col.tag == "Enemy")
                 {
                     var enemyScript = col.gameObject.GetComponent<Enemy>();
                     int[] dmgValues;
                     enemyScript.ReceiveDamage(10, 3000);
-                    Debug.Log ("|Hit " + col.name);
+                    Debug.Log("|Hit " + col.name);
                 }
             }
 

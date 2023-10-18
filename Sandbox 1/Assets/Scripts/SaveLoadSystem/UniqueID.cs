@@ -1,5 +1,4 @@
 using System;
-using System.Web.Razor.Generator;
 using UnityEngine;
 
 [System.Serializable]
@@ -9,8 +8,8 @@ public class UniqueID : MonoBehaviour
     [ReadOnly, SerializeField] private string _id = Guid.NewGuid().ToString();
 
     //Static field persists through all instances of this class, has a collection of all unique IDs
-    [SerializeField] 
-    private static SerializableDictionary<string, GameObject> idDatabase = 
+    [SerializeField]
+    private static SerializableDictionary<string, GameObject> idDatabase =
         new SerializableDictionary<string, GameObject>();
 
     //Public getter
@@ -26,13 +25,13 @@ public class UniqueID : MonoBehaviour
     //Remove self from ID Database if destoryed.
     private void OnDestroy()
     {
-        if(idDatabase.ContainsKey(_id)) idDatabase.Remove(_id);
+        if (idDatabase.ContainsKey(_id)) idDatabase.Remove(_id);
     }
 
     //Generate new id for self.
     private void Generate()
     {
         _id = Guid.NewGuid().ToString();
-        idDatabase.Add( _id, this.gameObject ); 
+        idDatabase.Add(_id, this.gameObject);
     }
 }

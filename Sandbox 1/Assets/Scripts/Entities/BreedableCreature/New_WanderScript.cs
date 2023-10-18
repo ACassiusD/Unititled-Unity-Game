@@ -1,5 +1,5 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
 using UnityEngine.AI;
 using Quaternion = UnityEngine.Quaternion;
 using Random = UnityEngine.Random;
@@ -114,7 +114,7 @@ namespace Polyperfect.Common
 
         /**
          * Sets the move speed for wonder state, can probably be added to the onEnter for wanderstate.
-         **/ 
+         **/
         void SetMoveSlow()
         {
             var minSpeed = float.MaxValue;
@@ -177,26 +177,26 @@ namespace Polyperfect.Common
             // ReSharper disable once IteratorNeverReturns
         }
 
-/*        public void OnDrawGizmosSelected()
-        {
-            // Draw target position.
-            if (useNavMesh && navMeshAgent.enabled == true)
-            {
-                if (navMeshAgent.remainingDistance > 1f)
+        /*        public void OnDrawGizmosSelected()
                 {
-                    Gizmos.DrawSphere(navMeshAgent.destination + new Vector3(0f, 0.1f, 0f), 0.2f);
-                    Gizmos.DrawLine(transform.position, navMeshAgent.destination);
-                }
-            }
-            else
-            {
-                if (targetLocation != Vector3.zero)
-                {
-                    Gizmos.DrawSphere(targetLocation + new Vector3(0f, 0.1f, 0f), 0.2f);
-                    Gizmos.DrawLine(transform.position, targetLocation);
-                }
-            }
-        }*/
+                    // Draw target position.
+                    if (useNavMesh && navMeshAgent.enabled == true)
+                    {
+                        if (navMeshAgent.remainingDistance > 1f)
+                        {
+                            Gizmos.DrawSphere(navMeshAgent.destination + new Vector3(0f, 0.1f, 0f), 0.2f);
+                            Gizmos.DrawLine(transform.position, navMeshAgent.destination);
+                        }
+                    }
+                    else
+                    {
+                        if (targetLocation != Vector3.zero)
+                        {
+                            Gizmos.DrawSphere(targetLocation + new Vector3(0f, 0.1f, 0f), 0.2f);
+                            Gizmos.DrawLine(transform.position, targetLocation);
+                        }
+                    }
+                }*/
 
     }
 }

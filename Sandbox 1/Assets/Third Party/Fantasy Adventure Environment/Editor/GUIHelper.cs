@@ -1,6 +1,5 @@
-﻿using UnityEngine;
-using UnityEditor;
-using System.Collections;
+﻿using UnityEditor;
+using UnityEngine;
 
 namespace FAE
 {
@@ -40,13 +39,13 @@ namespace FAE
         /// <summary>If the supported Unity version is used, a field for setting the Render Queue and GPU Instancing options is drawn</summary>
         public static void DrawExtraFields(MaterialEditor m_MaterialEditor)
         {
-            #if UNITY_5_5_OR_NEWER
-                m_MaterialEditor.RenderQueueField();
-            #endif
+#if UNITY_5_5_OR_NEWER
+            m_MaterialEditor.RenderQueueField();
+#endif
 
-            #if UNITY_5_6_OR_NEWER
-                m_MaterialEditor.EnableInstancingField();
-            #endif
+#if UNITY_5_6_OR_NEWER
+            m_MaterialEditor.EnableInstancingField();
+#endif
         }
 
         //Styles

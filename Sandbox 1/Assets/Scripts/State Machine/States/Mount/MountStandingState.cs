@@ -26,9 +26,9 @@ public class MountStandingState : MountState
         movementComponent.addGravity();
         movementComponent.AddVelocityAndMove();
         movementComponent.MoveMountViaInput();
-        
+
         jump = movementComponent.playerControls.Player.Jump.WasPerformedThisFrame();
-        
+
         if (movementComponent.playerControls.Player.ToggleRun.WasPressedThisFrame())
             movementComponent.toggleRun();
 
@@ -39,7 +39,7 @@ public class MountStandingState : MountState
         }
         else
         {
-            if(movementComponent.currentSpeed == movementComponent.walkSpeed)
+            if (movementComponent.currentSpeed == movementComponent.walkSpeed)
             {
                 movementComponent.RegenerateStaminaMeter();
             }
@@ -54,7 +54,7 @@ public class MountStandingState : MountState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        
+
         if (!movementComponent.isBeingControlled)
             stateMachine.ChangeState(movementComponent.wandering);
         else if (jump && movementComponent.jumpCount < movementComponent.maxJumps)
