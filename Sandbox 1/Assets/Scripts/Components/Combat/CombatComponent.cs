@@ -1,5 +1,10 @@
 using UnityEngine;
 
+/// <summary>
+/// The CombatComponent class represents the combat-related functionality of an entity within an action RPG game.
+/// This component interfaces with a StatsComponent to track and modify the health of the entity,
+/// and defines behavior for receiving damage, healing, and handling death.
+/// </summary>
 public class CombatComponent : MonoBehaviour
 {
     protected StatsComponent statsComponent; //Required

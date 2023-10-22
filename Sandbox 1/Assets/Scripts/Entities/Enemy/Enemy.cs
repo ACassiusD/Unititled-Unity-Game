@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class Enemy : MonoBehaviour, IDamageable
 {
@@ -9,8 +10,11 @@ public class Enemy : MonoBehaviour, IDamageable
     private EnemyStats EnemyStats;
     protected GameObject activeAOEObject = null;
     public GameObject floatingDmgText;
-    public GameObject aoeObject;
     private HealthBar healthBarScript;
+
+    //AOE Attack
+    public GameObject aoeObject;
+    public Vector2 aoeSize = new Vector2(1f, 1f);  // Set default size or adjust in inspector
 
     //Comaat vars to be moved into compat component
     public bool attacked = false; // TODO: State machine.
@@ -29,6 +33,18 @@ public class Enemy : MonoBehaviour, IDamageable
         enemyCombatComponent.Initialize(EnemyStats);
     }
 
+    protected virtual void Start()
+    {
+        if (!moveComponent)
+            Debug.LogError(this.name + " is missing a EnemyMoveComponent! ");
+
+        if (!enemyAnimator)
+            Debug.LogError(this.name + " is missing a EnemyAnimatorComponent!");
+
+        if (!healthBarScript)
+            Debug.LogError(this.name + " is missing a HealthBarScript!");
+    }
+
     void Update()
     {
         if (attackOnCooldown)
@@ -40,18 +56,6 @@ public class Enemy : MonoBehaviour, IDamageable
                 attackCooldownTimer = attackCooldown;
             }
         }
-    }
-
-    protected virtual void Start()
-    {
-        if (!moveComponent)
-            Debug.LogError(this.name + " is missing a EnemyMoveComponent! ");
-
-        if (!enemyAnimator)
-            Debug.LogError(this.name + " is missing a EnemyAnimatorComponent!");
-
-        if (!healthBarScript)
-            Debug.LogError(this.name + " is missing a HealthBarScript!");
     }
 
     public float ReceiveDamage(float damageAmount, int knockBackForce, Vector3 direction = new Vector3())
@@ -95,7 +99,7 @@ public class Enemy : MonoBehaviour, IDamageable
         attacked = false;
     }
 
-    public void TestFunction()
+    public void CastAOEAttack()
     {
         if (attackOnCooldown == false)
         {
@@ -104,4 +108,5 @@ public class Enemy : MonoBehaviour, IDamageable
             attackOnCooldown = true;
         }
     }
+
 }

@@ -1,4 +1,5 @@
 using Polyperfect.Common;
+using System.Collections;
 using UnityEngine;
 
 //Player movement component contains a state machine, a working group states relevent to the player, varaible, and functions relevent to player movement.
@@ -33,10 +34,38 @@ public class PlayerMovementComponent : MoveComponent
     private RaycastHit slopeHit;
     private RaycastHit steepSlopeHit;
 
+    //Dashing Variables
+    public float dashSpeed = 40f;
+    public float dashDuration = 0.5f;
+    public float dashCooldown = 0.5f;
+    private float lastDashTime = -Mathf.Infinity;
+
     protected override void Update()
     {
         playerScript.UpdateStaminaUI();
+
+        bool dashKeyCaptured = playerControls.Player.Dash.WasPerformedThisFrame();  // Assumes you have a Dash action set up in your PlayerControls
+        if (dashKeyCaptured && Time.time >= lastDashTime + dashCooldown)
+        {
+            StartCoroutine(Dash());
+        }
+
         base.Update();
+    }
+
+    private IEnumerator Dash()
+    {
+        float dashStartTime = Time.time;
+        Vector3 dashDirection = transform.forward;  // Now dashing in the direction the entity is facing
+
+        while (Time.time < dashStartTime + dashDuration)
+        {
+            Vector3 dashVelocity = dashDirection * dashSpeed;
+            characterController.Move(dashVelocity * Time.deltaTime);  // Assumes your PlayerMovementComponent has a public CharacterController named characterController
+            yield return null;
+        }
+
+        lastDashTime = Time.time;
     }
 
     public bool isMoving()

@@ -161,6 +161,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Dash"",
+                    ""type"": ""Button"",
+                    ""id"": ""ba2c4915-4988-44ae-9b53-72913ba4fd66"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -372,6 +381,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""KeyNum2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3446cfc4-4def-46e5-b56a-c2640d624751"",
+                    ""path"": ""<Mouse>/forwardButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -395,6 +415,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Player_BKey = m_Player.FindAction("BKey", throwIfNotFound: true);
         m_Player_KeyNum1 = m_Player.FindAction("KeyNum1", throwIfNotFound: true);
         m_Player_KeyNum2 = m_Player.FindAction("KeyNum2", throwIfNotFound: true);
+        m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -469,6 +490,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_BKey;
     private readonly InputAction m_Player_KeyNum1;
     private readonly InputAction m_Player_KeyNum2;
+    private readonly InputAction m_Player_Dash;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -488,6 +510,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @BKey => m_Wrapper.m_Player_BKey;
         public InputAction @KeyNum1 => m_Wrapper.m_Player_KeyNum1;
         public InputAction @KeyNum2 => m_Wrapper.m_Player_KeyNum2;
+        public InputAction @Dash => m_Wrapper.m_Player_Dash;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -542,6 +565,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @KeyNum2.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnKeyNum2;
                 @KeyNum2.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnKeyNum2;
                 @KeyNum2.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnKeyNum2;
+                @Dash.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
+                @Dash.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
+                @Dash.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -591,6 +617,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @KeyNum2.started += instance.OnKeyNum2;
                 @KeyNum2.performed += instance.OnKeyNum2;
                 @KeyNum2.canceled += instance.OnKeyNum2;
+                @Dash.started += instance.OnDash;
+                @Dash.performed += instance.OnDash;
+                @Dash.canceled += instance.OnDash;
             }
         }
     }
@@ -612,5 +641,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnBKey(InputAction.CallbackContext context);
         void OnKeyNum1(InputAction.CallbackContext context);
         void OnKeyNum2(InputAction.CallbackContext context);
+        void OnDash(InputAction.CallbackContext context);
     }
 }
