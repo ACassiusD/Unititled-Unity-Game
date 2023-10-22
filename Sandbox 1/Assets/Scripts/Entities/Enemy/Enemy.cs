@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
 
 public class Enemy : MonoBehaviour, IDamageable
 {
@@ -58,7 +57,7 @@ public class Enemy : MonoBehaviour, IDamageable
         }
     }
 
-    public float ReceiveDamage(float damageAmount, int knockBackForce, Vector3 direction = new Vector3())
+    public float ReceiveDamage(float damageAmount, int? knockBackForce = null, Vector3? direction = null)
     {
         // set attacked state to true
         attacked = true;
@@ -69,11 +68,16 @@ public class Enemy : MonoBehaviour, IDamageable
         //Update Healthbar in UI
         UpdateFloatingHealthBarUI();
 
-        // Set Knockback to the movement component.
-        moveComponent.DoKnockback(knockBackForce, direction);
+        // Check if knockback is applicable
+        if (knockBackForce.HasValue && direction.HasValue)
+        {
+            // Set Knockback to the movement component.
+            moveComponent.DoKnockback(knockBackForce.Value, direction.Value);
+        }
 
         return EnemyStats.currentHealth;
     }
+
 
 
     //Update floating healthbar in world space.

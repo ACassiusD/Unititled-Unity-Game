@@ -11,7 +11,8 @@ public class StunnedState : PlayerState
 
     public override void Enter()
     {
-        Debug.Log("Entered Stun state");
+        if (movementComponent.isDebugging)
+            Debug.Log("Entered Stun state");
         animator.setStunnedAnimation();
         movementComponent.stunTimer = movementComponent.stunDuration;
         base.Enter();
@@ -37,8 +38,8 @@ public class StunnedState : PlayerState
 
     public override void Exit()
     {
-        //if (movementComponent.isDebugging)
-        Debug.Log("Enemy Exit Knockback state");
+        if (movementComponent.isDebugging)
+            Debug.Log("Enemy Exit Knockback state");
     }
 
 

@@ -7,8 +7,8 @@ using UnityEngine;
 /// </summary>
 public interface IDamageable
 {
-    public float ReceiveDamage(float damageAmount, int knockBackForce, Vector3 direction);
-    public void Feint();
-    public void UpdateFloatingHealthBarUI();
+    float ReceiveDamage(float damageAmount, int? knockBackForce = null, Vector3? direction = null);
+    void Feint();
+    void UpdateFloatingHealthBarUI();
 }
 

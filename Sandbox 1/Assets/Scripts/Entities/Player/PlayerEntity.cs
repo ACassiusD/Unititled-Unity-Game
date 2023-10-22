@@ -91,7 +91,7 @@ public class PlayerEntity : MonoBehaviour, IDamageable
         transform.rotation = activeMount.transform.rotation;
     }
 
-    public float ReceiveDamage(float damageAmount, int knockBackForce, Vector3 direction = new Vector3())
+    public float ReceiveDamage(float damageAmount, int? knockBackForce, Vector3? direction = null)
     {
         float newCurrentHealthValue = playerCombatComponent.ReceiveDamage(damageAmount, knockBackForce, direction);
         UpdateFloatingHealthBarUI();

@@ -69,9 +69,9 @@ public abstract class MoveComponent : MonoBehaviour
 
     public void ZeroYVelocityIfGrounded() //Grounded reset velocity check
     {
-        if (IsGrounded() && velocity.y < 0)
+        if (IsGrounded() && velocity.z < 0)
         {
-            velocity.y = -2f;
+            velocity.z = -2f;
         }
     }
 

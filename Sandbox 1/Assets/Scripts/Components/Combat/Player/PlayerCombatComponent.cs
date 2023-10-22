@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.VFX;
 
@@ -16,9 +17,16 @@ public class PlayerCombatComponent : CombatComponent
 
     //For Melee Attack
     public VisualEffect meleeAnimation;
+    public Collider meleeHitbox;
+    private bool isMeleeAttacking = false;
 
     private void Awake()
     {
+        //Get Melee Hitbox. Throw an error if not found.
+        meleeHitbox = transform.Find("Melee_Attack/Melee_Hitbox").GetComponent<Collider>();
+        if (meleeHitbox == null)
+            Debug.LogError("Melee_Hitbox not found on " + gameObject.name);
+
         // Assuming that the PlayerManager and the PlayerEntity are accessible globally
         cam = PlayerManager.Instance.getPlayerScript().playerMovementComponent.cam.transform;
 
@@ -55,7 +63,20 @@ public class PlayerCombatComponent : CombatComponent
         if (playerControls.Player.MeleeKey.WasPerformedThisFrame())
         {
             meleeAnimation.Play();
+            StartCoroutine(HandleMeleeAttack());
         }
+    }
+
+    private IEnumerator HandleMeleeAttack()
+    {
+        isMeleeAttacking = true;
+        meleeHitbox.enabled = true;
+
+        // Wait for some time (e.g., duration of the melee attack)
+        yield return new WaitForSeconds(0.5f); // This duration needs to be adjusted based on your animation duration
+
+        meleeHitbox.enabled = false;
+        isMeleeAttacking = false;
     }
 
     public void FireProjectile()
@@ -92,13 +113,10 @@ public class PlayerCombatComponent : CombatComponent
         rb.mass = mass;
     }
 
-    public float ReceiveDamage(float damageAmount, int knockBackForce, Vector3 direction = new Vector3())
+    public float ReceiveDamage(float damageAmount, int? knockBackForce, Vector3? direction = null)
     {
         TakeDamage(damageAmount);
-
-        // STUN CODE
         // playerMovementComponent.stunTimer = playerMovementComponent.stunDuration;
-
         return statsComponent.currentHealth;
     }
 
