@@ -24,7 +24,7 @@ public class PlayerInventoryHolder : InventoryHolder
 
     void Update()
     {
-        if (playerControls.Player.BKey.WasPerformedThisFrame())
+        if (playerControls.Player.InventoryKey.WasPerformedThisFrame())
         {
             OnPlayerBackpackDisplayRequested?.Invoke(SecondaryInventorySystem);
         }

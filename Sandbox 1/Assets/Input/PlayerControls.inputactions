@@ -24,7 +24,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "MiddleMouse",
+                    "name": "MeleeKey",
                     "type": "PassThrough",
                     "id": "0e7e5598-9b5e-449d-9f6a-13eedb295b14",
                     "expectedControlType": "Button",
@@ -114,7 +114,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "BKey",
+                    "name": "InventoryKey",
                     "type": "Button",
                     "id": "3c23316b-f6fe-4995-b75f-1fdcf04a455b",
                     "expectedControlType": "Button",
@@ -224,7 +224,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MiddleMouse",
+                    "action": "MeleeKey",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -334,7 +334,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "BKey",
+                    "action": "InventoryKey",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

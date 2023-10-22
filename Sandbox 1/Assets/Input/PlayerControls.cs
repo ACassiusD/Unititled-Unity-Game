@@ -46,7 +46,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""MiddleMouse"",
+                    ""name"": ""MeleeKey"",
                     ""type"": ""PassThrough"",
                     ""id"": ""0e7e5598-9b5e-449d-9f6a-13eedb295b14"",
                     ""expectedControlType"": ""Button"",
@@ -136,7 +136,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""BKey"",
+                    ""name"": ""InventoryKey"",
                     ""type"": ""Button"",
                     ""id"": ""3c23316b-f6fe-4995-b75f-1fdcf04a455b"",
                     ""expectedControlType"": ""Button"",
@@ -246,7 +246,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""MiddleMouse"",
+                    ""action"": ""MeleeKey"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -356,7 +356,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""BKey"",
+                    ""action"": ""InventoryKey"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -402,7 +402,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_ToggleRun = m_Player.FindAction("ToggleRun", throwIfNotFound: true);
-        m_Player_MiddleMouse = m_Player.FindAction("MiddleMouse", throwIfNotFound: true);
+        m_Player_MeleeKey = m_Player.FindAction("MeleeKey", throwIfNotFound: true);
         m_Player_MouseButton1 = m_Player.FindAction("MouseButton1", throwIfNotFound: true);
         m_Player_MouseButton2 = m_Player.FindAction("MouseButton2", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
@@ -412,7 +412,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Player_MouseLook = m_Player.FindAction("MouseLook", throwIfNotFound: true);
         m_Player_LeftControl = m_Player.FindAction("LeftControl", throwIfNotFound: true);
         m_Player_tilde = m_Player.FindAction("tilde", throwIfNotFound: true);
-        m_Player_BKey = m_Player.FindAction("BKey", throwIfNotFound: true);
+        m_Player_InventoryKey = m_Player.FindAction("InventoryKey", throwIfNotFound: true);
         m_Player_KeyNum1 = m_Player.FindAction("KeyNum1", throwIfNotFound: true);
         m_Player_KeyNum2 = m_Player.FindAction("KeyNum2", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
@@ -477,7 +477,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_ToggleRun;
-    private readonly InputAction m_Player_MiddleMouse;
+    private readonly InputAction m_Player_MeleeKey;
     private readonly InputAction m_Player_MouseButton1;
     private readonly InputAction m_Player_MouseButton2;
     private readonly InputAction m_Player_Jump;
@@ -487,7 +487,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_MouseLook;
     private readonly InputAction m_Player_LeftControl;
     private readonly InputAction m_Player_tilde;
-    private readonly InputAction m_Player_BKey;
+    private readonly InputAction m_Player_InventoryKey;
     private readonly InputAction m_Player_KeyNum1;
     private readonly InputAction m_Player_KeyNum2;
     private readonly InputAction m_Player_Dash;
@@ -497,7 +497,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public PlayerActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @ToggleRun => m_Wrapper.m_Player_ToggleRun;
-        public InputAction @MiddleMouse => m_Wrapper.m_Player_MiddleMouse;
+        public InputAction @MeleeKey => m_Wrapper.m_Player_MeleeKey;
         public InputAction @MouseButton1 => m_Wrapper.m_Player_MouseButton1;
         public InputAction @MouseButton2 => m_Wrapper.m_Player_MouseButton2;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
@@ -507,7 +507,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @MouseLook => m_Wrapper.m_Player_MouseLook;
         public InputAction @LeftControl => m_Wrapper.m_Player_LeftControl;
         public InputAction @tilde => m_Wrapper.m_Player_tilde;
-        public InputAction @BKey => m_Wrapper.m_Player_BKey;
+        public InputAction @InventoryKey => m_Wrapper.m_Player_InventoryKey;
         public InputAction @KeyNum1 => m_Wrapper.m_Player_KeyNum1;
         public InputAction @KeyNum2 => m_Wrapper.m_Player_KeyNum2;
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
@@ -526,9 +526,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @ToggleRun.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleRun;
                 @ToggleRun.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleRun;
                 @ToggleRun.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleRun;
-                @MiddleMouse.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMiddleMouse;
-                @MiddleMouse.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMiddleMouse;
-                @MiddleMouse.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMiddleMouse;
+                @MeleeKey.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMeleeKey;
+                @MeleeKey.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMeleeKey;
+                @MeleeKey.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMeleeKey;
                 @MouseButton1.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMouseButton1;
                 @MouseButton1.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMouseButton1;
                 @MouseButton1.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMouseButton1;
@@ -556,9 +556,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @tilde.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTilde;
                 @tilde.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTilde;
                 @tilde.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTilde;
-                @BKey.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBKey;
-                @BKey.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBKey;
-                @BKey.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBKey;
+                @InventoryKey.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInventoryKey;
+                @InventoryKey.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInventoryKey;
+                @InventoryKey.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInventoryKey;
                 @KeyNum1.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnKeyNum1;
                 @KeyNum1.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnKeyNum1;
                 @KeyNum1.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnKeyNum1;
@@ -578,9 +578,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @ToggleRun.started += instance.OnToggleRun;
                 @ToggleRun.performed += instance.OnToggleRun;
                 @ToggleRun.canceled += instance.OnToggleRun;
-                @MiddleMouse.started += instance.OnMiddleMouse;
-                @MiddleMouse.performed += instance.OnMiddleMouse;
-                @MiddleMouse.canceled += instance.OnMiddleMouse;
+                @MeleeKey.started += instance.OnMeleeKey;
+                @MeleeKey.performed += instance.OnMeleeKey;
+                @MeleeKey.canceled += instance.OnMeleeKey;
                 @MouseButton1.started += instance.OnMouseButton1;
                 @MouseButton1.performed += instance.OnMouseButton1;
                 @MouseButton1.canceled += instance.OnMouseButton1;
@@ -608,9 +608,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @tilde.started += instance.OnTilde;
                 @tilde.performed += instance.OnTilde;
                 @tilde.canceled += instance.OnTilde;
-                @BKey.started += instance.OnBKey;
-                @BKey.performed += instance.OnBKey;
-                @BKey.canceled += instance.OnBKey;
+                @InventoryKey.started += instance.OnInventoryKey;
+                @InventoryKey.performed += instance.OnInventoryKey;
+                @InventoryKey.canceled += instance.OnInventoryKey;
                 @KeyNum1.started += instance.OnKeyNum1;
                 @KeyNum1.performed += instance.OnKeyNum1;
                 @KeyNum1.canceled += instance.OnKeyNum1;
@@ -628,7 +628,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnToggleRun(InputAction.CallbackContext context);
-        void OnMiddleMouse(InputAction.CallbackContext context);
+        void OnMeleeKey(InputAction.CallbackContext context);
         void OnMouseButton1(InputAction.CallbackContext context);
         void OnMouseButton2(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
@@ -638,7 +638,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnMouseLook(InputAction.CallbackContext context);
         void OnLeftControl(InputAction.CallbackContext context);
         void OnTilde(InputAction.CallbackContext context);
-        void OnBKey(InputAction.CallbackContext context);
+        void OnInventoryKey(InputAction.CallbackContext context);
         void OnKeyNum1(InputAction.CallbackContext context);
         void OnKeyNum2(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);

@@ -24,9 +24,7 @@ public class MeleeAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bool middleMouseClicked = playerControls.Player.MiddleMouse.WasPerformedThisFrame();
-
-        if (middleMouseClicked)
+        if (playerControls.Player.MeleeKey.WasPerformedThisFrame();)
         {
             anim.Play();
         }

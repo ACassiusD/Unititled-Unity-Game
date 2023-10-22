@@ -36272,17 +36272,17 @@ PrefabInstance:
     - target: {fileID: 8655172793742681713, guid: 1070dfa1b11333041918f2463b64250e,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.22598182
+      value: -0.2259818
       objectReference: {fileID: 0}
     - target: {fileID: 8655172793742681713, guid: 1070dfa1b11333041918f2463b64250e,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.17560735
+      value: 0.17560734
       objectReference: {fileID: 0}
     - target: {fileID: 8655172793742681713, guid: 1070dfa1b11333041918f2463b64250e,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.041455235
+      value: 0.041455228
       objectReference: {fileID: 0}
     - target: {fileID: 8655172793742681718, guid: 1070dfa1b11333041918f2463b64250e,
         type: 3}
@@ -121786,6 +121786,7 @@ GameObject:
   - component: {fileID: 2554163051583158830}
   - component: {fileID: 2554163051583158832}
   - component: {fileID: 2554163051583158833}
+  - component: {fileID: 2554163051583158836}
   m_Layer: 10
   m_Name: BetaCharacter_0.2
   m_TagString: Player
@@ -122534,10 +122535,10 @@ MonoBehaviour:
   groundCheckTimer: 0.19700877
   slopeLimit: 55
   slopeSpeed: 3000
-  onSteepSlope: 0
+  isOnSteepSlope: 0
   sphereRad: 0.3
   sphereDist: 5
-  moveDir: {x: 0, y: 0, z: 0}
+  movementDirection: {x: 0, y: 0, z: 0}
   dashSpeed: 150
   dashDuration: 0.15
   dashCooldown: 0.5
@@ -123456,6 +123457,19 @@ MonoBehaviour:
   mass: 5
   useGravity: 0
   rayRange: 2000
+--- !u!114 &2554163051583158836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2460375269804751357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f195b2a34287e52409ab7e9d93517550, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 1034954579}
 --- !u!137 &2580334552508126999
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
