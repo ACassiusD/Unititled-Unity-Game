@@ -27,10 +27,10 @@ public class PlayerMovementComponent : MoveComponent
     public float groundCheckTimer = 0f; //How long after jumping can we check for isGrounded again.
     public float slopeLimit = 45;
     public float slopeSpeed = 50;
-    public bool onSteepSlope = false;
+    public bool isOnSteepSlope = false;
     public float sphereRad = 5;
     public float sphereDist = 5;
-    public Vector3 moveDir;
+    public Vector3 movementDirection;
     private RaycastHit slopeHit;
     private RaycastHit steepSlopeHit;
 
@@ -53,15 +53,33 @@ public class PlayerMovementComponent : MoveComponent
         base.Update();
     }
 
+    /// <summary>
+    /// Performs a dash in the direction of the player's movement input based on the camera's orientation.
+    /// The dash lasts for a specified duration and moves the player at a defined dash speed.
+    /// </summary>
+    /// <returns>IEnumerator for the coroutine behavior of the dash.</returns>
     private IEnumerator Dash()
     {
         float dashStartTime = Time.time;
-        Vector3 dashDirection = transform.forward;  // Now dashing in the direction the entity is facing
+
+        // Get player input direction for dashing
+        float horizontal = playerControls.Player.Movement.ReadValue<Vector2>().x;
+        float vertical = playerControls.Player.Movement.ReadValue<Vector2>().y;
+
+        // Calculate the dash direction based on the camera's orientation
+        Vector3 forward = cam.transform.forward;
+        Vector3 right = cam.transform.right;
+        forward.y = 0;
+        right.y = 0;
+        forward.Normalize();
+        right.Normalize();
+
+        Vector3 desiredMoveDirection = forward * vertical + right * horizontal;
 
         while (Time.time < dashStartTime + dashDuration)
         {
-            Vector3 dashVelocity = dashDirection * dashSpeed;
-            characterController.Move(dashVelocity * Time.deltaTime);  // Assumes your PlayerMovementComponent has a public CharacterController named characterController
+            Vector3 dashVelocity = desiredMoveDirection * dashSpeed;
+            characterController.Move(dashVelocity * Time.deltaTime);
             yield return null;
         }
 
@@ -113,52 +131,87 @@ public class PlayerMovementComponent : MoveComponent
         transform.rotation = activeMount.transform.rotation;
     }
 
+    /// <summary>
+    /// Handles player movement based on user input.
+    /// </summary>
     public void MovePlayerViaInput()
     {
-        //Returns 0, -1 or 1 for corrosponding direction
+        Vector3 inputDirection = GetInputDirection();
+
+        if (inputDirection.sqrMagnitude >= 0.01f)
+        {
+            RotatePlayer(inputDirection);
+            movementDirection = CalculateMoveDirection(inputDirection);
+
+            if (isOnSteepSlope)
+                SlideDownSlope();
+            else
+                MoveCharacter();
+        }
+        // Combined check for no movement input and being on a steep slope.
+        else if (isOnSteepSlope)
+        {
+            SlideDownSlope();
+        }
+    }
+
+    /// <summary>
+    /// Retrieves and normalizes the movement input.
+    /// </summary>
+    /// <returns>Normalized movement direction.</returns>
+    private Vector3 GetInputDirection()
+    {
         float horizontal = playerControls.Player.Movement.ReadValue<Vector2>().x;
         float vertical = playerControls.Player.Movement.ReadValue<Vector2>().y;
+        return new Vector3(horizontal, 0f, vertical).normalized;
+    }
 
-        //Calcuate the Vector3 direction, and normalize it to a lenght of 1 unit (just get the direction we want to wak in p much)
-        Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
+    /// <summary>
+    /// Rotates the player to face the desired movement direction.
+    /// </summary>
+    /// <param name="direction">Desired movement direction.</param>
+    private void RotatePlayer(Vector3 direction)
+    {
+        // Calculate desired rotation angle considering camera's Y-axis rotation.
+        float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.transform.eulerAngles.y;
 
-        //If we picked up a movement input
-        if (direction.magnitude >= 0.1f)
-        {
-            //Mathf.Atan2(direction.x, direction.z) - Gives us the angle in radians our player needs to turn
-            //Mathf.Rad2Deg Update the angle to degrees
-            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.transform.eulerAngles.y;
-            //Smooth the angle to not immediatly point towards it.
-            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref rotationSpeed, turnSmoothTime);
-            //Rotate our player on the Y axis by the angle 
-            transform.rotation = Quaternion.Euler(0f, angle, 0f);
+        // Smoothly transition to the desired angle using damping.
+        float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref rotationSpeed, turnSmoothTime);
 
-            //reference for more information - https://www.youtube.com/watch?v=4HpC--2iowE
-            moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+        // Apply rotation.
+        transform.rotation = Quaternion.Euler(0f, angle, 0f);
+    }
 
-            //Slide down slopes
-            if (onSteepSlope)
-            {
-                Vector3 slopeDir = Vector3.up - steepSlopeHit.normal * Vector3.Dot(Vector3.up, steepSlopeHit.normal);
-                moveDir = slopeDir * (-slopeSpeed * Time.deltaTime);
-                moveDir.y = moveDir.y - steepSlopeHit.point.y;
-                characterController.Move(moveDir.normalized * (currentSpeed) * Time.deltaTime);
-            }
-            else
-                characterController.Move(moveDir.normalized * (currentSpeed) * Time.deltaTime);
-        }
-        else
-        {
-            //TODO: MAKE SLOPE SLIDE ACCELLERATE
-            //FIX SPEED ISSUES.
-            if (onSteepSlope)
-            {
-                Vector3 slopeDir = Vector3.up - steepSlopeHit.normal * Vector3.Dot(Vector3.up, steepSlopeHit.normal);
-                var moveDir = slopeDir * (-slopeSpeed * Time.deltaTime);
-                moveDir.y = moveDir.y - steepSlopeHit.point.y;
-                characterController.Move(moveDir.normalized * (currentSpeed) * Time.deltaTime);
-            }
-        }
+    /// <summary>
+    /// Calculates the movement direction after incorporating any rotations.
+    /// </summary>
+    /// <param name="direction">Initial movement direction.</param>
+    /// <returns>Calculated movement direction.</returns>
+    private Vector3 CalculateMoveDirection(Vector3 direction)
+    {
+        //Calculates the target rotation angle for the player based on the movement direction and the camera's orientation
+        float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.transform.eulerAngles.y;
+        //Creating a forward direction vector that has been rotated by the targetAngle on the Y-axis.
+        return Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+    }
+
+    /// <summary>
+    /// Handles the logic to slide the player down steep slopes.
+    /// </summary>
+    private void SlideDownSlope()
+    {
+        Vector3 slopeDir = Vector3.up - steepSlopeHit.normal * Vector3.Dot(Vector3.up, steepSlopeHit.normal);
+        movementDirection = slopeDir * (-slopeSpeed * Time.deltaTime);
+        movementDirection.y = movementDirection.y - steepSlopeHit.point.y;
+        MoveCharacter();
+    }
+
+    /// <summary>
+    /// Applies the movement to the player character.
+    /// </summary>
+    private void MoveCharacter()
+    {
+        characterController.Move(movementDirection.normalized * (currentSpeed) * Time.deltaTime);
     }
 
     private void OnDrawGizmos()
@@ -170,7 +223,7 @@ public class PlayerMovementComponent : MoveComponent
 
     public override bool IsGrounded()
     {
-        onSteepSlope = false;
+        isOnSteepSlope = false;
         var currentPos = transform.position;
         var frontOffsetPosition = transform.position + (transform.forward * groundCheckOutwardOffset) + (transform.up * groundCheckVerticleOffset);
         var backOffsetPosition = transform.position + (-transform.forward * groundCheckOutwardOffset) + (transform.up * groundCheckVerticleOffset);
@@ -207,7 +260,7 @@ public class PlayerMovementComponent : MoveComponent
 
             if (!checkSteepSlope(slopeHit))
             {
-                onSteepSlope = false;
+                isOnSteepSlope = false;
                 return true;
             }
         }
@@ -216,7 +269,7 @@ public class PlayerMovementComponent : MoveComponent
             if (slopeHit.transform.gameObject.layer == LayerMask.NameToLayer("Collectable")) return false;
             if (!checkSteepSlope(slopeHit))
             {
-                onSteepSlope = false;
+                isOnSteepSlope = false;
                 return true;
             }
         }
@@ -225,7 +278,7 @@ public class PlayerMovementComponent : MoveComponent
             if (slopeHit.transform.gameObject.layer == LayerMask.NameToLayer("Collectable")) return false;
             if (!checkSteepSlope(slopeHit))
             {
-                onSteepSlope = false;
+                isOnSteepSlope = false;
                 return true;
             }
         }
@@ -234,7 +287,7 @@ public class PlayerMovementComponent : MoveComponent
             if (slopeHit.transform.gameObject.layer == LayerMask.NameToLayer("Collectable")) return false;
             if (!checkSteepSlope(slopeHit))
             {
-                onSteepSlope = false;
+                isOnSteepSlope = false;
                 return true;
             }
         }
@@ -247,7 +300,7 @@ public class PlayerMovementComponent : MoveComponent
         if (slopeAngle > slopeLimit)
         {
             steepSlopeHit = hit;
-            onSteepSlope = true;
+            isOnSteepSlope = true;
             return true;
         }
         return false;

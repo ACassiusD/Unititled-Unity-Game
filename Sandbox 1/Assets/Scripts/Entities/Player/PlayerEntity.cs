@@ -6,11 +6,12 @@ public class PlayerEntity : MonoBehaviour, IDamageable
     protected Vector3 spawnPosition;
     public CharacterController controller;
 
-    //Components to control entity logic
+    //Components to control entity logic    
+    //TODO: Add melee attack to playerCombatComponent.
+    //TODO: ADD Combat override Component / state machines.
     public PlayerMovementComponent playerMovementComponent;
     private PlayerStatsComponent playerStatsComponent;
-    private PlayerCombatComponent playerCombatComponent; //TODO: Flesh out combat component with arrow script stuff and its own state machine.
-    //TODO: ADD Combat override Component / state machines.
+    private PlayerCombatComponent playerCombatComponent; 
     public PlayerAnimator playerAnimator; //playerAnimatorComponent
     public InventoryHolder inventory; //playerInventoryComponent
 

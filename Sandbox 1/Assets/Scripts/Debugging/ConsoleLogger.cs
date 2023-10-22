@@ -40,7 +40,7 @@ public class ConsoleLogger : MonoBehaviour
     {
         maintext =
             "Y Velocity............" + playerMovementComponent.velocity + "\n" +
-            "Move Direction..." + playerMovementComponent.moveDir + "\n" +
+            "Move Direction..." + playerMovementComponent.movementDirection + "\n" +
             "Move Speed......." + playerMovementComponent.currentSpeed + "\n" +
             "Move State........" + playerMovementComponent.movementStateMachine.CurrentState.ToString() + "\n" +
             "Sprint Timer......." + playerMovementComponent.sprintTimer + "\n" +
