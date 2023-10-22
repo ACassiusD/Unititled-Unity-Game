@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class PlayerCombatComponent : CombatComponent
 {
@@ -12,6 +13,9 @@ public class PlayerCombatComponent : CombatComponent
     public int rayRange = 2000;
     private PlayerControls playerControls;
     private Transform cam;
+
+    //For Melee Attack
+    public VisualEffect meleeAnimation;
 
     private void Awake()
     {
@@ -45,6 +49,12 @@ public class PlayerCombatComponent : CombatComponent
         if (capturedKeyPress)
         {
             FireProjectile();
+        }
+
+        // Merged MeleeAnimation logic
+        if (playerControls.Player.MeleeKey.WasPerformedThisFrame())
+        {
+            meleeAnimation.Play();
         }
     }
 
