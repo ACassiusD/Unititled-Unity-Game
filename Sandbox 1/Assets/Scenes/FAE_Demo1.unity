@@ -48139,7 +48139,7 @@ Transform:
   - {fileID: 1726462507}
   - {fileID: 83157048}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &810919854 stripped
 Transform:
@@ -56963,7 +56963,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &900816947
 Transform:
   m_ObjectHideFlags: 0
@@ -56999,7 +56999,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 900816946}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -123647,7 +123647,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 669ef54a9b9ba9e45971cdfdba0120ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 6942782802567211184, guid: 9fa346b542ae10c49ae54e15bacdbe6c,
+  projectile: {fileID: 8125513334746051629, guid: 9fa346b542ae10c49ae54e15bacdbe6c,
     type: 3}
   power: 30
   forwardVel: 5000
