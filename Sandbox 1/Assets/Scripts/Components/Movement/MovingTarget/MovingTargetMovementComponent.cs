@@ -6,10 +6,6 @@ public class MovingTargetMovementComponent : MovementComponent
     public float oscillationDistance = 5f;  // The maximum distance the object can move from its starting position
     public float oscillationSpeed = 1f;    // Speed of the oscillation movement
 
-    [Header("Vertical Oscillation Settings")]
-    public float verticalOscillationDistance = 5f;  // The maximum distance the object can move vertically from its starting position
-    public float verticalOscillationSpeed = 1f;
-
     public OscillationDirection currentOscillationDirection = OscillationDirection.Horizontal;
 
     public enum OscillationDirection
@@ -37,14 +33,14 @@ public class MovingTargetMovementComponent : MovementComponent
     private void OscillateHorizontally()
     {
         float oscillation = Mathf.Sin(Time.time * oscillationSpeed) * oscillationDistance;
-        Vector3 newPosition = initialPosition + transform.right * oscillation; // Move horizontally based on the object's right vector
+        Vector3 newPosition = initialPosition + transform.right * oscillation;
         transform.position = newPosition;
     }
 
     private void OscillateVertically()
     {
-        float verticalOscillation = Mathf.Sin(Time.time * verticalOscillationSpeed) * verticalOscillationDistance;
-        Vector3 newVerticalPosition = initialPosition + transform.up * verticalOscillation; // Move vertically based on the object's up vector
+        float oscillation = Mathf.Sin(Time.time * oscillationSpeed) * oscillationDistance;
+        Vector3 newVerticalPosition = initialPosition + transform.up * oscillation;
         transform.position = newVerticalPosition;
     }
 
