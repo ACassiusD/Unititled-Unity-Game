@@ -12,6 +12,8 @@ namespace Polyperfect.Common
 
         private void Awake()
         {
+            //Initializing this resolves issue. Assertion failed on expression: '!CompareApproximately(aScalar, 0.0F)'
+            targetRotation = transform.rotation;
             layer = LayerMask.GetMask(terrainLayer);
         }
 
@@ -42,7 +44,7 @@ namespace Polyperfect.Common
                 Quaternion surfaceRotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
                 targetRotation = surfaceRotation * transform.parent.rotation;
             }
-
+            targetRotation = transform.rotation;
             transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
         }
 

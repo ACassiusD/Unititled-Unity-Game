@@ -2,7 +2,7 @@ using UnityEngine;
 
 //Base/Abstract MoveComponent class, contains movement properties and methods to manipulate those properties
 [RequireComponent(typeof(CharacterController))]
-public abstract class MoveComponent : MonoBehaviour
+public abstract class MovementComponent : MonoBehaviour
 {
     public static PlayerEntity playerScript;
     //public static Transform playerTransform;
@@ -41,7 +41,7 @@ public abstract class MoveComponent : MonoBehaviour
 
     //Using constructor here because when accessing stateMachine in the derrived classes in Start() Method.
     //Even tho awake is usually called first, inheritance is not considered.
-    public MoveComponent()
+    public MovementComponent()
     {
         movementStateMachine = new StateMachine();
     }

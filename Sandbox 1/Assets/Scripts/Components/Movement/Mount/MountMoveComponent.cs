@@ -2,7 +2,7 @@ using Polyperfect.Animals;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class MountMoveComponent : MoveComponent
+public class MountMoveComponent : MovementComponent
 {
     public MountStandingState standing;
     public MountWanderingState wandering;

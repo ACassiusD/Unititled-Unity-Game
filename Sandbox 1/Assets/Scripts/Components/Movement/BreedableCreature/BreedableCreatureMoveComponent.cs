@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 /// Movement Component contains logic to move entity in 3D space.
 /// Possibly also contains state machine and states relevant to movement.
 /// </summary>
-public class BreedableCreatureMoveComponent : MoveComponent
+public class BreedableCreatureMoveComponent : MovementComponent
 {
     public BreedableCreatureWanderingState wandering;
     public BreedableCreatureIdleState idle;

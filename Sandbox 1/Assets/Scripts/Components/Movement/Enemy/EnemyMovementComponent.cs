@@ -2,7 +2,7 @@ using Polyperfect.Animals;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyMovementComponent : MoveComponent
+public class EnemyMovementComponent : MovementComponent
 {
     public EnemyStandingState standing;
     public EnemyChasingState chasing;
