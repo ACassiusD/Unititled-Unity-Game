@@ -29,7 +29,7 @@ public class MountStandingState : MountState
 
         jump = movementComponent.playerControls.Player.Jump.WasPerformedThisFrame();
 
-        if (movementComponent.playerControls.Player.ToggleRun.WasPressedThisFrame())
+        if (movementComponent.playerControls.Player.LeftControl.WasPressedThisFrame())
             movementComponent.toggleRun();
 
         //if idle

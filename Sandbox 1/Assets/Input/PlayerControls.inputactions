@@ -15,7 +15,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ToggleRun",
+                    "name": "LeftShift",
                     "type": "Button",
                     "id": "c3878cbc-5672-46d5-99d0-86f293c0e039",
                     "expectedControlType": "Button",
@@ -141,9 +141,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Dash",
+                    "name": "MouseForward",
                     "type": "Button",
                     "id": "ba2c4915-4988-44ae-9b53-72913ba4fd66",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "TabKey",
+                    "type": "Button",
+                    "id": "c4c53a37-dd9c-41aa-809a-ff89acbb6764",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -213,7 +222,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ToggleRun",
+                    "action": "LeftShift",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -367,7 +376,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Dash",
+                    "action": "MouseForward",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2c6e861c-011c-49e4-93fd-06f77524d024",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TabKey",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

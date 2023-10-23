@@ -25,7 +25,7 @@
         movementComponent.AddVelocityAndMove();
         movementComponent.MovePlayerViaInput();
 
-        if (movementComponent.playerControls.Player.ToggleRun.WasPressedThisFrame())
+        if (movementComponent.playerControls.Player.LeftControl.WasPressedThisFrame())
         {
             movementComponent.toggleRun();
         }

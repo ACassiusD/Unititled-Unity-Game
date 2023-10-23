@@ -44,7 +44,7 @@ public class PlayerMovementComponent : MoveComponent
     {
         playerScript.UpdateStaminaUI();
 
-        bool dashKeyCaptured = playerControls.Player.Dash.WasPressedThisFrame();  // Assumes you have a Dash action set up in your PlayerControls
+        bool dashKeyCaptured = playerControls.Player.LeftShift.WasPressedThisFrame();  // Assumes you have a Dash action set up in your PlayerControls
         if (dashKeyCaptured && Time.time >= lastDashTime + dashCooldown)
         {
             StartCoroutine(Dash());

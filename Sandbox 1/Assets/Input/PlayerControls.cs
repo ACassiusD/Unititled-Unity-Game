@@ -37,7 +37,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""ToggleRun"",
+                    ""name"": ""LeftShift"",
                     ""type"": ""Button"",
                     ""id"": ""c3878cbc-5672-46d5-99d0-86f293c0e039"",
                     ""expectedControlType"": ""Button"",
@@ -163,9 +163,18 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Dash"",
+                    ""name"": ""MouseForward"",
                     ""type"": ""Button"",
                     ""id"": ""ba2c4915-4988-44ae-9b53-72913ba4fd66"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TabKey"",
+                    ""type"": ""Button"",
+                    ""id"": ""c4c53a37-dd9c-41aa-809a-ff89acbb6764"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -235,7 +244,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""ToggleRun"",
+                    ""action"": ""LeftShift"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -389,7 +398,18 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Dash"",
+                    ""action"": ""MouseForward"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2c6e861c-011c-49e4-93fd-06f77524d024"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TabKey"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -401,7 +421,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
-        m_Player_ToggleRun = m_Player.FindAction("ToggleRun", throwIfNotFound: true);
+        m_Player_LeftShift = m_Player.FindAction("LeftShift", throwIfNotFound: true);
         m_Player_MeleeKey = m_Player.FindAction("MeleeKey", throwIfNotFound: true);
         m_Player_MouseButton1 = m_Player.FindAction("MouseButton1", throwIfNotFound: true);
         m_Player_MouseButton2 = m_Player.FindAction("MouseButton2", throwIfNotFound: true);
@@ -415,7 +435,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Player_InventoryKey = m_Player.FindAction("InventoryKey", throwIfNotFound: true);
         m_Player_KeyNum1 = m_Player.FindAction("KeyNum1", throwIfNotFound: true);
         m_Player_KeyNum2 = m_Player.FindAction("KeyNum2", throwIfNotFound: true);
-        m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
+        m_Player_MouseForward = m_Player.FindAction("MouseForward", throwIfNotFound: true);
+        m_Player_TabKey = m_Player.FindAction("TabKey", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -476,7 +497,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Movement;
-    private readonly InputAction m_Player_ToggleRun;
+    private readonly InputAction m_Player_LeftShift;
     private readonly InputAction m_Player_MeleeKey;
     private readonly InputAction m_Player_MouseButton1;
     private readonly InputAction m_Player_MouseButton2;
@@ -490,13 +511,14 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_InventoryKey;
     private readonly InputAction m_Player_KeyNum1;
     private readonly InputAction m_Player_KeyNum2;
-    private readonly InputAction m_Player_Dash;
+    private readonly InputAction m_Player_MouseForward;
+    private readonly InputAction m_Player_TabKey;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
         public PlayerActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
-        public InputAction @ToggleRun => m_Wrapper.m_Player_ToggleRun;
+        public InputAction @LeftShift => m_Wrapper.m_Player_LeftShift;
         public InputAction @MeleeKey => m_Wrapper.m_Player_MeleeKey;
         public InputAction @MouseButton1 => m_Wrapper.m_Player_MouseButton1;
         public InputAction @MouseButton2 => m_Wrapper.m_Player_MouseButton2;
@@ -510,7 +532,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @InventoryKey => m_Wrapper.m_Player_InventoryKey;
         public InputAction @KeyNum1 => m_Wrapper.m_Player_KeyNum1;
         public InputAction @KeyNum2 => m_Wrapper.m_Player_KeyNum2;
-        public InputAction @Dash => m_Wrapper.m_Player_Dash;
+        public InputAction @MouseForward => m_Wrapper.m_Player_MouseForward;
+        public InputAction @TabKey => m_Wrapper.m_Player_TabKey;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -523,9 +546,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Movement.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
                 @Movement.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
                 @Movement.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
-                @ToggleRun.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleRun;
-                @ToggleRun.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleRun;
-                @ToggleRun.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnToggleRun;
+                @LeftShift.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeftShift;
+                @LeftShift.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeftShift;
+                @LeftShift.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLeftShift;
                 @MeleeKey.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMeleeKey;
                 @MeleeKey.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMeleeKey;
                 @MeleeKey.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMeleeKey;
@@ -565,9 +588,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @KeyNum2.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnKeyNum2;
                 @KeyNum2.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnKeyNum2;
                 @KeyNum2.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnKeyNum2;
-                @Dash.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
-                @Dash.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
-                @Dash.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDash;
+                @MouseForward.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMouseForward;
+                @MouseForward.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMouseForward;
+                @MouseForward.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMouseForward;
+                @TabKey.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTabKey;
+                @TabKey.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTabKey;
+                @TabKey.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTabKey;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -575,9 +601,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
-                @ToggleRun.started += instance.OnToggleRun;
-                @ToggleRun.performed += instance.OnToggleRun;
-                @ToggleRun.canceled += instance.OnToggleRun;
+                @LeftShift.started += instance.OnLeftShift;
+                @LeftShift.performed += instance.OnLeftShift;
+                @LeftShift.canceled += instance.OnLeftShift;
                 @MeleeKey.started += instance.OnMeleeKey;
                 @MeleeKey.performed += instance.OnMeleeKey;
                 @MeleeKey.canceled += instance.OnMeleeKey;
@@ -617,9 +643,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @KeyNum2.started += instance.OnKeyNum2;
                 @KeyNum2.performed += instance.OnKeyNum2;
                 @KeyNum2.canceled += instance.OnKeyNum2;
-                @Dash.started += instance.OnDash;
-                @Dash.performed += instance.OnDash;
-                @Dash.canceled += instance.OnDash;
+                @MouseForward.started += instance.OnMouseForward;
+                @MouseForward.performed += instance.OnMouseForward;
+                @MouseForward.canceled += instance.OnMouseForward;
+                @TabKey.started += instance.OnTabKey;
+                @TabKey.performed += instance.OnTabKey;
+                @TabKey.canceled += instance.OnTabKey;
             }
         }
     }
@@ -627,7 +656,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     public interface IPlayerActions
     {
         void OnMovement(InputAction.CallbackContext context);
-        void OnToggleRun(InputAction.CallbackContext context);
+        void OnLeftShift(InputAction.CallbackContext context);
         void OnMeleeKey(InputAction.CallbackContext context);
         void OnMouseButton1(InputAction.CallbackContext context);
         void OnMouseButton2(InputAction.CallbackContext context);
@@ -641,6 +670,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnInventoryKey(InputAction.CallbackContext context);
         void OnKeyNum1(InputAction.CallbackContext context);
         void OnKeyNum2(InputAction.CallbackContext context);
-        void OnDash(InputAction.CallbackContext context);
+        void OnMouseForward(InputAction.CallbackContext context);
+        void OnTabKey(InputAction.CallbackContext context);
     }
 }

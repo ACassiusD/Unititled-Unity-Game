@@ -21,8 +21,6 @@ public class StunnedState : PlayerState
     public override void HandleInput()
     {
         movementComponent.stunTimer -= Time.deltaTime;
-        //if (movementComponent.isDebugging)
-        Debug.Log("Time = " + movementComponent.stunTimer);
     }
 
     public override void LogicUpdate()

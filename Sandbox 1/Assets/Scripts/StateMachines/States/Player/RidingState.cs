@@ -49,7 +49,7 @@ public class RidingState : PlayerState
 
     public override void LogicUpdate()
     {
-        bool capturedKeyPress = movementComponent.playerControls.Player.LeftControl.WasPerformedThisFrame();
+        bool capturedKeyPress = movementComponent.playerControls.Player.TabKey.WasPerformedThisFrame();
         if (capturedKeyPress)
         {
             movementComponent.isRiding = false;

@@ -7,7 +7,8 @@ public class PlayerEntity : MonoBehaviour, IDamageable
     public CharacterController controller;
 
     //Components to control entity logic    
-    //TODO: Add melee attack to playerCombatComponent.
+    //TODO: Finish melee attack with hitbox and everything.
+        // TODO: Fix melee hitbox pushing around mountd player.
     //TODO: ADD Combat override Component / state machines.
     public PlayerMovementComponent playerMovementComponent;
     private PlayerStatsComponent playerStatsComponent;

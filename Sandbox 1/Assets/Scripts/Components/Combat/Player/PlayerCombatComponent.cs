@@ -53,17 +53,22 @@ public class PlayerCombatComponent : CombatComponent
 
     private void Update()
     {
-        bool capturedKeyPress = playerControls.Player.MouseButton1.WasPerformedThisFrame();
-        if (capturedKeyPress)
-        {
-            FireProjectile();
-        }
+        // Check for MouseButton1 press
+        bool mouseButton1Pressed = playerControls.Player.MouseButton1.WasPerformedThisFrame();
+        // Check for MouseButton2 being held down
+        bool mouseButton2Held = playerControls.Player.MouseButton2.IsPressed();
 
-        // Merged MeleeAnimation logic
-        if (playerControls.Player.MeleeKey.WasPerformedThisFrame())
+        // If only MouseButton1 is pressed (Melee Attack)
+        if (mouseButton1Pressed && !mouseButton2Held)
         {
             meleeAnimation.Play();
             StartCoroutine(HandleMeleeAttack());
+        }
+
+        // If both MouseButton2 and MouseButton1 are pressed (Fire Projectile)
+        if (mouseButton1Pressed && mouseButton2Held)
+        {
+            FireProjectile();
         }
     }
 
