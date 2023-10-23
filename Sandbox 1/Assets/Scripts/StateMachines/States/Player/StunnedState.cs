@@ -27,7 +27,8 @@ public class StunnedState : PlayerState
     {
         if (movementComponent.stunTimer <= 0)
         {
-            Debug.Log("Stun timer ended");
+            if (movementComponent.isDebugging)
+                Debug.Log("Stun timer ended");
             movementComponent.stunTimer = 0;
             stateMachine.ChangeState(movementComponent.standing);
         }

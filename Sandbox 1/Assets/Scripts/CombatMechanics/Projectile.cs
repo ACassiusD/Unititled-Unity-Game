@@ -8,7 +8,11 @@ public class Projectile : Attack
     public bool enableRotation = true;
     public bool destroyOnHit = true;
     public float despawnTimer = 4f;
-    public new int knockbackForce = 100;
+
+    public void Awake()
+    {
+        knockbackForce = 100;
+    }
 
     private void Update()
     {

@@ -8,8 +8,8 @@ public class EnemyKnockbackState : EnemyState
 
     public override void Enter()
     {
-        //if (movementComponent.isDebugging)
-        Debug.Log("Enemy entered Knockback state");
+        if (movementComponent.isDebugging)
+            Debug.Log("Enemy entered Knockback state");
 
         movementComponent.Knockback();
         movementComponent.stunTimer = movementComponent.stunDuration;
@@ -25,7 +25,8 @@ public class EnemyKnockbackState : EnemyState
         movementComponent.stunTimer -= Time.deltaTime;
         if (movementComponent.isDebugging)
         {
-            Debug.Log("Time = " + movementComponent.stunTimer);
+            if (movementComponent.isDebugging)
+                Debug.Log("Time = " + movementComponent.stunTimer);
         }
     }
 
@@ -51,8 +52,8 @@ public class EnemyKnockbackState : EnemyState
 
     public override void Exit()
     {
-        //if (movementComponent.isDebugging)
-        Debug.Log("Enemy Exit Knockback state");
+        if (movementComponent.isDebugging)
+            Debug.Log("Enemy Exit Knockback state");
     }
 
 
