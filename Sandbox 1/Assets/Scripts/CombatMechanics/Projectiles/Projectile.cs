@@ -1,8 +1,14 @@
 using UnityEngine;
 
-//A projectile attack represents an attack that will be instantiated apon a player firing it
+//TODO: Make Projectile its own base class, as it is differnt from something like a spell
+// Projectile are different from something like a spell.
+// Projectile fly through the air as a ridged body 
+// Projectiles utilize HandleHit when collding with something
+// Spells dont use a ridged body and do not check for collisions immediatly.
+
+//A projectile attack represents an attack that will be instantiated upon a player firing it
 //Projectiles fly through the air until it collides with something.
-//If the projectiel collides with a damagable entity it will do damage to that entity.
+//If the projectile collides with a damagable entity it will do damage to that entity.
 public class Projectile : Attack
 {
     public bool enableRotation = true;
@@ -14,7 +20,7 @@ public class Projectile : Attack
         knockbackForce = 100;
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         // Rotate the arrow based on its velocity
         if (enableRotation && rb.velocity.magnitude >= 0.1f)
@@ -24,14 +30,6 @@ public class Projectile : Attack
 
         // Handle despawn timer
         UpdateDespawnTimer();
-
-        // Additional projectile-specific behavior, if needed
-        SpecificAttackBehaviour();
-    }
-
-    public override void SpecificAttackBehaviour()
-    {
-        // For now, it can be empty or you can add additional projectile-specific logic
     }
 
     // Override the HandleHit from the base Attack class
@@ -67,5 +65,10 @@ public class Projectile : Attack
         {
             Destroy(this.gameObject);
         }
+    }
+
+    public override void SpecificAttackBehaviour()
+    {
+        // For now, it can be empty or you can add additional projectile-specific logic
     }
 }

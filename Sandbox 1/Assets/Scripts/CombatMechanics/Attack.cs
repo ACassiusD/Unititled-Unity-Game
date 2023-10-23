@@ -12,7 +12,7 @@ public abstract class Attack : MonoBehaviour, IAttackBehaviour
     public int knockbackForce = 100;
     protected Vector3 knockbackDirection;
 
-    protected void Start()
+    protected virtual void Start()
     {
         rb = GetComponent<Rigidbody>();
 
