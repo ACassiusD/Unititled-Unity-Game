@@ -118,13 +118,6 @@ public class PlayerCombatComponent : CombatComponent
         rb.mass = mass;
     }
 
-    public float ReceiveDamage(float damageAmount, int? knockBackForce, Vector3? direction = null)
-    {
-        TakeDamage(damageAmount);
-        // playerMovementComponent.stunTimer = playerMovementComponent.stunDuration;
-        return statsComponent.currentHealth;
-    }
-
     /// <summary>
     /// What happens when this entity dies.
     /// </summary>

@@ -9,6 +9,6 @@ public interface IDamageable
 {
     float ReceiveDamage(float damageAmount, int? knockBackForce = null, Vector3? direction = null);
     void Feint();
-    void UpdateFloatingHealthBarUI();
+    //void UpdateFloatingHealthBarUI();
 }
 

@@ -105,10 +105,6 @@ public class PlayerEntity : MonoBehaviour, IDamageable
     /// </summary>
     public void UpdateFloatingHealthBarUI()
     {
-        if (healthBarScript != null)
-        {
-            healthBarScript.setHealth(playerStatsComponent.currentHealth, playerStatsComponent.maxHealth);
-        }
         UIController.Instance.setHealth(playerStatsComponent.currentHealth, playerStatsComponent.maxHealth);
     }
 

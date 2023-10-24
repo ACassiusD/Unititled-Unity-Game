@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour, IDamageable
+public class Enemy : MonoBehaviour
 {
     public EnemyMovementComponent moveComponent;
     public EnemyAnimatorComponent enemyAnimator;
@@ -63,7 +63,7 @@ public class Enemy : MonoBehaviour, IDamageable
         attacked = true;
 
         // Update the health using the StatsComponent's method
-        enemyCombatComponent.TakeDamage(damageAmount);
+        enemyCombatComponent.ReceiveDamage(damageAmount);
 
         //Update Healthbar in UI
         UpdateFloatingHealthBarUI();
@@ -88,7 +88,6 @@ public class Enemy : MonoBehaviour, IDamageable
             var floatingDamageText = Instantiate(floatingDmgText, transform.position, this.transform.rotation, transform);
             floatingDamageText.GetComponent<TextMeshPro>().text = EnemyStats.currentHealth.ToString();
         }
-        healthBarScript.setHealth(EnemyStats.currentHealth, EnemyStats.maxHealth);
     }
 
     //Kill/death command, despawn and drop loot.
