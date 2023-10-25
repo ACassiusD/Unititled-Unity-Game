@@ -39,7 +39,7 @@ public class AOESpell : MonoBehaviour //Can implement a AEO interface at one poi
         var cols = Physics.OverlapBox(hitboxCollider.bounds.center, hitboxCollider.bounds.extents, hitboxCollider.transform.rotation, LayerMask.GetMask("Player"));
         foreach (Collider c in cols)
         {
-            var script = c.GetComponent<PlayerEntity>();
+            var script = c.GetComponent<IDamageable>();
             int[] dmgValues;
             hitCount++;
             script.ReceiveDamage(damage, 3000);

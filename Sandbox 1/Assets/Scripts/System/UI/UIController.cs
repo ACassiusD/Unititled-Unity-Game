@@ -5,6 +5,7 @@ public class UIController : MonoBehaviour
 {
     public Image healthSlider;
     public Image staminaSlider;
+    public PlayerCombatComponent playerCombatComponent; //Subscribe to its events to update the UI
 
     public static UIController Instance { get; private set; }
 
@@ -19,21 +20,22 @@ public class UIController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        //Subscribe to the event.
+        if (playerCombatComponent != null){
+            playerCombatComponent.OnHealthChanged += SetHealth;
+        }
+        else{
+            throw new System.Exception("CombatComponent not found on " + gameObject.name);
+        }
     }
 
-    void test()
+    public void SetHealth(float healthPercentage)
     {
-        Debug.Log("Test");
+        healthSlider.fillAmount = (float)healthPercentage;
     }
 
-    public void setHealth(float currentHealth, float maxHealth)
-    {
-        double rawPercentage = (float)currentHealth / (float)maxHealth;
-        double percentage = System.Math.Round(rawPercentage, 2);
-        healthSlider.fillAmount = (float)percentage;
-    }
-
-    public void setStamina(float current, float max)
+    public void SetStamina(float current, float max)
     {
         double rawPercentage = (float)current / (float)max;
         double percentage = System.Math.Round(rawPercentage, 2);

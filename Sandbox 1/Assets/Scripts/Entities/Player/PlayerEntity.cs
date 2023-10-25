@@ -1,7 +1,7 @@
 using Polyperfect.Common;
 using UnityEngine;
 
-public class PlayerEntity : MonoBehaviour, IDamageable
+public class PlayerEntity : MonoBehaviour
 {
     protected Vector3 spawnPosition;
     public CharacterController controller;
@@ -28,6 +28,7 @@ public class PlayerEntity : MonoBehaviour, IDamageable
     //If true, this animal will rotate to match the terrain. Ensure you have set the layer of the terrain as 'Terrain'
     private void Awake()
     {
+        //Get Components.
         inventory = this.GetComponent<InventoryHolder>();
         playerAnimator = GetComponent<PlayerAnimator>();
         healthBarScript = this.GetComponentInChildren<HealthBar>();
@@ -35,9 +36,12 @@ public class PlayerEntity : MonoBehaviour, IDamageable
         playerStatsComponent = this.GetComponentInChildren<PlayerStatsComponent>();
         playerCombatComponent = this.GetComponentInChildren<PlayerCombatComponent>();
 
-        //Pass the entitys stats to the combat component.
+        //Initialize any components if needed. 
         playerCombatComponent.Initialize(playerStatsComponent);
 
+        //Subscribe to component events.
+        //Combatcomponents OnStunned event so we can do things like Stun with move component.
+        playerCombatComponent.OnStunned += handleStun;
 
         //Match surface rotation to the terrain. 
         //TODO: Move to movement component? 
@@ -50,6 +54,11 @@ public class PlayerEntity : MonoBehaviour, IDamageable
             Debug.LogError(this.name + " is missing a MoveComponent!");
         if (!healthBarScript)
             Debug.Log(this.name + " is missing a HealthBarScript!");
+    }
+
+    private void handleStun(float stunDuration)
+    {
+        playerMovementComponent.stunTimer = playerMovementComponent.stunDuration;
     }
 
     public void Update()
@@ -92,21 +101,13 @@ public class PlayerEntity : MonoBehaviour, IDamageable
         transform.rotation = activeMount.transform.rotation;
     }
 
-    public float ReceiveDamage(float damageAmount, int? knockBackForce, Vector3? direction = null)
-    {
-        float newCurrentHealthValue = playerCombatComponent.ReceiveDamage(damageAmount, knockBackForce, direction);
-        UpdateFloatingHealthBarUI();
-        playerMovementComponent.stunTimer = playerMovementComponent.stunDuration;
-        return newCurrentHealthValue;
-    }
-
     /// <summary>
     /// Update floating healthbar in world space.
     /// </summary>
-    public void UpdateFloatingHealthBarUI()
-    {
-        UIController.Instance.setHealth(playerStatsComponent.currentHealth, playerStatsComponent.maxHealth);
-    }
+    //public void UpdateFloatingHealthBarUI()
+    //{
+    //    UIController.Instance.SetHealth(playerStatsComponent.currentHealth, playerStatsComponent.maxHealth);
+    //}
 
 
     /// <summary>
@@ -148,20 +149,9 @@ public class PlayerEntity : MonoBehaviour, IDamageable
         }
         if (attackKeyCaptured2)
         {
-            fullHeal();
             SetSpawn();
         }
     }
-
-
-    protected void fullHeal()
-    {
-        playerStatsComponent.currentHealth = playerStatsComponent.maxHealth;
-        UpdateFloatingHealthBarUI();
-        playerMovementComponent.sprintTimer = playerMovementComponent.sprintLimit;
-        UpdateStaminaUI();
-    }
-
 
     /// <summary>
     /// TODO: It might be good to move this into a player UI specific class, but its ok here for now.
@@ -179,7 +169,7 @@ public class PlayerEntity : MonoBehaviour, IDamageable
             currentSprintLimit = mountMoveComponent.sprintLimit;
             currentSprintTime = mountMoveComponent.sprintTimer;
         }
-        UIController.Instance.setStamina(currentSprintTime, currentSprintLimit);
+        UIController.Instance.SetStamina(currentSprintTime, currentSprintLimit);
     }
 
 }

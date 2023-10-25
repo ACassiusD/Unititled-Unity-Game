@@ -46,7 +46,7 @@ public abstract class MovementComponent : MonoBehaviour
         movementStateMachine = new StateMachine();
     }
 
-    protected void Awake()
+    protected virtual void Awake()
     {
         if (playerControls == null) playerControls = new PlayerControls();
 

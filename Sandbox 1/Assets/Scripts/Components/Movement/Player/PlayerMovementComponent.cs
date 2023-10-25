@@ -40,6 +40,42 @@ public class PlayerMovementComponent : MovementComponent
     public float dashCooldown = 0.5f;
     private float lastDashTime = -Mathf.Infinity;
 
+    //For matching surface rotation on terrain when moving.
+    //[SerializeField] private bool matchSurfaceRotation = true;
+    //[SerializeField] private int surfaceRotationSpeed = 20;
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        //Match surface rotation to the terrain. 
+        //if (matchSurfaceRotation && transform.childCount > 0)
+        //{
+        //    transform.GetChild(0).gameObject.AddComponent<Common_SurfaceRotation>().SetRotationSpeed(surfaceRotationSpeed);
+        //}
+    }
+
+    private void Start()
+    {
+        this.stunDuration = 1f;
+        activeMount = null;
+        isBeingControlled = true;
+
+        //Initialize the players states.
+        standing = new IdleState(movementStateMachine, this);
+        jumping = new JumpingState(movementStateMachine, this);
+        riding = new RidingState(movementStateMachine, this);
+        falling = new FallingState(movementStateMachine, this);
+        moving = new MovingState(movementStateMachine, this);
+        emote = new EmoteState(movementStateMachine, this);
+        stun = new StunnedState(movementStateMachine, this);
+
+        if (characterController.isGrounded)
+            movementStateMachine.Initialize(standing);
+        else
+            movementStateMachine.Initialize(jumping);
+    }
+
     protected override void Update()
     {
         playerScript.UpdateStaminaUI();
@@ -97,27 +133,6 @@ public class PlayerMovementComponent : MovementComponent
 
         //If we picked up a movement input
         return (direction.magnitude >= 0.1f);
-    }
-
-    private void Start()
-    {
-        this.stunDuration = 1f;
-        activeMount = null;
-        isBeingControlled = true;
-
-        //Initialize the players states.
-        standing = new IdleState(movementStateMachine, this);
-        jumping = new JumpingState(movementStateMachine, this);
-        riding = new RidingState(movementStateMachine, this);
-        falling = new FallingState(movementStateMachine, this);
-        moving = new MovingState(movementStateMachine, this);
-        emote = new EmoteState(movementStateMachine, this);
-        stun = new StunnedState(movementStateMachine, this);
-
-        if (characterController.isGrounded)
-            movementStateMachine.Initialize(standing);
-        else
-            movementStateMachine.Initialize(jumping);
     }
 
     public void MoveToMountedPosition()

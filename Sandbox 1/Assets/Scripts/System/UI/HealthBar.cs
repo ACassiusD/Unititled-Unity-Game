@@ -16,16 +16,13 @@ public class HealthBar : MonoBehaviour
 
     private void Start()
     {
-        // Get the CombatComponent from the entity. Assumes both scripts are on the same GameObject.
-        combatComponent = GetComponent<CombatComponent>();
-
         if (combatComponent != null)
         {
             combatComponent.OnHealthChanged += UpdateHealthBar;
         }
         else
         {
-            Debug.LogWarning("CombatComponent not found on " + gameObject.name);
+            throw new System.Exception("CombatComponent not found on " + gameObject.name);
         }
     }
 

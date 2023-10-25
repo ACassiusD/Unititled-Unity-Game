@@ -18,7 +18,9 @@ public class PlayerCombatComponent : CombatComponent
     //For Melee Attack
     public VisualEffect meleeAnimation;
     public Collider meleeHitbox;
-    private bool isMeleeAttacking = false;
+
+    //An event to let the movement controller know that it should be put in stun.
+    public event System.Action<float> OnStunned = delegate { };
 
     private void Awake()
     {
@@ -72,16 +74,24 @@ public class PlayerCombatComponent : CombatComponent
         }
     }
 
+    public override float ReceiveDamage(float damageAmount, int? knockBackForce, Vector3? direction = null)
+    {
+        float newCurrentHealthValue = base.ReceiveDamage(damageAmount, knockBackForce, direction);
+
+        //Raise OnStunned Event here.
+        OnStunned(1.5f);
+
+        return newCurrentHealthValue;
+    }
+
     private IEnumerator HandleMeleeAttack()
     {
-        isMeleeAttacking = true;
         meleeHitbox.enabled = true;
 
         // Wait for some time (e.g., duration of the melee attack)
-        yield return new WaitForSeconds(0.5f); // This duration needs to be adjusted based on your animation duration
+        yield return new WaitForSeconds(0.5f); // This duration needs to be adjusted based on the animation duration
 
         meleeHitbox.enabled = false;
-        isMeleeAttacking = false;
     }
 
     public void FireProjectile()

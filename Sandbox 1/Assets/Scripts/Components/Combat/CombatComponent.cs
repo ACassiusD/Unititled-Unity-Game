@@ -4,6 +4,8 @@ using UnityEngine;
 /// The CombatComponent class represents the combat-related functionality of an entity within an action RPG game.
 /// This component interfaces with a StatsComponent to track and modify the health of the entity,
 /// and defines behavior for receiving damage, healing, and handling death.
+/// 
+/// Declares an event OnHealthChanged, things like floating healthbar UIs, etc will subscribe to this event.
 /// </summary>
 public class CombatComponent : MonoBehaviour, IDamageable
 {
@@ -23,12 +25,13 @@ public class CombatComponent : MonoBehaviour, IDamageable
         statsComponent = statsComp;
     }
 
-    //Basic implementation of Recieve Damage
-    public float ReceiveDamage(float damageAmount, int? knockBackForce = null, Vector3? direction = null)
+    // Basic implementation of Recieve Damage
+    // Raises healthChanged event after taking damage
+    public virtual float ReceiveDamage(float damageAmount, int? knockBackForce = null, Vector3? direction = null)
     {
         statsComponent.ModifyHealth(-damageAmount);
 
-        // Raise the event after taking damage with the current health percentage
+        
         OnHealthChanged(statsComponent.GetCurrentHealthPercentage());
 
         if (statsComponent.IsDead())
@@ -39,11 +42,11 @@ public class CombatComponent : MonoBehaviour, IDamageable
         return statsComponent.GetCurrentHealth();
     }
 
+    //Heal entity and raise an event that health has been updated.
     public void Heal(float healAmount)
     {
         statsComponent.ModifyHealth(healAmount);
-        // Raise the event after healing with the current health percentage
-        //OnHealthChanged(statsComponent.GetCurrentHealthPercentage());
+        OnHealthChanged(statsComponent.GetCurrentHealthPercentage());
     }
 
 
@@ -53,6 +56,6 @@ public class CombatComponent : MonoBehaviour, IDamageable
     /// </summary>
     public virtual void Feint()
     {
-        Debug.Log("MUST IMPLEMNT FEINT METHOD");
+        Debug.Log("MUST IMPLEMENT FEINT METHOD");
     }
 }

@@ -14,7 +14,8 @@ public class TimedExplosionAOESpell : Attack
 
     private new void Start()
     {
-        base.Start();  // Ensure we call the base Attack's Start method
+        //base.Start();  // Ensure we call the base Attack's Start method //We dont actually need this.
+        //TODO: Spells and projectiles should be 2 different base classes.
         damageCooldownTimer = 0;
     }
 
