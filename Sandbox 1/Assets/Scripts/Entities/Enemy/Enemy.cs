@@ -30,6 +30,9 @@ public class Enemy : MonoBehaviour
         EnemyStats = this.GetComponent<EnemyStats>();
         enemyCombatComponent = this.GetComponent<EnemyCombatComponent>();
         enemyCombatComponent.Initialize(EnemyStats);
+
+        //Subscribe to component events.
+        enemyCombatComponent.OnAttacked += onRecDam;
     }
 
     protected virtual void Start()
@@ -57,16 +60,12 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public float ReceiveDamage(float damageAmount, int? knockBackForce = null, Vector3? direction = null)
+    public void onRecDam(int? knockBackForce, Vector3? direction)
     {
+        DisplayFloatingCombatText();
+
         // set attacked state to true
         attacked = true;
-
-        // Update the health using the StatsComponent's method
-        enemyCombatComponent.ReceiveDamage(damageAmount);
-
-        //Update Healthbar in UI
-        UpdateFloatingHealthBarUI();
 
         // Check if knockback is applicable
         if (knockBackForce.HasValue && direction.HasValue)
@@ -74,14 +73,10 @@ public class Enemy : MonoBehaviour
             // Set Knockback to the movement component.
             moveComponent.DoKnockback(knockBackForce.Value, direction.Value);
         }
-
-        return EnemyStats.currentHealth;
     }
 
-
-
     //Update floating healthbar in world space.
-    public void UpdateFloatingHealthBarUI()
+    public void DisplayFloatingCombatText()
     {
         if (floatingDmgText)
         {
@@ -90,18 +85,13 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    //Kill/death command, despawn and drop loot.
-    public void Feint()
-    {
-        Destroy(gameObject);
-    }
-
     //TODO: State code goes in state machines.
     public void resetAttackState()
     {
         attacked = false;
     }
 
+    //TODO: Move to Combat Component.
     public void CastAOEAttack()
     {
         if (attackOnCooldown == false)

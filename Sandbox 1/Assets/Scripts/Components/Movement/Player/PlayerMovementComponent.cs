@@ -2,6 +2,7 @@ using Polyperfect.Common;
 using System.Collections;
 using UnityEngine;
 
+//TODO: Fix surface rotation.
 //Player movement component contains a state machine, a working group states relevent to the player, varaible, and functions relevent to player movement.
 //It is the "Brain" of player movement.
 public class PlayerMovementComponent : MovementComponent
@@ -41,18 +42,19 @@ public class PlayerMovementComponent : MovementComponent
     private float lastDashTime = -Mathf.Infinity;
 
     //For matching surface rotation on terrain when moving.
-    //[SerializeField] private bool matchSurfaceRotation = true;
-    //[SerializeField] private int surfaceRotationSpeed = 20;
+    [SerializeField] private bool matchSurfaceRotation = true;
+    [SerializeField] private int surfaceRotationSpeed = 20;
 
     protected override void Awake()
     {
         base.Awake();
 
         //Match surface rotation to the terrain. 
-        //if (matchSurfaceRotation && transform.childCount > 0)
-        //{
-        //    transform.GetChild(0).gameObject.AddComponent<Common_SurfaceRotation>().SetRotationSpeed(surfaceRotationSpeed);
-        //}
+        //TODO: This isnt working and needs to be fixed.
+        if (matchSurfaceRotation && transform.childCount > 0)
+        {
+            transform.GetChild(0).gameObject.AddComponent<Common_SurfaceRotation>().SetRotationSpeed(surfaceRotationSpeed);
+        }
     }
 
     private void Start()
