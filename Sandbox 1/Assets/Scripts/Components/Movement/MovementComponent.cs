@@ -5,7 +5,6 @@ using UnityEngine;
 public abstract class MovementComponent : MonoBehaviour
 {
     public static PlayerEntity playerScript;
-    //public static Transform playerTransform;
     public StateMachine movementStateMachine;
     public CharacterController characterController;
     public PlayerControls playerControls;
@@ -37,7 +36,6 @@ public abstract class MovementComponent : MonoBehaviour
     public float mass = 3.0f;
     public float stunTimer = 0f;
     public float stunDuration = 1f;
-
 
     //Using constructor here because when accessing stateMachine in the derrived classes in Start() Method.
     //Even tho awake is usually called first, inheritance is not considered.
@@ -94,10 +92,6 @@ public abstract class MovementComponent : MonoBehaviour
     public void AddVelocityAndMove()
     {
         characterController.Move(velocity * Time.deltaTime);
-    }
-
-    public void ResetMoveParams()
-    {
     }
 
     public void setTarget(Transform target)
@@ -174,22 +168,15 @@ public abstract class MovementComponent : MonoBehaviour
     {
         if (movementStateMachine.CurrentState.ToString() != "FallingState" && movementStateMachine.CurrentState.ToString() != "JumpingState")
         {
-            if (isRunning ? isRunning = false : isRunning = true) ;
+            isRunning = !isRunning;
             updateMoveSpeed();
         }
     }
 
     public void updateMoveSpeed()
     {
-        //TODO: This shoudl use the state
-        if (isRunning)
-        {
-            currentSpeed = runSpeed;
-        }
-        else
-        {
-            currentSpeed = walkSpeed;
-        }
+        //TODO: This should use the state
+        currentSpeed = isRunning ? runSpeed : walkSpeed;
     }
 
     /// <summary>
@@ -229,8 +216,6 @@ public abstract class MovementComponent : MonoBehaviour
 
         //Debug.Log("Sprint Timer = " + sprintTimer);
     }
-
-
 
     protected void ResetSprintTimer()
     {

@@ -13,7 +13,6 @@
     public override void Exit()
     {
         base.Exit();
-        movementComponent.ResetMoveParams();
     }
 
     //Grounded state gets the input for move direction only.
