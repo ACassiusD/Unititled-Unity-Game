@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 533715246856455572}
   - component: {fileID: 3094033114829684902}
   m_Layer: 11
-  m_Name: Melee_Attack 1
+  m_Name: Melee_Attack_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,6 +81,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackHitbox: {fileID: 408180897990363751}
   damage: 50
+  showHitbox: 0
   knockbackForce: 100
   meleeAnimation: {fileID: 8193014928986366451}
 --- !u!54 &3094033114829684902
@@ -259,6 +260,7 @@ MonoBehaviour:
   OnHitEvent:
     m_PersistentCalls:
       m_Calls: []
+  showHitbox: 0
 --- !u!33 &8193014929120634518
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -274,7 +276,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8193014929120634514}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

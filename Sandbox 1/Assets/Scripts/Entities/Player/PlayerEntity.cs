@@ -1,7 +1,5 @@
 using UnityEngine;
 
-// TODO: Finish melee attack with hitbox and everything.
-// TODO: Fix melee hitbox pushing around mountd player.
 // TODO: ADD Combat override Component / state machines.
 
 public class PlayerEntity : MonoBehaviour

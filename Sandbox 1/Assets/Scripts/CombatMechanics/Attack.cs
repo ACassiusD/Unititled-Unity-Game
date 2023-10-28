@@ -6,6 +6,7 @@ public abstract class Attack : MonoBehaviour, IAttackBehaviour
     // Reference to the Hitbox script attached to the attack's hitbox
     public Hitbox attackHitbox;
     public float damage = 50;
+    public bool showHitbox = false;
 
     //Only used if the attack utilizes knockback.
     protected Rigidbody rb;

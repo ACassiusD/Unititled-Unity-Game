@@ -10,9 +10,15 @@ public class Hitbox : MonoBehaviour
     public UnityEvent<Collider> OnHitEvent;
     private Collider hitboxCollider;
     private MeshRenderer meshRenderer;
+    public bool showHitbox = false;
+    private Attack attack;
 
     private void Awake()
     {
+        //This is just to make it easier to see the hitbox in the editor
+        attack = this.GetComponentInParent<Attack>();
+        showHitbox = (attack != null && attack.showHitbox != null) ? attack.showHitbox : showHitbox;
+      
         // Cache the Collider component for quick access
         hitboxCollider = GetComponent<Collider>();
 
@@ -31,7 +37,7 @@ public class Hitbox : MonoBehaviour
         hitboxCollider.enabled = true;
 
         // Debugging: Enable MeshRenderer to visualize the hitbox
-        if (meshRenderer != null)
+        if (meshRenderer != null && showHitbox)
         {
             meshRenderer.enabled = true;
         }
