@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -7,6 +8,11 @@ public class FloatingDamagePopup : MonoBehaviour
     public GameObject floatingDmgText;
     public CombatComponent combatComponent;
     public float floatingHealthDamageOffset = 15f;
+
+    // Duration to display text before destroying it
+    // In the future we can destory them with an event based on the text animation ending
+    // But for now we'll just use a timer
+    private float textDisplayDuration = .35f;
 
     public void Awake()
     {
@@ -21,7 +27,7 @@ public class FloatingDamagePopup : MonoBehaviour
         combatComponent.OnAttacked += DisplayFloatingCombatText;
     }
 
-    // Display floating combat text
+    // Display floating combat text above the entity 
     public void DisplayFloatingCombatText(int? knockBackForce, Vector3? direction)
     {
         Vector3 popupPosition = combatComponent.transform.position;
@@ -37,6 +43,14 @@ public class FloatingDamagePopup : MonoBehaviour
 
             // Update the text to display the current health
             floatingDamageText.GetComponent<TextMeshPro>().text = combatComponent.statsComponent.currentHealth.ToString();
+            
+            // Start the coroutine to destroy the text after the specified duration
+            StartCoroutine(DestroyTextAfterDelay(floatingDamageText, textDisplayDuration));
         }
+    }
+    private IEnumerator DestroyTextAfterDelay(GameObject textObject, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Destroy(textObject);
     }
 }

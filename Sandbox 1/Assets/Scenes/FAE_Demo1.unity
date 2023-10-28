@@ -1277,6 +1277,7 @@ MonoBehaviour:
     type: 3}
   combatComponent: {fileID: 2026751678}
   floatingHealthDamageOffset: 3.6
+  textDisplayDuration: 1.5
 --- !u!4 &23252730 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000013528279170, guid: 0eff1998a022f0a4c8e76aff0ccfdfea,
@@ -11794,6 +11795,7 @@ MonoBehaviour:
     type: 3}
   combatComponent: {fileID: 168631608}
   floatingHealthDamageOffset: 3.6
+  textDisplayDuration: 1.5
 --- !u!1001 &262588031
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20715,6 +20717,7 @@ MonoBehaviour:
     type: 3}
   combatComponent: {fileID: 295266610}
   floatingHealthDamageOffset: 5
+  textDisplayDuration: 1.5
 --- !u!1 &477667737
 GameObject:
   m_ObjectHideFlags: 0
@@ -37860,7 +37863,7 @@ PrefabInstance:
     - target: {fileID: 8655172793742681713, guid: 1070dfa1b11333041918f2463b64250e,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.22598165
+      value: -0.22598162
       objectReference: {fileID: 0}
     - target: {fileID: 8655172793742681713, guid: 1070dfa1b11333041918f2463b64250e,
         type: 3}
@@ -37870,7 +37873,7 @@ PrefabInstance:
     - target: {fileID: 8655172793742681713, guid: 1070dfa1b11333041918f2463b64250e,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.041454654
+      value: 0.041454647
       objectReference: {fileID: 0}
     - target: {fileID: 8655172793742681718, guid: 1070dfa1b11333041918f2463b64250e,
         type: 3}
@@ -37915,12 +37918,12 @@ PrefabInstance:
     - target: {fileID: 8655172793830323241, guid: 1070dfa1b11333041918f2463b64250e,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.17997791
+      value: 0.17997786
       objectReference: {fileID: 0}
     - target: {fileID: 8655172793830323241, guid: 1070dfa1b11333041918f2463b64250e,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.012790554
+      value: 0.01279055
       objectReference: {fileID: 0}
     - target: {fileID: 8655172794473433636, guid: 1070dfa1b11333041918f2463b64250e,
         type: 3}
@@ -37955,12 +37958,12 @@ PrefabInstance:
     - target: {fileID: 8655172794473433639, guid: 1070dfa1b11333041918f2463b64250e,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.1799779
+      value: 0.17997788
       objectReference: {fileID: 0}
     - target: {fileID: 8655172794473433639, guid: 1070dfa1b11333041918f2463b64250e,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.012790558
+      value: 0.012790555
       objectReference: {fileID: 0}
     - target: {fileID: 8655172794866301366, guid: 1070dfa1b11333041918f2463b64250e,
         type: 3}
@@ -43684,6 +43687,7 @@ MonoBehaviour:
     type: 3}
   combatComponent: {fileID: 46872455}
   floatingHealthDamageOffset: 3.6
+  textDisplayDuration: 0.25
 --- !u!4 &787080777 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7874520700596599126, guid: 099a1d4ea9d32fa4295041cc7d77f147,
@@ -49847,6 +49851,7 @@ MonoBehaviour:
     type: 3}
   combatComponent: {fileID: 7564536121195103493}
   floatingHealthDamageOffset: 15
+  textDisplayDuration: 0.25
 --- !u!1001 &804818078
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -93348,6 +93353,7 @@ MonoBehaviour:
     type: 3}
   combatComponent: {fileID: 695677313}
   floatingHealthDamageOffset: 3.6
+  textDisplayDuration: 1.5
 --- !u!1001 &1446723599
 PrefabInstance:
   m_ObjectHideFlags: 0
