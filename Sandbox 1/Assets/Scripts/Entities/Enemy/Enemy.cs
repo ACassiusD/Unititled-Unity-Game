@@ -8,7 +8,6 @@ public class Enemy : MonoBehaviour
     private EnemyCombatComponent enemyCombatComponent;
     private EnemyStats EnemyStats;
     protected GameObject activeAOEObject = null;
-    public GameObject floatingDmgText;
     private HealthBar healthBarScript;
 
     //AOE Attack
@@ -62,8 +61,6 @@ public class Enemy : MonoBehaviour
 
     public void onRecDam(int? knockBackForce, Vector3? direction)
     {
-        DisplayFloatingCombatText();
-
         // set attacked state to true
         attacked = true;
 
@@ -72,16 +69,6 @@ public class Enemy : MonoBehaviour
         {
             // Set Knockback to the movement component.
             moveComponent.DoKnockback(knockBackForce.Value, direction.Value);
-        }
-    }
-
-    //Update floating healthbar in world space.
-    public void DisplayFloatingCombatText()
-    {
-        if (floatingDmgText)
-        {
-            var floatingDamageText = Instantiate(floatingDmgText, transform.position, this.transform.rotation, transform);
-            floatingDamageText.GetComponent<TextMeshPro>().text = EnemyStats.currentHealth.ToString();
         }
     }
 

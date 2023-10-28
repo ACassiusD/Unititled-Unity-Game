@@ -10,10 +10,14 @@ using UnityEngine;
 /// </summary>
 public class CombatComponent : MonoBehaviour, IDamageable
 {
-    protected StatsComponent statsComponent; //Required
+    public StatsComponent statsComponent; //Required
 
     // Event that's triggers when health changes.
     public event System.Action<float> OnHealthChanged = delegate { };
+
+    //Only triggers when the entity is attacked.
+    //Currently using it to let the movement controller know that it should be put in stun.
+    public event System.Action<int?, Vector3?> OnAttacked = delegate { };
 
     // Call this method to initialize the PlayerCombatComponent with a StatsComponent
     public void Initialize(StatsComponent statsComp)
@@ -32,7 +36,9 @@ public class CombatComponent : MonoBehaviour, IDamageable
     {
         statsComponent.ModifyHealth(-damageAmount);
 
-        
+        //Raise onAttacked Event
+        OnAttacked(knockBackForce, direction);
+
         OnHealthChanged(statsComponent.GetCurrentHealthPercentage());
 
         if (statsComponent.IsDead())

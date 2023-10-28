@@ -7,7 +7,6 @@ using UnityEngine.VFX;
 public class MeleeAttack : Attack
 {
     private Dictionary<GameObject, float> hitRegistry;
-    private float attackDuration = 0.5f; // or however long the attack lasts
     public VisualEffect meleeAnimation;
 
     private void OnEnable()
