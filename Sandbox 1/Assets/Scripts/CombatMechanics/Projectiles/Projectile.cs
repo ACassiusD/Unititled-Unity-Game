@@ -35,7 +35,7 @@ public class Projectile : Attack
     // Override the HandleHit from the base Attack class
     protected override void HandleHit(Collider other)
     {
-        // Ignore collisions with the player due to the firing origin emanating from the player's body
+        // Ignore collision from the entity who fired the projectile
         if (other.CompareTag("Player"))
             return;
 

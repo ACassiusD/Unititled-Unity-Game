@@ -713,12 +713,12 @@ GameObject:
   m_Component:
   - component: {fileID: 7560094428986841405}
   - component: {fileID: 7615209873740673161}
-  - component: {fileID: 7568279271105347333}
-  - component: {fileID: 7627163243844752683}
-  - component: {fileID: 7597402053918574965}
-  - component: {fileID: 7596715836888333379}
   - component: {fileID: 7659998694268045579}
   - component: {fileID: 7564536122012813830}
+  - component: {fileID: 7627163243844752683}
+  - component: {fileID: 7568279271105347333}
+  - component: {fileID: 7597402053918574965}
+  - component: {fileID: 7596715836888333379}
   - component: {fileID: 7564536122012813825}
   - component: {fileID: 7564536122012813824}
   - component: {fileID: 7564536122012813831}
@@ -765,8 +765,30 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!143 &7568279271105347333
-CharacterController:
+--- !u!195 &7659998694268045579
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7565574534936098227}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!65 &7564536122012813830
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -776,13 +798,8 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2
-  m_Radius: 1.06
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1.06, z: 0}
+  m_Size: {x: 1.35, y: 1.5, z: 1.9}
+  m_Center: {x: 0.14, y: 1.03, z: 0.25}
 --- !u!82 &7627163243844752683
 AudioSource:
   m_ObjectHideFlags: 0
@@ -879,6 +896,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!143 &7568279271105347333
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7565574534936098227}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 1.06
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 1.06, z: 0}
 --- !u!114 &7597402053918574965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -961,41 +996,6 @@ MonoBehaviour:
       m_Calls: []
   CurrentState: 0
   moveSpeed: 0
---- !u!195 &7659998694268045579
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7565574534936098227}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
---- !u!65 &7564536122012813830
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7565574534936098227}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.35, y: 1.5, z: 1.9}
-  m_Center: {x: 0.14, y: 1.03, z: 0.25}
 --- !u!114 &7564536122012813825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1010,20 +1010,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveComponent: {fileID: 0}
   enemyAnimator: {fileID: 0}
-  walkAnimationSpeed: 1
-  runAnimaitonSpeed: 2
-  distanceToPlayer: 0
-  isWandering: 0
-  currentHealth: 5000
-  maxHealth: 5000
-  attacked: 0
-  aoeObject: {fileID: 5395470079655651887, guid: fcb602592b1637d4c980860c5b082381,
-    type: 3}
-  attackCooldown: 5
-  attackCooldownTimer: 5
-  attackOnCooldown: 0
   floatingDmgText: {fileID: 5328896383451125093, guid: 51e0ef3dc41bd594e8afc0b6f58cf36a,
     type: 3}
+  aoeObject: {fileID: 5395470079655651887, guid: fcb602592b1637d4c980860c5b082381,
+    type: 3}
+  aoeSize: {x: 1, y: 1}
+  attacked: 0
+  attackOnCooldown: 0
+  distanceToPlayer: 0
+  attackCooldown: 5
+  attackCooldownTimer: 5
 --- !u!114 &7564536122012813824
 MonoBehaviour:
   m_ObjectHideFlags: 0

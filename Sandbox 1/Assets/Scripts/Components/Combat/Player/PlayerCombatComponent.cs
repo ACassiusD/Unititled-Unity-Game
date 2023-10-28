@@ -1,46 +1,50 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.VFX;
 
 public class PlayerCombatComponent : CombatComponent
 {
-    public GameObject projectile;
-    public int power = 30;
     private Transform projectileFiringOrigin;
+    public GameObject projectile;
+    private PlayerControls playerControls;
+    private Transform cam;
+    public int power = 30;
     public float forwardVel = 50f;
     public float upwardVel = 50f;
     public float mass = 5f;
     public bool useGravity = false;
     public int rayRange = 2000;
-    private PlayerControls playerControls;
-    private Transform cam;
 
-    //For Melee Attack
-    public VisualEffect meleeAnimation;
-    public Collider meleeHitbox;
+    //Melee attack stuff will go in weapon class eventually.
+    public MeleeAttack meleeAttackPrefab; 
+    private MeleeAttack activeMeleeAttackInstance;
 
     //An event to let the movement controller know that it should be put in stun.
     public event System.Action<float> OnStunned = delegate { };
 
     private void Awake()
     {
-        //Get Melee Hitbox. Throw an error if not found.
-        meleeHitbox = transform.Find("Melee_Attack/Melee_Hitbox").GetComponent<Collider>();
-        if (meleeHitbox == null)
-            Debug.LogError("Melee_Hitbox not found on " + gameObject.name);
+        projectileFiringOrigin = transform.Find("Projectile_Origin");
+
+        if (projectileFiringOrigin == null)
+        {
+            Debug.LogError("ProjectileOrigin not found on " + gameObject.name);
+            return;
+        }
 
         // Assuming that the PlayerManager and the PlayerEntity are accessible globally
         cam = PlayerManager.Instance.getPlayerScript().playerMovementComponent.cam.transform;
 
-        // Get the projectileOrigin transform from the entity
-        projectileFiringOrigin = transform.Find("Projectile_Origin");
-        if (projectileFiringOrigin == null)
-        {
-            Debug.LogError("ProjectileOrigin transform not found on " + gameObject.name);
-            return;
-        }
-
         playerControls = new PlayerControls();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        IDamageable damageableEntity = other.GetComponent<IDamageable>();
+        if (damageableEntity != null)
+        {
+            float someDamageAmount = 10f;  // Replace with your own logic to determine the damage amount
+            damageableEntity.ReceiveDamage(someDamageAmount);
+        }
     }
 
     private void OnEnable()
@@ -63,7 +67,6 @@ public class PlayerCombatComponent : CombatComponent
         // If only MouseButton1 is pressed (Melee Attack)
         if (mouseButton1Pressed && !mouseButton2Held)
         {
-            meleeAnimation.Play();
             StartCoroutine(HandleMeleeAttack());
         }
 
@@ -84,15 +87,26 @@ public class PlayerCombatComponent : CombatComponent
         return newCurrentHealthValue;
     }
 
+
     private IEnumerator HandleMeleeAttack()
     {
-        meleeHitbox.enabled = true;
+        // Instantiate and position the MeleeAttack hitbox
+        activeMeleeAttackInstance = Instantiate(meleeAttackPrefab, transform.position, transform.rotation);
+        activeMeleeAttackInstance.transform.parent = transform;  // Make the player the parent of the hitbox
+
+        // Enable the hitbox (and MeshRenderer for debugging)
+        activeMeleeAttackInstance.attackHitbox.EnableHitbox();
 
         // Wait for some time (e.g., duration of the melee attack)
-        yield return new WaitForSeconds(0.5f); // This duration needs to be adjusted based on the animation duration
+        yield return new WaitForSeconds(0.1f);  // Adjust this duration based on your actual animation duration
 
-        meleeHitbox.enabled = false;
+        // Disable the hitbox (and MeshRenderer for debugging)
+        activeMeleeAttackInstance.attackHitbox.DisableHitbox();
+
+        // Destroy the hitbox instance if you want to clean up
+        Destroy(activeMeleeAttackInstance.gameObject);
     }
+
 
     public void FireProjectile()
     {
