@@ -9844,6 +9844,16 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3242494516852287876, guid: 79ab0f9161f94754c91e452316cd2ce1,
+        type: 3}
+      propertyPath: maxHealth
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3242494516852287876, guid: 79ab0f9161f94754c91e452316cd2ce1,
+        type: 3}
+      propertyPath: currentHealth
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 3242494516852287900, guid: 79ab0f9161f94754c91e452316cd2ce1,
         type: 3}
       propertyPath: m_RootOrder
@@ -34606,6 +34616,16 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3242494516852287876, guid: 79ab0f9161f94754c91e452316cd2ce1,
+        type: 3}
+      propertyPath: maxHealth
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3242494516852287876, guid: 79ab0f9161f94754c91e452316cd2ce1,
+        type: 3}
+      propertyPath: currentHealth
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 3242494516852287900, guid: 79ab0f9161f94754c91e452316cd2ce1,
         type: 3}
       propertyPath: m_RootOrder
@@ -36441,7 +36461,7 @@ PrefabInstance:
     - target: {fileID: 8655172793742681713, guid: 1070dfa1b11333041918f2463b64250e,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.22598162
+      value: -0.22598165
       objectReference: {fileID: 0}
     - target: {fileID: 8655172793742681713, guid: 1070dfa1b11333041918f2463b64250e,
         type: 3}
@@ -36451,7 +36471,7 @@ PrefabInstance:
     - target: {fileID: 8655172793742681713, guid: 1070dfa1b11333041918f2463b64250e,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.041454647
+      value: 0.041454654
       objectReference: {fileID: 0}
     - target: {fileID: 8655172793742681718, guid: 1070dfa1b11333041918f2463b64250e,
         type: 3}
@@ -36496,12 +36516,12 @@ PrefabInstance:
     - target: {fileID: 8655172793830323241, guid: 1070dfa1b11333041918f2463b64250e,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.17997791
+      value: 0.17997786
       objectReference: {fileID: 0}
     - target: {fileID: 8655172793830323241, guid: 1070dfa1b11333041918f2463b64250e,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.012790554
+      value: 0.01279055
       objectReference: {fileID: 0}
     - target: {fileID: 8655172794473433636, guid: 1070dfa1b11333041918f2463b64250e,
         type: 3}
@@ -36536,12 +36556,12 @@ PrefabInstance:
     - target: {fileID: 8655172794473433639, guid: 1070dfa1b11333041918f2463b64250e,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.1799779
+      value: 0.17997788
       objectReference: {fileID: 0}
     - target: {fileID: 8655172794473433639, guid: 1070dfa1b11333041918f2463b64250e,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.012790558
+      value: 0.012790555
       objectReference: {fileID: 0}
     - target: {fileID: 8655172794866301366, guid: 1070dfa1b11333041918f2463b64250e,
         type: 3}
@@ -36631,7 +36651,7 @@ PrefabInstance:
     - target: {fileID: 8655172795592257669, guid: 1070dfa1b11333041918f2463b64250e,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.020356603
+      value: -0.020356597
       objectReference: {fileID: 0}
     - target: {fileID: 8655172795592257669, guid: 1070dfa1b11333041918f2463b64250e,
         type: 3}
@@ -36641,7 +36661,7 @@ PrefabInstance:
     - target: {fileID: 8655172795592257669, guid: 1070dfa1b11333041918f2463b64250e,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0037342669
+      value: 0.0037342662
       objectReference: {fileID: 0}
     - target: {fileID: 8655172795592257690, guid: 1070dfa1b11333041918f2463b64250e,
         type: 3}
@@ -84974,6 +84994,16 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3242494516852287876, guid: 79ab0f9161f94754c91e452316cd2ce1,
+        type: 3}
+      propertyPath: maxHealth
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3242494516852287876, guid: 79ab0f9161f94754c91e452316cd2ce1,
+        type: 3}
+      propertyPath: currentHealth
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 3242494516852287900, guid: 79ab0f9161f94754c91e452316cd2ce1,
         type: 3}
       propertyPath: m_RootOrder
@@ -91560,8 +91590,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a4320f619c9d584783056ec257771df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealth: 4500
-  maxHealth: 5000
+  currentHealth: 1000
+  maxHealth: 1000
   stamina: 100
 --- !u!114 &1457280289
 MonoBehaviour:
@@ -92698,6 +92728,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3242494516852287876, guid: 79ab0f9161f94754c91e452316cd2ce1,
+        type: 3}
+      propertyPath: maxHealth
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3242494516852287876, guid: 79ab0f9161f94754c91e452316cd2ce1,
+        type: 3}
+      propertyPath: currentHealth
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 3242494516852287900, guid: 79ab0f9161f94754c91e452316cd2ce1,
         type: 3}
@@ -123758,6 +123798,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3242494516852287876, guid: 79ab0f9161f94754c91e452316cd2ce1,
+        type: 3}
+      propertyPath: maxHealth
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3242494516852287876, guid: 79ab0f9161f94754c91e452316cd2ce1,
+        type: 3}
+      propertyPath: currentHealth
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 3242494516852287900, guid: 79ab0f9161f94754c91e452316cd2ce1,
         type: 3}
