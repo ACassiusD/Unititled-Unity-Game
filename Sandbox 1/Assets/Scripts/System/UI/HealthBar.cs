@@ -19,6 +19,7 @@ public class HealthBar : MonoBehaviour
         if (combatComponent != null)
         {
             combatComponent.OnHealthChanged += UpdateHealthBar;
+            UpdateHealthBar(combatComponent.GetCurrentHealthPercentage());
         }
         else
         {

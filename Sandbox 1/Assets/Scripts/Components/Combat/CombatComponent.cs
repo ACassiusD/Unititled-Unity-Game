@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 /// <summary>
@@ -57,5 +58,10 @@ public class CombatComponent : MonoBehaviour, IDamageable
     public virtual void Feint()
     {
         Debug.Log("MUST IMPLEMENT FEINT METHOD");
+    }
+
+    public float GetCurrentHealthPercentage()
+    {
+        return statsComponent.GetCurrentHealthPercentage();
     }
 }
