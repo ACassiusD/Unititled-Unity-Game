@@ -713,8 +713,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7560094428986841405}
   - component: {fileID: 7615209873740673161}
+  - component: {fileID: 6820961841746017373}
   - component: {fileID: 7659998694268045579}
-  - component: {fileID: 7564536122012813830}
   - component: {fileID: 7627163243844752683}
   - component: {fileID: 7568279271105347333}
   - component: {fileID: 7597402053918574965}
@@ -765,6 +765,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!64 &6820961841746017373
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7565574534936098227}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!195 &7659998694268045579
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -787,19 +801,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!65 &7564536122012813830
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7565574534936098227}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.35, y: 1.5, z: 1.9}
-  m_Center: {x: 0.14, y: 1.03, z: 0.25}
 --- !u!82 &7627163243844752683
 AudioSource:
   m_ObjectHideFlags: 0
