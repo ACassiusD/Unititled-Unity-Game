@@ -72,7 +72,7 @@ public class EnemyMovementComponent : MovementComponent
         }
         else
         {
-            this.getEnemyScript().enemyAnimator.setIdleAnimation();
+            //this.getEnemyScript().enemyAnimator.setIdleAnimation();
             this.isRunning = false;
         }
     }

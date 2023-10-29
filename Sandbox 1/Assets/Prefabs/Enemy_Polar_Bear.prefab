@@ -880,13 +880,13 @@ GameObject:
   - component: {fileID: 1699285333342338173}
   - component: {fileID: 1699285333342338172}
   - component: {fileID: 1699285333342338171}
+  - component: {fileID: 9182754461163514974}
+  - component: {fileID: 9182754461163514985}
   - component: {fileID: 9182754461163514961}
   - component: {fileID: 9182754461163514960}
   - component: {fileID: 9182754461163514959}
   - component: {fileID: 9182754461163514958}
   - component: {fileID: 9182754461163514957}
-  - component: {fileID: 9182754461163514985}
-  - component: {fileID: 9182754461163514974}
   m_Layer: 8
   m_Name: Enemy_Polar_Bear
   m_TagString: Enemy
@@ -1177,8 +1177,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveComponent: {fileID: 0}
   enemyAnimator: {fileID: 0}
-  floatingDmgText: {fileID: 5328896383451125093, guid: 51e0ef3dc41bd594e8afc0b6f58cf36a,
-    type: 3}
   aoeObject: {fileID: 9059177569700964210, guid: 81a8ff084454f54449b1feab4394c4db,
     type: 3}
   aoeSize: {x: 1, y: 1}
@@ -1245,6 +1243,34 @@ MonoBehaviour:
   naveMeshAgent: {fileID: 0}
   wanderscript: {fileID: 0}
   enemyScript: {fileID: 0}
+--- !u!114 &9182754461163514974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1698388618735944655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3db807f493c6f754fa6c420e0fe80485, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statsComponent: {fileID: 0}
+--- !u!114 &9182754461163514985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1698388618735944655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a4320f619c9d584783056ec257771df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 1000
+  maxHealth: 1000
+  stamina: 100
 --- !u!65 &9182754461163514961
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1310,33 +1336,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.44, y: 1.97, z: 0.58}
   m_Center: {x: -0.37, y: 0.98, z: 0.71}
---- !u!114 &9182754461163514985
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1698388618735944655}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a4320f619c9d584783056ec257771df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentHealth: 1000
-  maxHealth: 1000
-  stamina: 100
---- !u!114 &9182754461163514974
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1698388618735944655}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3db807f493c6f754fa6c420e0fe80485, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1698441743313479573
 GameObject:
   m_ObjectHideFlags: 0

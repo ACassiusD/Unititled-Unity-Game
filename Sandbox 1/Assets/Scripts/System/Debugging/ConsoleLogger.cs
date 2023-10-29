@@ -3,31 +3,24 @@ using UnityEngine;
 
 public class ConsoleLogger : MonoBehaviour
 {
-
     //Singleton
     public static ConsoleLogger Instance { get; private set; }
-    TextMeshProUGUI console;
-    int num = 0;
+    private TextMeshProUGUI console;
+    private PlayerMovementComponent playerMovementComponent;
+    public Enemy enemy;
     string maintext = string.Empty;
-    PlayerMovementComponent playerMovementComponent;
 
     private void Awake()
     {
-        //playerMovementComponent = PlayerManager.Instance.playerScript.movementComponent;
-
         console = gameObject.GetComponentInChildren<TextMeshProUGUI>();
 
-        if (Instance == null)
-        {
+        if (Instance == null){
             Instance = this;
             //DontDestroyOnLoad(gameObject);
         }
-        else
-        {
+        else{
             Destroy(gameObject);
         }
-
-
     }
 
     void Start()
@@ -43,6 +36,8 @@ public class ConsoleLogger : MonoBehaviour
             "Move Direction..." + playerMovementComponent.movementDirection + "\n" +
             "Move Speed......." + playerMovementComponent.currentSpeed + "\n" +
             "Move State........" + playerMovementComponent.movementStateMachine.CurrentState.ToString() + "\n" +
+            "Enenmy Move State........" + enemy.moveComponent.movementStateMachine.CurrentState.ToString() + "\n" +
+            "Enenmy Combat State........" + enemy.enemyCombatComponent.combatStateMachine.CurrentState.ToString() + "\n" +
             "Sprint Timer......." + playerMovementComponent.sprintTimer + "\n" +
             "Jumps..............." + playerMovementComponent.jumpCount + "/" + playerMovementComponent.maxJumps;
         console.text = maintext;

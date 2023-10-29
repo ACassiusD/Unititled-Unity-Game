@@ -1,25 +1,16 @@
-using TMPro;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
     public EnemyMovementComponent moveComponent;
     public EnemyAnimatorComponent enemyAnimator;
-    private EnemyCombatComponent enemyCombatComponent;
+    public EnemyCombatComponent enemyCombatComponent;
     private EnemyStats EnemyStats;
-    protected GameObject activeAOEObject = null;
     private HealthBar healthBarScript;
-
-    //AOE Attack
-    public GameObject aoeObject;
-    public Vector2 aoeSize = new Vector2(1f, 1f);  // Set default size or adjust in inspector
 
     //Comaat vars to be moved into compat component
     public bool attacked = false; // TODO: State machine.
-    public bool attackOnCooldown = false;
     public float distanceToPlayer = 0;
-    public float attackCooldown = 5f;
-    public float attackCooldownTimer = 5f;
 
     void Awake()
     {
@@ -46,19 +37,6 @@ public class Enemy : MonoBehaviour
             Debug.LogError(this.name + " is missing a HealthBarScript!");
     }
 
-    void Update()
-    {
-        if (attackOnCooldown)
-        {
-            attackCooldownTimer -= Time.deltaTime;
-            if (attackCooldownTimer <= 0)
-            {
-                attackOnCooldown = false;
-                attackCooldownTimer = attackCooldown;
-            }
-        }
-    }
-
     public void onRecDam(int? knockBackForce, Vector3? direction)
     {
         // set attacked state to true
@@ -77,16 +55,4 @@ public class Enemy : MonoBehaviour
     {
         attacked = false;
     }
-
-    //TODO: Move to Combat Component.
-    public void CastAOEAttack()
-    {
-        if (attackOnCooldown == false)
-        {
-            activeAOEObject = Instantiate(aoeObject);
-            activeAOEObject.transform.position = this.transform.position;
-            attackOnCooldown = true;
-        }
-    }
-
 }

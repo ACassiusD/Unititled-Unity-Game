@@ -16,8 +16,8 @@ public class EnemyStandingState : EnemyState
         if (movementComponent.wanderscript != null)
         {
             movementComponent.wanderscript.enabled = true;
-            movementComponent.getEnemyScript().enemyAnimator.setIdleAnimation();
-            movementComponent.getEnemyScript().enemyAnimator.ClearAnimation();
+            //movementComponent.getEnemyScript().enemyAnimator.setIdleAnimation();
+            //movementComponent.getEnemyScript().enemyAnimator.ClearAnimation();
             movementComponent.wanderscript.resetOrigin();
             movementComponent.wanderscript.UpdateAI();
         }
