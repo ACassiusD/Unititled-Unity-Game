@@ -21,9 +21,19 @@ public class MovingState : GroundedState
 
     public override void HandleInput()
     {
-
         base.HandleInput();
-        if (movementComponent.isRunning)
+
+        bool dashKeyCaptured = movementComponent.playerControls.Player.LeftShift.WasPressedThisFrame();  // Assumes you have a Dash action set up in your PlayerControls
+    
+        if (!movementComponent.isDashing && dashKeyCaptured && Time.time >= movementComponent.lastDashTime + movementComponent.dashCooldown)
+        {
+            movementComponent.InitDash();
+        }
+        if (movementComponent.isDashing)
+        {
+            animator.setDashingAnimation();
+        }
+        else if (movementComponent.isRunning)
         {
             movementComponent.ConsumeSprintMeter();
             animator.setRunningAnimation();

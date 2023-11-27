@@ -36,10 +36,11 @@ public class PlayerMovementComponent : MovementComponent
     private RaycastHit steepSlopeHit;
 
     //Dashing Variables
+    public bool isDashing = false;
     public float dashSpeed = 40f;
-    public float dashDuration = 0.5f;
+    public float dashDuration = 1f;
     public float dashCooldown = 0.5f;
-    private float lastDashTime = -Mathf.Infinity;
+    public float lastDashTime = -Mathf.Infinity;
 
     //For matching surface rotation on terrain when moving.
     [SerializeField] private bool matchSurfaceRotation = true;
@@ -81,14 +82,12 @@ public class PlayerMovementComponent : MovementComponent
     protected override void Update()
     {
         playerScript.UpdateStaminaUI();
-
-        bool dashKeyCaptured = playerControls.Player.LeftShift.WasPressedThisFrame();  // Assumes you have a Dash action set up in your PlayerControls
-        if (dashKeyCaptured && Time.time >= lastDashTime + dashCooldown)
-        {
-            StartCoroutine(Dash());
-        }
-
         base.Update();
+    }
+
+    public void InitDash()
+    {
+        StartCoroutine(Dash());
     }
 
     /// <summary>
@@ -98,6 +97,7 @@ public class PlayerMovementComponent : MovementComponent
     /// <returns>IEnumerator for the coroutine behavior of the dash.</returns>
     private IEnumerator Dash()
     {
+        isDashing = true;
         float dashStartTime = Time.time;
 
         // Get player input direction for dashing
@@ -122,6 +122,7 @@ public class PlayerMovementComponent : MovementComponent
         }
 
         lastDashTime = Time.time;
+        isDashing = false;
     }
 
     public bool isMoving()

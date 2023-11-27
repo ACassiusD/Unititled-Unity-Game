@@ -13,6 +13,7 @@ public class PlayerAnimator : MonoBehaviour
     string fallingBool = "isFalling";
     string ridingBool = "isRiding";
     string stunnedBool = "isStunned";
+    string dashingBool = "isDashing";
     public float walkAnimationSpeed = 1;
     public float runAnimaitonSpeed = 2;
 
@@ -40,6 +41,13 @@ public class PlayerAnimator : MonoBehaviour
         debugAnimations("RUNNING BOOL");
         ClearAnimation();
         SetAnimationBool(runningBool, true, runAnimaitonSpeed);
+    }
+
+    public void setDashingAnimation()
+    {
+        debugAnimations("DASHING BOOL");
+        ClearAnimation();
+        SetAnimationBool(dashingBool, true, 1);
     }
 
     public void setIdleAnimation(float animationSpeed = 0)
@@ -94,6 +102,7 @@ public class PlayerAnimator : MonoBehaviour
         SetAnimationBool(jumpingBool, false, 0);
         SetAnimationBool(ridingBool, false, 0);
         SetAnimationBool(stunnedBool, false, 0);
+        SetAnimationBool(dashingBool, false, 0);
     }
 
     void SetAnimationBool(string parameterName, bool value, float speed)
