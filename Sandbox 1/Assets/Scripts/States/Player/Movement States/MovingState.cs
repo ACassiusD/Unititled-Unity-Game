@@ -3,18 +3,16 @@ using UnityEngine;
 public class MovingState : GroundedState
 {
     PlayerAnimator animator;
-    private bool jump;
+    private bool isPlayerJumping;
 
-    public MovingState(StateMachine stateMachine, PlayerMovementComponent moveComp) : base(stateMachine, moveComp)
-    {
+    public MovingState(StateMachine stateMachine, PlayerMovementComponent moveComp) : base(stateMachine, moveComp){
         animator = movementComponent.getPlayerScript().playerAnimator;
     }
 
     //While entering, calculate all relevent variables and other beginning methods here.
     public override void Enter()
     {
-        if (movementComponent.isDebugging)
-        {
+        if (movementComponent.isDebugging){
             Debug.Log("GROUNDED MOVING");
         }
     }
@@ -23,29 +21,26 @@ public class MovingState : GroundedState
     {
         base.HandleInput();
 
+        //Check if the player is trying to dash.
         bool dashKeyCaptured = movementComponent.playerControls.Player.LeftShift.WasPressedThisFrame();  // Assumes you have a Dash action set up in your PlayerControls
-    
-        if (!movementComponent.isDashing && dashKeyCaptured && Time.time >= movementComponent.lastDashTime + movementComponent.dashCooldown)
-        {
+        if (!movementComponent.isDashing && dashKeyCaptured && Time.time >= movementComponent.lastDashTime + movementComponent.dashCooldown){
             movementComponent.InitDash();
         }
-        if (movementComponent.isDashing)
-        {
+
+        //Set the animation based on the movement state.
+        if (movementComponent.isDashing){
             animator.setDashingAnimation();
         }
-        else if (movementComponent.isRunning)
-        {
+        else if (movementComponent.isRunning){
             movementComponent.ConsumeSprintMeter();
             animator.setRunningAnimation();
         }
-        else
-        {
+        else{
             movementComponent.RegenerateStaminaMeter();
             animator.setWalkingAnimation();
         }
 
-        jump = movementComponent.playerControls.Player.Jump.WasPerformedThisFrame();
-
+        isPlayerJumping = movementComponent.playerControls.Player.Jump.WasPerformedThisFrame();
     }
 
     //Decide the next state for the character.
@@ -61,7 +56,7 @@ public class MovingState : GroundedState
         {
             stateMachine.ChangeState(movementComponent.riding);
         }
-        else if (jump && movementComponent.jumpCount < movementComponent.maxJumps)
+        else if (isPlayerJumping && movementComponent.jumpCount < movementComponent.maxJumps)
         {
             stateMachine.ChangeState(movementComponent.jumping);
         }

@@ -100,30 +100,35 @@ public class PlayerMovementComponent : MovementComponent
         isDashing = true;
         float dashStartTime = Time.time;
 
-        // Get player input direction for dashing
-        float horizontal = playerControls.Player.Movement.ReadValue<Vector2>().x;
-        float vertical = playerControls.Player.Movement.ReadValue<Vector2>().y;
-
-        // Calculate the dash direction based on the camera's orientation
-        Vector3 forward = cam.transform.forward;
-        Vector3 right = cam.transform.right;
-        forward.y = 0;
-        right.y = 0;
-        forward.Normalize();
-        right.Normalize();
-
-        Vector3 desiredMoveDirection = forward * vertical + right * horizontal;
-
         while (Time.time < dashStartTime + dashDuration)
         {
-            Vector3 dashVelocity = desiredMoveDirection * dashSpeed;
-            characterController.Move(dashVelocity * Time.deltaTime);
+            // Get player input direction for dashing
+            Vector3 inputDirection = GetInputDirection();
+
+            if (inputDirection.sqrMagnitude >= 0.01f)
+            {
+                // Rotate the player to face the input direction
+                RotatePlayer(inputDirection);
+
+                // Calculate the dash direction based on the camera's orientation and input direction
+                movementDirection = CalculateMoveDirection(inputDirection) * dashSpeed;
+            }
+            else
+            {
+                // If no input, continue dashing in the current direction
+                movementDirection = transform.forward * dashSpeed;
+            }
+
+            // Apply dash movement
+            characterController.Move(movementDirection * Time.deltaTime);
+
             yield return null;
         }
 
         lastDashTime = Time.time;
         isDashing = false;
     }
+
 
     public bool isMoving()
     {
@@ -156,6 +161,7 @@ public class PlayerMovementComponent : MovementComponent
     {
         Vector3 inputDirection = GetInputDirection();
 
+        // Check if there is any movement input.
         if (inputDirection.sqrMagnitude >= 0.01f)
         {
             RotatePlayer(inputDirection);
