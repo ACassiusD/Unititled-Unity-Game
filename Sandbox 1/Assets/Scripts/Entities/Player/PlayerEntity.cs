@@ -131,6 +131,12 @@ public class PlayerEntity : MonoBehaviour
     /// </summary>
     public void UpdateStaminaUI()
     {
+        if(UIController.Instance == null)
+        {
+            //Debug.LogError("UIController.Instance is null. Ensure you have a UIController in the scene.");
+            return;
+        }
+
         float currentSprintTime = playerMovementComponent.sprintTimer;
         float currentSprintLimit = playerMovementComponent.sprintLimit;
 
